@@ -20,16 +20,19 @@ use Spatie\Sitemap\Tags\Url;
 Route::get('/', function () {
     return view('pages.home');
 });
-Route::get('/service', function () {
-    return view('pages.service');
-});
-Route::get('/booking', function () {
-    return view('pages.booking');
-});
+// Route::get('/service', function () {
+//     return view('pages.service');
+// });
+// Route::get('/booking', function () {
+//     return view('pages.booking');
+// });
+// Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
 
 if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 {
     Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
+    Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
+    Route::get('/service', [App\Http\Controllers\bookingController::class , 'service']);
 }
 
 Route::get('/sitemap', function(){
