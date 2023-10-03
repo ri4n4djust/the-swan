@@ -22,61 +22,88 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Our Menu</h2>
-          <p>Check Our <span>Yummy Menu</span></p>
+          <!-- <h2>Our Menu</h2> -->
+          <p>Check Our <span>Best Service</span></p>
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
           <li class="nav-item">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
-              <h4>Starters</h4>
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-bookings">
+              <h4>Bookings</h4>
             </a>
           </li><!-- End tab nav item -->
 
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
-              <h4>Breakfast</h4>
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-transport">
+              <h4>Transport</h4>
             </a><!-- End tab nav item -->
 
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-lunch">
-              <h4>Lunch</h4>
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-tour">
+              <h4>Tour</h4>
             </a>
           </li><!-- End tab nav item -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dinner">
               <h4>Dinner</h4>
             </a>
-          </li><!-- End tab nav item -->
+          </li> -->
+          <!-- End tab nav item -->
 
         </ul>
 
         <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 
-          <div class="tab-pane fade active show" id="menu-starters">
+          <div class="tab-pane fade active show" id="menu-bookings">
 
             <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Starters</h3>
+              <!-- <p>Bookings</p> -->
+              <h3>Rooms Booking</h3>
             </div>
 
             <div class="row gy-5">
-              {{$kamar}}
+              <!-- {{$kamar}} -->
             @foreach ($kamar as $detail)
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Magnam Tiste</h4>
+                <h4>{{ $detail->title}}</h4>
                 <p class="ingredients">
-
+                  {{ $detail->desc}}
                 </p>
                 <p class="price">
                   $5.95
                 </p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
+                  Detail
+                </button>
               </div><!-- Menu Item -->
             @endforeach
-              <div class="col-lg-4 menu-item">
+
+            <!-- Modal -->
+            @foreach ($kamar as $detail)
+            <div class="modal fade" id="exampleModal{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                  {{ $detail->desc}}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endforeach
+              <!-- <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
                 <h4>Aut Luia</h4>
                 <p class="ingredients">
@@ -85,9 +112,10 @@
                 <p class="price">
                   $14.95
                 </p>
-              </div><!-- Menu Item -->
+              </div> -->
+              <!-- Menu Item -->
 
-              <div class="col-lg-4 menu-item">
+              <!-- <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
                 <h4>Est Eligendi</h4>
                 <p class="ingredients">
@@ -96,14 +124,15 @@
                 <p class="price">
                   $8.95
                 </p>
-              </div><!-- Menu Item -->
+              </div> -->
+              <!-- Menu Item -->
 
               
 
             </div>
           </div><!-- End Starter Menu Content -->
 
-          <div class="tab-pane fade" id="menu-breakfast">
+          <div class="tab-pane fade" id="menu-transport">
 
             <div class="tab-header text-center">
               <p>Menu</p>
@@ -150,7 +179,7 @@
             </div>
           </div><!-- End Breakfast Menu Content -->
 
-          <div class="tab-pane fade" id="menu-lunch">
+          <div class="tab-pane fade" id="menu-tour">
 
             <div class="tab-header text-center">
               <p>Menu</p>
@@ -197,41 +226,7 @@
             </div>
           </div><!-- End Lunch Menu Content -->
 
-          <div class="tab-pane fade" id="menu-dinner">
-
-            <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Dinner</h3>
-            </div>
-
-            <div class="row gy-5">
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Magnam Tiste</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $5.95
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Aut Luia</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $14.95
-                </p>
-              </div><!-- Menu Item -->
-
-              
-
-            </div>
-          </div><!-- End Dinner Menu Content -->
+          
 
         </div>
 
@@ -239,30 +234,9 @@
     </section><!-- End Menu Section -->
 
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+
 
 
     <!-- ======= Gallery Section ======= -->

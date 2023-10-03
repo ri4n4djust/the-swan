@@ -18,4 +18,5 @@ class bookingController extends Controller
         $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
         return view('pages.service',['kamar' => $kamar] );
     }
+
 }
