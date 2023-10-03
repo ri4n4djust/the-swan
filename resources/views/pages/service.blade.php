@@ -54,7 +54,7 @@
 
         </ul>
 
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+        <div class="tab-content chefs">
 
           <div class="tab-pane fade active show" id="menu-bookings">
 
@@ -66,7 +66,7 @@
             <div class="row gy-5">
               <!-- {{$kamar}} -->
             @foreach ($kamar as $detail)
-              <div class="col-lg-4 menu-item">
+              <!-- <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
                 <h4>{{ $detail->title}}</h4>
                 <p class="ingredients">
@@ -78,13 +78,44 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
                   Detail
                 </button>
-              </div><!-- Menu Item -->
+              </div> -->
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                <div class="chef-member">
+                  <div class="member-img">
+                    <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
+                    <div class="social">
+                      <!-- <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a> -->
+                      <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
+                    </div>
+                  </div>
+                  
+                  <div class="member-info">
+                    <h4>{{ $detail->title}}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{{ $detail->desc}}</p>
+                    
+                  </div>
+                  <div class="member-info">
+                    <!-- <i class="bi bi-wifi"></i>
+                    <i class="bi bi-twitter"></i> -->
+                      <i class="bi bi-check2-all"></i> King Bed
+                      <i class="bi bi-check2-all"></i> Shower
+                      <i class="bi bi-check2-all"></i> Free Wifi
+                  </div>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
+                    Detail
+                  </button>
+                </div>
+              </div><!-- End Chefs Member -->
             @endforeach
 
             <!-- Modal -->
             @foreach ($kamar as $detail)
             <div class="modal fade" id="exampleModal{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -93,12 +124,54 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                  {{ $detail->desc}}
+                  
+                    <div class="row gy-4">
+                      <div class="col-md-6">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                          <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                          </ol>
+                          <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                              <img class="d-block w-100" src="assets/img/chefs/chefs-3.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                              <img class="d-block w-100" src="assets/img/chefs/chefs-1.jpg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                              <img class="d-block w-100" src="assets/img/chefs/chefs-2.jpg" alt="Third slide">
+                            </div>
+                            
+                          </div>
+                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+                      </div><!-- End Info Item -->
+
+                      <div class="col-md-6">
+                        <div class="info-item d-flex align-items-left">
+                          <div>
+                            <p>{{ $detail->desc}}</p>
+                          </div>
+                        </div>
+                      </div><!-- End Info Item -->
+                    </div>
+
+                    
                   </div>
-                  <div class="modal-footer">
+                  <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
