@@ -65,6 +65,36 @@
 
             <div class="row gy-5">
               <!-- {{$kamar}} -->
+              <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+                <div class="row gy-4">
+                  <div class="col-lg-4 col-md-3">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Cek In" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                    <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-3">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="cek Out" data-rule="email" data-msg="Please enter a valid email">
+                    <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-3">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Seacrh
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <a href="/display-user">Near Me</a>
+              @if($currentUserInfo)
+              <h4>IP: {{ $currentUserInfo->ip }}</h4>
+              <h4>Country Name: {{ $currentUserInfo->countryName }}</h4>
+              <h4>Country Code: {{ $currentUserInfo->countryCode }}</h4>
+              <h4>Region Code: {{ $currentUserInfo->regionCode }}</h4>
+              <h4>Region Name: {{ $currentUserInfo->regionName }}</h4>
+              <h4>City Name: {{ $currentUserInfo->cityName }}</h4>
+              <h4>Zip Code: {{ $currentUserInfo->zipCode }}</h4>
+              <h4>Latitude: {{ $currentUserInfo->latitude }}</h4>
+              <h4>Longitude: {{ $currentUserInfo->longitude }}</h4>
+              @endif
+
             @foreach ($kamar as $detail)
               <!-- <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
@@ -83,7 +113,10 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                 <div class="chef-member">
                   <div class="member-img">
-                    <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
+                    @php $gmbr = explode(";",$detail->foto) ; @endphp
+                    
+                    <img src="assets/img/rooms/{{ $gmbr[1] }}" class="img-fluid" alt="">
+                    
                     <div class="social">
                       <!-- <a href=""><i class="bi bi-twitter"></i></a>
                       <a href=""><i class="bi bi-facebook"></i></a>
@@ -95,19 +128,26 @@
                   <div class="member-info">
                     <h4>{{ $detail->title}}</h4>
                     <!-- <span>Cook</span> -->
-                    <p>{{ $detail->desc}}</p>
+                    <p>{{ substr($detail->desc, 0, 200)}}</p>
                     
-                  </div>
-                  <div class="member-info">
+                  <!-- </div>
+                  <div class="member-info"> -->
                     <!-- <i class="bi bi-wifi"></i>
                     <i class="bi bi-twitter"></i> -->
                       <i class="bi bi-check2-all"></i> King Bed
                       <i class="bi bi-check2-all"></i> Shower
                       <i class="bi bi-check2-all"></i> Free Wifi
                   </div>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
-                    Detail
-                  </button>
+                  <p class="price">
+                    $5.95 / Night
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
+                      Detail
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
+                      Book Now
+                    </button>
+                  </p>
+                  
                 </div>
               </div><!-- End Chefs Member -->
             @endforeach
@@ -129,13 +169,25 @@
                       <div class="col-md-6">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                           <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+
+                            @php $gmbr = explode(";",$detail->foto) ; @endphp
+                            
+                            @foreach($gmbr as $value)
+                            <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                            @endforeach
+                            <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+                            
                           </ol>
                           <div class="carousel-inner">
-
-                            <div class="carousel-item active">
+                            
+                            @foreach($gmbr as $key => $slider)
+                            <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                              <img src="assets/img/rooms/{{ $slider }}" class="d-block w-100" alt="">
+                            </div>
+                            @endforeach
+                            <!-- <div class="carousel-item active">
                               <img class="d-block w-100" src="assets/img/chefs/chefs-3.jpg" alt="First slide">
                             </div>
                             <div class="carousel-item">
@@ -143,7 +195,7 @@
                             </div>
                             <div class="carousel-item">
                               <img class="d-block w-100" src="assets/img/chefs/chefs-2.jpg" alt="Third slide">
-                            </div>
+                            </div> -->
                             
                           </div>
                           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Stevebauman\Location\Facades\Location;
 
 class bookingController extends Controller
 {
@@ -16,7 +17,15 @@ class bookingController extends Controller
     public function service(){
         $defaultLocale = config('app.locale');
         $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
-        return view('pages.service',['kamar' => $kamar] );
+        return view('pages.service',['kamar' => $kamar, 'currentUserInfo' => []] );
+    }
+
+    public function getLoc(Request $request){
+        $ip = $request->ip(); // Dynamic IP address */
+        // $ip = '162.159.24.227'; /* Static IP address */
+        $currentUserInfo = Location::get($ip);
+        // return view('pages.service', compact('currentUserInfo'));
+        return $currentUserInfo;
     }
 
 }
