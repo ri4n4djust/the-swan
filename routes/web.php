@@ -35,7 +35,13 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service']);
 }
 
+
+//====tess
 Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getLoc']);
+Route::resource('orders', OrderController::class)->only(['index', 'show']);
+//=====end route tes
+
+
 
 Route::get('/sitemap', function(){
     $sitemap = Sitemap::create()

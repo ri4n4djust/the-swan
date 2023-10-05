@@ -75,25 +75,17 @@
                     <input type="email" class="form-control" name="email" id="email" placeholder="cek Out" data-rule="email" data-msg="Please enter a valid email">
                     <div class="validate"></div>
                   </div>
-                  <div class="col-lg-4 col-md-3">
+                  <div class="col-lg-2 col-md-2">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="cek Out" data-rule="email" data-msg="Please enter a valid email">
+                    <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-2 col-md-2">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Seacrh
                     </button>
                   </div>
                 </div>
               </form>
-              <a href="/display-user">Near Me</a>
-              @if($currentUserInfo)
-              <h4>IP: {{ $currentUserInfo->ip }}</h4>
-              <h4>Country Name: {{ $currentUserInfo->countryName }}</h4>
-              <h4>Country Code: {{ $currentUserInfo->countryCode }}</h4>
-              <h4>Region Code: {{ $currentUserInfo->regionCode }}</h4>
-              <h4>Region Name: {{ $currentUserInfo->regionName }}</h4>
-              <h4>City Name: {{ $currentUserInfo->cityName }}</h4>
-              <h4>Zip Code: {{ $currentUserInfo->zipCode }}</h4>
-              <h4>Latitude: {{ $currentUserInfo->latitude }}</h4>
-              <h4>Longitude: {{ $currentUserInfo->longitude }}</h4>
-              @endif
 
             @foreach ($kamar as $detail)
               <!-- <div class="col-lg-4 menu-item">
@@ -139,7 +131,7 @@
                       <i class="bi bi-check2-all"></i> Free Wifi
                   </div>
                   <p class="price">
-                    $5.95 / Night
+                    IDR {{ number_format($detail->price, 2) }} / Night <br>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
                       Detail
                     </button>
