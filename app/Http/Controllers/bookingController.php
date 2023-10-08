@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Transport;
+use App\Models\Destination;
+use App\Models\TourPackage;
 use Stevebauman\Location\Facades\Location;
 
 class bookingController extends Controller
@@ -15,9 +18,19 @@ class bookingController extends Controller
     }
 
     public function service(){
+
         $defaultLocale = config('app.locale');
         $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
-        return view('pages.service',['kamar' => $kamar, 'currentUserInfo' => []] );
+        $transport = Transport::where('transports.lang', $defaultLocale)->get();
+        $detinasi = Destination::where('destinations.lang', $defaultLocale)->get();
+        $tur = TourPackage::where('tour_packages.lang', $defaultLocale)->get();
+
+        return view('pages.service',[
+            'kamar' => $kamar, 
+            'transport' => $transport,
+            'destination' => $detinasi,
+            'tour' => $tur
+            ] );
     }
 
     public function getLoc(Request $request){
@@ -26,6 +39,11 @@ class bookingController extends Controller
         $currentUserInfo = Location::get($ip);
         // return view('pages.service', compact('currentUserInfo'));
         return $currentUserInfo;
+    }
+
+    public function destination()
+    {
+        return view('pages.destination');
     }
 
 }

@@ -45,11 +45,11 @@
             </a>
           </li><!-- End tab nav item -->
 
-          <!-- <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dinner">
-              <h4>Dinner</h4>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-package">
+              <h4>Package</h4>
             </a>
-          </li> -->
+          </li>
           <!-- End tab nav item -->
 
         </ul>
@@ -88,19 +88,6 @@
               </form>
 
             @foreach ($kamar as $detail)
-              <!-- <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>{{ $detail->title}}</h4>
-                <p class="ingredients">
-                  {{ $detail->desc}}
-                </p>
-                <p class="price">
-                  $5.95
-                </p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
-                  Detail
-                </button>
-              </div> -->
               <!-- Menu Item -->
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                 <div class="chef-member">
@@ -179,15 +166,6 @@
                               <img src="assets/img/rooms/{{ $slider }}" class="d-block w-100" alt="">
                             </div>
                             @endforeach
-                            <!-- <div class="carousel-item active">
-                              <img class="d-block w-100" src="assets/img/chefs/chefs-3.jpg" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="d-block w-100" src="assets/img/chefs/chefs-1.jpg" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="d-block w-100" src="assets/img/chefs/chefs-2.jpg" alt="Third slide">
-                            </div> -->
                             
                           </div>
                           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -220,29 +198,6 @@
               </div>
             </div>
             @endforeach
-              <!-- <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Aut Luia</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $14.95
-                </p>
-              </div> -->
-              <!-- Menu Item -->
-
-              <!-- <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Est Eligendi</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $8.95
-                </p>
-              </div> -->
-              <!-- Menu Item -->
 
               
 
@@ -252,8 +207,143 @@
           <div class="tab-pane fade" id="menu-transport">
 
             <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Breakfast</h3>
+              <!-- <p>Menu</p> -->
+              <h3>Transport</h3>
+            </div>
+
+            <div class="row gy-4">
+
+            @foreach ($transport as $tr)
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    
+                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="">{{ $gmbr[1] }}
+                    
+                    <div class="social">
+                      <!-- <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a> -->
+                      <a href="" data-toggle="modal" data-target="#trModal{{$tr->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
+                    </div>
+                  </div>
+                  
+                  <div class="member-info">
+                    <h4>{{ $tr->nama}}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{{ substr($tr->deskripsi, 0, 200)}}</p>
+                    
+                  <!-- </div>
+                  <div class="member-info"> -->
+                    <!-- <i class="bi bi-wifi"></i>
+                    <i class="bi bi-twitter"></i> -->
+                    @php $fs = explode(",",$tr->fasilitas) ; @endphp
+                    @foreach ($fs as $fas)
+                      <i class="bi bi-check2-all"></i> {{$fas}}<br>
+                      <!-- <i class="bi bi-check2-all"></i> Shower
+                      <i class="bi bi-check2-all"></i> Free Wifi -->
+                    @endforeach
+                  </div>
+                  <p class="price">
+                    IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
+                      Detail
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
+                      Book Now
+                    </button>
+                  </p>
+                  
+                </div>
+              </div><!-- End Chefs Member -->
+            @endforeach
+
+            <!-- Modal -->
+            @foreach ($transport as $tr)
+            <div class="modal fade" id="trModal{{$tr->id}}" tabindex="-1" aria-labelledby="trModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="trModalLabel">{{ $tr->nama }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                  
+                    <div class="row gy-4">
+                      <div class="col-md-6">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                          <ol class="carousel-indicators">
+
+                            @php $gmbr = explode(";",$tr->foto) ; @endphp
+                            
+                            @foreach($gmbr as $value)
+                            <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                            @endforeach
+                            <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+                            
+                          </ol>
+                          <div class="carousel-inner">
+                            
+                            @foreach($gmbr as $key => $slider)
+                            <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                              <img src="assets/img/transport/{{ $slider }}" class="d-block w-100" alt="">
+                            </div>
+                            @endforeach
+                            
+                          </div>
+                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+                      </div><!-- End Info Item -->
+
+                      <div class="col-md-6">
+                        <div class="info-item d-flex align-items-left">
+                          <div>
+                            <p>{{ $tr->deskripsi }}</p>
+                          </div>
+                        </div>
+                      </div><!-- End Info Item -->
+                    </div>
+
+                    
+                  </div>
+                  <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            @endforeach
+
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+
+          <div class="tab-pane fade" id="menu-tour">
+
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <h3>Tour</h3>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-xl-6 form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
             </div>
 
             <div class="row gy-5">
@@ -294,13 +384,13 @@
               
 
             </div>
-          </div><!-- End Breakfast Menu Content -->
+          </div><!-- End Lunch Menu Content -->
 
-          <div class="tab-pane fade" id="menu-tour">
+          <div class="tab-pane fade" id="menu-package">
 
             <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Lunch</h3>
+              <!-- <p>Menu</p> -->
+              <h3>Package</h3>
             </div>
 
             <div class="row gy-5">
