@@ -37,6 +37,8 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
 
     Route::get('/destination', [App\Http\Controllers\bookingController::class , 'destination']);
+
+    Route::get('/try-checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'onSubmit']);
 }
 
 

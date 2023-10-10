@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2023 at 01:30 AM
+-- Generation Time: Oct 11, 2023 at 01:47 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.25
 
@@ -59,6 +59,7 @@ INSERT INTO `bookings` (`id`, `code`, `title`, `slug`, `desc`, `price`, `facilit
 
 CREATE TABLE `destinations` (
   `id` bigint UNSIGNED NOT NULL,
+  `code_dst` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -71,9 +72,9 @@ CREATE TABLE `destinations` (
 -- Dumping data for table `destinations`
 --
 
-INSERT INTO `destinations` (`id`, `name`, `foto`, `deskripsi`, `lang`, `created_at`, `updated_at`) VALUES
-(1, 'Barong Dance', 'barong.jpg', 'arong is a legendary character whose goal is to safeguard Bali from all evil disturbances that threaten the island. The barong is shown in numerous animal guises, including lions, tigers, wild boars, buffalo, elephants, and dogs. Since people still believe in animistic beliefs, barong has become a part of Javanese and Balinese culture. In Bali, the barong character is shaped like a cross between an animal face and a scary yet good persona. When you look at it, it can give you a religious feeling. Barong bali evolved from barong ponorogo or Reog, which King Airlangga brought with him when he fled to the island of Bali to save himself.', 'en', '2023-10-08 13:17:09', '2023-10-08 13:17:10'),
-(2, 'Tari Barong', 'barong.jpg', 'arong is a legendary character whose goal is to safeguard Bali from all evil disturbances that threaten the island. The barong is shown in numerous animal guises, including lions, tigers, wild boars, buffalo, elephants, and dogs. Since people still believe in animistic beliefs, barong has become a part of Javanese and Balinese culture. In Bali, the barong character is shaped like a cross between an animal face and a scary yet good persona. When you look at it, it can give you a religious feeling. Barong bali evolved from barong ponorogo or Reog, which King Airlangga brought with him when he fled to the island of Bali to save himself.', 'id', '2023-10-08 13:17:09', '2023-10-08 13:17:10');
+INSERT INTO `destinations` (`id`, `code_dst`, `name`, `foto`, `deskripsi`, `lang`, `created_at`, `updated_at`) VALUES
+(1, 'BRD01', 'Barong Dance', 'barong.jpg', 'arong is a legendary character whose goal is to safeguard Bali from all evil disturbances that threaten the island. The barong is shown in numerous animal guises, including lions, tigers, wild boars, buffalo, elephants, and dogs. Since people still believe in animistic beliefs, barong has become a part of Javanese and Balinese culture. In Bali, the barong character is shaped like a cross between an animal face and a scary yet good persona. When you look at it, it can give you a religious feeling. Barong bali evolved from barong ponorogo or Reog, which King Airlangga brought with him when he fled to the island of Bali to save himself.', 'en', '2023-10-08 13:17:09', '2023-10-08 13:17:10'),
+(2, 'BRD01', 'Tari Barong', 'barong.jpg', 'arong is a legendary character whose goal is to safeguard Bali from all evil disturbances that threaten the island. The barong is shown in numerous animal guises, including lions, tigers, wild boars, buffalo, elephants, and dogs. Since people still believe in animistic beliefs, barong has become a part of Javanese and Balinese culture. In Bali, the barong character is shaped like a cross between an animal face and a scary yet good persona. When you look at it, it can give you a religious feeling. Barong bali evolved from barong ponorogo or Reog, which King Airlangga brought with him when he fled to the island of Bali to save himself.', 'id', '2023-10-08 13:17:09', '2023-10-08 13:17:10');
 
 -- --------------------------------------------------------
 
@@ -180,14 +181,17 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `tour_packages` (
   `id` bigint UNSIGNED NOT NULL,
   `code` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tour_name` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `itinerary` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `pickup` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `payment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `destination` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `lang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -196,9 +200,10 @@ CREATE TABLE `tour_packages` (
 -- Dumping data for table `tour_packages`
 --
 
-INSERT INTO `tour_packages` (`id`, `code`, `tour_name`, `itinerary`, `price`, `note`, `pickup`, `payment`, `foto`, `lang`, `created_at`, `updated_at`) VALUES
-(1, 'FL01EN', 'Ubud Bali Tour', '    08:00 – Pick up at the hotel\n    09.30 – Watching Barong and Keris and Dance Performance (Trance Dance)\n    11.00 – Visit Celuk Village for Traditional Gold and Silver Smith\n    12.00 – Visit Ubud Tegenungan Waterfall\n    13.00 – Enjoy Lunch in Ubud\n    14.30 – Visit Ubud Tegalalang Rice Terrace\n    15.30 – Visit Ubud Monkey Forest\n    16.00 – Visit Ubud Royal Palace\n    16.30 – Visit Ubud Market\n    17.30 – Back to the hotel\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\n\nRegular Tours Price :\n\n        IDR 700,000/car (1 to 6 people included)\n        IDR 1,400,000/minibus (1 to 12 people included)\n        IDR 1,550,000/minibus (1 to 17 people included)\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', '', 'en', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
-(2, 'FL01ID', 'Ubud Bali Tur', '    08:00 – Pick up at the hotel\r\n    09.30 – Watching Barong and Keris and Dance Performance (Trance Dance)\r\n    11.00 – Visit Celuk Village for Traditional Gold and Silver Smith\r\n    12.00 – Visit Ubud Tegenungan Waterfall\r\n    13.00 – Enjoy Lunch in Ubud\r\n    14.30 – Visit Ubud Tegalalang Rice Terrace\r\n    15.30 – Visit Ubud Monkey Forest\r\n    16.00 – Visit Ubud Royal Palace\r\n    16.30 – Visit Ubud Market\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', '', 'id', '2023-10-08 13:18:57', '2023-10-08 13:18:57');
+INSERT INTO `tour_packages` (`id`, `code`, `type`, `tour_name`, `itinerary`, `price`, `note`, `pickup`, `payment`, `destination`, `foto`, `lang`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'FL01EN', 'Full DayTour', 'Ubud Bali Tour', '    08:00 – Pick up at the hotel\n    09.30 – Watching Barong and Keris and Dance Performance (Trance Dance)\n    11.00 – Visit Celuk Village for Traditional Gold and Silver Smith\n    12.00 – Visit Ubud Tegenungan Waterfall\n    13.00 – Enjoy Lunch in Ubud\n    14.30 – Visit Ubud Tegalalang Rice Terrace\n    15.30 – Visit Ubud Monkey Forest\n    16.00 – Visit Ubud Royal Palace\n    16.30 – Visit Ubud Market\n    17.30 – Back to the hotel\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\n\nRegular Tours Price :\n\n        IDR 700,000/car (1 to 6 people included)\n        IDR 1,400,000/minibus (1 to 12 people included)\n        IDR 1,550,000/minibus (1 to 17 people included)\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'en', 'Ubud-Bali-Tour', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
+(2, 'FL01ID', 'Tur 1 Hari', 'Ubud Bali Tur', '    08:00 – Pick up at the hotel\r\n    09.30 – Watching Barong and Keris and Dance Performance (Trance Dance)\r\n    11.00 – Visit Celuk Village for Traditional Gold and Silver Smith\r\n    12.00 – Visit Ubud Tegenungan Waterfall\r\n    13.00 – Enjoy Lunch in Ubud\r\n    14.30 – Visit Ubud Tegalalang Rice Terrace\r\n    15.30 – Visit Ubud Monkey Forest\r\n    16.00 – Visit Ubud Royal Palace\r\n    16.30 – Visit Ubud Market\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'id', 'Ubud-Bali-Tur', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
+(3, 'FL02EN', 'Full Day Tour', 'South Bali Tour', '    08:00 – Pick up at the hotel\r\n    09.30 – Visit the Watersport area \r\n    11.00 – Visit Waterblow\r\n    12.00 – Visit Geger Beach\r\n    13.00 – Enjoy Lunch in Nusa Dua\r\n    14.30 – Visit GWK\r\n    15.30 – Visit Pandawa Beach\r\n    16.00 – Visit Uluwatu Temple\r\n    16.30 – Visit Jimbaran Beach\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', '4,5,6', '4.jpg', 'en', 'South-Bali-Tour', '2023-10-09 12:23:56', '2023-10-09 12:23:56');
 
 -- --------------------------------------------------------
 
@@ -226,14 +231,14 @@ CREATE TABLE `transports` (
 --
 
 INSERT INTO `transports` (`id`, `code_transport`, `nama`, `harga`, `waktu`, `fasilitas`, `deskripsi`, `slug`, `foto`, `lang`, `created_at`, `updated_at`) VALUES
-(1, 'TR001ID', 'AVANZA/XENIA', '600000', '10', 'Mineral Water,Petrol,Driver As Guide', '4 Orang dengan bagasi (maksimal 6 tanpa bagasi) ', 'mobil dengan nyaman', 'avanza.png;', 'id', '2023-10-01 05:06:22', '2023-10-01 05:06:22'),
-(2, 'TR001EN', 'AVAMZA/XENIA', '600000', '10', 'Mineral Water, Bensin, Supir Sebagai Pemandu', '4 persons with luggage (max 6 without luggage) ', 'Confort car ', 'avanza.png;', 'en', '2023-10-01 05:06:22', '2023-10-01 05:06:22'),
-(3, 'TR002ID', 'INNOVA REBORN', '800000', '10', 'Mineral Water', '4 Orang dengan bagasi (maksimal 6 tanpa bagasi) ', 'mobil dengan nyaman', 'reborn.png;', 'id', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
-(4, 'TR002EN', 'INNOVA  REBORN', '800000', '10', 'Mineral Water', '4 persons with luggage (max 6 without luggage) ', 'very confort car', 'reborn.png;', 'en', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
-(5, 'TR003EN', 'Suzuki APV', '600000', '10', 'Mineral Water,', '4 persons with luggage (max 6 without luggage) ', 'very-confort-car', 'apv.png;', 'en', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
-(6, 'TR003ID', 'Suzuki APV', '600000', '10', 'Mineral Water,', '4 Orang dengan bagasi (maksimal 6 tanpa bagasi) ', 'mobil-nyaman-dan-luas', 'apv.png;', 'id', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
-(7, 'TR004EN', 'Toyoda Hiace', '1000000', '10', 'Mineral Water,', '12 persons with luggage (max 16 without luggage) ', 'car-for-family', 'hiace.png;', 'en', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
-(9, 'TR004ID', 'Toyoda Hiace', '1000000', '10', 'Mineral Water,', '12 Orang dengan Bagasi (maksimal 16 tanpa bagasi) ', 'car-for-family', 'hiace.png;', 'id', '2023-10-08 05:06:22', '2023-10-08 05:06:22');
+(1, 'TR001ID', 'AVANZA/XENIA', '600000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '4 Orang dengan bagasi (maksimal 6 tanpa bagasi) ', 'mobil dengan nyaman', 'avanza.png;', 'id', '2023-10-01 05:06:22', '2023-10-01 05:06:22'),
+(2, 'TR001EN', 'AVAMZA/XENIA', '600000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '4 persons with luggage (max 6 without luggage) ', 'Confort car ', 'avanza.png;', 'en', '2023-10-01 05:06:22', '2023-10-01 05:06:22'),
+(3, 'TR002ID', 'INNOVA REBORN', '800000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '4 Orang dengan bagasi (maksimal 6 tanpa bagasi) ', 'mobil dengan nyaman', 'reborn.png;', 'id', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
+(4, 'TR002EN', 'INNOVA  REBORN', '800000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '4 persons with luggage (max 6 without luggage) ', 'very confort car', 'reborn.png;', 'en', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
+(5, 'TR003EN', 'Suzuki APV', '600000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '4 persons with luggage (max 6 without luggage) ', 'very-confort-car', 'apv.png;', 'en', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
+(6, 'TR003ID', 'Suzuki APV', '600000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '4 Orang dengan bagasi (maksimal 6 tanpa bagasi) ', 'mobil-nyaman-dan-luas', 'apv.png;', 'id', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
+(7, 'TR004EN', 'Toyoda Hiace', '1000000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '12 persons with luggage (max 16 without luggage) ', 'car-for-family', 'hiace.png;', 'en', '2023-10-08 05:06:22', '2023-10-08 05:06:22'),
+(9, 'TR004ID', 'Toyoda Hiace', '1000000', '10', 'Mineral Water,Petrol,Driver As Guide,Tour Consultation,Extra Time : 10% /Hours', '12 Orang dengan Bagasi (maksimal 16 tanpa bagasi) ', 'car-for-family', 'hiace.png;', 'id', '2023-10-08 05:06:22', '2023-10-08 05:06:22');
 
 -- --------------------------------------------------------
 
@@ -312,7 +317,8 @@ ALTER TABLE `personal_access_tokens`
 -- Indexes for table `tour_packages`
 --
 ALTER TABLE `tour_packages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
 
 --
 -- Indexes for table `transports`
@@ -371,7 +377,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tour_packages`
 --
 ALTER TABLE `tour_packages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transports`

@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section('media')
+        <link rel="stylesheet" type="text/css" href="/css/store.css" />
+@endsection
+
 @section('content')
     
     <!-- ======= Breadcrumbs ======= -->
@@ -127,9 +131,45 @@
                     </button>
                   </p>
                   
+                  
                 </div>
               </div><!-- End Chefs Member -->
             @endforeach
+
+            <form
+                id="form-configure"
+                class="form-configure"
+                autocomplete="off"
+            >
+                <select
+                    id="select-integration"
+                    class="form-configure__select"
+                >
+                    <option>Dialog Pop-up</option>
+                    <option>Redirect Checkout</option>
+                </select>
+                <select
+                    id="select-country"
+                    class="form-configure__select"
+                >
+                    <option>Indonesia</option>
+                    <option>Philippines</option>
+                </select>
+                <button
+                    id="button-start-demo"
+                    class="button form-configure__button-demo"
+                    type="submit"
+                >
+                    <span>Start Demo</span>
+                </button>
+            </form>
+            @include('shared/modal')
+            @section('scripts')
+                <!-- Javascripts -->
+                <script src="/js/data-cart.js"></script>
+                
+                <script src="/js/checkout.js"></script> 
+            @endsection
 
             <!-- Modal -->
             @foreach ($kamar as $detail)
@@ -634,5 +674,7 @@
 
       </div>
     </section><!-- End Contact Section -->
+
+    
 
 @stop

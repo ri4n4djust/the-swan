@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0aa2300e2987c902113f154d802a68a1",
+    "content-hash": "7b32043e063691be44afdb5c7daac44d",
     "packages": [
         {
             "name": "brick/math",
@@ -6829,16 +6829,16 @@
         },
         {
             "name": "xendit/xendit-php",
-            "version": "3.2.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xendit/xendit-php.git",
-                "reference": "782843b1a15647e2b57280abff667d6a4a799268"
+                "reference": "fe6ca05e9d34a5f25f7b9f5ec5054790c3e86f51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xendit/xendit-php/zipball/782843b1a15647e2b57280abff667d6a4a799268",
-                "reference": "782843b1a15647e2b57280abff667d6a4a799268",
+                "url": "https://api.github.com/repos/xendit/xendit-php/zipball/fe6ca05e9d34a5f25f7b9f5ec5054790c3e86f51",
+                "reference": "fe6ca05e9d34a5f25f7b9f5ec5054790c3e86f51",
                 "shasum": ""
             },
             "require": {
@@ -6882,9 +6882,9 @@
             ],
             "support": {
                 "issues": "https://github.com/xendit/xendit-php/issues",
-                "source": "https://github.com/xendit/xendit-php/tree/3.2.0"
+                "source": "https://github.com/xendit/xendit-php/tree/3.3.0"
             },
-            "time": "2023-09-27T05:51:57+00:00"
+            "time": "2023-10-09T09:28:23+00:00"
         }
     ],
     "packages-dev": [

@@ -3,6 +3,7 @@
 
 <head>
 @include('includes.head')
+@yield('media')
 </head>
 
 <body>
@@ -14,7 +15,7 @@
 
     <!-- ======= About Section ======= -->
     @yield('content')
-
+    @yield('scripts')
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
