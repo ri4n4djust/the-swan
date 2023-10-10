@@ -23,7 +23,9 @@ class bookingController extends Controller
         $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
         $transport = Transport::where('transports.lang', $defaultLocale)->get();
         $detinasi = Destination::where('destinations.lang', $defaultLocale)->get();
-        $tur = TourPackage::where('tour_packages.lang', $defaultLocale)->get();
+        $tur = TourPackage::where('tour_packages.lang', $defaultLocale)
+                            // ->join('destinations', 'tour_packages.destination', 'like', 'destinations.code_dst' )
+                            ->get();
 
         return view('pages.service',[
             'kamar' => $kamar, 
@@ -44,6 +46,16 @@ class bookingController extends Controller
     public function destination()
     {
         return view('pages.destination');
+    }
+
+    public function tourDetail($slug){
+
+        $defaultLocale = config('app.locale');
+        $tur = TourPackage::where('tour_packages.lang', $defaultLocale)->where('slug', $slug)->get();
+
+        return view('pages.tour-detail',[
+            'tour-detail' => $tur
+            ] );
     }
 
 }

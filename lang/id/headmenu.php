@@ -3,7 +3,6 @@
 return [
     //====menu atas
     'about' => 'Tentang',
-    'service' => 'Sevice',
     'event' => 'Kegiatan',
     'driver' => 'Sopir',
     'galleri' => 'Galeri',

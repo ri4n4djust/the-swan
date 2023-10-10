@@ -3,7 +3,6 @@
 return [
     //====menu atas
     'about' => 'About',
-    'service' => 'Sevice',
     'event' => 'Events',
     'driver' => 'Driver',
     'galleri' => 'Gallery',

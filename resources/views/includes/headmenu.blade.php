@@ -11,7 +11,6 @@
         <ul>
           <li><a href="#hero">Home</a></li>
           <li><a href="#about">{{ __('headmenu.about') }}</a></li>
-          <li><a href="#menu">{{ __('headmenu.service') }}</a></li>
           <li><a href="#events">{{ __('headmenu.event') }}</a></li>
           <li><a href="#chefs">{{ __('headmenu.driver') }}</a></li>
           <li><a href="#gallery">{{ __('headmenu.galleri') }}</a></li>

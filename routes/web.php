@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Booking;
 use App\Models\Transport;
+use App\Models\TourPackage;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
@@ -33,6 +34,7 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
     Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service']);
+    Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
 
     Route::get('/destination', [App\Http\Controllers\bookingController::class , 'destination']);
 }
@@ -56,9 +58,15 @@ Route::get('/sitemap', function(){
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
-    $tour = Transport::all();
-    foreach ($tour as $tour) {
-        $sitemap->add(Url::create("/tour/{$tour->slug}"));
+    $transport = Transport::all();
+    foreach ($transport as $trans) {
+        $sitemap->add(Url::create("/transport/{$trans->slug}"));
+    }
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+
+    $tour = TourPackage::all();
+    foreach ($tour as $tur) {
+        $sitemap->add(Url::create("/tour/{$tur->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 }); 

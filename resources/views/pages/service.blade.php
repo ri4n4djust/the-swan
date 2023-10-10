@@ -348,40 +348,118 @@
 
             <div class="row gy-5">
 
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Magnam Tiste</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $5.95
-                </p>
-              </div><!-- Menu Item -->
+              @foreach ($tour as $tur)
+                <!-- Menu Item -->
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                  <div class="chef-member">
+                    <div class="member-img">
+                      @php $gmbr = explode(";",$tur->foto) ; @endphp
+                      
+                      <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="">{{ $gmbr[0] }}
+                      
+                      <div class="social">
+                        <!-- <a href=""><i class="bi bi-twitter"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a> -->
+                        <a href="" data-toggle="modal" data-target="#trModal{{$tr->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
+                      </div>
+                    </div>
+                    
+                    <div class="member-info">
+                      <h4>{{ $tur->tour_name}}</h4>
+                      <!-- <span>Cook</span> -->
+                      <!-- <p>{{ substr($tur->deskripsi, 0, 200)}}</p> -->
+                      
+                    <!-- </div>
+                    <div class="member-info"> -->
+                      <!-- <i class="bi bi-wifi"></i>
+                      <i class="bi bi-twitter"></i> -->
+                      @php $fs = explode(",",$tur->destination) ; @endphp
+                      @foreach ($fs as $fas)
+                        <i class="bi bi-check2-all"></i> {{$fas}}<br>
+                        <!-- <i class="bi bi-check2-all"></i> Shower
+                        <i class="bi bi-check2-all"></i> Free Wifi -->
+                      @endforeach
+                    </div>
+                    <p class="price">
+                      <!-- IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br> -->
+                      <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
+                        Detail
+                      </button> -->
+                      <a href="/tour/{{$tur->slug}}" class="btn btn-primary">Detail</a>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
+                        Book Now
+                      </button>
+                    </p>
+                    
+                  </div>
+                </div><!-- End Chefs Member -->
+              @endforeach
 
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Aut Luia</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $14.95
-                </p>
-              </div><!-- Menu Item -->
+              <!-- Modal -->
+              @foreach ($tour as $tur)
+              <div class="modal fade" id="turModal{{$tur->id}}" tabindex="-1" aria-labelledby="trModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="turModalLabel">{{ $tur->nama }}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    
+                      <div class="row gy-4">
+                        <div class="col-md-6">
+                          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
 
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Est Eligendi</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $8.95
-                </p>
-              </div><!-- Menu Item -->
+                              @php $gmbr = explode(";",$tur->foto) ; @endphp
+                              
+                              @foreach($gmbr as $value)
+                              <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                              @endforeach
+                              
+                            </ol>
+                            <div class="carousel-inner">
+                              
+                              @foreach($gmbr as $key => $slider)
+                              <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                                <img src="assets/img/transport/{{ $slider }}" class="d-block w-100" alt="">
+                              </div>
+                              @endforeach
+                              
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+                        </div><!-- End Info Item -->
 
-              
+                        <div class="col-md-6">
+                          <div class="info-item d-flex align-items-left">
+                            <div>
+                              <p>{{ $tr->deskripsi }}</p>
+                            </div>
+                          </div>
+                        </div><!-- End Info Item -->
+                      </div>
+
+                      
+                    </div>
+                    <!-- <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              @endforeach
 
             </div>
           </div><!-- End Lunch Menu Content -->
