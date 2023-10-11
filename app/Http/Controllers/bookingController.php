@@ -54,7 +54,17 @@ class bookingController extends Controller
         $tur = TourPackage::where('tour_packages.lang', $defaultLocale)->where('slug', $slug)->get();
 
         return view('pages.tour-detail',[
-            'tour-detail' => $tur
+            'tourDetail' => $tur
+            ] );
+    }
+
+    public function hotelDetail($slug){
+
+        $defaultLocale = config('app.locale');
+        $hotel = Booking::where('slug', $slug)->get();
+
+        return view('pages.hotel-detail',[
+            'hotelDetail' => $hotel
             ] );
     }
 

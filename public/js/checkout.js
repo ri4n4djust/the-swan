@@ -10,11 +10,11 @@
     let integration;
     let invoiceUrl;
     let displayedCartDetails;
-    console.log(cartData);
+    // console.log(cartData);
 
     // configuration form elements
     const selectIntegration = document.getElementById('select-integration');
-    const selectCountry = document.getElementById('select-country');
+    const selectCountry =  document.getElementById('select-country');
     const buttonStartDemo = document.getElementById('button-start-demo');
     const formConfigure = document.getElementById('form-configure');
 

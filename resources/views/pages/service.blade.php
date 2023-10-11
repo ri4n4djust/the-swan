@@ -1,9 +1,5 @@
 @extends('layouts.default')
 
-@section('media')
-        <link rel="stylesheet" type="text/css" href="/css/store.css" />
-@endsection
-
 @section('content')
     
     <!-- ======= Breadcrumbs ======= -->
@@ -90,7 +86,7 @@
                   </div>
                 </div>
               </form>
-
+            
             @foreach ($kamar as $detail)
               <!-- Menu Item -->
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
@@ -123,53 +119,17 @@
                   </div>
                   <p class="price">
                     IDR {{ number_format($detail->price, 2) }} / Night <br>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
-                      Detail
-                    </button>
+                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Detail</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
                       Book Now
                     </button>
                   </p>
-                  
+            
                   
                 </div>
               </div><!-- End Chefs Member -->
             @endforeach
-
-            <form
-                id="form-configure"
-                class="form-configure"
-                autocomplete="off"
-            >
-                <select
-                    id="select-integration"
-                    class="form-configure__select"
-                >
-                    <option>Dialog Pop-up</option>
-                    <option>Redirect Checkout</option>
-                </select>
-                <select
-                    id="select-country"
-                    class="form-configure__select"
-                >
-                    <option>Indonesia</option>
-                    <option>Philippines</option>
-                </select>
-                <button
-                    id="button-start-demo"
-                    class="button form-configure__button-demo"
-                    type="submit"
-                >
-                    <span>Start Demo</span>
-                </button>
-            </form>
-            @include('shared/modal')
-            @section('scripts')
-                <!-- Javascripts -->
-                <script src="/js/data-cart.js"></script>
-                
-                <script src="/js/checkout.js"></script> 
-            @endsection
+            
 
             <!-- Modal -->
             @foreach ($kamar as $detail)
@@ -600,7 +560,7 @@
         </div>
 
         <div class="mb-3">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+          <!-- <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe> -->
         </div><!-- End Google Maps -->
 
         <div class="row gy-4">

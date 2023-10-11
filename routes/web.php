@@ -35,6 +35,7 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service']);
     Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
+    Route::get('/hotel/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
 
     Route::get('/destination', [App\Http\Controllers\bookingController::class , 'destination']);
 
