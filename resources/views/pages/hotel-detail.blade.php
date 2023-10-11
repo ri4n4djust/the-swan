@@ -109,43 +109,10 @@
                 @include('shared/modal')
                 @section('scripts')
                     <!-- Javascripts -->
-                    <!-- <script src="/js/data-cart.js"></script> -->
+                    <script src="/js/data-cart.js"></script>
                     
                     <script src="/js/checkout.js"></script> 
-                    <script type="text/javascript">
-                        $('#form-configure').on('submit',function(e){
-                            e.preventDefault();
-
-                            let name = $('#name').val();
-                            let email = $('#email').val();
-                            let mobile = $('#mobile').val();
-                            let message = $('#InputMessage').val();
-                            
-                            $.ajax({
-                            url: "/submit-form",
-                            type:"POST",
-                            data:{
-                                "_token": "{{ csrf_token() }}",
-                                name:name,
-                                email:email,
-                                mobile:mobile,
-                                message:message,
-                            },
-                            success:function(response){
-                                $('#successMsg').show();
-                                console.log(response);
-                            },
-                            error: function(response) {
-                                $('#nameErrorMsg').text(response.responseJSON.errors.name);
-                                $('#emailErrorMsg').text(response.responseJSON.errors.email);
-                                $('#mobileErrorMsg').text(response.responseJSON.errors.mobile);
-                                $('#messageErrorMsg').text(response.responseJSON.errors.message);
-                            },
-                            });
-                        });
-                    </script>
                 @endsection
-
                 
 
                 
