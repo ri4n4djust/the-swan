@@ -11,10 +11,57 @@
     let invoiceUrl;
     let displayedCartDetails;
     // console.log(cartData);
+    const total = document.getElementById('total').value;
+
+    const cartData = [
+        {
+            // country: 'Indonesia',
+            cart: {
+                order_items: [
+                    {
+                        name: 'Honey Badger Plushie',
+                        quantity: 2,
+                        price: 600000,
+                        formatted_price: '600.000',
+                        total_amount: 1200000,
+                        formatted_total_amount: '1.200.000',
+                        currency: 'IDR',
+                        image: '/images/products/plushie.jpg'
+                    },
+                    // {
+                    //     name: 'Xendit Mug',
+                    //     quantity: 3,
+                    //     price: 100000,
+                    //     formatted_price: '100.000',
+                    //     total_amount: 300000,
+                    //     formatted_total_amount: '300.000',
+                    //     currency: 'IDR',
+                    //     image: '/images/products/mug.jpg'
+                    // }
+                ],
+                shipping: {
+                    price: 5000,
+                    formatted_price: '5.000',
+                    currency: 'IDR'
+                },
+                subtotal: {
+                    amount: 500000,
+                    formatted_amount: '500.000',
+                    currency: 'IDR'
+                },
+                total: {
+                    amount: total,
+                    formatted_amount: total.toLocaleString('en-US'),
+                    currency: 'IDR'
+                }
+            }
+        },
+        
+    ];
 
     // configuration form elements
-    const selectIntegration = document.getElementById('select-integration');
-    const selectCountry =  document.getElementById('select-country');
+    // const selectIntegration = document.getElementById('select-integration');
+    // const selectCountry =  document.getElementById('select-country');
     const buttonStartDemo = document.getElementById('button-start-demo');
     const formConfigure = document.getElementById('form-configure');
 
@@ -27,13 +74,13 @@
     const iframe = document.getElementById('iframe-invoice');
 
     // event listeners
-    selectIntegration.addEventListener('change', () => {
-        setupIntegration();
-    });
+    // selectIntegration.addEventListener('change', () => {
+    //     setupIntegration();
+    // });
 
-    selectCountry.addEventListener('change', () => {
-        setupCart();
-    });
+    // selectCountry.addEventListener('change', () => {
+    //     setupCart();
+    // });
 
     formConfigure.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -46,25 +93,25 @@
     });
 
     // handles integration mode selection
-    const setupIntegration = () => {
-        integration =
-            selectIntegration.options[selectIntegration.selectedIndex].value;
+    // const setupIntegration = () => {
+        integration = 'Dialog Pop-up'; // selectIntegration.options[selectIntegration.selectedIndex].value;
         invoiceUrl = null;
-    };
+    // };
 
     // handles cart details changes based on country selection
     const setupCart = () => {
-        const country =
-            selectCountry.options[selectCountry.selectedIndex].value;
+        // const country = 'Indonesia'; //selectCountry.options[selectCountry.selectedIndex].value;
 
         // remove any created invoice url if there is a change in selection
-        if (displayedCartDetails && displayedCartDetails.country !== country)
-            invoiceUrl = null;
+        // if (displayedCartDetails && displayedCartDetails.country !== country)
+        //     invoiceUrl = null;
 
         // get cart data based on country selection
-        displayedCartDetails = cartData.find(
-            (item) => item.country === country
-        );
+        // displayedCartDetails = cartData.find(
+        //     (item) => item.country === country
+        // );
+        console.log(cartData[0]);
+        displayedCartDetails = cartData[0] ;
 
         // cart content
         const cartContent = displayedCartDetails.cart.order_items.map(
@@ -200,7 +247,7 @@
     };
 
     // initial setup
-    setupIntegration();
+    // setupIntegration();
     setupCart();
 
     // avoid animation during page load

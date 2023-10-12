@@ -93,23 +93,32 @@
                     <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="order-items" id="order-items" value="{{ $hotelDetail[0]->price }}" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="subtotal" id="subtotal" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control cart-summary__total" name="total" id="total" value="{{ $hotelDetail[0]->price }}" required>
+                    </div>
 
-                    <select id="select-integration" class="form-configure__select" >
+                    <!-- <select id="select-integration" class="form-configure__select" >
                         <option>Dialog Pop-up</option>
                         <option>Redirect Checkout</option>
                     </select>
                     <select id="select-country" class="form-configure__select" >
                         <option>Indonesia</option>
                         <option>Philippines</option>
-                    </select>
+                    </select> -->
                     <button id="button-start-demo" class="button form-configure__button-demo" type="submit">
-                        <span>Start Demo</span>
+                        <span>Book Now</span>
                     </button>
                 </form>
                 @include('shared/modal')
                 @section('scripts')
                     <!-- Javascripts -->
-                    <script src="/js/data-cart.js"></script>
+                    <!-- <script src="/js/data-cart.js"></script> -->
                     
                     <script src="/js/checkout.js"></script> 
                 @endsection
