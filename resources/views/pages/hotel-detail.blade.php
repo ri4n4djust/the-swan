@@ -73,6 +73,7 @@
                 <p>
                 {{ $hotelDetail[0]->title }}
                 </p>
+                <p>{!! $hotelDetail[0]->desc !!}</p>
                 </div>
                 <!-- <img src="assets/img/about.jpg" class="img-fluid" alt=""> -->
             </div>
@@ -105,7 +106,7 @@
                         <input type="text" class="form-control" name="subtotal" id="subtotal" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control cart-summary__total" name="total" id="total" required>
+                        <input type="text" class="form-control" name="total" id="total" value="{{ $hotelDetail[0]->price }}" required>
                     </div>
 
                     <!-- <select id="select-integration" class="form-configure__select" >
@@ -176,7 +177,7 @@
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
                                 // console.log(hrg)
-                                var total = hrg * difference ;
+                                const total = hrg * difference ;
                                 document.getElementById('total').value = total ;
                                 document.getElementById('hari').innerHTML = difference ;
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');

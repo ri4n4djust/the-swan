@@ -34,11 +34,11 @@
           <li><a href="#contact">{{ __('headmenu.contact') }}</a></li>
           <li class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{strtoupper(Lang::locale())}}
+            {{ strtoupper(Lang::locale()) }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="lang/id">ID</a></li>
-                  <li><a class="dropdown-item" href="lang/en">EN</a></li>
+                  <li><a class="dropdown-item" href="/lang/id">ID</a></li>
+                  <li><a class="dropdown-item" href="/lang/en">EN</a></li>
               </ul>
           </li>
         </ul>
