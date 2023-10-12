@@ -12,10 +12,11 @@
     let displayedCartDetails;
     // console.log(cartData);
     const total = document.getElementById('total').value;
-
+    // console.log(total);
     const cartData = [
         {
             // country: 'Indonesia',
+            
             cart: {
                 order_items: [
                     {
@@ -54,7 +55,14 @@
                     formatted_amount: total.toLocaleString('en-US'),
                     currency: 'IDR'
                 }
-            }
+            },
+            customer:{
+                name: 'tes',
+                email: 'email@admin.com',
+                mobile: '098778988',
+                nationality: 'israel',
+
+            },
         },
         
     ];
@@ -187,11 +195,15 @@
 
         if (!invoiceUrl) {
             // setup invoice data
-            const { currency, amount } = displayedCartDetails.cart.total;
+            // const { currency, amount } = displayedCartDetails.cart.total;
             const invoiceData = {
-                currency,
-                amount,
-                redirect_url: `${window.location.origin}/service`
+                currency : 'IDR',
+                amount : total,
+                redirect_url: `${window.location.origin}/service`,
+                name: 'tes',
+                email: 'email@admin.com',
+                mobile: '098778988',
+                nationality: 'israel',
             };
 
             // create an invoice for store checkout

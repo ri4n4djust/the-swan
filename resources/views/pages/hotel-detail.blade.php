@@ -91,7 +91,12 @@
                         <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                        Cek In   | Cek Out 
+                        <input type="text" class="form-control" name="datefilter" id="datefilter" required>
+                        <span id="hari" class="hari"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="order-items" id="order-items" value="{{ $hotelDetail[0]->price }}" required>
@@ -100,7 +105,7 @@
                         <input type="text" class="form-control" name="subtotal" id="subtotal" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control cart-summary__total" name="total" id="total" value="{{ $hotelDetail[0]->price }}" required>
+                        <input type="text" class="form-control cart-summary__total" name="total" id="total" required>
                     </div>
 
                     <!-- <select id="select-integration" class="form-configure__select" >
@@ -121,6 +126,63 @@
                     <!-- <script src="/js/data-cart.js"></script> -->
                     
                     <script src="/js/checkout.js"></script> 
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+                    <script type="text/javascript">
+                        $(function() {
+                            $('#datefilter').daterangepicker({
+                                "autoApply": true,
+                                "locale": {
+                                    "format": "MMM DD, YYYY",
+                                    "separator": " - ",
+                                    "applyLabel": "Apply",
+                                    "cancelLabel": "Cancel",
+                                    "fromLabel": "From",
+                                    "toLabel": "To",
+                                    "customRangeLabel": "Custom",
+                                    "weekLabel": "W",
+                                    "daysOfWeek": [
+                                        "Su",
+                                        "Mo",
+                                        "Tu",
+                                        "We",
+                                        "Th",
+                                        "Fr",
+                                        "Sa"
+                                    ],
+                                    "monthNames": [
+                                        "January",
+                                        "February",
+                                        "March",
+                                        "April",
+                                        "May",
+                                        "June",
+                                        "July",
+                                        "August",
+                                        "September",
+                                        "October",
+                                        "November",
+                                        "December"
+                                    ],
+                                    "firstDay": 1
+                                },
+                                "startDate": "10/06/2023",
+                                "endDate": "10/12/2023",
+                                "opens": "center",
+                                "drops": "auto"
+                            }, function(start, end, label) {
+                                // $('#cekin').val(start.format('YYYY-MM-DD'));
+                                var hrg = document.getElementById('order-items').value
+                                var awal = moment(start);
+                                var akhir = moment(end);
+                                var difference = akhir.diff(awal, 'days')
+                                // console.log(hrg)
+                                var total = hrg * difference ;
+                                document.getElementById('total').value = total ;
+                                document.getElementById('hari').innerHTML = difference ;
+                                // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
+                            });
+                        });
+                    </script>
                 @endsection
                 
 
