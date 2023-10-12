@@ -61,7 +61,9 @@ class bookingController extends Controller
     public function hotelDetail($slug){
 
         $defaultLocale = config('app.locale');
-        $hotel = Booking::where('slug', $slug)->where('bookings.lang', $defaultLocale)->get();
+        $code = Booking::where('slug', $slug)->first();
+
+        $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
 
         return view('pages.hotel-detail',[
             'hotelDetail' => $hotel
