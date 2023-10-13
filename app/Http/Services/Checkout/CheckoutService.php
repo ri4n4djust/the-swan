@@ -34,6 +34,8 @@ class CheckoutService {
         $params = array_merge($defParams, $data);
         $response = [];
 
+        // var_dump($data);
+
         $apiInstance = new InvoiceApi();
         // $create_invoice_request = {
         //     "external_id":"test1234",
@@ -47,7 +49,7 @@ class CheckoutService {
         try {
             // $response = InvoiceApi::createInvoice($params);
             
-            $response = $apiInstance->createInvoice($params);
+            $response = $apiInstance->createInvoice($data);
             // print_r($result);
 
         } catch (\Throwable $e) {

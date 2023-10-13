@@ -192,9 +192,34 @@
     // handles invoice creation upon checkout demo launch
     const startDemo = async () => {
         loadingDemoLaunch();
-
         const total = document.getElementById('total').value;
-        console.log(total)
+
+        const code = document.getElementById('code').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const nationality = document.getElementById('nationality').value;
+        const mobile = document.getElementById('mobile').value;
+
+        // const external_id = document.getElementById('total').value;
+        // const payer_email = email;
+        const cekin = document.getElementById('datefilter').value;
+        const hari = document.getElementById('hari').value;
+        const description = document.getElementById('order-items').value;
+
+        const totalContent =
+            '<div class="cart-total__order-item">' +
+            '<div class="order-item__label">'+ description +'</div>' +
+            `<div class="order-item__price">${cekin} ${hari} ${total}</div>` +
+            '</div>';
+        // var description = new Array();
+        // description =  selectAllElementsInsideDiv('detail');
+
+        const redirect_url = `${window.location.origin}/service` ;
+        const failure_redirect_url = redirect_url ;
+        const success_redirect_url = redirect_url;
+
+        
+        // console.log(total)
 
         if (!invoiceUrl) {
             // setup invoice data
@@ -202,11 +227,16 @@
             const invoiceData = {
                 currency : 'IDR',
                 amount : total,
-                redirect_url: `${window.location.origin}/service`,
-                name: 'tes',
-                email: 'email@admin.com',
-                mobile: '098778988',
-                nationality: 'israel',
+                redirect_url: redirect_url,
+                failure_redirect_url: failure_redirect_url,
+                success_redirect_url: success_redirect_url,
+                external_id: code + Date.now(),
+                payer_email: email,
+                description: totalContent,
+                name: name,
+                email: email,
+                mobile: mobile,
+                nationality: nationality,
             };
 
             // create an invoice for store checkout

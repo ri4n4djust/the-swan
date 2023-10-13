@@ -81,28 +81,48 @@
                 <div class="content ps-0 ps-lg-5">
                 <form id="form-configure" cautocomplete="off">
                     <div class="row">
-                        <div class="col-xl-6 form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                        </div>
+                    <div class="col-xl-6 form-group">
+                        <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
+                        <input type="hidden" name="hari" class="form-control" id="hari" value="1">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
                         <div class="col-xl-6 form-group">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                        </div>
+                    </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nationality" id="nationality" placeholder="nationality" required>
                     </div>
                     <div class="form-group">
                         Cek In   | Cek Out 
                         <input type="text" class="form-control" name="datefilter" id="datefilter" required>
-                        <span id="hari" class="hari"></span>
+                        <!-- <span id="detail">
+                            <table>
+                                <tr>
+                                    <td>Name</td>
+                                    <td id="namebooking"></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ $hotelDetail[0]->title }}</td>
+                                    <td>{{ $hotelDetail[0]->price }} / Night</td>
+                                </tr>
+                                <tr>
+                                    <td>total </td>
+                                    <td id="totalbayar"></td>
+                                </tr>
+                            </table>
+                        </span> -->
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="col-xl-6 form-group">
                         <input type="text" class="form-control" name="order-items" id="order-items" value="{{ $hotelDetail[0]->price }}" required>
                     </div>
-                    <div class="form-group">
+                    <div class="col-xl-6 form-group">
                         <input type="text" class="form-control" name="subtotal" id="subtotal" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
@@ -117,7 +137,7 @@
                         <option>Indonesia</option>
                         <option>Philippines</option>
                     </select> -->
-                    <button id="button-start-demo" class="button form-configure__button-demo" type="submit">
+                    <button id="button-start-demo" class="btn btn-primary" type="submit">
                         <span>Book Now</span>
                     </button>
                 </form>
@@ -129,6 +149,20 @@
                     <script src="/js/checkout.js"></script> 
                     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
                     <script type="text/javascript">
+                        // function fillArray(vector1,vector2){
+                        //     for (var i = 0; i < vector1.length; i++){
+                        //         if (vector1[i].id.indexOf('q17_') == 0)
+                        //             vector2.push(vector1[i]);
+                        //         if(vector1[i].tagName == 'DIV')
+                        //             fillArray (document.getElementById(vector1[i].id).children,vector2);
+                        //     }
+                        // };
+                        // function selectAllElementsInsideDiv(divId){ 
+                        //     var matches = new Array();
+                        //     var searchEles = document.getElementById(divId).children;
+                        //     fillArray(searchEles,matches);
+                        //     return matches;
+                        // };
                         $(function() {
                             $('#datefilter').daterangepicker({
                                 "autoApply": true,
@@ -166,20 +200,23 @@
                                     ],
                                     "firstDay": 1
                                 },
-                                "startDate": "10/06/2023",
-                                "endDate": "10/12/2023",
+                                "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
+                                "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
                                 "opens": "center",
                                 "drops": "auto"
                             }, function(start, end, label) {
                                 // $('#cekin').val(start.format('YYYY-MM-DD'));
+                                var name = document.getElementById('name').value
                                 var hrg = document.getElementById('order-items').value
                                 var awal = moment(start);
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
                                 // console.log(hrg)
                                 const total = hrg * difference ;
+                                document.getElementById('namebooking').innerHTML = name ;
                                 document.getElementById('total').value = total ;
-                                document.getElementById('hari').innerHTML = difference ;
+                                document.getElementById('totalbayar').innerHTML = total ;
+                                document.getElementById('hari').value = difference ;
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
                             });
                         });

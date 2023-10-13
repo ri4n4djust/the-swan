@@ -119,10 +119,10 @@
                   </div>
                   <p class="price">
                     IDR {{ number_format($detail->price, 2) }} / Night <br>
-                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Detail</a>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
+                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Book Now</a>
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
                       Book Now
-                    </button>
+                    </button> -->
                   </p>
             
                   
