@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2023 at 01:47 AM
+-- Generation Time: Oct 13, 2023 at 01:59 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.25
 
@@ -46,8 +46,8 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `code`, `title`, `slug`, `desc`, `price`, `facility`, `foto`, `lang`, `created_at`, `updated_at`) VALUES
-(1, 'ANDI001', 'Deluxe Double Room', 'deluxe-room-in-batu-bolong', 'great room for coupe in canggu area near batu bolong beach', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'en', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
-(2, 'ANDI001', 'Kamar Deluxe Double', 'kamar-deluxe-di-batu-bolong', 'kamar yg cocok untuk pasangan di canggu, dekat dengan pantai batu bolong', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'id', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(1, 'ANDI001', 'Deluxe Double Room', 'deluxe-room-in-batu-bolong', 'Located in Canggu, within a 7-minute walk of Batu Bolong Beach and 700 yards of Echo Beach, Provides accommodations with an outdoor swimming pool and free Wifithroughout the property. The property is around a 11-minute walk from Canggu Beach, 6.5 miles from Petitenget Temple and 7.1 miles from Ubung Bus Station. Kuta Square is 10 miles away and Kuta Art Market is 10 miles from the guest house.\r\n\r\nComplete with a private bathroom equipped with a shower and a hair dryer, guest rooms at the guest house have a flat-screen TV and air conditioning, and selected rooms have a balcony.\r\n\r\nTanah Lot Temple is 7.1 miles from Andi Beach House, while Bali Museum is 7.9 miles away. The nearest airport is Ngurah Rai International Airport, 12 miles from the accommodation.', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'en', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(2, 'ANDI001', 'Kamar Deluxe Double', 'kamar-deluxe-di-batu-bolong', 'Terletak di Canggu, berjarak 10 km dari Pura Petitenget dan 11 km dari Terminal Bus Ubung. Guest house ini memiliki kolam renang luar ruangan, serta berjarak dekat dengan beberapa tempat wisata yang terkenal, seperti Pantai Batu Bolong, Pantai Echo, dan Pantai Canggu. Kuta Square dan Pasar Seni Kuta berjarak 16 km dari guest house.\r\n\r\nKamar-kamar di guest house ini memiliki kamar mandi pribadi dengan shower dan pengering rambut, serta menyediakan Wi-Fi gratis. Beberapa kamar memiliki balkon. Di Andi Beach House, setiap kamar dilengkapi dengan AC dan TV layar datar.', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'id', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
 (3, 'ANDI002', 'Bangunan Split Lumbung', 'Bangunan-lumbung-yang-cantik', 'kamar dengan bangunan lumbung yang cantik dengan suasana tenang', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'id', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
 (4, 'ANDI002', 'Split Lumbung', 'beautiful-lumbung-near-batu-bolong', 'barn building with calm atmosphere', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'en', '2023-10-01 04:01:06', '2023-10-01 04:01:06');
 
