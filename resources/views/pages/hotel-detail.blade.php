@@ -81,14 +81,14 @@
                 <div class="content ps-0 ps-lg-5">
                 <form id="form-configure" cautocomplete="off">
                     <div class="row">
-                    <div class="col-xl-6 form-group">
-                        <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
-                        <input type="hidden" name="hari" class="form-control" id="hari" value="1">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                    </div>
                         <div class="col-xl-6 form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                    </div>
+                            <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
+                            <input type="hidden" name="hari" class="form-control" id="hari" value="1">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                            <div class="col-xl-6 form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
@@ -119,24 +119,24 @@
                     <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
                     </div>
-                    <div class="col-xl-6 form-group">
-                        <input type="text" class="form-control" name="order-items" id="order-items" value="{{ $hotelDetail[0]->price }}" required>
-                    </div>
-                    <div class="col-xl-6 form-group">
-                        <input type="text" class="form-control" name="subtotal" id="subtotal" placeholder="Subject" required>
+                    <select id="tipe_bayar" onchange="getOption()">
+                        <option value="deposit">Deposit</option>
+                        <option value="full">Full Payment</option>
+                    </select>
+                    <div class="row">
+                        <div class="col-xl-6 form-group">
+                            <input type="hidden" class="form-control" name="order-items" id="order-items" value="{{ $hotelDetail[0]->price }}" required>
+                            TOTAL Have to Pay : <div id="totalbayar"></div>
+                        </div>
+                        <div class="col-xl-6 form-group">
+                            <input type="text" class="form-control" name="subtotal" id="subtotal" placeholder="Subject" required>
+                            <input type="text" class="form-control" name="sisa" id="sisa" placeholder="Subject" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="total" id="total" value="{{ $hotelDetail[0]->price }}" required>
                     </div>
 
-                    <!-- <select id="select-integration" class="form-configure__select" >
-                        <option>Dialog Pop-up</option>
-                        <option>Redirect Checkout</option>
-                    </select>
-                    <select id="select-country" class="form-configure__select" >
-                        <option>Indonesia</option>
-                        <option>Philippines</option>
-                    </select> -->
                     <button id="button-start-demo" class="btn btn-primary" type="submit">
                         <span>Book Now</span>
                     </button>
@@ -149,20 +149,31 @@
                     <script src="/js/checkout.js"></script> 
                     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
                     <script type="text/javascript">
-                        // function fillArray(vector1,vector2){
-                        //     for (var i = 0; i < vector1.length; i++){
-                        //         if (vector1[i].id.indexOf('q17_') == 0)
-                        //             vector2.push(vector1[i]);
-                        //         if(vector1[i].tagName == 'DIV')
-                        //             fillArray (document.getElementById(vector1[i].id).children,vector2);
-                        //     }
-                        // };
-                        // function selectAllElementsInsideDiv(divId){ 
-                        //     var matches = new Array();
-                        //     var searchEles = document.getElementById(divId).children;
-                        //     fillArray(searchEles,matches);
-                        //     return matches;
-                        // };
+                        document.addEventListener("DOMContentLoaded",  
+                        function () { 
+                            // Code to be executed when the DOM is ready 
+                            const tipe = document.getElementById('tipe_bayar').value ;
+                            const subtota = document.getElementById('subtotal').value ;
+                            var komisi = 0;
+                            if(tipe === "deposit"){
+                                komisi = parseInt(subtotal) 
+                            }
+                            const sisa = document.getElementById('sisa').value = subtota - komisi ;
+                            const tota = document.getElementById('total').value - komisi ;
+                            document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
+                            // heading.textContent = "DOM is ready!"; 
+                        }); 
+                        function getOption() {
+                            const tipe = document.getElementById('tipe_bayar').value ;
+                            const totl = document.getElementById('total').value ;
+                            if(tipe === "deposit"){
+                                // 
+                                document.getElementById('total').value = 1200000 ;
+                                // document.getElementById('total').value = totl;
+                                console.log('deposit ne');
+                            }
+                            // console.log(document.getElementById('tipe_bayar').value);
+                        };
                         $(function() {
                             $('#datefilter').daterangepicker({
                                 "autoApply": true,
@@ -213,9 +224,10 @@
                                 var difference = akhir.diff(awal, 'days')
                                 // console.log(hrg)
                                 const total = hrg * difference ;
-                                document.getElementById('namebooking').innerHTML = name ;
-                                document.getElementById('total').value = total ;
-                                document.getElementById('totalbayar').innerHTML = total ;
+                                // document.getElementById('namebooking').innerHTML = name ;
+                                document.getElementById('subtotal').value = total ;
+                                document.getElementById('sisa').value = total ;
+                                document.getElementById('totalbayar').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(total); ;
                                 document.getElementById('hari').value = difference ;
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
                             });
