@@ -119,10 +119,12 @@
                     <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
                     </div>
-                    <select id="tipe_bayar" onchange="getOption()">
-                        <option value="deposit">Deposit</option>
-                        <option value="full">Full Payment</option>
-                    </select>
+                    <div class="form-group">
+                        <select id="tipe_bayar" class="form-control" onchange="getOption()">
+                            <option value="deposit">Deposit</option>
+                            <option value="full">Full Payment</option>
+                        </select>
+                    </div>
                     <div class="row">
                         <div class="col-xl-6 form-group">
                             <input type="hidden" class="form-control" name="order-items" id="order-items" value="{{ $hotelDetail[0]->price }}" required>
@@ -156,21 +158,35 @@
                             const subtota = document.getElementById('subtotal').value ;
                             var komisi = 0;
                             if(tipe === "deposit"){
-                                komisi = parseInt(subtotal) 
+                                const totl = document.getElementById('total').value ;
+                                document.getElementById('sisa').value = ((totl) * 30) / 100 ;
+                                var totalbayar = ((totl) * 30) / 100 ;
+                                // document.getElementById('total').value = totl;
+                                document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
+                            }else{
+                                document.getElementById('sisa').value = subtota;
+                                const tota = document.getElementById('total').value ;
+                                document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
                             }
-                            const sisa = document.getElementById('sisa').value = subtota - komisi ;
-                            const tota = document.getElementById('total').value - komisi ;
-                            document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
+                            
                             // heading.textContent = "DOM is ready!"; 
                         }); 
                         function getOption() {
                             const tipe = document.getElementById('tipe_bayar').value ;
-                            const totl = document.getElementById('total').value ;
+                            
                             if(tipe === "deposit"){
                                 // 
-                                document.getElementById('total').value = 1200000 ;
+                                const totl = document.getElementById('total').value ;
+                                document.getElementById('sisa').value = ((totl) * 30) / 100 ;
+                                var totalbayar = ((totl) * 30) / 100 ;
                                 // document.getElementById('total').value = totl;
+                                document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
                                 console.log('deposit ne');
+                            }else{
+                                // document.getElementById('sisa').value = subtota;
+                                const tota = document.getElementById('total').value ;
+                                document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
+                            
                             }
                             // console.log(document.getElementById('tipe_bayar').value);
                         };
@@ -223,10 +239,13 @@
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
                                 // console.log(hrg)
-                                const total = hrg * difference ;
+                                const subtotal = hrg * difference ;
                                 // document.getElementById('namebooking').innerHTML = name ;
-                                document.getElementById('subtotal').value = total ;
-                                document.getElementById('sisa').value = total ;
+                                document.getElementById('subtotal').value = subtotal ;
+                                const komisi = document.getElementById('sisa').value ;
+
+                                document.getElementById('total').value = (subtotal - komisi);
+
                                 document.getElementById('totalbayar').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(total); ;
                                 document.getElementById('hari').value = difference ;
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
