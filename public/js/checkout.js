@@ -192,13 +192,14 @@
     // handles invoice creation upon checkout demo launch
     const startDemo = async () => {
         loadingDemoLaunch();
+        const amount = document.getElementById('total_bayar').value;
         const total = document.getElementById('total').value;
-
         const code = document.getElementById('code').value;
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const nationality = document.getElementById('nationality').value;
         const mobile = document.getElementById('mobile').value;
+        const type_bayar = document.getElementById('tipe_bayar').value;
 
         // const external_id = document.getElementById('total').value;
         // const payer_email = email;
@@ -226,10 +227,12 @@
             // const { currency, amount } = displayedCartDetails.cart.total;
             const invoiceData = {
                 currency : 'IDR',
-                amount : total,
+                amount : amount,
                 redirect_url: redirect_url,
                 failure_redirect_url: failure_redirect_url,
                 success_redirect_url: success_redirect_url,
+                kode_product: code,
+                cek_in_out: cekin,
                 external_id: code + Date.now(),
                 payer_email: email,
                 description: totalContent,
@@ -237,6 +240,8 @@
                 email: email,
                 mobile: mobile,
                 nationality: nationality,
+                type_bayar: type_bayar,
+                total: total
             };
 
             // create an invoice for store checkout

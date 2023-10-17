@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2023 at 01:59 AM
+-- Generation Time: Oct 18, 2023 at 12:21 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.25
 
@@ -95,6 +95,29 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `guests`
+--
+
+CREATE TABLE `guests` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nationality` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `guests`
+--
+
+INSERT INTO `guests` (`id`, `name`, `email`, `nationality`, `mobile`, `created_at`, `updated_at`) VALUES
+(2, 'rian', 'rian@gmail.com', 'indo', '081', '2023-10-17 22:01:31', '2023-10-17 22:01:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -117,7 +140,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2023_10_01_041320_create_transports_table', 3),
 (7, '2023_10_05_233555_create_orders_table', 4),
 (8, '2023_10_08_102752_create_destinations_table', 4),
-(9, '2023_10_08_131240_create_tour_packages_table', 5);
+(9, '2023_10_08_131240_create_tour_packages_table', 5),
+(10, '2023_10_17_073110_create_reservations_table', 6),
+(11, '2023_10_18_051848_create_guests_table', 7);
 
 -- --------------------------------------------------------
 
@@ -171,6 +196,34 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservations`
+--
+
+CREATE TABLE `reservations` (
+  `id` bigint UNSIGNED NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code_service` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cek_in_out` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type_payment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subtotal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `code`, `email`, `code_service`, `cek_in_out`, `type_payment`, `payment`, `subtotal`, `total`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'ANDI0021697580091633', 'rian@gmail.com', 'ANDI002', 'Oct 20, 2023 - Oct 25, 2023', 'deposit', '1950000', '1950000', '6500000', 'PENDING', '2023-10-17 22:01:31', '2023-10-17 22:01:31');
 
 -- --------------------------------------------------------
 
@@ -288,6 +341,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `guests`
+--
+ALTER TABLE `guests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -312,6 +371,12 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `reservations`
+--
+ALTER TABLE `reservations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tour_packages`
@@ -356,10 +421,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `guests`
+--
+ALTER TABLE `guests`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -372,6 +443,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tour_packages`

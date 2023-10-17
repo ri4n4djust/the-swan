@@ -6,6 +6,7 @@ namespace App\Http\Services\Checkout;
 use Xendit\Invoice\InvoiceApi;
 use Xendit\Configuration;
 
+
 class CheckoutService {
 
     function __construct() {
@@ -41,6 +42,8 @@ class CheckoutService {
             
             $response = $apiInstance->createInvoice($data);
             // print_r($result);
+            // print_r($response);
+            
 
         } catch (\Throwable $e) {
             $response['message'] = $e->getMessage();

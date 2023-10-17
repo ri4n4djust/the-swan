@@ -131,8 +131,8 @@
                             TOTAL Have to Pay : <div id="totalbayar"></div>
                         </div>
                         <div class="col-xl-6 form-group">
-                            <input type="text" class="form-control" name="subtotal" id="subtotal" placeholder="Subject" required>
-                            <input type="text" class="form-control" name="sisa" id="sisa" placeholder="Subject" required>
+                            <input type="text" class="form-control" name="subtotal" id="subtotal" required>
+                            <input type="text" class="form-control" name="total_bayar" id="total_bayar" placeholder="Subject" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -153,18 +153,19 @@
                     <script type="text/javascript">
                         document.addEventListener("DOMContentLoaded",  
                         function () { 
-                            // Code to be executed when the DOM is ready 
+                            // Code to be executed when the DOM is ready
+                            // document.getElementById('tipe_bayar').value = 'deposit'; 
                             const tipe = document.getElementById('tipe_bayar').value ;
                             const subtota = document.getElementById('subtotal').value ;
                             var komisi = 0;
                             if(tipe === "deposit"){
                                 const totl = document.getElementById('total').value ;
-                                document.getElementById('sisa').value = ((totl) * 30) / 100 ;
+                                document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
                                 var totalbayar = ((totl) * 30) / 100 ;
                                 // document.getElementById('total').value = totl;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
                             }else{
-                                document.getElementById('sisa').value = subtota;
+                                document.getElementById('total_bayar').value = subtota;
                                 const tota = document.getElementById('total').value ;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
                             }
@@ -177,14 +178,16 @@
                             if(tipe === "deposit"){
                                 // 
                                 const totl = document.getElementById('total').value ;
-                                document.getElementById('sisa').value = ((totl) * 30) / 100 ;
+                                document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
                                 var totalbayar = ((totl) * 30) / 100 ;
                                 // document.getElementById('total').value = totl;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
-                                console.log('deposit ne');
+                                // console.log('deposit ne');
                             }else{
                                 // document.getElementById('sisa').value = subtota;
+                                // document.getElementById('total').value = 0;
                                 const tota = document.getElementById('total').value ;
+                                document.getElementById('total_bayar').innerHTML = tota ;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
                             
                             }
@@ -241,12 +244,18 @@
                                 // console.log(hrg)
                                 const subtotal = hrg * difference ;
                                 // document.getElementById('namebooking').innerHTML = name ;
-                                document.getElementById('subtotal').value = subtotal ;
-                                const komisi = document.getElementById('sisa').value ;
+                                document.getElementById('total').value = subtotal ;
 
-                                document.getElementById('total').value = (subtotal - komisi);
+                                const komisi = document.getElementById('total_bayar').value ;
 
-                                document.getElementById('totalbayar').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(total); ;
+                                // document.getElementById('total').value = (subtotal - komisi);
+
+                                const totl = document.getElementById('total').value ;
+                                document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
+
+                                const total_bayar = document.getElementById('total_bayar').value ;
+
+                                document.getElementById('totalbayar').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(total_bayar); ;
                                 document.getElementById('hari').value = difference ;
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
                             });
