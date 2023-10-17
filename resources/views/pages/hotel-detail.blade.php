@@ -183,11 +183,11 @@
                                 // document.getElementById('total').value = totl;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
                                 // console.log('deposit ne');
-                            }else{
+                            }else if(tipe === "full"){
                                 // document.getElementById('sisa').value = subtota;
                                 // document.getElementById('total').value = 0;
                                 const tota = document.getElementById('total').value ;
-                                document.getElementById('total_bayar').innerHTML = tota ;
+                                document.getElementById('total_bayar').value = tota ;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
                             
                             }
