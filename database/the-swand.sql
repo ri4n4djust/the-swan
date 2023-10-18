@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 12:21 AM
+-- Generation Time: Oct 19, 2023 at 01:24 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.25
 
@@ -37,6 +37,7 @@ CREATE TABLE `bookings` (
   `facility` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lang` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alotment` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -45,11 +46,11 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `code`, `title`, `slug`, `desc`, `price`, `facility`, `foto`, `lang`, `created_at`, `updated_at`) VALUES
-(1, 'ANDI001', 'Deluxe Double Room', 'deluxe-room-in-batu-bolong', 'Located in Canggu, within a 7-minute walk of Batu Bolong Beach and 700 yards of Echo Beach, Provides accommodations with an outdoor swimming pool and free Wifithroughout the property. The property is around a 11-minute walk from Canggu Beach, 6.5 miles from Petitenget Temple and 7.1 miles from Ubung Bus Station. Kuta Square is 10 miles away and Kuta Art Market is 10 miles from the guest house.\r\n\r\nComplete with a private bathroom equipped with a shower and a hair dryer, guest rooms at the guest house have a flat-screen TV and air conditioning, and selected rooms have a balcony.\r\n\r\nTanah Lot Temple is 7.1 miles from Andi Beach House, while Bali Museum is 7.9 miles away. The nearest airport is Ngurah Rai International Airport, 12 miles from the accommodation.', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'en', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
-(2, 'ANDI001', 'Kamar Deluxe Double', 'kamar-deluxe-di-batu-bolong', 'Terletak di Canggu, berjarak 10 km dari Pura Petitenget dan 11 km dari Terminal Bus Ubung. Guest house ini memiliki kolam renang luar ruangan, serta berjarak dekat dengan beberapa tempat wisata yang terkenal, seperti Pantai Batu Bolong, Pantai Echo, dan Pantai Canggu. Kuta Square dan Pasar Seni Kuta berjarak 16 km dari guest house.\r\n\r\nKamar-kamar di guest house ini memiliki kamar mandi pribadi dengan shower dan pengering rambut, serta menyediakan Wi-Fi gratis. Beberapa kamar memiliki balkon. Di Andi Beach House, setiap kamar dilengkapi dengan AC dan TV layar datar.', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'id', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
-(3, 'ANDI002', 'Bangunan Split Lumbung', 'Bangunan-lumbung-yang-cantik', 'kamar dengan bangunan lumbung yang cantik dengan suasana tenang', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'id', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
-(4, 'ANDI002', 'Split Lumbung', 'beautiful-lumbung-near-batu-bolong', 'barn building with calm atmosphere', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'en', '2023-10-01 04:01:06', '2023-10-01 04:01:06');
+INSERT INTO `bookings` (`id`, `code`, `title`, `slug`, `desc`, `price`, `facility`, `foto`, `lang`, `alotment`, `created_at`, `updated_at`) VALUES
+(1, 'ANDI001', 'Deluxe Double Room', 'deluxe-room-in-batu-bolong', 'Located in Canggu, within a 7-minute walk of Batu Bolong Beach and 700 yards of Echo Beach, Provides accommodations with an outdoor swimming pool and free Wifithroughout the property. The property is around a 11-minute walk from Canggu Beach, 6.5 miles from Petitenget Temple and 7.1 miles from Ubung Bus Station. Kuta Square is 10 miles away and Kuta Art Market is 10 miles from the guest house.\r\n\r\nComplete with a private bathroom equipped with a shower and a hair dryer, guest rooms at the guest house have a flat-screen TV and air conditioning, and selected rooms have a balcony.\r\n\r\nTanah Lot Temple is 7.1 miles from Andi Beach House, while Bali Museum is 7.9 miles away. The nearest airport is Ngurah Rai International Airport, 12 miles from the accommodation.', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'en', '2', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(2, 'ANDI001', 'Kamar Deluxe Double', 'kamar-deluxe-di-batu-bolong', 'Terletak di Canggu, berjarak 10 km dari Pura Petitenget dan 11 km dari Terminal Bus Ubung. Guest house ini memiliki kolam renang luar ruangan, serta berjarak dekat dengan beberapa tempat wisata yang terkenal, seperti Pantai Batu Bolong, Pantai Echo, dan Pantai Canggu. Kuta Square dan Pasar Seni Kuta berjarak 16 km dari guest house.\r\n\r\nKamar-kamar di guest house ini memiliki kamar mandi pribadi dengan shower dan pengering rambut, serta menyediakan Wi-Fi gratis. Beberapa kamar memiliki balkon. Di Andi Beach House, setiap kamar dilengkapi dengan AC dan TV layar datar.', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'id', '2', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(3, 'ANDI002', 'Bangunan Split Lumbung', 'Bangunan-lumbung-yang-cantik', 'kamar dengan bangunan lumbung yang cantik dengan suasana tenang', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'id', '3', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(4, 'ANDI002', 'Split Lumbung', 'beautiful-lumbung-near-batu-bolong', 'barn building with calm atmosphere', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'en', '3', '2023-10-01 04:01:06', '2023-10-01 04:01:06');
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,8 @@ CREATE TABLE `guests` (
 --
 
 INSERT INTO `guests` (`id`, `name`, `email`, `nationality`, `mobile`, `created_at`, `updated_at`) VALUES
-(2, 'rian', 'rian@gmail.com', 'indo', '081', '2023-10-17 22:01:31', '2023-10-17 22:01:31');
+(2, 'rian', 'rian@gmail.com', 'indo', '081', '2023-10-17 22:01:31', '2023-10-17 22:01:31'),
+(3, 'rian', 'rian@gmail.com', 'indo', '081', '2023-10-17 23:26:04', '2023-10-17 23:26:04');
 
 -- --------------------------------------------------------
 
@@ -142,7 +144,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2023_10_08_102752_create_destinations_table', 4),
 (9, '2023_10_08_131240_create_tour_packages_table', 5),
 (10, '2023_10_17_073110_create_reservations_table', 6),
-(11, '2023_10_18_051848_create_guests_table', 7);
+(11, '2023_10_18_051848_create_guests_table', 7),
+(12, '2023_10_18_191448_create_packages_table', 8);
 
 -- --------------------------------------------------------
 
@@ -158,6 +161,33 @@ CREATE TABLE `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `packages`
+--
+
+CREATE TABLE `packages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adult` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `packages`
+--
+
+INSERT INTO `packages` (`id`, `code`, `name`, `deskripsi`, `price`, `room_code`, `adult`, `lang`, `created_at`, `updated_at`) VALUES
+(1, 'PKG01', 'Paket 2 Malam', 'paket untuk 2 orang, atau pasangan. dengan itenirary sebagai berikut : \r\n1. saat arraival anda akan di jemput di bandara ngurah rai,\r\n2. anda akan di antar ke hotel yang telah ditentukan dengan standart deluxe room,\r\n3. di hari berikutnya anda akan di jemput di hotel jam 8 pagi untuk melakukan ubud tour selama 10 jam, sesuai dengan tujuan yg ditentukan.\r\ndan di hari ke 3 anda akan di drop ke bandara atau ke tempat lain saat anda cekout.', '2000000', 'ANDI01', '4', 'id', '2023-10-18 11:20:09', '2023-10-18 11:20:09'),
+(2, 'PKG01', 'Paket 2 Night', 'package in english', '2000000', 'ANDI01', '4', 'en', '2023-10-18 11:20:09', '2023-10-18 11:20:09');
 
 -- --------------------------------------------------------
 
@@ -223,7 +253,8 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `code`, `email`, `code_service`, `cek_in_out`, `type_payment`, `payment`, `subtotal`, `total`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'ANDI0021697580091633', 'rian@gmail.com', 'ANDI002', 'Oct 20, 2023 - Oct 25, 2023', 'deposit', '1950000', '1950000', '6500000', 'PENDING', '2023-10-17 22:01:31', '2023-10-17 22:01:31');
+(2, 'ANDI0021697580091633', 'rian@gmail.com', 'ANDI002', 'Oct 20, 2023 - Oct 25, 2023', 'deposit', '1950000', '1950000', '6500000', 'PENDING', '2023-10-17 22:01:31', '2023-10-17 22:01:31'),
+(3, 'ANDI0011697585164227', 'rian@gmail.com', 'ANDI001', 'Nov 20, 2023 - Nov 25, 2023', 'full', '4500000', '4500000', '4500000', 'PENDING', '2023-10-17 23:26:04', '2023-10-17 23:26:04');
 
 -- --------------------------------------------------------
 
@@ -254,8 +285,8 @@ CREATE TABLE `tour_packages` (
 --
 
 INSERT INTO `tour_packages` (`id`, `code`, `type`, `tour_name`, `itinerary`, `price`, `note`, `pickup`, `payment`, `destination`, `foto`, `lang`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'FL01EN', 'Full DayTour', 'Ubud Bali Tour', '    08:00 – Pick up at the hotel\n    09.30 – Watching Barong and Keris and Dance Performance (Trance Dance)\n    11.00 – Visit Celuk Village for Traditional Gold and Silver Smith\n    12.00 – Visit Ubud Tegenungan Waterfall\n    13.00 – Enjoy Lunch in Ubud\n    14.30 – Visit Ubud Tegalalang Rice Terrace\n    15.30 – Visit Ubud Monkey Forest\n    16.00 – Visit Ubud Royal Palace\n    16.30 – Visit Ubud Market\n    17.30 – Back to the hotel\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\n\nRegular Tours Price :\n\n        IDR 700,000/car (1 to 6 people included)\n        IDR 1,400,000/minibus (1 to 12 people included)\n        IDR 1,550,000/minibus (1 to 17 people included)\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'en', 'Ubud-Bali-Tour', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
-(2, 'FL01ID', 'Tur 1 Hari', 'Ubud Bali Tur', '    08:00 – Pick up at the hotel\r\n    09.30 – Watching Barong and Keris and Dance Performance (Trance Dance)\r\n    11.00 – Visit Celuk Village for Traditional Gold and Silver Smith\r\n    12.00 – Visit Ubud Tegenungan Waterfall\r\n    13.00 – Enjoy Lunch in Ubud\r\n    14.30 – Visit Ubud Tegalalang Rice Terrace\r\n    15.30 – Visit Ubud Monkey Forest\r\n    16.00 – Visit Ubud Royal Palace\r\n    16.30 – Visit Ubud Market\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'id', 'Ubud-Bali-Tur', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
+(1, 'FL01EN', 'Full DayTour', 'Ubud Bali Tour', '<ul>\n	<li>08:00 &ndash; Pick up at the hotel</li>\n	<li>09.30 &ndash; Watching Barong and Keris and Dance Performance (Trance Dance)</li>\n	<li>11.00 &ndash; Visit Celuk Village for Traditional Gold and Silver Smith</li>\n	<li>12.00 &ndash; Visit Ubud Tegenungan Waterfall</li>\n	<li>13.00 &ndash; Enjoy Lunch in Ubud</li>\n	<li>14.30 &ndash; Visit Ubud Tegalalang Rice Terrace</li>\n	<li>15.30 &ndash; Visit Ubud Monkey Forest</li>\n	<li>16.00 &ndash; Visit Ubud Royal Palace</li>\n	<li>16.30 &ndash; Visit Ubud Market</li>\n	<li>17.30 &ndash; Back to the hotel</li>\n	<li>18.30 &ndash; Arrive at the hotel</li>\n</ul>\n\n<p>Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud&nbsp; Bali Tours Packages price :</p>\n\n<p><strong>Regular Tours Price :</strong></p>\n\n<blockquote>\n<ul>\n	<li>IDR 700,000/car (1 to 6 people included)</li>\n	<li>IDR 1,400,000/minibus (1 to 12 people included)</li>\n	<li>IDR 1,550,000/minibus (1 to 17 people included)</li>\n	<li>IDR 2,350,000/bus (1 to 30 person included)</li>\n</ul>\n</blockquote>\n\n<ul>\n	<li>The price already include with 21% Government tax and Services</li>\n	<li>Get special price for group booking</li>\n	<li><strong>Regular Tours Price</strong>&nbsp;: is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self</li>\n	<li>The tour is Private Tours, means there is no other participant, just only you and your companion</li>\n	<li>The Tour will assist by English Speaking Tours Driver</li>\n	<li>Tour Guide can be requested, contact us if you want to request Tour Guide during the trip</li>\n	<li>Time and Tourism site is subject to change based on your request.</li>\n	<li>Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page</li>\n</ul>\n\n<p>Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport<br />\nPlease contact us for pick up in different area</p>\n', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\n\nRegular Tours Price :\n\n        IDR 700,000/car (1 to 6 people included)\n        IDR 1,400,000/minibus (1 to 12 people included)\n        IDR 1,550,000/minibus (1 to 17 people included)\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'en', 'Ubud-Bali-Tour', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
+(2, 'FL01ID', 'Tur 1 Hari', 'Ubud Bali Tur', '<ul>\n	<li>08:00 &ndash; Pick up at the hotel</li>\n	<li>09.30 &ndash; Watching Barong and Keris and Dance Performance (Trance Dance)</li>\n	<li>11.00 &ndash; Visit Celuk Village for Traditional Gold and Silver Smith</li>\n	<li>12.00 &ndash; Visit Ubud Tegenungan Waterfall</li>\n	<li>13.00 &ndash; Enjoy Lunch in Ubud</li>\n	<li>14.30 &ndash; Visit Ubud Tegalalang Rice Terrace</li>\n	<li>15.30 &ndash; Visit Ubud Monkey Forest</li>\n	<li>16.00 &ndash; Visit Ubud Royal Palace</li>\n	<li>16.30 &ndash; Visit Ubud Market</li>\n	<li>17.30 &ndash; Back to the hotel</li>\n	<li>18.30 &ndash; Arrive at the hotel</li>\n</ul>\n\n<p>Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud&nbsp; Bali Tours Packages price :</p>\n\n<p><strong>Regular Tours Price :</strong></p>\n\n<blockquote>\n<ul>\n	<li>IDR 700,000/car (1 to 6 people included)</li>\n	<li>IDR 1,400,000/minibus (1 to 12 people included)</li>\n	<li>IDR 1,550,000/minibus (1 to 17 people included)</li>\n	<li>IDR 2,350,000/bus (1 to 30 person included)</li>\n</ul>\n</blockquote>\n\n<ul>\n	<li>The price already include with 21% Government tax and Services</li>\n	<li>Get special price for group booking</li>\n	<li><strong>Regular Tours Price</strong>&nbsp;: is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self</li>\n	<li>The tour is Private Tours, means there is no other participant, just only you and your companion</li>\n	<li>The Tour will assist by English Speaking Tours Driver</li>\n	<li>Tour Guide can be requested, contact us if you want to request Tour Guide during the trip</li>\n	<li>Time and Tourism site is subject to change based on your request.</li>\n	<li>Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page</li>\n</ul>\n\n<p>Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport<br />\nPlease contact us for pick up in different area</p>\n', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'id', 'Ubud-Bali-Tur', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
 (3, 'FL02EN', 'Full Day Tour', 'South Bali Tour', '    08:00 – Pick up at the hotel\r\n    09.30 – Visit the Watersport area \r\n    11.00 – Visit Waterblow\r\n    12.00 – Visit Geger Beach\r\n    13.00 – Enjoy Lunch in Nusa Dua\r\n    14.30 – Visit GWK\r\n    15.30 – Visit Pandawa Beach\r\n    16.00 – Visit Uluwatu Temple\r\n    16.30 – Visit Jimbaran Beach\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', '4,5,6', '4.jpg', 'en', 'South-Bali-Tour', '2023-10-09 12:23:56', '2023-10-09 12:23:56');
 
 -- --------------------------------------------------------
@@ -359,6 +390,12 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `packages`
+--
+ALTER TABLE `packages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -424,19 +461,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `guests`
 --
 ALTER TABLE `guests`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `packages`
+--
+ALTER TABLE `packages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -448,7 +491,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tour_packages`
