@@ -146,8 +146,19 @@
             </p>
             <pre>1. #This is an example of preformatted text.<br/>2. #Here is another line of code</pre>
           </div>
+          <div class="typography-line">
+            <span>Code</span>
+            <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+            <pre>1. #This is an example of preformatted text.<br/>2. #Here is another line of code</pre>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('.ckeditor').ckeditor();
+      });
+  </script>
 @endsection
