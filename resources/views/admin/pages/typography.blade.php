@@ -138,6 +138,7 @@
               </div>
             </div>
           </div>
+          <textarea class="my-edit form-control" id="my-edit" name="wysiwyg-editor"></textarea>
           <div class="typography-line">
             <span>Code</span>
             <p>This is
@@ -148,17 +149,24 @@
           </div>
           <div class="typography-line">
             <span>Code</span>
-            <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
-            <pre>1. #This is an example of preformatted text.<br/>2. #Here is another line of code</pre>
+            
           </div>
         </div>
       </div>
     </div>
   </div>
-  <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $('.ckeditor').ckeditor();
-      });
+  @push('js')
+  <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+  <script>
+    var options = {
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
   </script>
+  <script>
+      CKEDITOR.replace('my-edit', options);
+  </script>
+  @endpush
 @endsection

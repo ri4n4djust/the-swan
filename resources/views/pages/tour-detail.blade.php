@@ -32,12 +32,7 @@
                 <div class="position-relative mt-4">
                 <h4>Book a Table</h4>
                 <p>
-                Barong is a legendary character whose goal is to safeguard Bali from all evil disturbances that threaten the island. 
-                    The barong is shown in numerous animal guises, including lions, tigers, wild boars, buffalo, elephants, and dogs. 
-                    Since people still believe in animistic beliefs, barong has become a part of Javanese and Balinese culture. 
-                    In Bali, the barong character is shaped like a cross between an animal face and a scary yet good persona. 
-                    When you look at it, it can give you a religious feeling. Barong bali evolved from barong ponorogo or Reog, 
-                    which King Airlangga brought with him when he fled to the island of Bali to save himself.
+                {!! $tourDetail[0]->itinerary !!}
 
                 </p>
                 </div>

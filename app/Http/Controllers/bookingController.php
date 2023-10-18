@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Transport;
 use App\Models\Destination;
 use App\Models\TourPackage;
+use App\Models\Package;
 use Stevebauman\Location\Facades\Location;
 
 class bookingController extends Controller
@@ -26,12 +27,14 @@ class bookingController extends Controller
         $tur = TourPackage::where('tour_packages.lang', $defaultLocale)
                             // ->join('destinations', 'tour_packages.destination', 'like', 'destinations.code_dst' )
                             ->get();
+        $paket = Package::where('lang', $defaultLocale)->get();
 
         return view('pages.service',[
             'kamar' => $kamar, 
             'transport' => $transport,
             'destination' => $detinasi,
-            'tour' => $tur
+            'tour' => $tur,
+            'paket' => $paket
             ] );
     }
 
@@ -68,6 +71,11 @@ class bookingController extends Controller
         return view('pages.hotel-detail',[
             'hotelDetail' => $hotel
             ] );
+    }
+
+    public function paketDetail($slug){
+
+
     }
 
 }
