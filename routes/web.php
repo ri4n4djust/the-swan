@@ -18,9 +18,7 @@ use Spatie\Sitemap\Tags\Url;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+// Route::get('/', function () { return view('pages.home'); });
 // Route::get('/service', function () {
 //     return view('pages.service');
 // });
@@ -31,6 +29,8 @@ Route::get('/', function () {
 
 if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 {
+    Route::get('/', function () { return view('pages.home'); });
+    Route::get('/about', function () { return view('pages.about'); });
     Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
     Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service']);

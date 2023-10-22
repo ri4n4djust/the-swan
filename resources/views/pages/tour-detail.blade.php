@@ -30,7 +30,7 @@
             <div class="col-lg-7 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
                 
                 <div class="position-relative mt-4">
-                <h4>Book a Table</h4>
+                <h4>{{ $tourDetail[0]->tour_name }}</h4>
                 <p>
                 {!! $tourDetail[0]->itinerary !!}
 
@@ -38,7 +38,7 @@
                 </div>
                 <img src="assets/img/about.jpg" class="img-fluid" alt="">
             </div>
-            <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+            <!-- <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                 <div class="content ps-0 ps-lg-5">
 
                 <div class="position-relative mt-4">
@@ -56,11 +56,11 @@
                     Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
                     velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident 
                 </p>
-                <!-- <ul>
+                <ul>
                     <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
                     <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
                     <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul> -->
+                </ul>
                 
 
                 
@@ -77,7 +77,7 @@
 
             </p>
             
-            </div>
+            </div> -->
 
         </div>
     </section><!-- End About Section -->

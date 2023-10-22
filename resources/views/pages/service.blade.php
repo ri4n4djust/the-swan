@@ -107,7 +107,7 @@
                   <div class="member-info">
                     <h4>{{ $detail->title}}</h4>
                     <!-- <span>Cook</span> -->
-                    <p>{{ substr($detail->desc, 0, 200)}}</p>
+                    <p>{!! substr($detail->desc, 0, 100) !!}</p>
                     
                   <!-- </div>
                   <div class="member-info"> -->
@@ -182,7 +182,7 @@
                       <div class="col-md-6">
                         <div class="info-item d-flex align-items-left">
                           <div>
-                            <p>{{ $detail->desc}}</p>
+                            <p>{!! $detail->desc !!}</p>
                           </div>
                         </div>
                       </div><!-- End Info Item -->
@@ -248,12 +248,17 @@
                   </div>
                   <p class="price">
                     IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
                       Detail
-                    </button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
+                    </button> -->
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
                       Book Now
-                    </button>
+                    </button> -->
+                    <div >
+                      <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" >
+                      <button style="vertical-align:center;height:36px;border-radius:5px">
+                      <img src="assets/img/wa.png" class="img-fluid"> Book Now</button></a>
+                    </div>
                   </p>
                   
                 </div>
