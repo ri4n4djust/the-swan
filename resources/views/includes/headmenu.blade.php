@@ -11,9 +11,9 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/about">{{ __('headmenu.about') }}</a></li>
-          <li><a href="#events">{{ __('headmenu.event') }}</a></li>
-          <li><a href="#chefs">{{ __('headmenu.driver') }}</a></li>
-          <li><a href="#gallery">{{ __('headmenu.galleri') }}</a></li>
+          <li><a href="/events">{{ __('headmenu.event') }}</a></li>
+          <!-- <li><a href="#chefs">{{ __('headmenu.driver') }}</a></li> -->
+          <li><a href="/gallery">{{ __('headmenu.galleri') }}</a></li>
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -31,7 +31,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li> -->
-          <li><a href="#contact">{{ __('headmenu.contact') }}</a></li>
+          <li><a href="/contact">{{ __('headmenu.contact') }}</a></li>
           <li class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{ strtoupper(Lang::locale()) }}

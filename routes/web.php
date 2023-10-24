@@ -29,11 +29,16 @@ use Spatie\Sitemap\Tags\Url;
 
 if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 {
-    // Route::get('/', function () { return view('pages.home'); });
-    Route::get('/about', function () { return view('pages.about'); });
     Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
-
+    // Route::get('/', function () { return view('pages.home'); });
     Route::get('/', [App\Http\Controllers\bookingController::class , 'home']);
+    Route::get('/about', function () { return view('pages.about'); });
+    Route::get('/gallery', [App\Http\Controllers\bookingController::class , 'galeri']);
+    Route::get('/events', [App\Http\Controllers\bookingController::class , 'event']);
+    Route::get('/contact-us', function () { return view('pages.contact'); });
+    
+
+    
     Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service']);
     Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
