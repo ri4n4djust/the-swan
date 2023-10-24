@@ -38,6 +38,26 @@ class bookingController extends Controller
             ] );
     }
 
+    public function home(){
+
+        $defaultLocale = config('app.locale');
+        $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
+        $transport = Transport::where('transports.lang', $defaultLocale)->get();
+        $detinasi = Destination::where('destinations.lang', $defaultLocale)->get();
+        $tur = TourPackage::where('tour_packages.lang', $defaultLocale)
+                            // ->join('destinations', 'tour_packages.destination', 'like', 'destinations.code_dst' )
+                            ->get();
+        $paket = Package::where('lang', $defaultLocale)->get();
+
+        return view('pages.home',[
+            'kamar' => $kamar, 
+            'transport' => $transport,
+            'destination' => $detinasi,
+            'tour' => $tur,
+            'paket' => $paket
+            ] );
+    }
+
     public function getLoc(Request $request){
         $ip = $request->ip(); // Dynamic IP address */
         // $ip = '162.159.24.227'; /* Static IP address */
