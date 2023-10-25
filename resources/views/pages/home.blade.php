@@ -602,15 +602,22 @@
         <div class="container" data-aos="fade-up">
 
           <div class="section-header">
-            <h2>About Us</h2>
-            <p>Learn More <span>About Us</span></p>
+            <h2>{{ __('headmenu.about_us') }}</h2>
+            <p>{{ __('headmenu.about_des') }} <span></span></p>
           </div>
 
           <div class="row gy-4">
             <div class="col-lg-7 position-relative about-img" style="background-image: url(assets/img/about.jpg) ;" data-aos="fade-up" data-aos-delay="150">
               <div class="call-us position-absolute">
-                <h4>Book a Table</h4>
-                <p>+1 5589 55488 55</p>
+                <h4>{{ __('headmenu.about_book') }}</h4>
+                <p>
+                  <a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" target="_blank" >
+                    <button style="vertical-align:center;border-radius:5px">
+                    <img src="assets/img/wa.png" class="img-fluid">+62 8234 006 4488</button>
+                    
+                  </a>
+                </p>
+                
               </div>
             </div>
             <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">

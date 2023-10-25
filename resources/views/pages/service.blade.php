@@ -255,7 +255,7 @@
                       Book Now
                     </button> -->
                     <div >
-                      <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" >
+                      <a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" target="_blank" >
                       <button style="vertical-align:center;height:36px;border-radius:5px">
                       <img src="assets/img/wa.png" class="img-fluid"> Book Now</button></a>
                     </div>
