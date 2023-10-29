@@ -11,6 +11,12 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'rooms') class="active " @endif>
+                <a href="{{ route('pages.rooms') }}">
+                    <i class="tim-icons icon-chart-pie-36"></i>
+                    <p>{{ __('Rooms') }}</p>
+                </a>
+            </li>
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>

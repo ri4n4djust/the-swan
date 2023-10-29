@@ -64,6 +64,11 @@ class PageController extends Controller
         return view('admin.pages.typography');
     }
 
+    public function rooms()
+    {
+        return view('admin.pages.rooms');
+    }
+
     /**
      * Display upgrade page
      *
