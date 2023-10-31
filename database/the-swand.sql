@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 02:00 AM
+-- Generation Time: Nov 01, 2023 at 12:54 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.25
 
@@ -124,6 +124,28 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `galleries`
+--
+
+CREATE TABLE `galleries` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keterangan` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `galleries`
+--
+
+INSERT INTO `galleries` (`id`, `name`, `foto`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 'Andi001', 'andi02.jpg', NULL, '2023-10-31 23:51:32', '2023-10-31 23:51:32');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `guests`
 --
 
@@ -174,7 +196,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2023_10_17_073110_create_reservations_table', 6),
 (11, '2023_10_18_051848_create_guests_table', 7),
 (12, '2023_10_18_191448_create_packages_table', 8),
-(13, '2023_10_25_052907_create_artikels_table', 9);
+(13, '2023_10_25_052907_create_artikels_table', 9),
+(14, '2023_11_01_074922_create_galleries_table', 10);
 
 -- --------------------------------------------------------
 
@@ -301,7 +324,8 @@ CREATE TABLE `tour_packages` (
 INSERT INTO `tour_packages` (`id`, `code`, `type`, `tour_name`, `itinerary`, `price`, `note`, `pickup`, `payment`, `destination`, `foto`, `lang`, `slug`, `created_at`, `updated_at`) VALUES
 (1, 'FL01EN', 'Full DayTour', 'Ubud Bali Tour', '<ul>\n	<li>08:00 &ndash; Pick up at the hotel</li>\n	<li>09.30 &ndash; Watching Barong and Keris and Dance Performance (Trance Dance)</li>\n	<li>11.00 &ndash; Visit Celuk Village for Traditional Gold and Silver Smith</li>\n	<li>12.00 &ndash; Visit Ubud Tegenungan Waterfall</li>\n	<li>13.00 &ndash; Enjoy Lunch in Ubud</li>\n	<li>14.30 &ndash; Visit Ubud Tegalalang Rice Terrace</li>\n	<li>15.30 &ndash; Visit Ubud Monkey Forest</li>\n	<li>16.00 &ndash; Visit Ubud Royal Palace</li>\n	<li>16.30 &ndash; Visit Ubud Market</li>\n	<li>17.30 &ndash; Back to the hotel</li>\n	<li>18.30 &ndash; Arrive at the hotel</li>\n</ul>\n\n<p>Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud&nbsp; Bali Tours Packages price :</p>\n\n<p><strong>Regular Tours Price :</strong></p>\n\n<blockquote>\n<ul>\n	<li>IDR 700,000/car (1 to 6 people included)</li>\n	<li>IDR 1,400,000/minibus (1 to 12 people included)</li>\n	<li>IDR 1,550,000/minibus (1 to 17 people included)</li>\n	<li>IDR 2,350,000/bus (1 to 30 person included)</li>\n</ul>\n</blockquote>\n\n<ul>\n	<li>The price already include with 21% Government tax and Services</li>\n	<li>Get special price for group booking</li>\n	<li><strong>Regular Tours Price</strong>&nbsp;: is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self</li>\n	<li>The tour is Private Tours, means there is no other participant, just only you and your companion</li>\n	<li>The Tour will assist by English Speaking Tours Driver</li>\n	<li>Tour Guide can be requested, contact us if you want to request Tour Guide during the trip</li>\n	<li>Time and Tourism site is subject to change based on your request.</li>\n	<li>Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page</li>\n</ul>\n\n<p>Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport<br />\nPlease contact us for pick up in different area</p>\n', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\n\nRegular Tours Price :\n\n        IDR 700,000/car (1 to 6 people included)\n        IDR 1,400,000/minibus (1 to 12 people included)\n        IDR 1,550,000/minibus (1 to 17 people included)\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'en', 'Ubud-Bali-Tour', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
 (2, 'FL01ID', 'Tur 1 Hari', 'Ubud Bali Tur', '<ul>\n	<li>08:00 &ndash; Pick up at the hotel</li>\n	<li>09.30 &ndash; Watching Barong and Keris and Dance Performance (Trance Dance)</li>\n	<li>11.00 &ndash; Visit Celuk Village for Traditional Gold and Silver Smith</li>\n	<li>12.00 &ndash; Visit Ubud Tegenungan Waterfall</li>\n	<li>13.00 &ndash; Enjoy Lunch in Ubud</li>\n	<li>14.30 &ndash; Visit Ubud Tegalalang Rice Terrace</li>\n	<li>15.30 &ndash; Visit Ubud Monkey Forest</li>\n	<li>16.00 &ndash; Visit Ubud Royal Palace</li>\n	<li>16.30 &ndash; Visit Ubud Market</li>\n	<li>17.30 &ndash; Back to the hotel</li>\n	<li>18.30 &ndash; Arrive at the hotel</li>\n</ul>\n\n<p>Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud&nbsp; Bali Tours Packages price :</p>\n\n<p><strong>Regular Tours Price :</strong></p>\n\n<blockquote>\n<ul>\n	<li>IDR 700,000/car (1 to 6 people included)</li>\n	<li>IDR 1,400,000/minibus (1 to 12 people included)</li>\n	<li>IDR 1,550,000/minibus (1 to 17 people included)</li>\n	<li>IDR 2,350,000/bus (1 to 30 person included)</li>\n</ul>\n</blockquote>\n\n<ul>\n	<li>The price already include with 21% Government tax and Services</li>\n	<li>Get special price for group booking</li>\n	<li><strong>Regular Tours Price</strong>&nbsp;: is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self</li>\n	<li>The tour is Private Tours, means there is no other participant, just only you and your companion</li>\n	<li>The Tour will assist by English Speaking Tours Driver</li>\n	<li>Tour Guide can be requested, contact us if you want to request Tour Guide during the trip</li>\n	<li>Time and Tourism site is subject to change based on your request.</li>\n	<li>Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page</li>\n</ul>\n\n<p>Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport<br />\nPlease contact us for pick up in different area</p>\n', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', 'BRD01,MF02', '1.jpg;2.jpg', 'id', 'Ubud-Bali-Tur', '2023-10-08 13:18:57', '2023-10-08 13:18:57'),
-(3, 'FL02EN', 'Full Day Tour', 'South Bali Tour', '    08:00 – Pick up at the hotel\r\n    09.30 – Visit the Watersport area \r\n    11.00 – Visit Waterblow\r\n    12.00 – Visit Geger Beach\r\n    13.00 – Enjoy Lunch in Nusa Dua\r\n    14.30 – Visit GWK\r\n    15.30 – Visit Pandawa Beach\r\n    16.00 – Visit Uluwatu Temple\r\n    16.30 – Visit Jimbaran Beach\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', '4,5,6', '4.jpg', 'en', 'South-Bali-Tour', '2023-10-09 12:23:56', '2023-10-09 12:23:56');
+(3, 'FL02EN', 'Full Day Tour', 'South Bali Tour', '    08:00 – Pick up at the hotel\r\n    09.30 – Visit the Watersport area \r\n    11.00 – Visit Waterblow\r\n    12.00 – Visit Geger Beach\r\n    13.00 – Enjoy Lunch in Nusa Dua\r\n    14.30 – Visit GWK\r\n    15.30 – Visit Pandawa Beach\r\n    16.00 – Visit Uluwatu Temple\r\n    16.30 – Visit Jimbaran Beach\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', '4,5,6', '4.jpg', 'en', 'South-Bali-Tour', '2023-10-09 12:23:56', '2023-10-09 12:23:56'),
+(5, 'FL02EN', 'Tur 1 Hari', 'Tur Bali Selatan', '    08:00 – Pick up at the hotel\r\n    09.30 – Visit the Watersport area \r\n    11.00 – Visit Waterblow\r\n    12.00 – Visit Geger Beach\r\n    13.00 – Enjoy Lunch in Nusa Dua\r\n    14.30 – Visit GWK\r\n    15.30 – Visit Pandawa Beach\r\n    16.00 – Visit Uluwatu Temple\r\n    16.30 – Visit Jimbaran Beach\r\n    17.30 – Back to the hotel\r\n    18.30 – Arrive at the hotel', 'Our tour is Based on Private Tour (no sharing), We offer Regular Tours prices. Please see below the details of Ubud  Bali Tours Packages price :\r\n\r\nRegular Tours Price :\r\n\r\n        IDR 700,000/car (1 to 6 people included)\r\n        IDR 1,400,000/minibus (1 to 12 people included)\r\n        IDR 1,550,000/minibus (1 to 17 people included)\r\n        IDR 2,350,000/bus (1 to 30 person included)', '    The price already include with 21% Government tax and Services\r\n    Get special price for group booking\r\n    Regular Tours Price : is a Bali day tours price without include lunch and entrance fee, you need to pay by your own self\r\n    The tour is Private Tours, means there is no other participant, just only you and your companion\r\n    The Tour will assist by English Speaking Tours Driver\r\n    Tour Guide can be requested, contact us if you want to request Tour Guide during the trip\r\n    Time and Tourism site is subject to change based on your request.\r\n    Use contact form provide to send us message, asking information or make tour booking request In Contact Us Page', 'Seminyak, Legian, Kuta, Nusa Dua, Jimbaran, Pecatu, Sanur, Ubud, Canggu, Denpasar, Benoa Harbour, Airport\r\nPlease contact us for pick up in different area', '    Payment is Cash Payment\r\n    Payment is on the day itself with our driver\r\n    Payment with other currency will convert based on daily exchange rate', '4,5,6', '4.jpg', 'id', 'Tour-Bali-Selatan', '2023-10-09 12:23:56', '2023-10-09 12:23:56');
 
 -- --------------------------------------------------------
 
@@ -392,6 +416,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `galleries`
+--
+ALTER TABLE `galleries`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `guests`
 --
 ALTER TABLE `guests`
@@ -478,6 +508,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `galleries`
+--
+ALTER TABLE `galleries`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `guests`
 --
 ALTER TABLE `guests`
@@ -487,7 +523,7 @@ ALTER TABLE `guests`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -511,7 +547,7 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT for table `tour_packages`
 --
 ALTER TABLE `tour_packages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transports`
