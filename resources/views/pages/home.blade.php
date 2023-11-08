@@ -797,7 +797,7 @@
     </section><!-- End Events Section -->
 
     <!-- ======= Chefs Section ======= -->
-    <section id="chefs" class="chefs section-bg">
+    <!-- <section id="chefs" class="chefs section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -825,7 +825,6 @@
               </div>
             </div>
           </div>
-          <!-- End Chefs Member -->
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="chef-member">
@@ -845,7 +844,6 @@
               </div>
             </div>
           </div>
-          <!-- End Chefs Member -->
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
             <div class="chef-member">
@@ -865,12 +863,12 @@
               </div>
             </div>
           </div>
-          <!-- End Chefs Member -->
 
         </div>
 
       </div>
-    </section><!-- End Chefs Section -->
+    </section> -->
+    <!-- End Chefs Section -->
 
     
 
@@ -885,14 +883,26 @@
 
         <div class="gallery-slider swiper">
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
+            
+            @foreach ($galeri as $gal)
+            <div class="swiper-slide">
+              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/{{ $gal->foto }}">
+                <img src="assets/img/gallery/{{ $gal->foto }}" class="img-fluid" alt="">
+              </a>
+            </div>
+            @endforeach
+
+            <!-- <div class="swiper-slide">
+              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg">
+                <img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt="">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg">
+                <img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt="">
+              </a>
+            </div> -->
+
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -930,7 +940,7 @@
               <i class="icon bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>contact@example.com</p>
+                <p>info@the-swand.com</p>
               </div>
             </div>
           </div><!-- End Info Item -->

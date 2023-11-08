@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 12:54 AM
+-- Generation Time: Nov 08, 2023 at 01:26 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.25
 
@@ -132,6 +132,7 @@ CREATE TABLE `galleries` (
   `name` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` text COLLATE utf8mb4_unicode_ci,
+  `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -140,8 +141,19 @@ CREATE TABLE `galleries` (
 -- Dumping data for table `galleries`
 --
 
-INSERT INTO `galleries` (`id`, `name`, `foto`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 'Andi001', 'andi02.jpg', NULL, '2023-10-31 23:51:32', '2023-10-31 23:51:32');
+INSERT INTO `galleries` (`id`, `name`, `foto`, `keterangan`, `lang`, `created_at`, `updated_at`) VALUES
+(1, 'Andi001', 'andi-1.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(2, 'Andi001', 'andi-2.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(3, 'Andi001', 'andi-3.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(4, 'Andi001', 'andi-4.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(5, 'Andi001', 'andi-5.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(6, 'Andi001', 'andi-6.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(7, 'Andi001', 'andi-7.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(8, 'Andi001', 'andi-8.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(9, 'Andi001', 'andi-9.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(10, 'Andi001', 'andi-10.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(11, 'Andi001', 'andi-11.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32'),
+(12, 'Andi001', 'andi-12.jpg', 'lumbung', 'en', '2023-10-31 23:51:32', '2023-10-31 23:51:32');
 
 -- --------------------------------------------------------
 
@@ -511,7 +523,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `guests`

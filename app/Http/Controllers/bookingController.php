@@ -9,6 +9,7 @@ use App\Models\Destination;
 use App\Models\TourPackage;
 use App\Models\Package;
 use App\Models\Artikel;
+use App\Models\Gallery;
 use Stevebauman\Location\Facades\Location;
 
 class bookingController extends Controller
@@ -50,6 +51,7 @@ class bookingController extends Controller
                             ->get();
         $paket = Package::where('lang', $defaultLocale)->get();
         $artikel = Artikel::where('lang', $defaultLocale)->get();
+        $galeri = Gallery::where('lang', $defaultLocale)->get();
 
         return view('pages.home',[
             'kamar' => $kamar, 
@@ -57,7 +59,8 @@ class bookingController extends Controller
             'destination' => $detinasi,
             'tour' => $tur,
             'paket' => $paket,
-            'artikel' => $artikel
+            'artikel' => $artikel,
+            'galeri'  => $galeri
             ] );
     }
 
