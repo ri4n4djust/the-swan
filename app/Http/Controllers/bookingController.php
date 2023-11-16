@@ -105,10 +105,25 @@ class bookingController extends Controller
     }
 
     public function galeri(){
+        $defaultLocale = config('app.locale');
+        // $code = Gallery::where('slug', $slug)->first();
+
+        $galeri = Gallery::where('lang', $defaultLocale)->get();
+
+        return view('pages.galeri',[
+            'galeri' => $galeri
+            ] );
 
     }
 
     public function event(){
+        $defaultLocale = config('app.locale');
+        // $code = Gallery::where('slug', $slug)->first();
+        $artikel = Artikel::where('lang', $defaultLocale)->get();
+
+        return view('pages.event',[
+            'artikel' => $artikel
+            ] );
         
     }
 
