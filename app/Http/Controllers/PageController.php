@@ -69,6 +69,11 @@ class PageController extends Controller
         return view('admin.pages.rooms');
     }
 
+    public function rates()
+    {
+        return view('admin.pages.rates');
+    }
+
     /**
      * Display upgrade page
      *
