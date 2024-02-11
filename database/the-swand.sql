@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 01:26 AM
+-- Generation Time: Feb 11, 2024 at 02:40 PM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.25
 
@@ -209,7 +209,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2023_10_18_051848_create_guests_table', 7),
 (12, '2023_10_18_191448_create_packages_table', 8),
 (13, '2023_10_25_052907_create_artikels_table', 9),
-(14, '2023_11_01_074922_create_galleries_table', 10);
+(14, '2023_11_01_074922_create_galleries_table', 10),
+(15, '2023_11_18_074326_create_rates_table', 11);
 
 -- --------------------------------------------------------
 
@@ -275,6 +276,35 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rates`
+--
+
+CREATE TABLE `rates` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tgl` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode_kamar` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `harga` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rates`
+--
+
+INSERT INTO `rates` (`id`, `tgl`, `kode_kamar`, `harga`, `created_at`, `updated_at`) VALUES
+(1, '2023-11-20', 'ANDI001', '1200000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(2, '2023-11-21', 'ANDI001', '1200000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(3, '2023-11-22', 'ANDI001', '1500000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(4, '2023-11-23', 'ANDI001', '1500000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(5, '2023-11-24', 'ANDI001', '1550000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(6, '2023-11-25', 'ANDI001', '1550000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(7, '2023-11-20', 'ANDI002', '600000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(8, '2023-11-21', 'ANDI002', '600000', '2023-11-17 23:46:46', '2023-11-17 23:46:46');
 
 -- --------------------------------------------------------
 
@@ -466,6 +496,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `rates`
+--
+ALTER TABLE `rates`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
@@ -535,7 +571,7 @@ ALTER TABLE `guests`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -548,6 +584,12 @@ ALTER TABLE `packages`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `rates`
+--
+ALTER TABLE `rates`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `reservations`
