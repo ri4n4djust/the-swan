@@ -27,3 +27,5 @@ Route::post("invoice", [
     CheckoutController::class, 
     'create'
 ]);
+
+Route::post("get-rate", [App\Http\Controllers\bookingController::class , 'rate']);

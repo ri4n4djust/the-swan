@@ -197,6 +197,27 @@
                             }
                             // console.log(document.getElementById('tipe_bayar').value);
                         };
+                        function namaFungsi(start, end, difference, code){
+                            for(let i=0 ; i<difference ;i++){
+                                var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
+                                // var de = moment(end).format('LL');
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/api/get-rate",
+                                    data: {
+                                        "code": code,
+                                        "date": dt,
+                                        // "end": end
+                                    },
+                                    success: function (result) {
+                                        console.log(result.harga);
+                                    },
+                                    dataType: "json"
+                                });
+                                console.log(dt);
+                            }
+                            // console.log(moment(start).format('LL') + "Hello World!"+moment(end).format('LL') + difference);
+                        }
                         $(function() {
                             $('#datefilter').daterangepicker({
                                 "autoApply": true,
@@ -240,14 +261,17 @@
                                 "drops": "auto"
                             }, function(start, end, label) {
                                 // $('#cekin').val(start.format('YYYY-MM-DD'));
+                                var code = document.getElementById('code').value
                                 var name = document.getElementById('name').value
                                 var hrg = document.getElementById('order-items').value
                                 var awal = moment(start);
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
-                                // console.log(hrg)
+                                // console.log(awal)
                                 const subtotal = hrg * difference ;
                                 // document.getElementById('namebooking').innerHTML = name ;
+                                namaFungsi(start, end, difference, code);
+
                                 document.getElementById('total').value = subtotal ;
 
                                 const komisi = document.getElementById('total_bayar').value ;

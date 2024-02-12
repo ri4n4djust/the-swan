@@ -10,6 +10,7 @@ use App\Models\TourPackage;
 use App\Models\Package;
 use App\Models\Artikel;
 use App\Models\Gallery;
+use App\Models\Rate;
 use Stevebauman\Location\Facades\Location;
 
 class bookingController extends Controller
@@ -124,6 +125,18 @@ class bookingController extends Controller
         return view('pages.event',[
             'artikel' => $artikel
             ] );
+        
+    }
+
+    public function rate(Request $request){
+        // $defaultLocale = config('app.locale');
+        // $code = Gallery::where('slug', $slug)->first();
+        $rate = Rate::where('tgl', $request->date)->where('kode_kamar', $request->code)->get();
+
+        // return view('pages.event',[
+        //     'artikel' => $rate
+        //     ] );
+        return response()->json([$rate]);
         
     }
 
