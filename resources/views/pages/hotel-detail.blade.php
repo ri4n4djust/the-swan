@@ -274,11 +274,11 @@
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
                                 // console.log(awal)
-                                const subtotal = hrg * difference ;
+                                // const subtotal = hrg * difference ;
                                 // document.getElementById('namebooking').innerHTML = name ;
                                 namaFungsi(start, end, difference, code);
 
-                                document.getElementById('total').value = subtotal ;
+                                // document.getElementById('total').value = subtotal ;
 
                                 const komisi = document.getElementById('total_bayar').value ;
 
