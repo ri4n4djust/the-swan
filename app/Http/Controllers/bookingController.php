@@ -136,7 +136,7 @@ class bookingController extends Controller
         // return view('pages.event',[
         //     'artikel' => $rate
         //     ] );
-        return response()->json([$rate]);
+        return response()->json($rate);
         
     }
 

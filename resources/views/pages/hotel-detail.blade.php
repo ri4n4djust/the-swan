@@ -198,6 +198,7 @@
                             // console.log(document.getElementById('tipe_bayar').value);
                         };
                         function namaFungsi(start, end, difference, code){
+                            var hrg = 0;
                             for(let i=0 ; i<difference ;i++){
                                 var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
                                 // var de = moment(end).format('LL');
@@ -210,12 +211,17 @@
                                         // "end": end
                                     },
                                     success: function (result) {
-                                        console.log(result.harga);
+                                        // console.log(result[0].harga);
+                                        hrg += parseFloat(result[0].harga); //parseInt(125) ;
+                                        // alert(hrg);
+                                        document.getElementById('total').value = hrg;
                                     },
-                                    dataType: "json"
+                                    // dataType: "json"
                                 });
-                                console.log(dt);
+                                // console.log(hrg);
+                                
                             }
+                            console.log(hrg);
                             // console.log(moment(start).format('LL') + "Hello World!"+moment(end).format('LL') + difference);
                         }
                         $(function() {
