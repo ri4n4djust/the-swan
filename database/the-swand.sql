@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 11, 2024 at 02:40 PM
--- Server version: 8.0.32
--- PHP Version: 8.0.25
+-- Host: localhost
+-- Generation Time: Feb 13, 2024 at 03:49 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artikels` (
-  `id` bigint UNSIGNED NOT NULL,
-  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `isi` text NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `lang` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -56,16 +56,16 @@ INSERT INTO `artikels` (`id`, `judul`, `isi`, `foto`, `lang`, `created_at`, `upd
 --
 
 CREATE TABLE `bookings` (
-  `id` bigint UNSIGNED NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `desc` longtext NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `facility` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alotment` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facility` text NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `lang` varchar(5) NOT NULL,
+  `alotment` varchar(5) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -75,10 +75,10 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `code`, `title`, `slug`, `desc`, `price`, `facility`, `foto`, `lang`, `alotment`, `created_at`, `updated_at`) VALUES
-(1, 'ANDI001', 'Deluxe Double Room', 'deluxe-room-in-batu-bolong', '<p>Located in Canggu, within a 7-minute walk of Batu Bolong Beach and 700 yards of Echo Beach,<br />\nHouse provides accommodations with an outdoor swimming pool and free Wifi throughout the property.<br />\nThe property is around a 11-minute walk from Canggu Beach, 6.5 miles from Petitenget Temple and 7.1 miles from Ubung Bus Station.<br />\n<br />\nKuta Square is 10 miles away and Kuta Art Market is 10 miles from the guest house.<br />\nComplete with a private bathroom equipped with a shower and a hair dryer,<br />\nguest rooms at the guest house have a flat-screen TV and air conditioning,<br />\nand selected rooms have a balcony.<br />\n<br />\nTanah Lot Temple is 7.1 miles from the House, while Bali Museum is 7.9 miles away.<br />\nThe nearest airport is Ngurah Rai International Airport, 12 miles from the accommodation.</p>\n', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'en', '2', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
-(2, 'ANDI001', 'Kamar Deluxe Double', 'kamar-deluxe-di-batu-bolong', '<p>Terletak di Canggu, 7 menit berjalan kaki dari Pantai Batu Bolong dan 650 meter dari Pantai Echo,<br />\nHouse menyediakan akomodasi dengan kolam renang luar ruangan dan Wifi gratis di seluruh properti.<br />\nAkomodasi ini berjarak sekitar 11 menit berjalan kaki dari Pantai Canggu, 10,5 km dari Pura Petitenget, dan 11,4 km dari Terminal Bus Ubung.</p>\n\n<p>Kuta Square dan Pasar Seni Kuta berjarak 16 km dari guest house.<br />\nLengkap dengan kamar mandi pribadi yang dilengkapi dengan shower dan pengering rambut,<br />\nkamar-kamar di guest house ini memiliki TV layar datar dan AC, dan kamar-kamar tertentu memiliki balkon.<br />\nPura Tanah Lot berjarak 11,5 km dari House, sedangkan Museum Bali berjarak 12,6 km.<br />\n<br />\nBandara terdekat adalah Bandara Internasional Ngurah Rai, 19 km dari akomodasi.</p>\n', '900000', ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'id', '2', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
-(3, 'ANDI002', 'Bangunan Split Lumbung', 'Bangunan-lumbung-yang-cantik', '<p>The spacious air-conditioned double room features private bathroom equipped with a shower and a hairdryer. The unit offers 1 bed.</p>\n\n<h1>Split Level Lumbung</h1>\n\n<p>Balcony</p>\n\n<p>Air conditioning</p>\n\n<p>Private Bathroom</p>\n\n<p>Flat-screen TV</p>\n\n<p>Free WiFi</p>\n\n<ul>\n	<li>1 king bed</li>\n</ul>\n\n\n<h2>In your private bathroom:</h2>\n\n<ul>\n	<li>Shower</li>\n	<li>Toilet</li>\n	<li>Hairdryer</li>\n	<li>Toilet paper</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<h2>View:</h2>\n\n<ul>\n	<li>Balcony</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<h2>Facilities: ​</h2>\n\n<ul>\n	<li>Towels</li>\n	<li>&nbsp;</li>\n	<li>Flat-screen TV</li>\n	<li>&nbsp;</li>\n</ul>\n\n<ul>\n	<li>Air conditioning</li>\n</ul>\n\n<h2>Smoking: ​</h2>\n\n<p>No smoking</p>\n', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'id', '3', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
-(4, 'ANDI002', 'Split Lumbung', 'beautiful-lumbung-near-batu-bolong', '<p>The spacious air-conditioned double room features private bathroom equipped with a shower and a hairdryer. The unit offers 1 bed.</p>\r\n<p>Balcony</p>\r\n\r\n<p>Air conditioning</p>\r\n\r\n<p>Private Bathroom</p>\r\n\r\n<p>Flat-screen TV</p>\r\n\r\n<p>Free WiFi</p>\r\n\r\n<ul>\r\n	<li>1 king bed</li>\r\n</ul>\r\n\r\n\r\n<h2>In your private bathroom:</h2>\r\n\r\n<ul>\r\n	<li>Shower</li>\r\n	<li>Toilet</li>\r\n	<li>Hairdryer</li>\r\n	<li>Toilet paper</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>View:</h2>\r\n\r\n<ul>\r\n	<li>Balcony</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>Facilities: ​</h2>\r\n\r\n<ul>\r\n	<li>Towels</li>\r\n	<li>&nbsp;</li>\r\n	<li>Flat-screen TV</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Air conditioning</li>\r\n</ul>\r\n\r\n<h2>Smoking: ​</h2>\r\n\r\n<p>No smoking</p>\r\n', '1300000', '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'en', '3', '2023-10-01 04:01:06', '2023-10-01 04:01:06');
+(1, 'ANDI001', 'Deluxe Double Room', 'deluxe-room-in-batu-bolong', '<p>Located in Canggu, within a 7-minute walk of Batu Bolong Beach and 700 yards of Echo Beach,<br />\nHouse provides accommodations with an outdoor swimming pool and free Wifi throughout the property.<br />\nThe property is around a 11-minute walk from Canggu Beach, 6.5 miles from Petitenget Temple and 7.1 miles from Ubung Bus Station.<br />\n<br />\nKuta Square is 10 miles away and Kuta Art Market is 10 miles from the guest house.<br />\nComplete with a private bathroom equipped with a shower and a hair dryer,<br />\nguest rooms at the guest house have a flat-screen TV and air conditioning,<br />\nand selected rooms have a balcony.<br />\n<br />\nTanah Lot Temple is 7.1 miles from the House, while Bali Museum is 7.9 miles away.<br />\nThe nearest airport is Ngurah Rai International Airport, 12 miles from the accommodation.</p>\n', 900000, ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'en', '2', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(2, 'ANDI001', 'Kamar Deluxe Double', 'kamar-deluxe-di-batu-bolong', '<p>Terletak di Canggu, 7 menit berjalan kaki dari Pantai Batu Bolong dan 650 meter dari Pantai Echo,<br />\nHouse menyediakan akomodasi dengan kolam renang luar ruangan dan Wifi gratis di seluruh properti.<br />\nAkomodasi ini berjarak sekitar 11 menit berjalan kaki dari Pantai Canggu, 10,5 km dari Pura Petitenget, dan 11,4 km dari Terminal Bus Ubung.</p>\n\n<p>Kuta Square dan Pasar Seni Kuta berjarak 16 km dari guest house.<br />\nLengkap dengan kamar mandi pribadi yang dilengkapi dengan shower dan pengering rambut,<br />\nkamar-kamar di guest house ini memiliki TV layar datar dan AC, dan kamar-kamar tertentu memiliki balkon.<br />\nPura Tanah Lot berjarak 11,5 km dari House, sedangkan Museum Bali berjarak 12,6 km.<br />\n<br />\nBandara terdekat adalah Bandara Internasional Ngurah Rai, 19 km dari akomodasi.</p>\n', 900000, ';Free Wifi;Shower;Hairdryer', 'andi1.jpg;andi2.jpg;andi3.jpg', 'id', '2', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(3, 'ANDI002', 'Bangunan Split Lumbung', 'Bangunan-lumbung-yang-cantik', '<p>The spacious air-conditioned double room features private bathroom equipped with a shower and a hairdryer. The unit offers 1 bed.</p>\n\n<h1>Split Level Lumbung</h1>\n\n<p>Balcony</p>\n\n<p>Air conditioning</p>\n\n<p>Private Bathroom</p>\n\n<p>Flat-screen TV</p>\n\n<p>Free WiFi</p>\n\n<ul>\n	<li>1 king bed</li>\n</ul>\n\n\n<h2>In your private bathroom:</h2>\n\n<ul>\n	<li>Shower</li>\n	<li>Toilet</li>\n	<li>Hairdryer</li>\n	<li>Toilet paper</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<h2>View:</h2>\n\n<ul>\n	<li>Balcony</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<h2>Facilities: ​</h2>\n\n<ul>\n	<li>Towels</li>\n	<li>&nbsp;</li>\n	<li>Flat-screen TV</li>\n	<li>&nbsp;</li>\n</ul>\n\n<ul>\n	<li>Air conditioning</li>\n</ul>\n\n<h2>Smoking: ​</h2>\n\n<p>No smoking</p>\n', 1300000, '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'id', '3', '2023-10-01 04:01:06', '2023-10-01 04:01:06'),
+(4, 'ANDI002', 'Split Lumbung', 'beautiful-lumbung-near-batu-bolong', '<p>The spacious air-conditioned double room features private bathroom equipped with a shower and a hairdryer. The unit offers 1 bed.</p>\r\n<p>Balcony</p>\r\n\r\n<p>Air conditioning</p>\r\n\r\n<p>Private Bathroom</p>\r\n\r\n<p>Flat-screen TV</p>\r\n\r\n<p>Free WiFi</p>\r\n\r\n<ul>\r\n	<li>1 king bed</li>\r\n</ul>\r\n\r\n\r\n<h2>In your private bathroom:</h2>\r\n\r\n<ul>\r\n	<li>Shower</li>\r\n	<li>Toilet</li>\r\n	<li>Hairdryer</li>\r\n	<li>Toilet paper</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>View:</h2>\r\n\r\n<ul>\r\n	<li>Balcony</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>Facilities: ​</h2>\r\n\r\n<ul>\r\n	<li>Towels</li>\r\n	<li>&nbsp;</li>\r\n	<li>Flat-screen TV</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Air conditioning</li>\r\n</ul>\r\n\r\n<h2>Smoking: ​</h2>\r\n\r\n<p>No smoking</p>\r\n', 1300000, '', 'andi4.jpg;andi5.jpg;andi6.jpg', 'en', '3', '2023-10-01 04:01:06', '2023-10-01 04:01:06');
 
 -- --------------------------------------------------------
 
@@ -87,12 +87,12 @@ INSERT INTO `bookings` (`id`, `code`, `title`, `slug`, `desc`, `price`, `facilit
 --
 
 CREATE TABLE `destinations` (
-  `id` bigint UNSIGNED NOT NULL,
-  `code_dst` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code_dst` varchar(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `lang` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -112,13 +112,13 @@ INSERT INTO `destinations` (`id`, `code_dst`, `name`, `foto`, `deskripsi`, `lang
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -128,11 +128,11 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `galleries` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keterangan` text COLLATE utf8mb4_unicode_ci,
-  `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` char(255) NOT NULL,
+  `foto` char(255) NOT NULL,
+  `keterangan` text DEFAULT NULL,
+  `lang` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -162,11 +162,11 @@ INSERT INTO `galleries` (`id`, `name`, `foto`, `keterangan`, `lang`, `created_at
 --
 
 CREATE TABLE `guests` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nationality` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nationality` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -186,9 +186,9 @@ INSERT INTO `guests` (`id`, `name`, `email`, `nationality`, `mobile`, `created_a
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -219,14 +219,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `packages` (
-  `id` bigint UNSIGNED NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `room_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `adult` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `room_code` varchar(255) NOT NULL,
+  `adult` varchar(255) NOT NULL,
+  `lang` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -246,8 +246,8 @@ INSERT INTO `packages` (`id`, `code`, `name`, `deskripsi`, `price`, `room_code`,
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -265,12 +265,12 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -284,10 +284,10 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `rates` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tgl` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kode_kamar` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `harga` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tgl` date NOT NULL,
+  `kode_kamar` char(255) NOT NULL,
+  `harga` char(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -297,14 +297,14 @@ CREATE TABLE `rates` (
 --
 
 INSERT INTO `rates` (`id`, `tgl`, `kode_kamar`, `harga`, `created_at`, `updated_at`) VALUES
-(1, '2023-11-20', 'ANDI001', '1200000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
-(2, '2023-11-21', 'ANDI001', '1200000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
-(3, '2023-11-22', 'ANDI001', '1500000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
-(4, '2023-11-23', 'ANDI001', '1500000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
-(5, '2023-11-24', 'ANDI001', '1550000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
-(6, '2023-11-25', 'ANDI001', '1550000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
-(7, '2023-11-20', 'ANDI002', '600000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
-(8, '2023-11-21', 'ANDI002', '600000', '2023-11-17 23:46:46', '2023-11-17 23:46:46');
+(1, '2024-02-15', 'ANDI001', '1200000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(2, '2024-02-16', 'ANDI001', '1200000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(3, '2024-02-17', 'ANDI001', '1500000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(4, '2024-02-18', 'ANDI001', '1500000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(5, '2024-02-19', 'ANDI001', '1550000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(6, '2024-02-20', 'ANDI001', '1550000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(7, '2024-02-15', 'ANDI002', '600000', '2023-11-17 23:46:46', '2023-11-17 23:46:46'),
+(8, '2024-02-16', 'ANDI002', '600000', '2023-11-17 23:46:46', '2023-11-17 23:46:46');
 
 -- --------------------------------------------------------
 
@@ -313,16 +313,16 @@ INSERT INTO `rates` (`id`, `tgl`, `kode_kamar`, `harga`, `created_at`, `updated_
 --
 
 CREATE TABLE `reservations` (
-  `id` bigint UNSIGNED NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code_service` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cek_in_out` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type_payment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subtotal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `code_service` varchar(255) NOT NULL,
+  `cek_in_out` varchar(255) NOT NULL,
+  `type_payment` varchar(255) NOT NULL,
+  `payment` varchar(255) NOT NULL,
+  `subtotal` varchar(255) NOT NULL,
+  `total` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -342,19 +342,19 @@ INSERT INTO `reservations` (`id`, `code`, `email`, `code_service`, `cek_in_out`,
 --
 
 CREATE TABLE `tour_packages` (
-  `id` bigint UNSIGNED NOT NULL,
-  `code` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tour_name` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `itinerary` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pickup` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `destination` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code` char(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `tour_name` char(255) NOT NULL,
+  `itinerary` text NOT NULL,
+  `price` text NOT NULL,
+  `note` text NOT NULL,
+  `pickup` text NOT NULL,
+  `payment` text NOT NULL,
+  `destination` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `lang` varchar(50) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -376,16 +376,16 @@ INSERT INTO `tour_packages` (`id`, `code`, `type`, `tour_name`, `itinerary`, `pr
 --
 
 CREATE TABLE `transports` (
-  `id` bigint UNSIGNED NOT NULL,
-  `code_transport` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `harga` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `waktu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fasilitas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code_transport` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `harga` varchar(255) NOT NULL,
+  `waktu` varchar(255) NOT NULL,
+  `fasilitas` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `slug` text NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `lang` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -411,12 +411,12 @@ INSERT INTO `transports` (`id`, `code_transport`, `nama`, `harga`, `waktu`, `fas
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -535,85 +535,85 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `artikels`
 --
 ALTER TABLE `artikels`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `destinations`
 --
 ALTER TABLE `destinations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `guests`
 --
 ALTER TABLE `guests`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tour_packages`
 --
 ALTER TABLE `tour_packages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transports`
 --
 ALTER TABLE `transports`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
