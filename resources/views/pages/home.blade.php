@@ -44,24 +44,24 @@
               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                   <i class="bi bi-clipboard-data"></i>
-                  <h4>Corporis voluptates officia eiusmod</h4>
-                  <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                  <h4>As Client The Swand</h4>
+                  <p>as client The Swand we improve your property score, maximaize revenue, treat your property is one of the stragey for great goal</p>
                 </div>
               </div><!-- End Icon Box -->
 
               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                   <i class="bi bi-gem"></i>
-                  <h4>Ullamco laboris ladore pan</h4>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                  <h4>Vacations Rental</h4>
+                  <p>Get you amazing vacations, stay with us in comfort propery can make unforgetable holiday</p>
                 </div>
               </div><!-- End Icon Box -->
 
               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                   <i class="bi bi-inboxes"></i>
-                  <h4>Labore consequatur incidid dolore</h4>
-                  <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                  <h4>Tour Trip.</h4>
+                  <p>explore amazing bali with our driver and paket, you choose we drive, or we plan and you always enjoy</p>
                 </div>
               </div><!-- End Icon Box -->
 
@@ -118,7 +118,7 @@
 
         <div class="section-header">
           <!-- <h2>Our Menu</h2> -->
-          <p>Check Our <span>Best Service</span></p>
+          <p>Check Our <span>Best Booking Service</span></p>
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
@@ -155,25 +155,35 @@
 
             <div class="tab-header text-center">
               <!-- <p>Bookings</p> -->
-              <h3>Rooms Booking</h3>
+              <!-- <h3>Rooms Booking</h3> -->
             </div>
 
             <div class="row gy-5">
               <!-- {{$kamar}} -->
               <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4">
-                  <div class="col-lg-4 col-md-3">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Cek In" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                    <div class="validate"></div>
+
+                  <div class="col-lg-5 input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Cek In - Cek Out</span>
+                    </div>
+                    <input type="text" class="form-control" name="cekin" id="cekin" aria-describedby="basic-addon1">
                   </div>
-                  <div class="col-lg-4 col-md-3">
+                  <div class="col-lg-3 input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Area</span>
+                    </div>
+                    <select class="form-control">
+                      <option>All Area</option>
+                      <option>Canggu</option>
+                      <option>Seminyak</option>
+                      <option>Ubud</option>
+                    </select>
+                  </div>
+                  <!-- <div class="col-lg-2 col-md-2">
                     <input type="email" class="form-control" name="email" id="email" placeholder="cek Out" data-rule="email" data-msg="Please enter a valid email">
                     <div class="validate"></div>
-                  </div>
-                  <div class="col-lg-2 col-md-2">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="cek Out" data-rule="email" data-msg="Please enter a valid email">
-                    <div class="validate"></div>
-                  </div>
+                  </div> -->
                   <div class="col-lg-2 col-md-2">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Seacrh
@@ -181,6 +191,56 @@
                   </div>
                 </div>
               </form>
+              <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+              <script>
+              $(function() {
+                $('input[name="cekin"]').daterangepicker({
+                  // singleDatePicker: true,
+                  showDropdowns: false,
+                  "autoApply": true,
+                  "locale": {
+                    "format": "MMM DD, YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Apply",
+                    "cancelLabel": "Cancel",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "daysOfWeek": [
+                        "Su",
+                        "Mo",
+                        "Tu",
+                        "We",
+                        "Th",
+                        "Fr",
+                        "Sa"
+                    ],
+                    "monthNames": [
+                        "January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"
+                    ],
+                    // "firstDay": 1,
+                    "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
+                    "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
+                },
+                  // maxYear: parseInt(moment().format('YYYY'),10)
+                }, function(start, end, label) {
+                  // var years = moment().diff(start, 'years');
+                  console.log(moment(start).format('YYYY-MM-DD'))
+                });
+              });
+              </script>
             
             @foreach ($kamar as $detail)
               <!-- Menu Item -->
@@ -195,7 +255,7 @@
                       <!-- <a href=""><i class="bi bi-twitter"></i></a>
                       <a href=""><i class="bi bi-facebook"></i></a>
                       <a href=""><i class="bi bi-instagram"></i></a> -->
-                      <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
+                      <!-- <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a> -->
                     </div>
                   </div>
                   
@@ -214,7 +274,7 @@
                   </div>
                   <p class="price">
                     IDR {{ number_format($detail->price, 2) }} / Night <br>
-                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Book Now</a>
+                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Detail</a>
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
                       Book Now
                     </button> -->
@@ -303,7 +363,7 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <h3>Transport</h3>
+              <!-- <h3>Transport</h3> -->
             </div>
 
             <div class="row gy-4">
@@ -435,7 +495,7 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <h3>Tour</h3>
+              <!-- <h3>Tour</h3> -->
             </div>
             <div class="row">
               <div class="col-xl-6 form-group">
@@ -568,7 +628,7 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <h3>Package</h3>
+              <!-- <h3>Package</h3> -->
             </div>
 
             <div class="row gy-5">

@@ -25,7 +25,7 @@
 
             <div class="section-header">
             <!-- <h2>About Us</h2> -->
-            <p>Learn More </p>
+            <!-- <p>Learn More </p> -->
             </div>
 
             <div class="row gy-4">
@@ -51,7 +51,7 @@
                     <div class="carousel-inner">
                     
                     @foreach($gmbr as $key => $slider)
-                    {{ $key }}
+                    <!-- {{ $key }} -->
                     <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
                         <img src="{{ asset('assets/img/rooms/'. $slider) }}" class="d-block w-100" alt="">
                     </div>
@@ -71,7 +71,7 @@
 
 
                 <p>
-                {{ $hotelDetail[0]->title }}
+                <!-- {{ $hotelDetail[0]->title }} -->
                 </p>
                 <p>{!! $hotelDetail[0]->desc !!}</p>
                 <p>
@@ -81,8 +81,14 @@
                 </div>
                 <!-- <img src="assets/img/about.jpg" class="img-fluid" alt=""> -->
             </div>
-            <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-lg-5 d-flex" data-aos="fade-up" data-aos-delay="300">
+            
                 <div class="content ps-0 ps-lg-5">
+                <div class="section-header">
+            <h4>Booking Detail</h4>
+            <!-- <p>Learn More </p> -->
+            </div>
+                    
                 <form id="form-configure" cautocomplete="off">
                     <div class="row">
                         <div class="col-xl-6 form-group">

@@ -60,7 +60,7 @@
 
             <div class="tab-header text-center">
               <!-- <p>Bookings</p> -->
-              <h3>Rooms Booking</h3>
+              <!-- <h3>Rooms Booking</h3> -->
             </div>
 
             <div class="row gy-5">
@@ -208,7 +208,7 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <h3>Transport</h3>
+              <!-- <h3>Transport</h3> -->
             </div>
 
             <div class="row gy-4">
@@ -340,7 +340,7 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <h3>Tour</h3>
+              <!-- <h3>Tour</h3> -->
             </div>
             <div class="row">
               <div class="col-xl-6 form-group">
@@ -473,7 +473,7 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <h3>Package</h3>
+              <!-- <h3>Package</h3> -->
             </div>
 
             <div class="row gy-5">
