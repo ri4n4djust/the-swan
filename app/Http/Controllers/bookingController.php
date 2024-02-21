@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Facility;
 use App\Models\Transport;
 use App\Models\Destination;
 use App\Models\TourPackage;
@@ -12,6 +13,9 @@ use App\Models\Artikel;
 use App\Models\Gallery;
 use App\Models\Rate;
 use Stevebauman\Location\Facades\Location;
+
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class bookingController extends Controller
 {
@@ -43,8 +47,11 @@ class bookingController extends Controller
 
     public function home(){
 
+        $date = Carbon::now()->format('Y-m-d');
         $defaultLocale = config('app.locale');
         $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
+        $fasilitas = Facility::all();
+        $rate = DB::table('rates')->where('tgl', $date)->get();
         $transport = Transport::where('transports.lang', $defaultLocale)->get();
         $detinasi = Destination::where('destinations.lang', $defaultLocale)->get();
         $tur = TourPackage::where('tour_packages.lang', $defaultLocale)
@@ -54,6 +61,8 @@ class bookingController extends Controller
         $artikel = Artikel::where('lang', $defaultLocale)->get();
         $galeri = Gallery::where('lang', $defaultLocale)->get();
 
+        // dd($date);
+
         return view('pages.home',[
             'kamar' => $kamar, 
             'transport' => $transport,
@@ -61,7 +70,9 @@ class bookingController extends Controller
             'tour' => $tur,
             'paket' => $paket,
             'artikel' => $artikel,
-            'galeri'  => $galeri
+            'galeri'  => $galeri,
+            'fasilitas' => $fasilitas,
+            'rate' => $rate,
             ] );
     }
 

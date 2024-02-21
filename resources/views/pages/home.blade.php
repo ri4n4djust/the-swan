@@ -185,7 +185,7 @@
                     <div class="validate"></div>
                   </div> -->
                   <div class="col-lg-2 col-md-2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Seacrh
                     </button>
                   </div>
@@ -241,11 +241,12 @@
                 });
               });
               </script>
-            
+
+            <div class="row gy-4">
             @foreach ($kamar as $detail)
-              <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                <div class="chef-member">
+              <div class="col-lg-5 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
+                <!-- <div class="call-us position-absolute"> -->
+                  <!-- <h4>Book a Table</h4> -->
                   <div class="member-img">
                     @php $gmbr = explode(";",$detail->foto) ; @endphp
                     
@@ -258,33 +259,44 @@
                       <!-- <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a> -->
                     </div>
                   </div>
-                  
-                  <div class="member-info">
-                    <h4>{{ $detail->title}}</h4>
-                    <!-- <span>Cook</span> -->
-                    <p>{!! substr($detail->desc, 0, 100) !!}</p>
-                    
-                  <!-- </div>
-                  <div class="member-info"> -->
-                    <!-- <i class="bi bi-wifi"></i>
-                    <i class="bi bi-twitter"></i> -->
-                      <i class="bi bi-check2-all"></i> King Bed
-                      <i class="bi bi-check2-all"></i> Shower
-                      <i class="bi bi-check2-all"></i> Free Wifi
-                  </div>
-                  <p class="price">
-                    IDR {{ number_format($detail->price, 2) }} / Night <br>
-                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Detail</a>
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$detail->id}}">
-                      Book Now
-                    </button> -->
+                <!-- </div> -->
+              </div>
+              <div class="col-lg-7 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+                <div class="content ps-0 ps-lg-5">
+                <h4>{{ $detail->title}}</h4>
+                  <p class="fst-italic">
+                  {!! substr($detail->desc, 0, 150) !!}
                   </p>
-            
+                  <ul>
+                  <?php $count = 0; ?>
+                    @foreach ($fasilitas as $fas)
+                    @if($detail->code == $fas->room_code)
+                    <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
+                    @endif
+                    @endforeach
                   
+                  </ul>
+                  @foreach ($rate as $rat)
+                  <p>
+                      @if($detail->code == $rat->kode_kamar)
+                        IDR {{ number_format($rat->harga, 2) }} / Night <br>
+                        {{ $rat->stok }} room available on our site
+                      @endif
+                    <!-- Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident -->
+                  </p>
+                  @endforeach
+
+                  <div class="position-relative mt-4">
+                    <!-- <img src="assets/img/about-2.jpg" class="img-fluid" alt=""> -->
+                    <!-- IDR {{ number_format($detail->price, 2) }} / Night -->
+                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Detail</a>
+                  </div>
                 </div>
-              </div><!-- End Chefs Member -->
+              </div>
             @endforeach
-            
+            </div>
+                        
 
             <!-- Modal -->
             @foreach ($kamar as $detail)
