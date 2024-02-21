@@ -137,16 +137,16 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-6 form-group">
-                            <input type="hidden" class="form-control" name="order-items" id="order-items" value="{{ $hotelDetail[0]->price }}" required>
+                            <input type="hidden" class="form-control" name="order-items" id="order-items" required>
                             TOTAL Have to Pay : <div id="totalbayar"></div>
                         </div>
                         <div class="col-xl-6 form-group">
-                            <input type="text" class="form-control" name="subtotal" id="subtotal" required>
+                            <!-- <input type="text" class="form-control" name="subtotal" id="subtotal" required> -->
                             <input type="text" class="form-control" name="total_bayar" id="total_bayar" placeholder="Subject" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="total" id="total" value="{{ $hotelDetail[0]->price }}" required>
+                        <input type="text" class="form-control" name="total" id="total" required>
                     </div>
 
                     <button id="button-start-demo" class="btn btn-primary" type="submit">
@@ -217,10 +217,12 @@
                                         // "end": end
                                     },
                                     success: function (result) {
-                                        // console.log(result[0].harga);
+                                        // console.log(result[0].harga + 'night' + difference);
                                         hrg += parseFloat(result[0].harga); //parseInt(125) ;
                                         // alert(hrg);
+                                        console.log(hrg);
                                         document.getElementById('total').value = hrg;
+                                        getOption()
                                     },
                                     // dataType: "json"
                                 });
@@ -275,7 +277,7 @@
                                 // $('#cekin').val(start.format('YYYY-MM-DD'));
                                 var code = document.getElementById('code').value
                                 var name = document.getElementById('name').value
-                                var hrg = document.getElementById('order-items').value
+                                // var hrg = document.getElementById('order-items').value
                                 var awal = moment(start);
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
