@@ -64,9 +64,10 @@
         const mobile = document.getElementById('mobile').value;
         const type_bayar = document.getElementById('tipe_bayar').value;
 
-        // const external_id = document.getElementById('total').value;
+        const tgl_reservasi = document.getElementById('tgl_reservasi').value;
         // const payer_email = email;
-        const cekin = document.getElementById('datefilter').value;
+        const cekin = document.getElementById('cek_in').value;
+        const cekout = document.getElementById('cek_out').value;
         const hari = document.getElementById('hari').value;
         const description = document.getElementById('order-items').value;
 
@@ -95,7 +96,11 @@
                 failure_redirect_url: failure_redirect_url,
                 success_redirect_url: success_redirect_url,
                 kode_product: code,
-                cek_in_out: cekin,
+
+                cek_in: cekin,
+                cek_out: cekout,
+                tgl_reservasi: tgl_reservasi,
+
                 external_id: code + Date.now(),
                 payer_email: email,
                 description: totalContent,

@@ -109,6 +109,9 @@
                     <div class="form-group">
                         Cek In   | Cek Out 
                         <input type="text" class="form-control" name="datefilter" id="datefilter" required>
+                        <input type="text" class="form-control" name="cek_in" id="cek_in" required>
+                        <input type="text" class="form-control" name="cek_out" id="cek_out" required>
+                        <input type="text" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
                         <!-- <span id="detail">
                             <table>
                                 <tr>
@@ -164,7 +167,7 @@
                         document.addEventListener("DOMContentLoaded",  
                         function () { 
                             // Code to be executed when the DOM is ready
-                            // document.getElementById('tipe_bayar').value = 'deposit'; 
+                            document.getElementById('tgl_reservasi').value = moment().format('YYYY-MM-DD h:mm:ss'); // new Date(); 
                             const tipe = document.getElementById('tipe_bayar').value ;
                             const subtota = document.getElementById('subtotal').value ;
                             var komisi = 0;
@@ -220,7 +223,7 @@
                                         // console.log(result[0].harga + 'night' + difference);
                                         hrg += parseFloat(result[0].harga); //parseInt(125) ;
                                         // alert(hrg);
-                                        console.log(hrg);
+                                        // console.log(hrg);
                                         document.getElementById('total').value = hrg;
                                         getOption()
                                     },
@@ -229,7 +232,7 @@
                                 // console.log(hrg);
                                 
                             }
-                            console.log(hrg);
+                            // console.log(hrg);
                             // console.log(moment(start).format('LL') + "Hello World!"+moment(end).format('LL') + difference);
                         }
                         $(function() {
@@ -281,6 +284,9 @@
                                 var awal = moment(start);
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
+
+                                document.getElementById('cek_in').value = moment(start).format('Y-M-D') ;
+                                document.getElementById('cek_out').value = moment(end).format('Y-M-D') ;
                                 // console.log(awal)
                                 // const subtotal = hrg * difference ;
                                 // document.getElementById('namebooking').innerHTML = name ;

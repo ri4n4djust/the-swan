@@ -27,15 +27,22 @@ class CheckoutController extends BaseController {
 
         // var_dump($req);
         $post = DB::table('reservations')->insert([
-            'code' => $req->external_id,
-            'email' => $req->payer_email,
+            'no_reservasi' => $req->external_id,
+            'guest_email' => $req->payer_email,
             'code_service' => $req->kode_product,
-            'cek_in_out' => $req->cek_in_out,
-            'type_payment' => $req->type_bayar,
+            'tgl_reservasi' => $req->tgl_reservasi,
+
+
+            'cek_in' => $req->cek_in,
+            'cek_out' => $req->cek_out,
+
+            'payment_type' => $req->type_bayar,
             'status' => 'PENDING', // $req->status,
-            'payment' => $req->amount,
-            'subtotal' => $req->amount,
+
+            'guest_paid' => $req->amount,
+            'adult' => '2', // $req->amount,
             'total' => $req->total,
+            // 'guest_paid' => 
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
 
