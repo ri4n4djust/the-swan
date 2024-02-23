@@ -10,6 +10,9 @@ use Xendit\Invoice\InvoiceApi;
 use App\Http\Services\Checkout\CheckoutService as Service;
 use Illuminate\Support\Facades\DB;
 
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+
 class CheckoutController extends BaseController {
 
     public function index() {
@@ -25,7 +28,30 @@ class CheckoutController extends BaseController {
     public function create(Request $req) {
         $service = new Service();
 
-        // var_dump($req);
+        $startDate = date("Y-m-d", strtotime($req->cek_in));
+        $endDate = date("Y-m-d", strtotime($req->cek_out));
+        $dateRange = CarbonPeriod::create($startDate, $endDate);
+        // $dates = $dateRange->toArray();
+        $detail = [];
+        foreach ($dateRange as $date) {
+            // $detail[] = [
+            //   "tgl" => $date->format('Y-m-d')
+            // ];
+            $getDetail = DB::table('rates')
+                ->where('tgl', $date->format('Y-m-d'))
+                ->where('kode_kamar', $req->kode_product)
+                ->get();
+            $detail[] = [
+                'no_reservasi' => $req->external_id,
+                "kode_unit" => $req->kode_product,
+                "tgl" => $date->format('Y-m-d'),
+                "harga" => $getDetail['0']->harga
+            ];
+            // var_dump($getDetail);
+        }
+
+        DB::table('reservation_room_detail')->insert($detail);
+        // var_dump($detail);
         $post = DB::table('reservations')->insert([
             'no_reservasi' => $req->external_id,
             'guest_email' => $req->payer_email,
@@ -40,6 +66,7 @@ class CheckoutController extends BaseController {
             'status' => 'PENDING', // $req->status,
 
             'guest_paid' => $req->amount,
+            'guest_status' => 'New',
             'adult' => '2', // $req->amount,
             'total' => $req->total,
             // 'guest_paid' => 

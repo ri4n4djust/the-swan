@@ -221,18 +221,19 @@
                                     },
                                     success: function (result) {
                                         // console.log(result[0].harga + 'night' + difference);
-                                        hrg += parseFloat(result[0].harga); //parseInt(125) ;
-                                        // alert(hrg);
-                                        // console.log(hrg);
+                                        hrg += parseInt(result[0].harga); //parseInt(125) ;
+                                        // alert(detail);
+                                        // console.log(price);
+                                        
                                         document.getElementById('total').value = hrg;
-                                        getOption()
+                                        getOption();
                                     },
                                     // dataType: "json"
                                 });
-                                // console.log(hrg);
                                 
+                                // document.getElementById('det_r').innerHTML = detail;
                             }
-                            // console.log(hrg);
+                            // console.log(detail);
                             // console.log(moment(start).format('LL') + "Hello World!"+moment(end).format('LL') + difference);
                         }
                         $(function() {
