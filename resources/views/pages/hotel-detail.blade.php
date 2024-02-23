@@ -109,9 +109,9 @@
                     <div class="form-group">
                         Cek In   | Cek Out 
                         <input type="text" class="form-control" name="datefilter" id="datefilter" required>
-                        <input type="text" class="form-control" name="cek_in" id="cek_in" required>
-                        <input type="text" class="form-control" name="cek_out" id="cek_out" required>
-                        <input type="text" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
+                        <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
+                        <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
+                        <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
                         <!-- <span id="detail">
                             <table>
                                 <tr>
@@ -129,9 +129,9 @@
                             </table>
                         </span> -->
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <select id="tipe_bayar" class="form-control" onchange="getOption()">
                             <option value="deposit">Deposit</option>

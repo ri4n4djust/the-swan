@@ -26,6 +26,7 @@ class bookingController extends Controller
     }
 
     public function service(){
+        
 
         $defaultLocale = config('app.locale');
         $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
@@ -36,20 +37,26 @@ class bookingController extends Controller
                             ->get();
         $paket = Package::where('lang', $defaultLocale)->get();
 
+        $date = Carbon::now()->format('Y-m-d');
+        $fasilitas = Facility::all();
+        $rate = DB::table('rates')->where('tgl', $date)->get();
+
         return view('pages.service',[
             'kamar' => $kamar, 
             'transport' => $transport,
             'destination' => $detinasi,
             'tour' => $tur,
-            'paket' => $paket
+            'paket' => $paket,
+            'fasilitas' => $fasilitas,
+            'rate' => $rate,
             ] );
     }
 
     public function home(){
 
-        $date = Carbon::now()->format('Y-m-d');
         $defaultLocale = config('app.locale');
         $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
+        $date = Carbon::now()->format('Y-m-d');
         $fasilitas = Facility::all();
         $rate = DB::table('rates')->where('tgl', $date)->get();
         $transport = Transport::where('transports.lang', $defaultLocale)->get();
