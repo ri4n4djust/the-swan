@@ -158,4 +158,16 @@ class bookingController extends Controller
         
     }
 
+    public function cekAllotment(Request $request){
+        // $defaultLocale = config('app.locale');
+        // $code = Gallery::where('slug', $slug)->first();
+        $rate = Rate::where('tgl', $request->date)->where('kode_kamar', $request->code)->get();
+
+        // return view('pages.event',[
+        //     'artikel' => $rate
+        //     ] );
+        return response()->json($rate);
+        
+    }
+
 }

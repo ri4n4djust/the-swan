@@ -29,3 +29,4 @@ Route::post("invoice", [
 ]);
 
 Route::post("get-rate", [App\Http\Controllers\bookingController::class , 'rate']);
+Route::post("cek-alotment", [App\Http\Controllers\bookingController::class , 'cekAllotment']);

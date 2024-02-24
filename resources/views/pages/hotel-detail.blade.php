@@ -206,7 +206,7 @@
                             }
                             // console.log(document.getElementById('tipe_bayar').value);
                         };
-                        function namaFungsi(start, end, difference, code){
+                        function FungsiHitung(start, end, difference, code){
                             var hrg = 0;
                             for(let i=0 ; i<difference ;i++){
                                 var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
@@ -235,6 +235,27 @@
                             }
                             // console.log(detail);
                             // console.log(moment(start).format('LL') + "Hello World!"+moment(end).format('LL') + difference);
+                        }
+
+                        function CekAlotment(start, end, difference, code){
+                            var dt = moment(start).format('YYYY-M-DD');
+                            var dt = moment(end).format('YYYY-M-DD');
+                            // var de = moment(end).format('LL');
+                            $.ajax({
+                                type: "POST",
+                                url: "/api/cek-alotment",
+                                data: {
+                                    "code": code,
+                                    "start": dt,
+                                    "end": end
+                                },
+                                success: function (result) {
+                                    // console.log(result[0].harga + 'night' + difference);
+                                    document.getElementById('total').value = hrg;
+                                    getOption();
+                                },
+                                // dataType: "json"
+                            });
                         }
                         $(function() {
                             $('#datefilter').daterangepicker({
@@ -286,19 +307,18 @@
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
 
+                                CekAlotment(start, end, difference, code);
+
                                 document.getElementById('cek_in').value = moment(start).format('Y-M-D') ;
                                 document.getElementById('cek_out').value = moment(end).format('Y-M-D') ;
                                 // console.log(awal)
                                 // const subtotal = hrg * difference ;
                                 // document.getElementById('namebooking').innerHTML = name ;
-                                namaFungsi(start, end, difference, code);
+                                FungsiHitung(start, end, difference, code);
 
                                 // document.getElementById('total').value = subtotal ;
 
                                 const komisi = document.getElementById('total_bayar').value ;
-
-                                // document.getElementById('total').value = (subtotal - komisi);
-
                                 const totl = document.getElementById('total').value ;
                                 document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
 
