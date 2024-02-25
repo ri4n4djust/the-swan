@@ -32,11 +32,14 @@ class CheckoutController extends BaseController {
         $endDate = date("Y-m-d", strtotime($req->cek_out));
         $dateRange = CarbonPeriod::create($startDate, $endDate);
         // $dates = $dateRange->toArray();
+        $count = count($dateRange);
+        $i=0;
         $detail = [];
         foreach ($dateRange as $date) {
             // $detail[] = [
             //   "tgl" => $date->format('Y-m-d')
             // ];
+            
             $getDetail = DB::table('rates')
                 ->where('tgl', $date->format('Y-m-d'))
                 ->where('kode_kamar', $req->kode_product)
@@ -47,17 +50,26 @@ class CheckoutController extends BaseController {
                 "tgl" => $date->format('Y-m-d'),
                 "harga" => $getDetail['0']->harga
             ];
+
+            $i++;
+            // if($i==($count-1)){
+            //     // echo 'skip';
+            // }else{
+                // echo $value;
+            if($i == ($count) ) continue ;
             DB::table('rates')
             ->where('tgl', $date->format('Y-m-d'))
             ->where('kode_kamar', $req->kode_product)
             ->update([
                 'stok' => $getDetail['0']->stok - 1,
             ]);
+            // };
+            
             // var_dump($getDetail);
         }
 
         DB::table('reservation_room_detail')->insert($detail);
-        var_dump($detail);
+        // var_dump($detail);
         $post = DB::table('reservations')->insert([
             'no_reservasi' => $req->external_id,
             'guest_email' => $req->payer_email,
