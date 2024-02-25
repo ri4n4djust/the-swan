@@ -47,18 +47,24 @@ class CheckoutController extends BaseController {
                 "tgl" => $date->format('Y-m-d'),
                 "harga" => $getDetail['0']->harga
             ];
+            DB::table('rates')
+            ->where('tgl', $date->format('Y-m-d'))
+            ->where('kode_kamar', $req->kode_product)
+            ->update([
+                'stok' => $getDetail['0']->stok - 1,
+            ]);
             // var_dump($getDetail);
         }
 
         DB::table('reservation_room_detail')->insert($detail);
-        // var_dump($detail);
+        var_dump($detail);
         $post = DB::table('reservations')->insert([
             'no_reservasi' => $req->external_id,
             'guest_email' => $req->payer_email,
             'code_service' => $req->kode_product,
             'tgl_reservasi' => $req->tgl_reservasi,
-
-
+            'guest_name' => $req->name,
+            'room_no' => $req->room_no,
             'cek_in' => $req->cek_in,
             'cek_out' => $req->cek_out,
 
@@ -77,14 +83,14 @@ class CheckoutController extends BaseController {
         // if($post){
         //     var_dump($post);
         // }
-        DB::table('guests')->insert([
-            'name' => $req->name,
-            'email' => $req->email,
-            'nationality' => $req->nationality,
-            'mobile' => $req->mobile,
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
-        ]);
+        // DB::table('guests')->insert([
+        //     'name' => $req->name,
+        //     'email' => $req->email,
+        //     'nationality' => $req->nationality,
+        //     'mobile' => $req->mobile,
+        //     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+        //     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        // ]);
         return $service->createInvoice1($req->all());
     }
 }

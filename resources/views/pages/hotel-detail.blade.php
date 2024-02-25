@@ -112,6 +112,7 @@
                         <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
                         <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
                         <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
+                        <input type="text" class="form-control" name="room_no" id="room_no" required>
                         <!-- <span id="detail">
                             <table>
                                 <tr>
@@ -220,13 +221,17 @@
                                         // "end": end
                                     },
                                     success: function (result) {
-                                        // console.log(result[0].harga + 'night' + difference);
-                                        hrg += parseInt(result[0].harga); //parseInt(125) ;
-                                        // alert(detail);
-                                        // console.log(price);
-                                        
-                                        document.getElementById('total').value = hrg;
-                                        getOption();
+                                        if(result[0].stok > 0){
+                                            // console.log(result[0].harga + 'night' + difference);
+                                            hrg += parseInt(result[0].harga); //parseInt(125) ;
+                                            // alert(detail);
+                                            // console.log(price);
+                                            
+                                            document.getElementById('total').value = hrg;
+                                            getOption();
+                                        }else{
+                                            alert('stok kosong');
+                                        }
                                     },
                                     // dataType: "json"
                                 });
@@ -237,26 +242,7 @@
                             // console.log(moment(start).format('LL') + "Hello World!"+moment(end).format('LL') + difference);
                         }
 
-                        function CekAlotment(start, end, difference, code){
-                            var dt = moment(start).format('YYYY-M-DD');
-                            var dt = moment(end).format('YYYY-M-DD');
-                            // var de = moment(end).format('LL');
-                            $.ajax({
-                                type: "POST",
-                                url: "/api/cek-alotment",
-                                data: {
-                                    "code": code,
-                                    "start": dt,
-                                    "end": end
-                                },
-                                success: function (result) {
-                                    // console.log(result[0].harga + 'night' + difference);
-                                    document.getElementById('total').value = hrg;
-                                    getOption();
-                                },
-                                // dataType: "json"
-                            });
-                        }
+                        
                         $(function() {
                             $('#datefilter').daterangepicker({
                                 "autoApply": true,
@@ -307,7 +293,7 @@
                                 var akhir = moment(end);
                                 var difference = akhir.diff(awal, 'days')
 
-                                CekAlotment(start, end, difference, code);
+                                // CekAlotment(start, end, difference, code);
 
                                 document.getElementById('cek_in').value = moment(start).format('Y-M-D') ;
                                 document.getElementById('cek_out').value = moment(end).format('Y-M-D') ;

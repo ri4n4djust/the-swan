@@ -63,7 +63,7 @@
         const nationality = document.getElementById('nationality').value;
         const mobile = document.getElementById('mobile').value;
         const type_bayar = document.getElementById('tipe_bayar').value;
-
+        const room_no = document.getElementById('room_no').value;
         const tgl_reservasi = document.getElementById('tgl_reservasi').value;
         // const payer_email = email;
         const cekin = document.getElementById('cek_in').value;
@@ -96,7 +96,7 @@
                 failure_redirect_url: failure_redirect_url,
                 success_redirect_url: success_redirect_url,
                 kode_product: code,
-
+                room_no: room_no,
                 cek_in: cekin,
                 cek_out: cekout,
                 tgl_reservasi: tgl_reservasi,
