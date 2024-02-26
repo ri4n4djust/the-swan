@@ -151,27 +151,27 @@ class bookingController extends Controller
         // $code = Gallery::where('slug', $slug)->first();
         $rate = Rate::where('tgl', $request->date)->where('kode_kamar', $request->code)->get();
 
-        // $get_noroom = DB::select("SELECT *
-        // FROM room_nomors
-        // WHERE room_no NOT IN
-        //     (SELECT no_room
-        //      FROM reservation_room_detail WHERE tgl BETWEEN '2024-02-26' AND '2024-02-27')
-        // AND unit_code='ANDI001';");
+        $users = DB::select("SELECT *
+        FROM room_nomors
+        WHERE room_no NOT IN
+            (SELECT no_room
+             FROM reservation_room_detail WHERE tgl BETWEEN '$request->start' AND '$request->end')
+        AND unit_code='$request->code';");
 
-        $users = DB::table("room_nomors")->select('*')
-        ->whereNOTIn('room_no',function($query) use ($request){
-            $query->select('no_room')
-                    ->from('reservation_room_detail')
-                    ->whereBetween('tgl', [$request->start, $request->end])
-                    ->where('unit_code', $request->code);
-        })
-        ->first();
+        // $users = DB::table("room_nomors")->select('*')
+        // ->whereNOTIn('room_no',function($query) use ($request){
+        //     $query->select('no_room')
+        //             ->from('reservation_room_detail')
+        //             ->whereBetween('tgl', [$request->start, $request->end])
+        //             ->where('unit_code', $request->code);
+        // })
+        // ->first();
         
         // return view('pages.event',[
         //     'artikel' => $rate
         //     ] );
-        var_dump(($users));
-        // return response()->json([$rate, $users]);
+        // var_dump(($users));
+        return response()->json([$rate, $users]);
         
     }
 
