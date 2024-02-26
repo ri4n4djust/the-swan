@@ -48,6 +48,7 @@ class CheckoutController extends BaseController {
                 'no_reservasi' => $req->external_id,
                 "kode_unit" => $req->kode_product,
                 "tgl" => $date->format('Y-m-d'),
+                "no_room" => $req->room_no,
                 "harga" => $getDetail['0']->harga
             ];
 

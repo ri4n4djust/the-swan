@@ -92,7 +92,7 @@
                 <form id="form-configure" cautocomplete="off">
                     <div class="row">
                         <div class="col-xl-6 form-group">
-                            <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
+                            <input type="text" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
                             <input type="hidden" name="hari" class="form-control" id="hari" value="1">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                         </div>
@@ -112,7 +112,7 @@
                         <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
                         <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
                         <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
-                        <input type="text" class="form-control" name="room_no" id="room_no" required>
+                        <input type="text" name="room_no" id="room_no" required>
                         <!-- <span id="detail">
                             <table>
                                 <tr>
@@ -211,22 +211,26 @@
                             var hrg = 0;
                             for(let i=0 ; i<difference ;i++){
                                 var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
-                                // var de = moment(end).format('LL');
+                                var starte = moment(start).format('YYYY-M-DD');
+                                var ende = moment(end).format('YYYY-M-DD');
                                 $.ajax({
                                     type: "POST",
                                     url: "/api/get-rate",
                                     data: {
                                         "code": code,
                                         "date": dt,
-                                        // "end": end
+                                        "start" : starte,
+                                        "end": ende,
+                                        // "code": code
                                     },
                                     success: function (result) {
-                                        if(result[0].stok > 0){
+                                        if(result[0][0].stok > 0){
                                             // console.log(result[0].harga + 'night' + difference);
-                                            hrg += parseInt(result[0].harga); //parseInt(125) ;
+                                            hrg += parseInt(result[0][0].harga); //parseInt(125) ;
+                                            document.getElementById('room_no').value = result[1].room_no;
                                             // alert(detail);
                                             // console.log(price);
-                                            
+
                                             document.getElementById('total').value = hrg;
                                             getOption();
                                         }else{
