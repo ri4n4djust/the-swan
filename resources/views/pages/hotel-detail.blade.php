@@ -146,7 +146,7 @@
                         </div>
                         <div class="col-xl-6 form-group">
                             <!-- <input type="text" class="form-control" name="subtotal" id="subtotal" required> -->
-                            <input type="text" class="form-control" name="total_bayar" id="total_bayar" placeholder="Subject" required>
+                            <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" placeholder="Subject" required>
                         </div>
                     </div>
                     <div class="form-group">

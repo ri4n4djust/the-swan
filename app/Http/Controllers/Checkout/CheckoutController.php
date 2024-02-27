@@ -96,14 +96,14 @@ class CheckoutController extends BaseController {
         // if($post){
         //     var_dump($post);
         // }
-        // DB::table('guests')->insert([
-        //     'name' => $req->name,
-        //     'email' => $req->email,
-        //     'nationality' => $req->nationality,
-        //     'mobile' => $req->mobile,
-        //     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-        //     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
-        // ]);
+        DB::table('guests')->upsert([
+            'name' => $req->name,
+            'email' => $req->email,
+            'nationality' => $req->nationality,
+            'mobile' => $req->mobile,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ], 'email' );
         return $service->createInvoice1($req->all());
     }
 }
