@@ -15,6 +15,7 @@ use App\Models\Rate;
 use Stevebauman\Location\Facades\Location;
 
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
 
 class bookingController extends Controller
@@ -149,28 +150,46 @@ class bookingController extends Controller
     public function rate(Request $request){
         // $defaultLocale = config('app.locale');
         // $code = Gallery::where('slug', $slug)->first();
+        $cekin = $request->start;
+        $cekout = $request->end ;
+        $dateRange = CarbonPeriod::create($cekin, $cekout);
+
         $rate = Rate::where('tgl', $request->date)->where('kode_kamar', $request->code)->get();
 
-        $users = DB::select("SELECT *
-        FROM room_nomors
-        WHERE room_no NOT IN
-            (SELECT no_room
-             FROM reservation_room_detail WHERE tgl BETWEEN '$request->start' AND '$request->end')
-        AND unit_code='$request->code';");
+        // $users = DB::select("SELECT *
+        // FROM room_nomors
+        // WHERE room_no NOT IN
+        //     (SELECT no_room
+        //      FROM reservation_room_detail WHERE status !='cekout' AND tgl BETWEEN '$request->start' AND '$request->end')
+        // AND unit_code='$request->code';");
+        $stok = $rate['0']->stok;
 
-        // $users = DB::table("room_nomors")->select('*')
-        // ->whereNOTIn('room_no',function($query) use ($request){
-        //     $query->select('no_room')
-        //             ->from('reservation_room_detail')
-        //             ->whereBetween('tgl', [$request->start, $request->end])
-        //             ->where('unit_code', $request->code);
-        // })
-        // ->first();
+        $users = DB::table("room_nomors")->select('*')
+        ->whereNOTIn('room_no',function($query) use ($request){
+            $query->select('no_room')
+                    ->from('reservation_room_detail')
+                    ->where('tgl', $request->date)
+                    // ->where('status', '!=', 'cekin')
+                    ->where('status', '!=', 'cekout');
+                    
+        })
+        ->where('unit_code', $request->code)
+        ->get();
+        $no_kamar = $users['0']->room_no ;
+
+        $kamar = count($users);
+        if($stok == $kamar){
+            // echo "stok : ".$stok ;
+        }else{
+            // echo "kamar : ".$kamar ;
+        }
+
         
         // return view('pages.event',[
         //     'artikel' => $rate
         //     ] );
-        // var_dump(($users));
+        // var_dump(($stok));
+
         return response()->json([$rate, $users]);
         
     }

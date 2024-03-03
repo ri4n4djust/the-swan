@@ -112,7 +112,7 @@
                         <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
                         <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
                         <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
-                        <input type="hidden" name="room_no" id="room_no" required>
+                        <input type="text" name="room_no" id="room_no" required>
                         <!-- <span id="detail">
                             <table>
                                 <tr>

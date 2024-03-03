@@ -35,10 +35,19 @@ class CheckoutController extends BaseController {
         $count = count($dateRange);
         $i=0;
         $detail = [];
+        $status = "";
         foreach ($dateRange as $date) {
             // $detail[] = [
             //   "tgl" => $date->format('Y-m-d')
             // ];
+            $i++;
+            if($i == 1){
+                $status = "cekin";
+            }elseif($i == $count){
+                $status = "cekout";
+            }else{
+                $status = "In House" ;
+            }
             
             $getDetail = DB::table('rates')
                 ->where('tgl', $date->format('Y-m-d'))
@@ -49,10 +58,11 @@ class CheckoutController extends BaseController {
                 "kode_unit" => $req->kode_product,
                 "tgl" => $date->format('Y-m-d'),
                 "no_room" => $req->room_no,
-                "harga" => $getDetail['0']->harga
+                "harga" => $getDetail['0']->harga,
+                "status" => $status
             ];
 
-            $i++;
+            
             // if($i==($count-1)){
             //     // echo 'skip';
             // }else{
