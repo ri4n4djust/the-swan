@@ -157,6 +157,7 @@
                         <span>Book Now</span>
                     </button>
                 </form>
+                <div id="loading"></div>
                 @include('shared/modal')
                 @section('scripts')
                     <!-- Javascripts -->
@@ -166,7 +167,9 @@
                     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
                     <script type="text/javascript">
                         document.addEventListener("DOMContentLoaded",  
+                        
                         function () { 
+                            $("#loading").hide();
                             // Code to be executed when the DOM is ready
                             document.getElementById('tgl_reservasi').value = moment().format('YYYY-MM-DD h:mm:ss'); // new Date(); 
                             const tipe = document.getElementById('tipe_bayar').value ;
@@ -208,7 +211,9 @@
                             // console.log(document.getElementById('tipe_bayar').value);
                         };
                         function FungsiHitung(start, end, difference, code){
+                            $('#loading').show();
                             var hrg = 0;
+                            var stok = 0
                             for(let i=0 ; i<difference ;i++){
                                 var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
                                 var starte = moment(start).format('YYYY-M-DD');
@@ -223,25 +228,37 @@
                                         "end": ende,
                                         // "code": code
                                     },
-                                    success: function (result) {
-                                        if(result[0][0].stok > 0){
-                                            // console.log(result[0].harga + 'night' + difference);
-                                            hrg += parseInt(result[0][0].harga); //parseInt(125) ;
-                                            document.getElementById('room_no').value = result[1][0].room_no;
-                                            // alert(detail);
-                                            // console.log(price);
-
-                                            document.getElementById('total').value = hrg;
-                                            getOption();
-                                        }else{
-                                            alert('stok kosong');
-                                        }
+                                    error: function (request, error) {
+                                        // console.log(arguments);
+                                        alert("room no availabe on this date, please change date");
+                                        document.getElementById('room_no').value = "";
+                                        document.getElementById('total').value = "";
                                     },
+                                    success: function (result) {
+                                        stok = result[0][0].stok ;
+                                        hrg += parseInt(result[0][0].harga); //parseInt(125) ;
+                                        document.getElementById('room_no').value = result[1][0].room_no;
+                                        // alert(detail);
+                                        // console.log(price);
+
+                                        document.getElementById('total').value = hrg;
+                                        // document.getElementById('stok').value = stok;
+                                        getOption();
+                                        
+                                    },
+                                    
                                     // dataType: "json"
                                 });
                                 
                                 // document.getElementById('det_r').innerHTML = detail;
                             }
+                            // var stok = document.getElementById('stok').value ;
+                            if(stok < 0){
+                                alert('stok kosong'+ stok);
+                            }else if(stok > 0){
+                                getOption();
+                            }
+
                             // console.log(detail);
                             // console.log(moment(start).format('LL') + "Hello World!"+moment(end).format('LL') + difference);
                         }
