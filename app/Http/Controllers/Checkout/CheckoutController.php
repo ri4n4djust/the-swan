@@ -95,7 +95,7 @@ class CheckoutController extends BaseController {
             'status' => 'PENDING', // $req->status,
 
             'guest_paid' => $req->amount,
-            'guest_status' => 'New',
+            'book_status' => 'New',
             'adult' => '2', // $req->amount,
             'total' => $req->total,
             // 'guest_paid' => 
