@@ -55,7 +55,7 @@ Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getL
 // Route::resource('orders', OrderController::class)->only(['index', 'show']);
 //=====end route tes
 
-
+Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
 
 Route::get('/sitemap', function(){
     $sitemap = Sitemap::create()
