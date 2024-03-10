@@ -29,4 +29,6 @@ Route::post("invoice", [
 ]);
 
 Route::post("get-rate", [App\Http\Controllers\bookingController::class , 'rate']);
-// Route::post("cek-alotment", [App\Http\Controllers\bookingController::class , 'cekAllotment']);
+// Route::post("cek-alotment", [App\Http\Controllers\bookingController::class , 'cekAllotment']);\
+
+Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);

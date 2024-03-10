@@ -24,7 +24,7 @@ use Spatie\Sitemap\Tags\Url;
 // });
 // Route::get('/booking', function () {
 //     return view('pages.booking');
-// });
+// });https://d3d2-120-188-76-241.ngrok-free.app/
 // Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
 
 if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
@@ -55,7 +55,7 @@ Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getL
 // Route::resource('orders', OrderController::class)->only(['index', 'show']);
 //=====end route tes
 
-Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
+// Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
 
 Route::get('/sitemap', function(){
     $sitemap = Sitemap::create()
