@@ -14,12 +14,8 @@
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
-          <?php print_r($detail); ?>
-          @foreach ($detail as $det)
-
-           
-
-          @endforeach
+          <?php dd($detail); ?>
+         
 
             
 
