@@ -10,10 +10,12 @@ class callbackController extends Controller
     public function suksesPayment(Request $request){
         $detail = $request->all();
 
+
+
         // Ini akan menjadi print_rToken Verifikasi Callback Anda yang dapat Anda peroleh dari dasbor.
         // Pastikan untuk menjaga kerahasiaan token ini dan tidak mengungkapkannya kepada siapa pun.
         // Token ini akan digunakan untuk melakukan verfikasi pesan callback bahwa pengirim callback tersebut adalah Xendit
-        $xenditXCallbackToken = 'ZYiHTtSD3D8Yhjaul7b8BHN7mNTUeJU182w00Ce5hXp9wvCK';
+        // $xenditXCallbackToken = 'ZYiHTtSD3D8Yhjaul7b8BHN7mNTUeJU182w00Ce5hXp9wvCK';
 
         // Bagian ini untuk mend$_id = $arrRequestInput['id'];
         // $_externalId = $arrRequestInput['external_id'];
@@ -38,7 +40,7 @@ class callbackController extends Controller
         // $rawRequestInput = file_get_untukcontents("php://input");
         // Baris ini melakukan formaprint_rt input mentah menjadi array asosiatif
         // $arrRequestInput = json_decode($rawRequestInput, true);
-        var_dump ($detail) ;
+        // var_dump ($detail) ;
         // echo "tess" ;
         
         // $_id = $arrRequestInput['id'];
@@ -78,5 +80,13 @@ class callbackController extends Controller
         //     'message' => 'Post Berhasil di insert!',
         //     // 'data' => $detail
         // ], 200);
+    }
+
+    public function createPayment(Request $request){
+
+        $detail = $request->all();
+
+        return view(['pages.booking-detail.php', $detail]);
+    
     }
 }

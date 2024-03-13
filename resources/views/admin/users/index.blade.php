@@ -67,7 +67,7 @@
                                         <li>
                                             <a href="{{ route('home') }}">
                                                 <i class="tim-icons icon-chart-pie-36"></i>
-                                                <p>{{ _('Dashboard') }}</p>
+                                                icon               <p>{{ _('Dashboard') }}</p>
                                             </a>
                                         </li>
                                         <li>
@@ -90,7 +90,7 @@
                                                             <i class="tim-icons icon-bullet-list-67"></i>
                                                             <p>{{ _('User Management') }}</p>
                                                         </a>
-                                                    </li>
+                                                        icon                   </li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -117,7 +117,7 @@
                                                 <i class="tim-icons icon-puzzle-10"></i>
                                                 <p>{{ _('Table List') }}</p>
                                             </a>
-                                        </li>
+                                            icon       </li>
                                         <li >
                                             <a href="{{ route('pages.typography') }}">
                                                 <i class="tim-icons icon-align-center"></i>
@@ -130,18 +130,13 @@
                                                 <p>{{ _('RTL Support') }}</p>
                                             </a>
                                         </li>
-                                        <li class=" {{ $pageSlug == 'upgrade' ? 'active' : '' }} bg-info">
-                                            <a href="{{ route('pages.upgrade') }}">
-                                                <i class="tim-icons icon-spaceship"></i>
-                                                <p>{{ _('Upgrade to PRO') }}</p>
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
                             
-            <div class="main-panel">
-                    <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+            <div class="main-panelicon">
+                    <nav class="niconavbar navbar-expand-lg navbar-absolute navbar-transparent">
                             <div class="container-fluid">
                                 <div class="navbar-wrapper">
                                     <div class="navbar-toggle d-inline">

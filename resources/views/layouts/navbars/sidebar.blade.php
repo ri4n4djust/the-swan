@@ -11,6 +11,12 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'properti') class="active " @endif>
+                <a href="{{ route('pages.properti') }}">
+                    <i class="tim-icons icon-chart-pie-36"></i>
+                    <p>{{ __('Property') }}</p>
+                </a>
+            </li>
             <li @if ($pageSlug == 'rooms') class="active " @endif>
                 <a href="{{ route('pages.rooms') }}">
                     <i class="tim-icons icon-chart-pie-36"></i>

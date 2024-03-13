@@ -114,6 +114,17 @@ class CheckoutController extends BaseController {
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
         ], 'email' );
-        return $service->createInvoice1($req->all());
+
+        try {
+
+            return $service->createInvoice1($req->all());
+            
+
+        } catch (\Throwable $e) {
+
+            $response['message'] = $e->getMessage();
+        }
+
+        // return $service->createInvoice1($req->all());
     }
 }

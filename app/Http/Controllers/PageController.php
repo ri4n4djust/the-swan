@@ -14,6 +14,11 @@ class PageController extends Controller
         return view('admin.pages.icons');
     }
 
+    public function properti()
+    {
+        return view('admin.pages.properti');
+    }
+
     /**
      * Display maps page
      *
