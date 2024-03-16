@@ -50,6 +50,7 @@ class bookingController extends Controller
             'paket' => $paket,
             'fasilitas' => $fasilitas,
             'rate' => $rate,
+            
             ] );
     }
 
@@ -113,9 +114,11 @@ class bookingController extends Controller
         $code = Booking::where('slug', $slug)->first();
 
         $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
+        $country = DB::table('countries')->get();
 
         return view('pages.hotel-detail',[
-            'hotelDetail' => $hotel
+            'hotelDetail' => $hotel,
+            'country' => $country
             ] );
     }
 

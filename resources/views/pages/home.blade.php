@@ -695,23 +695,24 @@
             <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
               <div class="content ps-0 ps-lg-5">
                 <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
+                  We are company that manage property and also rent for acomodation. 
                 </p>
                 <ul>
-                  <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                  <li><i class="bi bi-check2-all"></i> As traveller : we are your friend, family and guide as you need.</li>
+                  <li><i class="bi bi-check2-all"></i> As Traveller : we make your holly day to be awesome and memoriable,.</li>
+                  <li><i class="bi bi-check2-all"></i> As Traveller : rooms, transport, private tour as you wish or our idea.</li>
                 </ul>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-                </p>
-
-                <div class="position-relative mt-4">
+                <p>dont be hastitate to contact us on mobile or whatsapp number 24H/27.</p>
+                <p>Or you have property still confuse to manage, don't worry sit back, take a braath and relax let our team do the best.</p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> As Property Owner : Increase booking from OTA.</li>
+                  <li><i class="bi bi-check2-all"></i> As Property Owner : Increase Revenue, neat report, </li>
+                  <li><i class="bi bi-check2-all"></i> As Property Owner : and also taking care all about the property.</li>
+                </ul>
+                <!-- <div class="position-relative mt-4">
                   <img src="assets/img/about-2.jpg" class="img-fluid" alt="">
                   <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -841,7 +842,7 @@
 
         <div class="section-header">
           <h2>Events</h2>
-          <p>Share <span>Your Moments</span> In Our Restaurant</p>
+          <p>Bali's <span>Event and ceremony</span></p>
         </div>
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
@@ -992,42 +993,47 @@
         </div>
 
         <div class="mb-3">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-        </div><!-- End Google Maps -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d986.1957654155755!2d115.17408542285924!3d-8.6168148017417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd239e1f895d5b3%3A0xad8aa8fe6cf83d1d!2sPerumahan%20Pesona%20gaji%20Dalung%20Block%204!5e0!3m2!1sid!2sid!4v1710597857163!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- End Google Maps -->
 
         <div class="row gy-4">
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item  d-flex align-items-center">
               <i class="icon bi bi-map flex-shrink-0"></i>
               <div>
-                <h3>Our Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <h3>Our Office Address</h3>
+                <p>AJalan Genta Sari Blok IV Gang Amerta Sari No 7 <br>
+              Dalung Badung Bali- ID 80361</p>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item d-flex align-items-center">
               <i class="icon bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>info@the-swand.com</p>
+                <p>the.swand26@gmail.com</p>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item  d-flex align-items-center">
               <i class="icon bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <p>+62 8234 006 4488</p>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item  d-flex align-items-center">
               <i class="icon bi bi-share flex-shrink-0"></i>
               <div>
@@ -1037,7 +1043,8 @@
                 </div>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
         </div>
 

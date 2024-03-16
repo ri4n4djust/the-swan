@@ -1,29 +1,29 @@
 <div class="container">
       <div class="row gy-3">
-        <div class="col-lg-3 col-md-6 d-flex">
+        <div class="col-lg-4 col-md-6 d-flex">
           <i class="bi bi-geo-alt icon"></i>
           <div>
-            <h4>Address</h4>
+            <h4>Office Address</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022 - US<br>
+              Jalan Genta Sari Blok IV Gang Amerta Sari No 7 <br>
+              Dalung Badung Bali- ID 80361<br>
             </p>
           </div>
 
         </div>
 
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
+        <div class="col-lg-4 col-md-6 footer-links d-flex">
           <i class="bi bi-telephone icon"></i>
           <div>
             <h4>Reservations</h4>
             <p>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Phone:</strong> +62 8234 006 4488<br>
+              <strong>Email:</strong> the.swand26@gmail.com<br>
             </p>
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
+        <!-- <div class="col-lg-3 col-md-6 footer-links d-flex">
           <i class="bi bi-clock icon"></i>
           <div>
             <h4>Opening Hours</h4>
@@ -32,9 +32,9 @@
               Sunday: Closed
             </p>
           </div>
-        </div>
+        </div> -->
 
-        <div class="col-lg-3 col-md-6 footer-links">
+        <div class="col-lg-4 col-md-6 footer-links">
           <h4>Follow Us</h4>
           <div class="social-links d-flex">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>

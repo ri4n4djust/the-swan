@@ -103,8 +103,17 @@
                     <div class="form-group">
                         <input type="text" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="nationality" id="nationality" placeholder="nationality" required>
+                    <div class="row">
+                            <div class="col-xl-6 form-group">
+                            <input type="hidden" name="nationality" class="form-control" id="nationality" required>
+                            <select class="form-control" onchange="getComboA(this)" required>
+                                <option value="">Nationality</option>
+                                @foreach($country as $count)
+                                <option value="{{ $count->country_code }}">{{ $count->country_name }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
                     </div>
                     <div class="form-group">
                         Cek In   | Cek Out 
@@ -173,7 +182,7 @@
                             // Code to be executed when the DOM is ready
                             document.getElementById('tgl_reservasi').value = moment().format('YYYY-MM-DD h:mm:ss'); // new Date(); 
                             const tipe = document.getElementById('tipe_bayar').value ;
-                            const subtota = document.getElementById('subtotal').value ;
+                            // const subtota = document.getElementById('subtotal').value ;
                             var komisi = 0;
                             if(tipe === "deposit"){
                                 const totl = document.getElementById('total').value ;
@@ -189,6 +198,11 @@
                             
                             // heading.textContent = "DOM is ready!"; 
                         }); 
+                        function getComboA(selectObject) {
+                            var value = selectObject.value;
+                            document.getElementById('nationality').value = value
+                            console.log(value);
+                        };
                         function getOption() {
                             const tipe = document.getElementById('tipe_bayar').value ;
                             
@@ -301,6 +315,7 @@
                                     ],
                                     "firstDay": 1
                                 },
+                                "minDate": new Date(),
                                 "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
                                 "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
                                 "opens": "center",
