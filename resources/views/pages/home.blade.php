@@ -1015,6 +1015,19 @@
           </div>
           <div class="text-center">
           {!! RecaptchaV3::field('register') !!}
+
+          <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+              <div class="col-md-6">
+                  {!! RecaptchaV3::field('register') !!}
+                  @if ($errors->has('g-recaptcha-response'))
+                      <span class="help-block">
+                          <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                      </span>
+                  @endif
+              </div>
+          </div>
+
+          
           <button type="submit">Send Message</button>
           <!-- <button class="g-recaptcha btn btn-primary btn-lg "
                                     data-sitekey="{{ config('services.recaptcha_v3.siteKey') }}"

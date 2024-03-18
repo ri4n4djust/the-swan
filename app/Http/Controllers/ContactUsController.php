@@ -36,6 +36,6 @@ class ContactUsController extends Controller
 
         // Here you can add code to actually send the email message
 
-        return redirect()->back()->with('message', 'Thank you for contacting us. Your message has been sent. ');
+        return view('pages.contact');
     }
 }
