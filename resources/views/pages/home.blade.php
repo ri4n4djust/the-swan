@@ -8,11 +8,11 @@
       <div class="container">
         <div class="row justify-content-between gy-5">
           <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-            <h2 data-aos="fade-up">{{ __('headmenu.welcome_title') }}</h2>
+            <h3 data-aos="fade-up">{{ __('headmenu.welcome_title') }}</h3>
             <p data-aos="fade-up" data-aos-delay="100">{{ __('headmenu.welcome_desc') }}</p>
             <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-              <a href="#book-a-table" class="btn-book-a-table">Book a Table</a>
-              <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+              <a href="/service" class="btn-book-a-table">Book a Service</a>
+              <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
             </div>
           </div>
           <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -30,7 +30,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="why-box">
-              <h3>{{ __('whyus.why') }}</h3>
+              <h4>{{ __('whyus.why') }}</h4>
               <p>{{ __('whyus.why_desc') }}</p>
               <div class="text-center">
                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -185,7 +185,7 @@
                     <div class="validate"></div>
                   </div> -->
                   <div class="col-lg-2 col-md-2">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button type="submit" class="btn-book-a-table" data-toggle="modal" data-target="#exampleModal">
                         Seacrh
                     </button>
                   </div>
@@ -231,6 +231,7 @@
                         "December"
                     ],
                     // "firstDay": 1,
+                    "minDate": new Date(),
                     "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
                     "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
                 },
@@ -287,10 +288,10 @@
                   </p>
                   @endforeach
 
-                  <div class="position-relative mt-4">
+                  <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     <!-- <img src="assets/img/about-2.jpg" class="img-fluid" alt=""> -->
                     <!-- IDR {{ number_format($detail->price, 2) }} / Night -->
-                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Detail</a>
+                    <a href="/hotel/{{$detail->slug}}" class="btn-book-a-table">Detail</a>
                   </div>
                 </div>
               </div>
@@ -387,7 +388,8 @@
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp
                     
-                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="">{{ $gmbr[1] }}
+                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <!-- {{ $gmbr[0] }} -->
                     
                     <div class="social">
                       <!-- <a href=""><i class="bi bi-twitter"></i></a>
@@ -398,6 +400,7 @@
                   </div>
                   
                   <div class="member-info">
+                    {{ $gmbr[0] }}
                     <h4>{{ $tr->nama}}</h4>
                     <!-- <span>Cook</span> -->
                     <p>{{ substr($tr->deskripsi, 0, 200)}}</p>
@@ -422,9 +425,9 @@
                       Book Now
                     </button> -->
                     <div >
-                      <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" >
-                      <button style="vertical-align:center;height:36px;border-radius:5px">
-                      <img src="assets/img/wa.png" class="img-fluid"> Book Now</button></a>
+                      <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" class="btn-book-a-table">
+                      
+                      <img src="assets/img/wa.png" >Book Now</a>
                     </div>
                   </p>
                   
@@ -454,6 +457,7 @@
                             
                             @foreach($gmbr as $value)
                             <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                            <!-- {{ $loop->index }} -->
                             @endforeach
                             <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -462,8 +466,8 @@
                           </ol>
                           <div class="carousel-inner">
                             
-                            @foreach($gmbr as $key => $slider)
-                            <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                            @foreach($gmbr as $slider)
+                            <div class="carousel-item {{$loop->index == 0 ? 'active' : ''}}">
                               <img src="assets/img/transport/{{ $slider }}" class="d-block w-100" alt="">
                             </div>
                             @endforeach
@@ -597,7 +601,7 @@
                               
                               @foreach($gmbr as $key => $slider)
                               <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-                                <img src="assets/img/transport/{{ $slider }}" class="d-block w-100" alt="">
+                                <img src="assets/img/tour/{{ $slider }}" class="d-block w-100" alt="">
                               </div>
                               @endforeach
                               
@@ -682,13 +686,11 @@
             <div class="col-lg-7 position-relative about-img" style="background-image: url(assets/img/about.jpg) ;" data-aos="fade-up" data-aos-delay="150">
               <div class="call-us position-absolute">
                 <h4>{{ __('headmenu.about_book') }}</h4>
-                <p>
-                  <a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" target="_blank" >
-                    <button style="vertical-align:center;border-radius:5px">
-                    <img src="assets/img/wa.png" class="img-fluid">+62 8234 006 4488</button>
-                    
+                
+                  <a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" target="_blank" class="btn-book-a-table">
+                    <img src="assets/img/wa.png" class="img-fluid">+62 8234 006 4488
                   </a>
-                </p>
+              
                 
               </div>
             </div>
@@ -869,81 +871,7 @@
       </div>
     </section><!-- End Events Section -->
 
-    <!-- ======= Chefs Section ======= -->
-    <!-- <section id="chefs" class="chefs section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Chefs</h2>
-          <p>Our <span>Proffesional</span> Chefs</p>
-        </div>
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="chef-member">
-              <div class="member-img">
-                <img src="assets/img/chefs/chefs-1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Master Chef</span>
-                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="chef-member">
-              <div class="member-img">
-                <img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Patissier</span>
-                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="chef-member">
-              <div class="member-img">
-                <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cook</span>
-                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section> -->
-    <!-- End Chefs Section -->
-
-    
+       
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery section-bg">

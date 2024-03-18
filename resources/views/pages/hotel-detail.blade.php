@@ -162,7 +162,7 @@
                         <input type="text" class="form-control" name="total" id="total" required>
                     </div>
 
-                    <button id="button-start-demo" class="btn btn-primary" type="submit">
+                    <button id="button-start-demo" class="btn-book-a-table" type="submit">
                         <span>Book Now</span>
                     </button>
                 </form>

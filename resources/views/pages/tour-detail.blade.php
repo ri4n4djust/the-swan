@@ -36,7 +36,7 @@
 
                 </p>
                 </div>
-                <img src="assets/img/about.jpg" class="img-fluid" alt="">
+                <img src="/assets/img/about.jpg" class="img-fluid" alt="">
             </div>
             <!-- <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                 <div class="content ps-0 ps-lg-5">

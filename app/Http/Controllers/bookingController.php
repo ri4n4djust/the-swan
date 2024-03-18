@@ -41,6 +41,7 @@ class bookingController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $fasilitas = Facility::all();
         $rate = DB::table('rates')->where('tgl', $date)->get();
+        $artikel = Artikel::where('lang', $defaultLocale)->get();
 
         return view('pages.service',[
             'kamar' => $kamar, 
@@ -50,7 +51,7 @@ class bookingController extends Controller
             'paket' => $paket,
             'fasilitas' => $fasilitas,
             'rate' => $rate,
-            
+            'artikel' => $artikel,
             ] );
     }
 

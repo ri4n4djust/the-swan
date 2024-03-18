@@ -23,7 +23,7 @@
 
         <div class="section-header">
           <!-- <h2>Our Menu</h2> -->
-          <p>Check Our <span>Best Service</span></p>
+          <p>Check Our <span>Best Booking Service</span></p>
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
@@ -67,6 +67,7 @@
               <!-- {{$kamar}} -->
               <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4">
+
                   <div class="col-lg-5 input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">Cek In - Cek Out</span>
@@ -89,7 +90,7 @@
                     <div class="validate"></div>
                   </div> -->
                   <div class="col-lg-2 col-md-2">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button type="submit" class="btn-book-a-table" data-toggle="modal" data-target="#exampleModal">
                         Seacrh
                     </button>
                   </div>
@@ -97,55 +98,56 @@
               </form>
               <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
               <script>
-                $(function() {
-                  $('input[name="cekin"]').daterangepicker({
-                    // singleDatePicker: true,
-                    showDropdowns: false,
-                    "autoApply": true,
-                    "locale": {
-                      "format": "MMM DD, YYYY",
-                      "separator": " - ",
-                      "applyLabel": "Apply",
-                      "cancelLabel": "Cancel",
-                      "fromLabel": "From",
-                      "toLabel": "To",
-                      "customRangeLabel": "Custom",
-                      "weekLabel": "W",
-                      "daysOfWeek": [
-                          "Su",
-                          "Mo",
-                          "Tu",
-                          "We",
-                          "Th",
-                          "Fr",
-                          "Sa"
-                      ],
-                      "monthNames": [
-                          "January",
-                          "February",
-                          "March",
-                          "April",
-                          "May",
-                          "June",
-                          "July",
-                          "August",
-                          "September",
-                          "October",
-                          "November",
-                          "December"
-                      ],
-                      // "firstDay": 1,
-                      "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
-                      "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
-                  },
-                    // maxYear: parseInt(moment().format('YYYY'),10)
-                  }, function(start, end, label) {
-                    // var years = moment().diff(start, 'years');
-                    console.log(moment(start).format('YYYY-MM-DD'))
-                  });
+              $(function() {
+                $('input[name="cekin"]').daterangepicker({
+                  // singleDatePicker: true,
+                  showDropdowns: false,
+                  "autoApply": true,
+                  "locale": {
+                    "format": "MMM DD, YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Apply",
+                    "cancelLabel": "Cancel",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "daysOfWeek": [
+                        "Su",
+                        "Mo",
+                        "Tu",
+                        "We",
+                        "Th",
+                        "Fr",
+                        "Sa"
+                    ],
+                    "monthNames": [
+                        "January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"
+                    ],
+                    // "firstDay": 1,
+                    "minDate": new Date(),
+                    "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
+                    "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
+                },
+                  // maxYear: parseInt(moment().format('YYYY'),10)
+                }, function(start, end, label) {
+                  // var years = moment().diff(start, 'years');
+                  console.log(moment(start).format('YYYY-MM-DD'))
                 });
+              });
               </script>
-              
+
             <div class="row gy-4">
             @foreach ($kamar as $detail)
               <div class="col-lg-5 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
@@ -191,17 +193,16 @@
                   </p>
                   @endforeach
 
-                  <div class="position-relative mt-4">
+                  <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     <!-- <img src="assets/img/about-2.jpg" class="img-fluid" alt=""> -->
                     <!-- IDR {{ number_format($detail->price, 2) }} / Night -->
-                    <a href="/hotel/{{$detail->slug}}" class="btn btn-primary">Detail</a>
+                    <a href="/hotel/{{$detail->slug}}" class="btn-book-a-table">Detail</a>
                   </div>
                 </div>
               </div>
             @endforeach
             </div>
-            
-            
+                        
 
             <!-- Modal -->
             @foreach ($kamar as $detail)
@@ -292,7 +293,8 @@
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp
                     
-                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="">{{ $gmbr[1] }}
+                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    {{ $gmbr[1] }}
                     
                     <div class="social">
                       <!-- <a href=""><i class="bi bi-twitter"></i></a>
@@ -327,9 +329,9 @@
                       Book Now
                     </button> -->
                     <div >
-                      <a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" target="_blank" >
-                      <button style="vertical-align:center;height:36px;border-radius:5px">
-                      <img src="assets/img/wa.png" class="img-fluid"> Book Now</button></a>
+                      <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" class="btn-book-a-table">
+                      
+                      <img src="assets/img/wa.png" > Book Now </a>
                     </div>
                   </p>
                   
@@ -570,39 +572,48 @@
         </div>
 
       </div>
-    </section><!-- End Menu Section -->
+    </section>
+    
+    <!-- End Menu Section -->
 
     <!-- Button trigger modal -->
 
 
-
-
-
-    <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery section-bg">
-      <div class="container" data-aos="fade-up">
+    <!-- ======= Events Section ======= -->
+    <section id="events" class="events">
+      <div class="container-fluid" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>gallery</h2>
-          <p>Check <span>Our Gallery</span></p>
+          <h2>Events</h2>
+          <p>Bali's <span>Event and ceremony</span></p>
         </div>
 
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
+        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+          @foreach ($artikel as $art)
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/artikel/{{$art->foto}})">
+              <h3>{{ $art->judul }}</h3>
+              <!-- <div class="price align-self-start">$99</div> -->
+              <p class="description">
+              {!! substr($art->isi, 0, 100) !!}
+              </p>
+            </div><!-- End Event item -->
+
+          @endforeach
+
+            
+
           </div>
           <div class="swiper-pagination"></div>
         </div>
 
       </div>
-    </section><!-- End Gallery Section -->
+    </section><!-- End Events Section -->
+
+
+    
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -614,42 +625,47 @@
         </div>
 
         <div class="mb-3">
-          <!-- <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe> -->
-        </div><!-- End Google Maps -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d986.1957654155755!2d115.17408542285924!3d-8.6168148017417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd239e1f895d5b3%3A0xad8aa8fe6cf83d1d!2sPerumahan%20Pesona%20gaji%20Dalung%20Block%204!5e0!3m2!1sid!2sid!4v1710597857163!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- End Google Maps -->
 
         <div class="row gy-4">
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item  d-flex align-items-center">
               <i class="icon bi bi-map flex-shrink-0"></i>
               <div>
-                <h3>Our Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <h3>Our Office Address</h3>
+                <p>AJalan Genta Sari Blok IV Gang Amerta Sari No 7 <br>
+              Dalung Badung Bali- ID 80361</p>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item d-flex align-items-center">
               <i class="icon bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>contact@example.com</p>
+                <p>the.swand26@gmail.com</p>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item  d-flex align-items-center">
               <i class="icon bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <p>+62 8234 006 4488</p>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="info-item  d-flex align-items-center">
               <i class="icon bi bi-share flex-shrink-0"></i>
               <div>
@@ -659,7 +675,8 @@
                 </div>
               </div>
             </div>
-          </div><!-- End Info Item -->
+          </div> -->
+          <!-- End Info Item -->
 
         </div>
 
