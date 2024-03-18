@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use MailContact;
+use Mail;
+use App\Rules\ReCaptchaV3;
 
 class ContactUsController extends Controller
 {
@@ -15,20 +16,20 @@ class ContactUsController extends Controller
             'name' => ['required', 'string', 'max:50'],
             'message' => ['required', 'string', 'max:500'],
             'email' => ['required', 'email:rfc'],
-            'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
+            // 'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
         ]);
 
-        $to = $request->email ;
+        // $to = $request->email ;
 
-        Mail::send('email',
+        Mail::send('pages.email-contact',
         array(
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'user_message' => $request->get('message')
         ), function($message){
 
-            $message->from($request->get('email'));
-            $message->to('info@the-swand.com', 'Admin')->subject($request->get('subject'));
+            $message->from('info@the-swand.com');
+            $message->to('info@the-swand.com', 'Admin')->subject('subject');
         });
 
         // RecaptCha V3 and other rules have passed, safe to continue

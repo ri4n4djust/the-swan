@@ -975,6 +975,8 @@
           <!-- End Info Item -->
 
         </div>
+        
+        
         @if(session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
@@ -990,7 +992,7 @@
             </div>
         @endif
 
-        <form action="{{ route('contact.send') }}" method="post" role="form" class="php-email-form p-3 p-md-4" id="contactForm">
+        <form action="contact-us" id="contactForm" method="post" role="form" class="php-email-form p-3 p-md-4" >
         @csrf
           <div class="row">
             <div class="col-xl-6 form-group">
@@ -1012,20 +1014,16 @@
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
           <div class="text-center">
-          <button class="g-recaptcha btn btn-primary btn-lg "
+          <button type="submit">Send Message</button>
+          <!-- <button class="g-recaptcha btn btn-primary btn-lg "
                                     data-sitekey="{{ config('services.recaptcha_v3.siteKey') }}"
                                     data-callback="onSubmit"
-                                    data-action="submitContact">Submit</button>
+                                    data-action="submitContact">Submit</button> -->
           </div>
         </form><!--End Contact Form -->
 
       </div>
     </section><!-- End Contact Section -->
-    <script type="text/javascript">
-      function onSubmit(token) {
-        document.getElementById("dcontactForm").submit();
-      }
-
-    </script>
+   
 
 @stop
