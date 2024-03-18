@@ -1014,10 +1014,12 @@
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
           <div class="text-center">
+          {!! RecaptchaV3::field('register') !!}
           <button type="submit">Send Message</button>
           <!-- <button class="g-recaptcha btn btn-primary btn-lg "
                                     data-sitekey="{{ config('services.recaptcha_v3.siteKey') }}"
                                     data-callback="onSubmit"
+                                    type="submit"
                                     data-action="submitContact">Submit</button> -->
           </div>
         </form><!--End Contact Form -->
