@@ -49,6 +49,8 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/try-checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'onSubmit']);
 }
 
+Route::post('/contact-us', ['App\Http\Controllers\ContactUsController', 'send'])->name('contact.send');
+
 
 //====tess
 Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getLoc']);

@@ -400,7 +400,7 @@
                   </div>
                   
                   <div class="member-info">
-                    {{ $gmbr[0] }}
+                    <!-- {{ $gmbr[0] }} -->
                     <h4>{{ $tr->nama}}</h4>
                     <!-- <span>Cook</span> -->
                     <p>{{ substr($tr->deskripsi, 0, 200)}}</p>
@@ -975,8 +975,22 @@
           <!-- End Info Item -->
 
         </div>
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul class="mb-0 mt-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">
+        <form action="{{ route('contact.send') }}" method="post" role="form" class="php-email-form p-3 p-md-4" id="contactForm">
           <div class="row">
             <div class="col-xl-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -996,10 +1010,21 @@
             <div class="error-message"></div>
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
-          <div class="text-center"><button type="submit">Send Message</button></div>
+          <div class="text-center">
+          <button class="g-recaptcha btn btn-primary btn-lg "
+                                    data-sitekey="{{ config('services.recaptcha_v3.siteKey') }}"
+                                    data-callback="onSubmit"
+                                    data-action="submitContact">Submit</button>
+          </div>
         </form><!--End Contact Form -->
 
       </div>
     </section><!-- End Contact Section -->
+    <script type="text/javascript">
+      function onSubmit(token) {
+        document.getElementById("dcontactForm").submit();
+      }
+
+    </script>
 
 @stop
