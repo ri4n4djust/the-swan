@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Mail;
 use App\Rules\ReCaptchaV3;
+// use recaptchav3;
 
 class ContactUsController extends Controller
 {
@@ -17,7 +18,7 @@ class ContactUsController extends Controller
             'message' => ['required', 'string', 'max:500'],
             'email' => ['required', 'email:rfc'],
             // 'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
-            // 'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
         ]);
 
         // $to = $request->email ;
