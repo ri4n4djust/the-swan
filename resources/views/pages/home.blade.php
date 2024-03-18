@@ -991,6 +991,7 @@
         @endif
 
         <form action="{{ route('contact.send') }}" method="post" role="form" class="php-email-form p-3 p-md-4" id="contactForm">
+        @csrf
           <div class="row">
             <div class="col-xl-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
