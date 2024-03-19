@@ -18,7 +18,7 @@ class ContactUsController extends Controller
             'message' => ['required', 'string', 'max:500'],
             'email' => ['required', 'email:rfc'],
             // 'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
-            'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
+            // 'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
         ]);
 
         // $to = $request->email ;
@@ -37,6 +37,7 @@ class ContactUsController extends Controller
 
         // Here you can add code to actually send the email message
 
-        return view('pages.contact');
+        // return view('pages.contact');
+        return 'Sent Successfuly' ;
     }
 }
