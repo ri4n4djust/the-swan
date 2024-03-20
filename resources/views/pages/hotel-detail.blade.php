@@ -94,16 +94,19 @@
                         <div class="col-xl-6 form-group">
                             <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
                             <input type="hidden" name="hari" class="form-control" id="hari" value="1">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
                         </div>
                             <div class="col-xl-6 form-group">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <input type="text" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
-                    </div>
+                    </div> -->
                     <div class="row">
+                            <div class="col-xl-6 form-group">
+                                <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
+                            </div>
                             <div class="col-xl-6 form-group">
                             <input type="hidden" name="nationality" class="form-control" id="nationality" required>
                             <select class="form-control" onchange="getComboA(this)" required>
@@ -112,32 +115,16 @@
                                 <option value="{{ $count->country_code }}">{{ $count->country_name }}</option>
                                 @endforeach
                             </select>
-
                         </div>
                     </div>
                     <div class="form-group">
                         Cek In   | Cek Out 
-                        <input type="text" class="form-control" name="datefilter" id="datefilter" required>
+                        <input class="form-control" name="datefilter" id="datefilter" required>
                         <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
                         <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
                         <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
                         <input type="hidden" name="room_no" id="room_no" required>
-                        <!-- <span id="detail">
-                            <table>
-                                <tr>
-                                    <td>Name</td>
-                                    <td id="namebooking"></td>
-                                </tr>
-                                <tr>
-                                    <td>{{ $hotelDetail[0]->title }}</td>
-                                    <td>{{ $hotelDetail[0]->price }} / Night</td>
-                                </tr>
-                                <tr>
-                                    <td>total </td>
-                                    <td id="totalbayar"></td>
-                                </tr>
-                            </table>
-                        </span> -->
+                        
                     </div>
                     <!-- <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
@@ -159,13 +146,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="total" id="total" required>
+                        <input type="hidden" class="form-control" name="total" id="total" required>
+                        <div id="totalorder"></div>
                     </div>
 
                     <button id="button-start-demo" class="btn-book-a-table" type="submit">
                         <span>Book Now</span>
                     </button>
                 </form>
+                <span >
+                    <table >
+                        <tbody id="detail">
+
+                        </tbody>
+                    </table>
+                </span>
                 <div id="loading"></div>
                 @include('shared/modal')
                 @section('scripts')
@@ -190,6 +185,7 @@
                                 var totalbayar = ((totl) * 30) / 100 ;
                                 // document.getElementById('total').value = totl;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
+                                document.getElementById("totalorder").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totl);
                             }else{
                                 document.getElementById('total_bayar').value = subtota;
                                 const tota = document.getElementById('total').value ;
@@ -224,10 +220,13 @@
                             }
                             // console.log(document.getElementById('tipe_bayar').value);
                         };
+
                         function FungsiHitung(start, end, difference, code){
                             $('#loading').show();
                             var hrg = 0;
-                            var stok = 0
+                            var stok = 0;
+                            
+
                             for(let i=0 ; i<difference ;i++){
                                 var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
                                 var starte = moment(start).format('YYYY-M-DD');
@@ -351,6 +350,35 @@
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
                             });
                         });
+                        const data = [
+                            { name: 'Rahul', age: 25, city: 'New Delhi' },
+                            { name: 'Vijay', age: 30, city: 'Muzaffarpur' },
+                            { name: 'Gaurav', age: 22, city: 'Noida' },
+                        ];
+                
+                        function createTableWithInnerHTML() {
+                            let tableHTML = document.getElementById('detail').value ; // '<table border="1"><tr>';
+                
+                            Object.keys(data[0]).forEach(key => {
+                                tableHTML += `<th>${key}</th>`;
+                            });
+                
+                            tableHTML += '</tr>';
+                
+                            data.forEach(item => {
+                                tableHTML += '<tr>';
+                                Object.values(item).forEach(value => {
+                                    tableHTML += `<td>${value}</td>`;
+                                });
+                                tableHTML += '</tr>';
+                            });
+                
+                            tableHTML += '</table>';
+                
+                            document.body.innerHTML += tableHTML;
+                        }
+                
+                        createTableWithInnerHTML();
                     </script>
                 @endsection
                 

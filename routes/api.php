@@ -25,6 +25,8 @@ Route::get("health", function() {
 
 Route::post("invoice", [CheckoutController::class, 'create']);
 
+Route::post("insert-reservasi", [CheckoutController::class, 'createReservasi']);
+
 Route::post("get-rate", [App\Http\Controllers\bookingController::class , 'rate']);
 // Route::post("cek-alotment", [App\Http\Controllers\bookingController::class , 'cekAllotment']);\
 

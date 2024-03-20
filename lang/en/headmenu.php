@@ -21,5 +21,9 @@ return [
     //======== contact
     'contact' => 'Contact Us',
     'contact_title' => 'Dont hesitate to contact us',
-
+    //========= signin
+    'signin' => 'SignIn/Register',
+    'login' => 'Login',
+    'register' => 'Register',
+    'myakun' => 'My Account',
 ]; 

@@ -21,4 +21,9 @@ return [
      //======== contact
      'contact' => 'Kontak Kami',
      'contact_title' => 'Jangan Ragu Menghugungi Kami',
+     //========= signin
+    'signin' => 'Masuk/Daftar',
+    'login' => 'Masuk',
+    'register' => 'Daftar',
+    'myakun' => 'Akun Saya',
 ]; 

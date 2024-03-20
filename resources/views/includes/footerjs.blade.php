@@ -22,3 +22,37 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
+
+  <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded",
+      function () {
+        var guest = JSON.parse(localStorage.getItem('guest'));
+        var login = document.getElementById("masuk");
+        var myakun = document.getElementById("akun");
+        if(guest === null){
+          let arrGuest = {
+              name: '',
+              email: '',
+              nationality: '',
+              phone: ''
+          }
+          localStorage.setItem('guest', JSON.stringify(arrGuest));
+          login.style.display = "block";
+          myakun.style.display = "none";
+          // console.log(guestData.name);
+          // alert('null')
+        }else{
+          // alert('tidak null')
+          var guestData = JSON.parse(localStorage.getItem('guest'));
+          if(guestData.name !== ""){
+            login.style.display = "none";
+            myakun.style.display = "block";
+          }else{
+            login.style.display = "block";
+            myakun.style.display = "none";
+          }
+        }
+
+      });
+    
+  </script>

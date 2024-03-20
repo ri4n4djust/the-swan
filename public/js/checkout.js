@@ -9,6 +9,8 @@
 
     let integration;
     let invoiceUrl;
+
+    
     
 
     // configuration form elements
@@ -55,6 +57,9 @@
     // handles invoice creation upon checkout demo launch
     const startDemo = async () => {
         loadingDemoLaunch();
+       
+        
+
         const amount = document.getElementById('total_bayar').value;
         const total = document.getElementById('total').value;
         const code = document.getElementById('code').value;
@@ -112,6 +117,14 @@
                 total: total
             };
 
+            let arrGuest = {
+                name: name,
+                email: email,
+                nationality: nationality,
+                phone: mobile
+            }
+            localStorage.setItem('guest', JSON.stringify(arrGuest));
+
             // create an invoice for store checkout
             try {
                 const response = await fetch('/api/invoice', {
@@ -126,9 +139,25 @@
                 
                 if (response.status >= 200 
                     && response.status <= 299 
-                    && typeof data.invoice_url !== 'undefined')
+                    && typeof data.invoice_url !== 'undefined'){
                     invoiceUrl = data.invoice_url;
-                else alert(data.message);
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/api/insert-reservasi',
+                        data: invoiceData,
+                        dataType: "json",
+                        success: function(result) {
+
+                        },
+                        error: function(x, e) {
+
+                        }
+                    });
+
+                }else{
+                        alert(data.message);
+                }
             } catch (error) {
                 alert(error);
             }
