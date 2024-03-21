@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -71,7 +72,15 @@ class PageController extends Controller
 
     public function rooms()
     {
-        return view('admin.pages.rooms');
+        $defaultLocale = config('app.locale');
+        $room = DB::table('bookings')->get();
+        return view('admin.pages.rooms', ['room' => $room]);
+    }
+    public function roomAdd()
+    {
+        // $defaultLocale = config('app.locale');
+        // $room = DB::table('bookings')->get();
+        return view('admin.pages.room_add');
     }
 
     public function rates()
