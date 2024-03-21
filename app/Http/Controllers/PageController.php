@@ -79,6 +79,10 @@ class PageController extends Controller
         return view('admin.pages.rates');
     }
 
+    public function tour()
+    {
+        return view('admin.pages.tour');
+    }
     /**
      * Display upgrade page
      *

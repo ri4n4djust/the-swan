@@ -10,6 +10,10 @@ use App\Rules\ReCaptchaV3;
 class ContactUsController extends Controller
 {
     //
+    public function index(){
+        $defaultLocale = config('app.locale');
+        return view('pages.contact');
+    }
 
     public function send(Request $request)
     {

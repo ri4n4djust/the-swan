@@ -109,7 +109,7 @@
                             </div>
                             <div class="col-xl-6 form-group">
                             <input type="hidden" name="nationality" class="form-control" id="nationality" required>
-                            <select class="form-control" onchange="getComboA(this)" required>
+                            <select id="country_name" class="form-control" onchange="getComboA(this)" required>
                                 <option value="">Nationality</option>
                                 @foreach($country as $count)
                                 <option value="{{ $count->country_code }}">{{ $count->country_name }}</option>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" class="form-control" name="total" id="total" required>
+                        <input type="text" class="form-control" name="total" id="total" required>
                         <div id="totalorder"></div>
                     </div>
 
@@ -185,7 +185,7 @@
                                 var totalbayar = ((totl) * 30) / 100 ;
                                 // document.getElementById('total').value = totl;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
-                                document.getElementById("totalorder").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totl);
+                                // document.getElementById("totalorder").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totl);
                             }else{
                                 document.getElementById('total_bayar').value = subtota;
                                 const tota = document.getElementById('total').value ;
@@ -346,39 +346,41 @@
                                 const total_bayar = document.getElementById('total_bayar').value ;
 
                                 document.getElementById('totalbayar').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(total_bayar); ;
+                                // document.getElementById('totalorder').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totl); ;
                                 document.getElementById('hari').value = difference ;
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
                             });
                         });
-                        const data = [
-                            { name: 'Rahul', age: 25, city: 'New Delhi' },
-                            { name: 'Vijay', age: 30, city: 'Muzaffarpur' },
-                            { name: 'Gaurav', age: 22, city: 'Noida' },
-                        ];
+                        
+                        // const data = [
+                        //     { name: 'Rahul', age: 25, city: 'New Delhi' },
+                        //     { name: 'Vijay', age: 30, city: 'Muzaffarpur' },
+                        //     { name: 'Gaurav', age: 22, city: 'Noida' },
+                        // ];
                 
-                        function createTableWithInnerHTML() {
-                            let tableHTML = document.getElementById('detail').value ; // '<table border="1"><tr>';
+                        // function createTableWithInnerHTML() {
+                        //     let tableHTML = document.getElementById('detail').value ; // '<table border="1"><tr>';
                 
-                            Object.keys(data[0]).forEach(key => {
-                                tableHTML += `<th>${key}</th>`;
-                            });
+                        //     Object.keys(data[0]).forEach(key => {
+                        //         tableHTML += `<th>${key}</th>`;
+                        //     });
                 
-                            tableHTML += '</tr>';
+                        //     tableHTML += '</tr>';
                 
-                            data.forEach(item => {
-                                tableHTML += '<tr>';
-                                Object.values(item).forEach(value => {
-                                    tableHTML += `<td>${value}</td>`;
-                                });
-                                tableHTML += '</tr>';
-                            });
+                        //     data.forEach(item => {
+                        //         tableHTML += '<tr>';
+                        //         Object.values(item).forEach(value => {
+                        //             tableHTML += `<td>${value}</td>`;
+                        //         });
+                        //         tableHTML += '</tr>';
+                        //     });
                 
-                            tableHTML += '</table>';
+                        //     tableHTML += '</table>';
                 
-                            document.body.innerHTML += tableHTML;
-                        }
+                        //     document.body.innerHTML += tableHTML;
+                        // }
                 
-                        createTableWithInnerHTML();
+                        // createTableWithInnerHTML();
                     </script>
                 @endsection
                 

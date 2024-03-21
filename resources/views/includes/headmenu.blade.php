@@ -77,7 +77,7 @@
       <form cautocomplete="off">
           <div class="row">
               <div class="col-xl-6 form-group">
-              <input type="email" name="name" class="form-control" id="email" placeholder="Email" required>
+              <input type="email" name="name" class="form-control" id="email-login" placeholder="Email" required>
               </div>
                   <div class="col-xl-6 form-group">
                   <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
@@ -122,7 +122,9 @@
             </div>
           </div><!-- End Info Item -->
         </div>
-
+        <button id="button-start-demo" class="btn-book-a-table" onclick="logout()">
+              <span>Log Out</span>
+          </button>
         
       </div>
       <!-- <div class="modal-footer">

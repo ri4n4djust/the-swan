@@ -47,6 +47,11 @@
           if(guestData.name !== ""){
             login.style.display = "none";
             myakun.style.display = "block";
+            document.getElementById('name').value = guestData.name;
+            document.getElementById('email').value = guestData.email;
+            document.getElementById('mobile').value =  guestData.phone;
+            document.getElementById('nationality').value = guestData.nationality;
+            document.getElementById('country_name').value = guestData.nationality;
           }else{
             login.style.display = "block";
             myakun.style.display = "none";
@@ -54,5 +59,10 @@
         }
 
       });
+
+      function logout(){
+        localStorage.setItem('guest', null)
+        window.location.reload()
+      }
     
   </script>

@@ -35,7 +35,7 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/about', function () { return view('pages.about'); });
     Route::get('/gallery', [App\Http\Controllers\bookingController::class , 'galeri']);
     Route::get('/events', [App\Http\Controllers\bookingController::class , 'event']);
-    Route::get('/contact-us', function () { return view('pages.contact'); });
+    Route::get('/contact', [App\Http\Controllers\ContactUsController::class , 'index']);
     
 
     
@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
     Route::get('rooms', ['as' => 'pages.rooms', 'uses' => 'App\Http\Controllers\PageController@rooms']);
     Route::get('rates', ['as' => 'pages.rates', 'uses' => 'App\Http\Controllers\PageController@rates']);
+    Route::get('tour', ['as' => 'pages.tour', 'uses' => 'App\Http\Controllers\PageController@tour']);
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);

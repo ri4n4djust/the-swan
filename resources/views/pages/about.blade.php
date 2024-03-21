@@ -2,7 +2,21 @@
 
 @section('content')
 
-   
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <!-- <h2>Hotel Detail</h2> -->
+          <!-- <ol> -->
+            <!-- <li><a href="index.html">Home</a></li>
+            <li>Sample Inner Page</li> -->
+          <!-- </ol> -->
+        </div>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
         <div class="container" data-aos="fade-up">
@@ -16,13 +30,10 @@
             <div class="col-lg-7 position-relative about-img" style="background-image: url(assets/img/about.jpg) ;" data-aos="fade-up" data-aos-delay="150">
               <div class="call-us position-absolute">
                 <h4>{{ __('headmenu.about_book') }}</h4>
-                <p>
-                  <a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" target="_blank" >
-                    <button style="vertical-align:center;border-radius:5px">
-                    <img src="assets/img/wa.png" class="img-fluid">+62 8234 006 4488</button>
-                    
+                
+                <a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" target="_blank" class="btn-book-a-table">
+                    <img src="assets/img/wa.png" class="img-fluid">+62 8234 006 4488
                   </a>
-                </p>
                 
               </div>
             </div>
