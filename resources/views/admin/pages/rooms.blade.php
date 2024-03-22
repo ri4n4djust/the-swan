@@ -6,7 +6,7 @@
     <div class="card ">
       <div class="card-header">
         <h4 class="card-title"> Hotels Room</h4>
-        <button type="submit" class="btn btn-fill btn-primary">Add</button>
+        <a href="/room-add" class="btn btn-fill btn-primary">Add</a>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -30,7 +30,7 @@
                 <td class="text-center">{{$rm->alotment}}</td>
                 <td>{{$rm->lang}}</td>
                 <td>
-                  <i class="tim-icons icon-pencil"></i>
+                  <a href="{{ route('room.edit',['room_code' => $rm->code]) }}"><i class="tim-icons icon-pencil"></i></a>
                   <i class="tim-icons icon-trash-simple"></i>
                 </td>
               </tr>

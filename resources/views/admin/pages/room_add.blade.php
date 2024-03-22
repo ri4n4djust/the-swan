@@ -10,27 +10,46 @@
       </div>
       <div class="card-body">
 
+      <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data">
+      @csrf
+        <div class="form-group">
+            <label>Code</label>
+            <input type="text" name="code" class="form-control" placeholder="code" value="{{ $roomDetail->code ?? '' }}" >
+        </div>
         <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" placeholder="{{ __('Name') }}" >
-        </div>
-
-        <div class="form-group">
-            <label>Price</label>
-            <input type="email" name="email" class="form-control" placeholder="{{ __('Email address') }}" >
+            <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $roomDetail->title ?? '' }}">
         </div>
         <div class="form-group">
+            <label>slug</label>
+            <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $roomDetail->slug ?? '' }}">
+        </div>
+        <div class="form-group">
             <label>Price</label>
-            <input type="email" name="email" class="form-control" placeholder="{{ __('Email address') }}" >
+            <input type="number" name="price" class="form-control" placeholder="Price" value="{{ $roomDetail->price ?? '' }}">
+        </div>
+        <div class="form-group">
+            <label>Facility</label>
+            <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}">
+        </div>
+        <div class="form-group">
+            <label>Lang</label>
+            <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $roomDetail->lang ?? '' }}">
+        </div>
+        <div class="form-group">
+            <label>alotment</label>
+            <input type="number" name="allotment" class="form-control" placeholder="alotment" value="{{ $roomDetail->alotment ?? '' }}">
         </div>
         <div class="form-group">
             <label>Desc</label>
-            <textarea class="form-control" id="desc" name="desc"></textarea>
+            <textarea class="form-control" id="desc" name="desc" >{{ $roomDetail->desc ?? '' }}</textarea>
         </div>
         <div class="form-group">
             <div class="needsclick dropzone" id="document-dropzone"></div>
         </div>
         <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
+      </form>
+
       </div>
     </div>
   </div>
@@ -53,12 +72,14 @@
     var uploadedDocumentMap = {}
     Dropzone.options.documentDropzone = {
       url: '{{ route('projects.storeMedia') }}',
-      maxFilesize: 3, // MB
+      maxFilesize: 10, // MB
+      acceptedFiles: '.png, .jpg',
       addRemoveLinks: true,
       headers: {
         'X-CSRF-TOKEN': "{{ csrf_token() }}"
       },
       success: function (file, response) {
+        // console.log(file);
         $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
         uploadedDocumentMap[file.name] = response.name
       },
@@ -73,10 +94,24 @@
         $('form').find('input[name="document[]"][value="' + name + '"]').remove()
       },
       init: function () {
-        @if(isset($project) && $project->document)
-          var files = {!! json_encode($project->document) !!}
+        // console.log('onload dropzone');
+
+        @if(isset($roomDetail) && $roomDetail->foto)
+          var filess = {!! json_encode($roomDetail->foto) !!}
+          var filesa = filess.split(';');
+
+          const files = [];
+          for (let a = 0; a < filesa.length -1; a++) {
+              files.push ({
+                  'file_name': filesa[a],
+              });
+              console.log(filesa[a])
+          }
+
+          console.log(files);
           for (var i in files) {
             var file = files[i]
+            console.log(file)
             this.options.addedfile.call(this, file)
             file.previewElement.classList.add('dz-complete')
             $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')

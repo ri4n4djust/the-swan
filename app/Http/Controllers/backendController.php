@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class backendController extends Controller
 {
@@ -20,5 +22,82 @@ class backendController extends Controller
             'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        try{
+            $exception = DB::transaction(function() use ($request){ 
+            
+                $data = $request->all();
+            
+                $gmbr = "";
+                $foto = $data['document'];
+                foreach($foto as $ft){
+                    $gmbr = $gmbr.$ft.";" ;
+                }
+
+                $project = DB::table('bookings')->insert([
+                    'code' => $data['code'],
+                    'title' => $data['title'],
+                    'slug' => $data['slug'],
+                    'desc' => $data['desc'],
+                    'price' => $data['price'],
+                    'facility' => $data['facility'],
+                    'foto' => $gmbr,
+                    'lang' => $data['lang'],
+                    'alotment' => $data['allotment'],
+                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                ]);
+                for ($i = 0; $i < $data['allotment']; $i++) {
+                    DB::table('room_nomors')->insert([
+                        'room_code' => $i+1 ,
+                        'room_no' => $i+1 ,
+                        'unit_code' => $data['code'],
+                        'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                        'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                    ]);
+                }
+                // echo $gmbr ;
+                // print_r($data['document']);
+                foreach ($request->input('document', []) as $file) {
+                    \File::move(storage_path('tmp/uploads/'.$file), public_path('assets/img/rooms/'.$file));
+                    // echo $file ;
+                }
+                DB::commit();
+            });
+            if(is_null($exception)) {
+                // return response()->json([
+                //     'success' => true,
+                //     'message' => 'Post Berhasil Diupdate!',
+                // ], 200);
+                return redirect()->route('pages.rooms');
+            } else {
+                DB::rollback();
+                // return response()->json([
+                //     'success' => false,
+                //     'message' => 'Post Gagal Diupdate!',
+                // ], 500);
+                return redirect()->route('pages.room_add');
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            // something went wrong
+        //     return response()->json([
+        //      'success' => false,
+        //      'message' => 'exception'.$e,
+        //  ], 400);
+            return redirect()->route('pages.room_add');
+        }
+
+        // return redirect()->route('pages.rooms');
+    }
+
+    public function edit($room_code){
+        $roomDetail = DB::table('bookings')->where('code', $room_code)->first();
+        // return redirect()->route('pages.room_add');
+        return view('admin.pages.room_add', compact('roomDetail'));
+
     }
 }
