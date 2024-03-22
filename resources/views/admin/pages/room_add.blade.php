@@ -14,6 +14,7 @@
       @csrf
         <div class="form-group">
             <label>Code</label>
+            <input type="text" name="id" class="form-control" placeholder="code" value="{{ $roomDetail->id ?? '' }}" >
             <input type="text" name="code" class="form-control" placeholder="code" value="{{ $roomDetail->code ?? '' }}" >
         </div>
         <div class="form-group">
@@ -30,7 +31,14 @@
         </div>
         <div class="form-group">
             <label>Facility</label>
-            <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}">
+            <!-- <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}"> -->
+
+            @foreach($fasilitas as $fas)
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="fas_id" name="facility[]" value="{{$fas->id}}" >{{$fas->fas_name}}
+                </label>
+            @endforeach
+
         </div>
         <div class="form-group">
             <label>Lang</label>
@@ -71,7 +79,7 @@
 
     var uploadedDocumentMap = {}
     Dropzone.options.documentDropzone = {
-      url: '{{ route('projects.storeMedia') }}',
+      url: '{{ route('room.storeMedia') }}',
       maxFilesize: 10, // MB
       acceptedFiles: '.png, .jpg',
       addRemoveLinks: true,
@@ -79,7 +87,7 @@
         'X-CSRF-TOKEN': "{{ csrf_token() }}"
       },
       success: function (file, response) {
-        // console.log(file);
+        console.log(file);
         $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
         uploadedDocumentMap[file.name] = response.name
       },
@@ -108,10 +116,11 @@
               console.log(filesa[a])
           }
 
-          console.log(files);
+          // console.log(files);
           for (var i in files) {
             var file = files[i]
-            console.log(file)
+            console.log(this)
+            // this.files.push(file);
             this.options.addedfile.call(this, file)
             file.previewElement.classList.add('dz-complete')
             $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')

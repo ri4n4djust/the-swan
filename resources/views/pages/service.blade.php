@@ -175,11 +175,15 @@
                   </p>
                   <ul>
                   <?php $count = 0; ?>
+                  @php $fasi = explode(";",$detail->facility) ; @endphp
+                  @for ($i = 1; $i < count($fasi); $i++)
                     @foreach ($fasilitas as $fas)
-                    @if($detail->code == $fas->room_code)
-                    <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
-                    @endif
+                      @if($fasi[$i] == $fas->id)
+                      <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
+                      @endif
                     @endforeach
+                  @endfor
+                 
                   
                   </ul>
                   @foreach ($rate as $rat)

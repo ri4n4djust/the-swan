@@ -36,20 +36,22 @@ class backendController extends Controller
                 foreach($foto as $ft){
                     $gmbr = $gmbr.$ft.";" ;
                 }
-
-                $project = DB::table('bookings')->insert([
+                $fasi = implode(';', $data['facility']);
+                $project = DB::table('bookings')->upsert([
+                    'id' => $data['id'],
                     'code' => $data['code'],
                     'title' => $data['title'],
                     'slug' => $data['slug'],
                     'desc' => $data['desc'],
                     'price' => $data['price'],
-                    'facility' => $data['facility'],
+                    'facility' => ';'.$fasi,
                     'foto' => $gmbr,
                     'lang' => $data['lang'],
                     'alotment' => $data['allotment'],
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
-                ]);
+                ], 'id');
+                DB::table('room_nomors')->where('unit_code', $data['code'])->delete();
                 for ($i = 0; $i < $data['allotment']; $i++) {
                     DB::table('room_nomors')->insert([
                         'room_code' => $i+1 ,
@@ -75,20 +77,20 @@ class backendController extends Controller
                 return redirect()->route('pages.rooms');
             } else {
                 DB::rollback();
-                // return response()->json([
-                //     'success' => false,
-                //     'message' => 'Post Gagal Diupdate!',
-                // ], 500);
-                return redirect()->route('pages.room_add');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Post Gagal Diupdate!',
+                ], 500);
+                // return redirect()->route('pages.room_add');
             }
         } catch (\Exception $e) {
             DB::rollback();
             // something went wrong
-        //     return response()->json([
-        //      'success' => false,
-        //      'message' => 'exception'.$e,
-        //  ], 400);
-            return redirect()->route('pages.room_add');
+            return response()->json([
+             'success' => false,
+             'message' => 'exception'.$e,
+         ], 400);
+            // return redirect()->route('pages.room_add');
         }
 
         // return redirect()->route('pages.rooms');
@@ -97,7 +99,8 @@ class backendController extends Controller
     public function edit($room_code){
         $roomDetail = DB::table('bookings')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
-        return view('admin.pages.room_add', compact('roomDetail'));
+        $fasilitas = DB::table('facilities')->get();
+        return view('admin.pages.room_add', compact('roomDetail', 'fasilitas'));
 
     }
 }

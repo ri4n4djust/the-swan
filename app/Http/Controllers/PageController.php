@@ -79,8 +79,8 @@ class PageController extends Controller
     public function roomAdd()
     {
         // $defaultLocale = config('app.locale');
-        // $room = DB::table('bookings')->get();
-        return view('admin.pages.room_add');
+        $fasilitas = DB::table('facilities')->get();
+        return view('admin.pages.room_add', compact('fasilitas'));
     }
 
     public function rates()
