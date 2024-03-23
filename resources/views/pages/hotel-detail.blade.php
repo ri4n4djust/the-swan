@@ -136,6 +136,8 @@
                         <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
                         <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
                         <input type="hidden" name="room_no" id="room_no" required>
+
+                        <input type="text" name="rate_dolar" id="rate_dolar" required>
                         
                     </div>
                     <!-- <div class="form-group">
@@ -150,11 +152,12 @@
                     <div class="row">
                         <div class="col-xl-6 form-group">
                             <input type="hidden" class="form-control" name="order-items" id="order-items" required>
-                            TOTAL Have to Pay : <div id="totalbayar"></div>
+                            Have to Pay : <div id="totalbayar"></div> / <div id="totalbayardolar"></div>
                         </div>
                         <div class="col-xl-6 form-group">
-                            <!-- <input type="text" class="form-control" name="subtotal" id="subtotal" required> -->
-                            <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" placeholder="Subject" required>
+                            <input type="text" class="form-control" name="subtotal" id="subtotal" required>
+                            <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" required>
+                            <input type="text" class="form-control" name="bayar_dolar" id="bayar_dolar" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -166,6 +169,28 @@
                         <span>Book Now</span>
                     </button>
                 </form>
+
+
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{ $message }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
+                    <div>
+                    <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
+                    <a href="" onclick="payPal()">SUUUBBB</a>
+                    </div>
+
+
                 <span >
                     <table >
                         <tbody id="detail">
@@ -189,20 +214,43 @@
                             // Code to be executed when the DOM is ready
                             document.getElementById('tgl_reservasi').value = moment().format('YYYY-MM-DD h:mm:ss'); // new Date(); 
                             const tipe = document.getElementById('tipe_bayar').value ;
-                            // const subtota = document.getElementById('subtotal').value ;
+                            const subtota = document.getElementById('subtotal').value ;
                             var komisi = 0;
                             if(tipe === "deposit"){
                                 const totl = document.getElementById('total').value ;
                                 document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
                                 var totalbayar = ((totl) * 30) / 100 ;
+                                var rate = document.getElementById('rate_dolar').value ;
+                                document.getElementById('bayar_dolar').value = Math.ceil(totalbayar / rate) ;
+                                var totalbayardolar = document.getElementById('bayar_dolar').value ;
                                 // document.getElementById('total').value = totl;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
-                                // document.getElementById("totalorder").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totl);
+                                document.getElementById("totalbayardolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalbayardolar);
                             }else{
                                 document.getElementById('total_bayar').value = subtota;
                                 const tota = document.getElementById('total').value ;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
+
+                                document.getElementById('bayar_dolar').value = subtota;
+                                const tota_dolar = document.getElementById('bayar_dolar').value ;
+                                document.getElementById("totalbayardolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tota_dolar);
                             }
+
+                            $.ajax({
+                                type: "GET",
+                                url: "/api/get-exchange",
+                                error: function (request, error) {
+                                    console.log(error);
+                                },
+                                success: function (result) {
+                                    console.log(result.conversion_rates.IDR)
+                                    document.getElementById('rate_dolar').value = result.conversion_rates.IDR
+                                    // var rupiah = document.getElementById('total_bayar').value
+
+                                },
+                                
+                                // dataType: "json"
+                            });
                             
                             // heading.textContent = "DOM is ready!"; 
                         }); 
@@ -212,23 +260,27 @@
                             console.log(value);
                         };
                         function getOption() {
-                            const tipe = document.getElementById('tipe_bayar').value ;
-                            
+                            const tipe = document.getElementById('tipe_bayar').value ;                            
+                            const subtota = document.getElementById('subtotal').value ;
+                            var komisi = 0;
                             if(tipe === "deposit"){
-                                // 
                                 const totl = document.getElementById('total').value ;
                                 document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
                                 var totalbayar = ((totl) * 30) / 100 ;
+                                var rate = document.getElementById('rate_dolar').value ;
+                                document.getElementById('bayar_dolar').value = Math.ceil(totalbayar / rate) ;
+                                var totalbayardolar = document.getElementById('bayar_dolar').value ;
                                 // document.getElementById('total').value = totl;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totalbayar);
-                                // console.log('deposit ne');
-                            }else if(tipe === "full"){
-                                // document.getElementById('sisa').value = subtota;
-                                // document.getElementById('total').value = 0;
+                                document.getElementById("totalbayardolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalbayardolar);
+                            }else{
+                                document.getElementById('total_bayar').value = subtota;
                                 const tota = document.getElementById('total').value ;
-                                document.getElementById('total_bayar').value = tota ;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
-                            
+
+                                document.getElementById('bayar_dolar').value = subtota;
+                                const tota_dolar = document.getElementById('bayar_dolar').value ;
+                                document.getElementById("totalbayardolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tota_dolar);
                             }
                             // console.log(document.getElementById('tipe_bayar').value);
                         };
@@ -332,6 +384,8 @@
                                 "opens": "center",
                                 "drops": "auto"
                             }, function(start, end, label) {
+
+                                
                                 // $('#cekin').val(start.format('YYYY-MM-DD'));
                                 var code = document.getElementById('code').value
                                 var name = document.getElementById('name').value
@@ -356,6 +410,10 @@
                                 document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
 
                                 const total_bayar = document.getElementById('total_bayar').value ;
+                                const rate_usd = document.getElementById('rate_dolar').value ;
+                                const bayar_dolar = total_bayar / rate_usd ;
+                                console.log(bayar_dolar);
+
 
                                 document.getElementById('totalbayar').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(total_bayar); ;
                                 // document.getElementById('totalorder').innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(totl); ;
@@ -363,6 +421,42 @@
                                 // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + difference + ')');
                             });
                         });
+
+                        function payPal(){
+                            var formElement = document.getElementById("form-configure");
+                            var formData = new URLSearchParams(new FormData(formElement)).toString()
+                            
+
+                            // var str = $( "form-configure" ).serialize();
+                            // console.log(formData);
+                            // var formDataa = JSON.parse(formData);
+                            window.open("{{ url('/paypal/payment?')}}" + formData);
+                            // console.log(formDataa);
+                            // $.ajaxSetup({
+                            //     headers: {
+                            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            //         'Access-Control-Allow-Origin': '*',
+                            //         'Access-Control-Allow-Methods' : 'GET,POST,PUT,DELETE,OPTIONS',
+                            //     }
+                            // });
+                            // $.ajax({
+                            //     type: "POST",
+                            //     url: "/paypal/detail",
+                            //     data: formData,
+                            //     error: function (request, error) {
+                            //         // console.log(arguments);
+                            //     },
+                            //     success: function (result) {
+                                   
+                            //         // alert(detail);
+                            //         console.log(result);
+                                    
+                            //     },
+                                
+                            //     // dataType: "json"
+                            // });
+
+                        }
                         
                         // const data = [
                         //     { name: 'Rahul', age: 25, city: 'New Delhi' },

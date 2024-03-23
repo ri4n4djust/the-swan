@@ -28,7 +28,7 @@ Route::post("invoice", [CheckoutController::class, 'create']);
 Route::post("insert-reservasi", [CheckoutController::class, 'createReservasi']);
 
 Route::post("get-rate", [App\Http\Controllers\bookingController::class , 'rate']);
-// Route::post("cek-alotment", [App\Http\Controllers\bookingController::class , 'cekAllotment']);\
+Route::get("get-exchange", [App\Http\Controllers\bookingController::class , 'exchange']);
 
 Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
 Route::post('/create-payment', [App\Http\Controllers\callbackController::class, 'createPayment']);

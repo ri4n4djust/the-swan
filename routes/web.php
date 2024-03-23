@@ -52,6 +52,12 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 // Route::post('/contact-us', ['App\Http\Controllers\ContactUsController', 'send'])->name('contact.send');
 Route::post('/contact-us', [App\Http\Controllers\ContactUsController::class, 'send']);
 
+//================paypal
+Route::get('paypal', [App\Http\Controllers\PayPalController::class, 'index'])->name('paypal');
+Route::get('paypal/payment', [App\Http\Controllers\PayPalController::class, 'payment'])->name('paypal.payment');
+Route::get('paypal/payment/success', [App\Http\Controllers\PayPalController::class, 'paymentSuccess'])->name('paypal.payment.success');
+Route::get('paypal/payment/cancel', [App\Http\Controllers\PayPalController::class, 'paymentCancel'])->name('paypal.payment/cancel');
+
 
 //====tess
 Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getLoc']);

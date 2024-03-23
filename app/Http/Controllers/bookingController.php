@@ -13,6 +13,7 @@ use App\Models\Artikel;
 use App\Models\Gallery;
 use App\Models\Rate;
 use Stevebauman\Location\Facades\Location;
+use Illuminate\Support\Facades\Http;
 
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -151,6 +152,14 @@ class bookingController extends Controller
             'artikel' => $artikel
             ] );
         
+    }
+
+    public function exchange(){
+
+        $response = Http::get('https://v6.exchangerate-api.com/v6/bcb99ccd6a1020a3868d3632/latest/USD');
+        $posts = $response->json();
+        return response()->json($posts);
+
     }
 
     public function rate(Request $request){
