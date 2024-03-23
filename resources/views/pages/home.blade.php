@@ -15,7 +15,7 @@
               <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
             </div>
           </div>
-          <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <div class="col-lg-7 order-lg-2 text-center text-lg-start">
             <img src="assets/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
           </div>
         </div>
@@ -270,11 +270,15 @@
                   </p>
                   <ul>
                   <?php $count = 0; ?>
+                  @php $fasi = explode(";",$detail->facility) ; @endphp
+                  @for ($i = 1; $i < count($fasi); $i++)
                     @foreach ($fasilitas as $fas)
-                    @if($detail->code == $fas->room_code)
-                    <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
-                    @endif
+                      @if($fasi[$i] == $fas->id)
+                      <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
+                      @endif
                     @endforeach
+                  @endfor
+                 
                   
                   </ul>
                   @foreach ($rate as $rat)

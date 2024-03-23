@@ -73,9 +73,18 @@
 
 
 
-                <p>
+                <div class="row">
                 <!-- {{ $hotelDetail[0]->title }} -->
-                </p>
+                @php $fasi = explode(";",$hotelDetail[0]->facility) ; @endphp
+                  @for ($i = 1; $i < count($fasi); $i++)
+                    @foreach ($fasilitas as $fas)
+                      @if($fasi[$i] == $fas->id)
+                      <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
+                      @endif
+                    @endforeach
+                  @endfor
+                </div>
+                
                 <p>{!! $hotelDetail[0]->desc !!}</p>
                 <p>
                 <!-- <iframe src="https://www.airbnb.co.id/calendar/ical/1008390716123586176.ics?s=cf056deabfae92dc6d2000654b37a31e" height="200" width="300" title="Iframe Example"></iframe>  -->

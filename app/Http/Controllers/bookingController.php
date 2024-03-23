@@ -116,10 +116,12 @@ class bookingController extends Controller
 
         $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
         $country = DB::table('countries')->get();
+        $fasilitas = Facility::all();
 
         return view('pages.hotel-detail',[
             'hotelDetail' => $hotel,
-            'country' => $country
+            'country' => $country,
+            'fasilitas' => $fasilitas,
             ] );
     }
 
