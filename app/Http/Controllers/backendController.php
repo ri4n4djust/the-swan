@@ -103,4 +103,15 @@ class backendController extends Controller
         return view('admin.pages.room_add', compact('roomDetail', 'fasilitas'));
 
     }
+
+    public function guestOrder(Request $request){
+        $email = $request->email ;
+        $data = DB::table('reservations')->where('guest_email', $email)->get();
+         return response()->json([
+            'success' => true,
+            'message' => 'your list reservasi!',
+            'data' => $data
+        ], 200);
+
+    }
 }

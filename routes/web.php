@@ -40,7 +40,7 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 
     
     Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
-    Route::get('/service', [App\Http\Controllers\bookingController::class , 'service']);
+    Route::get('/service', [App\Http\Controllers\bookingController::class , 'service'])->name('service');
     Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
     Route::get('/hotel/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
 
@@ -89,6 +89,9 @@ Route::get('/sitemap', function(){
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 }); 
+
+//======================guest
+Route::post('guest-order', [App\Http\Controllers\backendController::class, 'guestOrder'])->name('guest.order');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

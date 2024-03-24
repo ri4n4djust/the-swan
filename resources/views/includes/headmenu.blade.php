@@ -118,6 +118,17 @@
 
           <div class="col-md-6">
             <div class="info-item d-flex align-items-left">
+
+            <table>
+              <tr>
+                <td>Res No</td>
+                <td>Product Code</td>
+                <td>Cek in</td>
+                <td>Cek Out</td>
+                <td>Total</td>
+                <td>Payment</td>
+              </tr>
+            </table>
               
             </div>
           </div><!-- End Info Item -->

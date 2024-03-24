@@ -29,6 +29,8 @@ Route::post("insert-reservasi", [CheckoutController::class, 'createReservasi']);
 
 Route::post("get-rate", [App\Http\Controllers\bookingController::class , 'rate']);
 Route::get("get-exchange", [App\Http\Controllers\bookingController::class , 'exchange']);
-
+//============callback
 Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
 Route::post('/create-payment', [App\Http\Controllers\callbackController::class, 'createPayment']);
+
+Route::post('/paypal-complete', [App\Http\Controllers\callbackController::class, 'paypalComplete']);

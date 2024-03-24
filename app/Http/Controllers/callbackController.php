@@ -89,4 +89,10 @@ class callbackController extends Controller
         return view(['pages.booking-detail.php', $detail]);
     
     }
+
+    public function paypalComplete(){
+
+        $detail = $request->all();
+
+    }
 }

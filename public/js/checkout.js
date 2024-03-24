@@ -74,7 +74,7 @@
         const cekin = document.getElementById('cek_in').value;
         const cekout = document.getElementById('cek_out').value;
         const hari = document.getElementById('hari').value;
-        const description = document.getElementById('order-items').value;
+        const description = document.getElementById('code').value;
 
         const totalContent =
             '<div class="cart-total__order-item">' +

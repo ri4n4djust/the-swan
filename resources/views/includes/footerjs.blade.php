@@ -52,6 +52,27 @@
             document.getElementById('mobile').value =  guestData.phone;
             document.getElementById('nationality').value = guestData.nationality;
             document.getElementById('country_name').value = guestData.nationality;
+            //==============Guest Detail
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/guest-order",
+                data: { "email": guestData.email },
+                error: function (request, error) {
+                    // console.log(arguments);
+                    
+                },
+                success: function (result) {
+                  console.log(result)
+                    
+                },
+                
+                // dataType: "json"
+            });
           }else{
             login.style.display = "block";
             myakun.style.display = "none";
