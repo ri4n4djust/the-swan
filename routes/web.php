@@ -63,7 +63,6 @@ Route::get('paypal/payment/cancel', [App\Http\Controllers\PayPalController::clas
 Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getLoc']);
 // Route::resource('orders', OrderController::class)->only(['index', 'show']);
 //=====end route tes
-
 // Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
 
 Route::get('/sitemap', function(){

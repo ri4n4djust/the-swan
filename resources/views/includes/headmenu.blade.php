@@ -110,25 +110,46 @@
         </button>
       </div>
       <div class="modal-body">
+
       
         <div class="row gy-4">
-          <div class="col-md-6">
-            
+          <div class="col-md-9">
+          <div class="row">
+              <div class="col-xl-6 form-group">
+                  <!-- <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" disabled> -->
+              </div>
+              <div class="col-xl-6 form-group">
+                  <!-- <input type="text" name="nationality" class="form-control" id="nationality" disabled> -->
+                  <!-- <input type="text" name="country_name" class="form-control" id="country_name" disabled> -->
+              </div>
+          </div>
+          
+          
+
+          <div class="table-responsive">
+            <table id="table1" class="table">
+              <thead>
+                <tr >
+                  <th >Product Code</th>
+                  <th >Cek In</th>
+                  <th >Cek Out</th>
+                  <th >Total</th>
+                  <th >Payment</th>
+                  <th >Status</th>
+                </tr>
+              </thead>
+              <tbody  >
+                
+              </tbody>
+              
+            </table>
+          </div>  
           </div><!-- End Info Item -->
 
           <div class="col-md-6">
             <div class="info-item d-flex align-items-left">
 
-            <table>
-              <tr>
-                <td>Res No</td>
-                <td>Product Code</td>
-                <td>Cek in</td>
-                <td>Cek Out</td>
-                <td>Total</td>
-                <td>Payment</td>
-              </tr>
-            </table>
+            
               
             </div>
           </div><!-- End Info Item -->

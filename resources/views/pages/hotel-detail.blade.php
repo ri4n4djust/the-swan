@@ -164,7 +164,7 @@
                     </div>
 
                     <button id="button-start-demo" class="btn-book-a-table" type="submit">
-                        <span>Book Now</span>
+                        <span>Pay Now</span>
                     </button>
                 </form>
 
@@ -211,13 +211,13 @@
                             // Code to be executed when the DOM is ready
                             document.getElementById('tgl_reservasi').value = moment().format('YYYY-MM-DD h:mm:ss'); // new Date(); 
                             const tipe = document.getElementById('tipe_bayar').value ;
-                            // const subtota = document.getElementById('subtotal').value ;
+                            var rate = document.getElementById('rate_dolar').value ;
                             var komisi = 0;
                             if(tipe === "deposit"){
                                 const totl = document.getElementById('total').value ;
                                 document.getElementById('total_bayar').value = ((totl) * 30) / 100 ;
                                 var totalbayar = ((totl) * 30) / 100 ;
-                                var rate = document.getElementById('rate_dolar').value ;
+                                
                                 // document.getElementById('bayar_dolar').value = totalbayar / rate ;
                                 // var totalbayardolar = document.getElementById('bayar_dolar').value ;
                                 // document.getElementById('total').value = totl;
@@ -228,9 +228,9 @@
                                 const tota = document.getElementById('total').value ;
                                 document.getElementById("totalbayar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(tota);
 
-                                // document.getElementById('bayar_dolar').value = subtota;
-                                // const tota_dolar = document.getElementById('bayar_dolar').value ;
-                                document.getElementById("totalbayardolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tota_dolar);
+                                
+                                var totald = Math.ceil(tota / rate);
+                                document.getElementById("totalbayardolar").innerHTML = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totald);
                             }
 
                             $.ajax({
@@ -399,12 +399,34 @@
                         function payPal(){
                             var formElement = document.getElementById("form-configure");
                             var formData = new URLSearchParams(new FormData(formElement)).toString()
-                            
+
+                            var name = document.getElementById('name').value;
+                            var email = document.getElementById('email').value;
+                            var nationality = $("#country_name option:selected").val(); //document.getElementById('nationality').value;
+                            var country_name = $("#country_name option:selected").text();
+                            var mobile = document.getElementById('mobile').value;
+                            var cekin = document.getElementById('cek_in').value;
+                            var cekout = document.getElementById('cek_out').value;
+
+                            if(cekin !== '' && cekout !== '' && name !== '' && email !== '' && nationality !== ''){
+
+                                let arrGuest = {
+                                    name: name,
+                                    email: email,
+                                    nationality: nationality,
+                                    country_name: country_name,
+                                    phone: mobile
+                                }
+                                localStorage.setItem('guest', JSON.stringify(arrGuest));
+                                window.open("{{ url('/paypal/payment?')}}" + formData);
+                            }else{
+                                alert("Please Complete Form")
+                            }
 
                             // var str = $( "form-configure" ).serialize();
                             // console.log(formData);
                             // var formDataa = JSON.parse(formData);
-                            window.open("{{ url('/paypal/payment?')}}" + formData);
+                            
                             // console.log(formDataa);
                             // $.ajaxSetup({
                             //     headers: {

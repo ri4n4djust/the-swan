@@ -25,7 +25,9 @@
 
   <script type="text/javascript">
       document.addEventListener("DOMContentLoaded",
+      
       function () {
+        // console.log('page load')
         var guest = JSON.parse(localStorage.getItem('guest'));
         var login = document.getElementById("masuk");
         var myakun = document.getElementById("akun");
@@ -47,11 +49,12 @@
           if(guestData.name !== ""){
             login.style.display = "none";
             myakun.style.display = "block";
+            
             document.getElementById('name').value = guestData.name;
             document.getElementById('email').value = guestData.email;
-            document.getElementById('mobile').value =  guestData.phone;
-            document.getElementById('nationality').value = guestData.nationality;
-            document.getElementById('country_name').value = guestData.nationality;
+            // document.getElementById('mobile').value =  guestData.phone;
+            // document.getElementById('nationality').value = guestData.nationality;
+            // document.getElementById('country_name').value = guestData.nationality;
             //==============Guest Detail
             $.ajaxSetup({
                 headers: {
@@ -68,6 +71,17 @@
                 },
                 success: function (result) {
                   console.log(result)
+                  var trHTML = '';
+                  $.each(result.data, function (i, o){
+                      trHTML += '<tr><td>' + o.code_service +
+                                '</td><td>' + moment(o.cek_in).format('Y-M-D') +
+                                '</td><td>' + moment(o.cek_out).format('Y-M-D') +
+                                '</td><td>' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(o.total) +
+                                '</td><td>' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(o.guest_paid) +
+                                '</td><td>' + o.status +
+                                '</td></tr>';
+                  });
+                  $('#table1').append(trHTML);
                     
                 },
                 
@@ -79,7 +93,7 @@
           }
         }
 
-      });
+      }, false);
 
       function logout(){
         localStorage.setItem('guest', null)
