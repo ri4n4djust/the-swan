@@ -74,12 +74,20 @@
 
 
                 <div class="row">
+                <h5>Facility</h5>
                 <!-- {{ $hotelDetail[0]->title }} -->
                 @php $fasi = explode(";",$hotelDetail[0]->facility) ; @endphp
                   @for ($i = 1; $i < count($fasi); $i++)
                     @foreach ($fasilitas as $fas)
                       @if($fasi[$i] == $fas->id)
-                      <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
+
+                      <div class="col-4 form-group">
+                      <i class="bi bi-check2-all"></i> {!! $fas->icon !!} {{ $fas->fas_name }}
+                      <!-- <i class="fa-sharp fa-solid fa-person-swimming"></i> -->
+                     
+                      
+                      
+                        </div>
                       @endif
                     @endforeach
                   @endfor
@@ -171,11 +179,11 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-xl-4 form-group">
+                        <div class="col-4 form-group">
                             Have to Pay : 
                         </div>
-                        <div class="col-xl-8 form-group">
-                            <div id="totalbayar"></div>/<div id="totalbayardolar"></div>
+                        <div class="col-8 form-group">
+                            <span id="totalbayar"></span>/<span id="totalbayardolar"></span>
                             <input type="hidden" class="form-control" name="total" id="total" required>
                             <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" required>
                             <input type="hidden" class="form-control" name="bayar_dolar" id="bayar_dolar" required>
@@ -183,13 +191,13 @@
                     </div>
                     </form>
                     <div class="row">
-                        <div class="col-xl-5 form-group">
+                        <div class="col-5 form-group">
                             <button id="button-start-demo" class="btn-book-a-table" type="submit" form="form-configure">
                                 <span>Pay Now</span>
                             </button>
                         </div>
                         
-                        <div class="col-xl-7 form-group">
+                        <div class="col-7 form-group">
                         @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>{{ $message }}</strong>
@@ -206,13 +214,6 @@
 
                         <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
                     </div>
-                
-
-
-                    
-
-
-               
                 
                 
                 <div id="loading"></div>
@@ -561,7 +562,6 @@
 
         </div>
     </section><!-- End About Section -->
-
-    
+   
 
 @stop

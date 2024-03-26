@@ -56,9 +56,15 @@ h6 {
   font-family: var(--font-secondary);
 }
 
+.desc-event {
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+}
+
 .btn-book-a-table {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 1px;
   display: inline-block;
   padding: 12px 36px;
@@ -1531,7 +1537,7 @@ section {
 
 .hero .btn-book-a-table {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 1px;
   display: inline-block;
   padding: 12px 36px;

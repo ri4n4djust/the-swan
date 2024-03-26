@@ -268,19 +268,27 @@
                   <p class="fst-italic">
                   {!! substr($detail->desc, 0, 150) !!}
                   </p>
-                  <ul>
-                  <?php $count = 0; ?>
+
+                  <div class="row">
                   @php $fasi = explode(";",$detail->facility) ; @endphp
-                  @for ($i = 1; $i < count($fasi); $i++)
-                    @foreach ($fasilitas as $fas)
-                      @if($fasi[$i] == $fas->id)
-                      <li><i class="bi bi-check2-all"></i> {{ $fas->fas_name }}</li>
-                      @endif
-                    @endforeach
-                  @endfor
-                 
+                    @for ($i = 1; $i < 4; $i++)
+                      @foreach ($fasilitas as $fas)
+                        @if($fasi[$i] == $fas->id)
+                        <div class="col-2 form-group">
+                        <i class="bi bi-check2-all"></i> {!! $fas->icon !!}
+                        <!-- <i class="fa-sharp fa-solid fa-person-swimming"></i> -->
+                        </div>
+                        @endif
+                      @endforeach
+                    @endfor
+                        <div class="col-5 form-group d-flex" data-aos="fade-up" data-aos-delay="200">
+                          
+                            <a href="/hotel/{{$detail->slug}}" class="btn-book-a-table">Book Now</a>
+                          
+                        </div>
+
+                  </div>
                   
-                  </ul>
                   @foreach ($rate as $rat)
                   <p>
                       @if($detail->code == $rat->kode_kamar)
@@ -292,11 +300,7 @@
                   </p>
                   @endforeach
 
-                  <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <!-- <img src="assets/img/about-2.jpg" class="img-fluid" alt=""> -->
-                    <!-- IDR {{ number_format($detail->price, 2) }} / Night -->
-                    <a href="/hotel/{{$detail->slug}}" class="btn-book-a-table">Detail</a>
-                  </div>
+                  
                 </div>
               </div>
             @endforeach
@@ -859,9 +863,9 @@
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/artikel/{{$art->foto}})">
               <h3>{{ $art->judul }}</h3>
               <!-- <div class="price align-self-start">$99</div> -->
-              <p class="description">
+              <span class="desc-event">
               {!! substr($art->isi, 0, 100) !!}
-              </p>
+              </span>
             </div><!-- End Event item -->
 
           @endforeach
