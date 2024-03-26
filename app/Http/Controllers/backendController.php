@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class backendController extends Controller
 {
@@ -113,6 +115,31 @@ class backendController extends Controller
             'message' => 'your list reservasi!',
             'data' => $data
         ], 200);
+
+    }
+
+    public function guestLogin(Request $request){
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        $user= DB::table('guests')->where('email', $request->email)
+                ->join('countries', 'guests.nationality', 'countries.country_code')    
+                ->first();
+        
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response([
+                    'success'   => false,
+                    'message' => ['These credentials do not match our records.']
+                ], 404);
+            }
+               
+            $response = [
+                'success'   => true,
+                'user'      => $user,
+            ];
+        
+        return response($response, 201);
 
     }
 

@@ -91,6 +91,7 @@ Route::get('/sitemap', function(){
 
 //======================guest
 Route::post('guest-order', [App\Http\Controllers\backendController::class, 'guestOrder'])->name('guest.order');
+Route::post('guest-login', [App\Http\Controllers\backendController::class, 'guestLogin'])->name('guest.login');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

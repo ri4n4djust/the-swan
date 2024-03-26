@@ -77,7 +77,7 @@
       <form cautocomplete="off">
           <div class="row">
               <div class="col-xl-6 form-group">
-              <input type="email" name="name" class="form-control" id="email-login" placeholder="Email" required>
+              <input type="email" name="email-login" class="form-control" id="email-login" placeholder="Email" required>
               </div>
                   <div class="col-xl-6 form-group">
                   <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
@@ -86,9 +86,9 @@
           <!-- <div class="form-group">
               <input type="text" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
           </div> -->
-          <button id="button-start-demo" class="btn-book-a-table" type="submit">
-              <span>Log In</span>
-          </button>
+          <a id="button-start-demo" onclick="login()" class="btn-book-a-table">
+              Log In
+</a>
       </form>
 
         
@@ -116,6 +116,7 @@
           <div class="col-md-9">
           <div class="row">
               <div class="col-xl-6 form-group">
+                Your Default password is 6 digit of your full email.
                   <!-- <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" disabled> -->
               </div>
               <div class="col-xl-6 form-group">

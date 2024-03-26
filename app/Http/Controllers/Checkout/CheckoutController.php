@@ -208,9 +208,12 @@ class CheckoutController extends BaseController {
         // if($post){
         //     var_dump($post);
         // }
+        $text = substr($req->email, 0, 6);
+        $pass = Hash::make($text);
         DB::table('guests')->upsert([
             'name' => $req->name,
             'email' => $req->email,
+            'password' => $pass,
             'nationality' => $req->nationality,
             'mobile' => $req->mobile,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),

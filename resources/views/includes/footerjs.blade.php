@@ -101,5 +101,41 @@
         localStorage.setItem('guest', null)
         window.location.reload()
       }
+      function login(){
+        var email_login =  document.getElementById('email-login').value
+        var password =  document.getElementById('password').value
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/guest-login",
+                data: { 
+                  "email": email_login,
+                  "password": password
+                },
+                error: function (request, error) {
+                    // console.log(arguments);
+                    
+                },
+                success: function (result) {
+                  console.log(result)
+                  let arrGuest = {
+                      name: result.user.name,
+                      email: result.user.email,
+                      nationality: result.user.nationality,
+                      country_name: result.user.country_name,
+                      phone: result.user.mobile
+                  }
+                  localStorage.setItem('guest', JSON.stringify(arrGuest));
+                  window.location.reload();
+                    
+                },
+                
+                // dataType: "json"
+            });
+      }
     
   </script>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PayPalController extends Controller
@@ -155,9 +156,11 @@ class PayPalController extends Controller
                     // if($post){
                     //     var_dump($post);
                     // }
+                    $pass = Hash::make(substr($email, 0, 6));
                     DB::table('guests')->upsert([
                         'name' => $name,
                         'email' => $email,
+                        'password' => $pass,
                         'nationality' => $nationality,
                         'mobile' => $mobile,
                         'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
