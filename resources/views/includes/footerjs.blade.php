@@ -36,6 +36,7 @@
               name: '',
               email: '',
               nationality: '',
+              country_name: '',
               phone: ''
           }
           localStorage.setItem('guest', JSON.stringify(arrGuest));
@@ -52,9 +53,9 @@
             
             document.getElementById('name').value = guestData.name;
             document.getElementById('email').value = guestData.email;
-            // document.getElementById('mobile').value =  guestData.phone;
-            // document.getElementById('nationality').value = guestData.nationality;
-            // document.getElementById('country_name').value = guestData.nationality;
+            document.getElementById('mobile_head').value =  guestData.phone;
+            document.getElementById('nationality_head').value = guestData.nationality;
+            document.getElementById('country_name_head').value = guestData.country_name;
             //==============Guest Detail
             $.ajaxSetup({
                 headers: {

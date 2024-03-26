@@ -129,16 +129,22 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        Cek In   | Cek Out 
-                        <input class="form-control" name="datefilter" id="datefilter" required>
-                        <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
-                        <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
-                        <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
-                        <input type="hidden" name="room_no" id="room_no" required>
+                    <div class="row">
+                        <div class="col-xl-8 form-group">
+                            Cek In   | Cek Out 
+                            <input class="form-control" name="datefilter" id="datefilter" required>
+                            <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
+                            <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
+                            <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
+                            <input type="hidden" name="room_no" id="room_no" required>
 
-                        <input type="hidden" name="rate_dolar" id="rate_dolar" required>
-                        
+                            <input type="hidden" name="rate_dolar" id="rate_dolar" required>
+                            
+                        </div>
+                        <div class="col-xl-4 form-group">
+                            Guest
+                            <input type="number" class="form-control" name="adult" id="adult" value="1" placeholder="Adult" required>
+                        </div>
                     </div>
                     <!-- <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
@@ -149,52 +155,66 @@
                             <option value="full">Full Payment</option>
                         </select>
                     </div>
+                    <div class="form-group">
+
+                        <table style="width:100%;border:1px solid;">
+                            <tbody id="listharga" >
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><div id="totalorder"></div></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
                     <div class="row">
-                        <div class="col-xl-9 form-group">
-                            Have to Pay : <div id="totalbayar"></div>/<div id="totalbayardolar"></div>
+                        <div class="col-xl-4 form-group">
+                            Have to Pay : 
                         </div>
-                        <div class="col-xl-6 form-group">
+                        <div class="col-xl-8 form-group">
+                            <div id="totalbayar"></div>/<div id="totalbayardolar"></div>
+                            <input type="hidden" class="form-control" name="total" id="total" required>
                             <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" required>
                             <input type="hidden" class="form-control" name="bayar_dolar" id="bayar_dolar" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="total" id="total" required>
-                        <div id="totalorder"></div>
-                    </div>
-
-                    <button id="button-start-demo" class="btn-book-a-table" type="submit">
-                        <span>Pay Now</span>
-                    </button>
-                </form>
-
-
-                    @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{ $message }}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
-
-                    @if ($message = Session::get('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    </form>
+                    <div class="row">
+                        <div class="col-xl-5 form-group">
+                            <button id="button-start-demo" class="btn-book-a-table" type="submit" form="form-configure">
+                                <span>Pay Now</span>
+                            </button>
+                        </div>
+                        
+                        <div class="col-xl-7 form-group">
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>{{ $message }}</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+
+                        @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ $message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+
+                        <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
                     </div>
-                    @endif
-
-                    <div>
-                    <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
-                    </div>
+                
 
 
-                <span >
-                    <table >
-                        <tbody id="detail">
+                    
 
-                        </tbody>
-                    </table>
-                </span>
+
+               
+                
+                
                 <div id="loading"></div>
                 @include('shared/modal')
                 @section('scripts')
@@ -248,6 +268,18 @@
                                 
                                 // dataType: "json"
                             });
+
+                            var guestData = JSON.parse(localStorage.getItem('guest'));
+                            if(guestData.name !== ""){
+                                
+                                document.getElementById('mobile').value =  guestData.phone;
+                                // document.getElementById('nationality').value = guestData.nationality;
+                                document.querySelector('#nationality').value = guestData.nationality;
+                                document.querySelector('#country_name').value = guestData.nationality;
+
+                                // document.getElementById('country_name_head').value = guestData.nationality;
+                                
+                            }
                             
                             // heading.textContent = "DOM is ready!"; 
                         }); 
@@ -291,7 +323,7 @@
                             $('#loading').show();
                             var hrg = 0;
                             var stok = 0;
-                            
+                            // var obj = new Array;
 
                             for(let i=0 ; i<difference ;i++){
                                 var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
@@ -318,7 +350,22 @@
                                         hrg += parseInt(result[0][0].harga); //parseInt(125) ;
                                         document.getElementById('room_no').value = result[1][0].room_no;
                                         // alert(detail);
-                                        // console.log(price);
+                                        console.log(result);
+                                        var obj = new Array;
+                                        obj.push({
+                                            no: i+1,
+                                            harga: result[0][0].harga,
+                                            tgl: result[0][0].tgl
+                                        
+                                        });
+                                        var trHTML = '';
+                                        $.each(obj, function (i, o){
+                                            trHTML += '<tr style="border:1px solid;"><td>' +  o.no +
+                                                        '</td><td>' + moment(o.tgl).format('Y-M-D') +
+                                                        '</td><td>' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(o.harga) +
+                                                        '</td></tr>';
+                                        });
+                                        $('#listharga').append(trHTML);
 
                                         document.getElementById('total').value = hrg;
                                         // document.getElementById('stok').value = stok;
@@ -331,6 +378,23 @@
                                 
                                 // document.getElementById('det_r').innerHTML = detail;
                             }
+
+                            // console.log(obj);
+                            // var table = "" ;
+ 
+                            // for(var i in obj){
+                            //     table += "<tr>";
+                            //     table += "<td>" 
+                            //             + obj[i].no +"</td>" 
+                            //             + "<td>" + obj[i].harga +"</td>" 
+                            //             + "<td>" + obj[i].tgl +"</td>" ;
+                            //     table += "</tr>";
+                            // }
+
+                            // document.getElementById("listharga").innerHTML = table;
+                            
+
+
                             // var stok = document.getElementById('stok').value ;
                             if(stok < 0){
                                 alert('stok kosong'+ stok);
@@ -366,7 +430,9 @@
                                 "drops": "auto"
                             }, function(start, end, label) {
 
-                                
+                                var obj = "";
+                                $('#listharga').empty().append(obj);
+
                                 // $('#cekin').val(start.format('YYYY-MM-DD'));
                                 var code = document.getElementById('code').value
                                 var name = document.getElementById('name').value

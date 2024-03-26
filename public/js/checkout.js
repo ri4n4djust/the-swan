@@ -68,6 +68,7 @@
         const nationality = $("#country_name option:selected").val();
         const country_name = $("#country_name option:selected").text();
         const mobile = document.getElementById('mobile').value;
+        const adult = document.getElementById('adult').value;
         const type_bayar = document.getElementById('tipe_bayar').value;
         const room_no = document.getElementById('room_no').value;
         const tgl_reservasi = document.getElementById('tgl_reservasi').value;
@@ -113,6 +114,7 @@
                 name: name,
                 email: email,
                 mobile: mobile,
+                adult: adult,
                 nationality: nationality,
                 type_bayar: type_bayar,
                 total: total

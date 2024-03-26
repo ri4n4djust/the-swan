@@ -124,7 +124,15 @@
               </div>
           </div>
           
-          
+          <div class="row">
+              <div class="col-xl-6 form-group">
+                      <input type="number" class="form-control" name="mobile_head" id="mobile_head" required>
+                </div>
+                <div class="col-xl-6 form-group">
+                <input type="hidden" name="nationality_head" class="form-control" id="nationality_head" required>
+                <input type="text" name="country_name_head" class="form-control" id="country_name_head" required>
+              </div>
+          </div>
 
           <div class="table-responsive">
             <table id="table1" class="table">

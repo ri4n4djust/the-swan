@@ -193,12 +193,12 @@ class CheckoutController extends BaseController {
             'cek_in' => $req->cek_in,
             'cek_out' => $req->cek_out,
 
-            'payment_type' => $req->type_bayar,
+            'payment_type' => $req->type_bayar.'-Xendit',
             'status' => 'PENDING', // $req->status,
 
             'guest_paid' => $req->amount,
             'book_status' => 'New',
-            'adult' => '2', // $req->amount,
+            'adult' => $req->adult, // $req->amount,
             'total' => $req->total,
             // 'guest_paid' => 
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),

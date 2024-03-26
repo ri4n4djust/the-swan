@@ -38,6 +38,7 @@ class PayPalController extends Controller
         $name = $request->name ;
         $email = $request->email ;
         $mobile = $request->mobile ;
+        $adult = $request->adult ;
         $nationality = $request->nationality ;
         $cekin = $request->cek_in ;
         $cekout = $request->cek_out ;
@@ -139,12 +140,12 @@ class PayPalController extends Controller
                         'cek_in' => $cekin,
                         'cek_out' => $cekout,
 
-                        'payment_type' => $type_bayar,
+                        'payment_type' => $type_bayar.'-Paypal',
                         'status' => 'PENDING', // $req->status,
 
                         'guest_paid' => $total_bayar,
                         'book_status' => 'New',
-                        'adult' => '2', // $req->amount,
+                        'adult' => $adult, // $req->amount,
                         'total' => $total,
                         // 'guest_paid' => 
                         'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
