@@ -230,6 +230,7 @@
                         function () { 
                             $("#loading").hide();
                             // Code to be executed when the DOM is ready
+                            document.getElementById('adult').max = 2;
                             document.getElementById('tgl_reservasi').value = moment().format('YYYY-MM-DD h:mm:ss'); // new Date(); 
                             const tipe = document.getElementById('tipe_bayar').value ;
                             var rate = document.getElementById('rate_dolar').value ;

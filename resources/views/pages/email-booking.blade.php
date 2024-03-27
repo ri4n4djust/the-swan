@@ -10,7 +10,7 @@ Booking ID : {{ $no_reservasi }}</p>
 	<tbody>
 		<tr>
 			<td style="width:50%">Property : {{ $code_service }}</td>
-			<td>Payment : {{ $type_bayar }} - {{ number_format($total) }}</td>
+			<td>Payment : {{ $type_bayar }} ( {{ number_format($total) }} )</td>
 		</tr>
 		<tr>
 			<td>Cekin : {{ $cek_in }}</td>
