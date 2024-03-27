@@ -199,47 +199,25 @@
               <script>
               $(function() {
                 $('input[name="cekin"]').daterangepicker({
-                  // singleDatePicker: true,
-                  showDropdowns: false,
                   "autoApply": true,
                   "locale": {
-                    "format": "MMM DD, YYYY",
-                    "separator": " - ",
-                    "applyLabel": "Apply",
-                    "cancelLabel": "Cancel",
-                    "fromLabel": "From",
-                    "toLabel": "To",
-                    "customRangeLabel": "Custom",
-                    "weekLabel": "W",
-                    "daysOfWeek": [
-                        "Su",
-                        "Mo",
-                        "Tu",
-                        "We",
-                        "Th",
-                        "Fr",
-                        "Sa"
-                    ],
-                    "monthNames": [
-                        "January",
-                        "February",
-                        "March",
-                        "April",
-                        "May",
-                        "June",
-                        "July",
-                        "August",
-                        "September",
-                        "October",
-                        "November",
-                        "December"
-                    ],
-                    // "firstDay": 1,
-                    "minDate": new Date(),
-                    "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
-                    "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
-                },
-                  // maxYear: parseInt(moment().format('YYYY'),10)
+                      "format": "MMM DD, YYYY",
+                      "separator": " - ",
+                      "applyLabel": "Apply",
+                      "cancelLabel": "Cancel",
+                      "fromLabel": "From",
+                      "toLabel": "To",
+                      "customRangeLabel": "Custom",
+                      "weekLabel": "W",
+                      "daysOfWeek": ["Su","Mo","Tu","We","Th","Fr","Sa"],
+                      "monthNames": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+                      "firstDay": 1
+                  },
+                  "minDate": new Date(),
+                  "startDate": new Date(),//  moment().format('MM/DD/YYYY'),
+                  "endDate": new Date(Date.now() + ( 3600 * 1000 * 24)), // moment().format('MM/DD/YYYY'),
+                  "opens": "center",
+                  "drops": "auto"
                 }, function(start, end, label) {
                   // var years = moment().diff(start, 'years');
                   console.log(moment(start).format('YYYY-MM-DD'))
@@ -250,7 +228,7 @@
             <div class="row gy-4">
             @foreach ($kamar as $detail)
               <div class="col-lg-4 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
-                <!-- <div class="call-us position-absolute"> -->
+                <div class="chef-member">
                   <!-- <h4>Book a Table</h4> -->
                   <div class="member-img">
                     @php $gmbr = explode(";",$detail->foto) ; @endphp
@@ -261,12 +239,12 @@
                       <!-- <a href=""><i class="bi bi-twitter"></i></a>
                       <a href=""><i class="bi bi-facebook"></i></a>
                       <a href=""><i class="bi bi-instagram"></i></a> -->
-                      <!-- <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a> -->
+                      <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
                     </div>
                   </div>
-                <!-- </div> -->
+                </div>
               </div>
-              <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-7 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                 <div class="content ps-0 ps-lg-5">
                 <h4>{{ $detail->title}}</h4>
                   <p class="fst-italic">
@@ -309,19 +287,6 @@
               </div>
             @endforeach
             </div>
-
-            <div class="col-lg-3 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
-                <!-- <div class="call-us position-absolute"> -->
-                  <!-- <h4>Book a Table</h4> -->
-                  
-                      <!-- <a href=""><i class="bi bi-twitter"></i></a>
-                      <a href=""><i class="bi bi-facebook"></i></a>
-                      <a href=""><i class="bi bi-instagram"></i></a> -->
-                      <!-- <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a> -->
-                    </div>
-                  </div>
-                <!-- </div> -->
-              </div>
                         
 
             <!-- Modal -->
@@ -342,8 +307,8 @@
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                           <ol class="carousel-indicators">
 
-                            @php $gmbr = explode(";",$detail->foto) ; @endphp
-                            
+                            @php $gmbra = explode(";",$detail->foto) ; @endphp
+                            @php $gmbr = array_slice($gmbra, 0, -1) ; @endphp
                             @foreach($gmbr as $value)
                             <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
                             @endforeach
@@ -372,13 +337,7 @@
                         </div>
                       </div><!-- End Info Item -->
 
-                      <div class="col-md-6">
-                        <div class="info-item d-flex align-items-left">
-                          <div>
-                            <p>{!! $detail->desc !!}</p>
-                          </div>
-                        </div>
-                      </div><!-- End Info Item -->
+                      
                     </div>
 
                     
@@ -460,75 +419,6 @@
               </div><!-- End Chefs Member -->
             @endforeach
 
-            <!-- Modal -->
-            @foreach ($transport as $tr)
-            <div class="modal fade" id="trModal{{$tr->id}}" tabindex="-1" aria-labelledby="trModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="trModalLabel">{{ $tr->nama }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                  
-                    <div class="row gy-4">
-                      <div class="col-md-6">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                          <ol class="carousel-indicators">
-
-                            @php $gmbr = explode(";",$tr->foto) ; @endphp
-                            
-                            @foreach($gmbr as $value)
-                            <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                            <!-- {{ $loop->index }} -->
-                            @endforeach
-                            <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-                            
-                          </ol>
-                          <div class="carousel-inner">
-                            
-                            @foreach($gmbr as $slider)
-                            <div class="carousel-item {{$loop->index == 0 ? 'active' : ''}}">
-                              <img src="assets/img/transport/{{ $slider }}" class="d-block w-100" alt="">
-                            </div>
-                            @endforeach
-                            
-                          </div>
-                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                          </a>
-                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                          </a>
-                        </div>
-                      </div><!-- End Info Item -->
-
-                      <div class="col-md-6">
-                        <div class="info-item d-flex align-items-left">
-                          <div>
-                            <p>{{ $tr->deskripsi }}</p>
-                          </div>
-                        </div>
-                      </div><!-- End Info Item -->
-                    </div>
-
-                    
-                  </div>
-                  <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-            @endforeach
-
             </div>
           </div><!-- End Breakfast Menu Content -->
 
@@ -597,71 +487,7 @@
                 </div><!-- End Chefs Member -->
               @endforeach
 
-              <!-- Modal -->
-              @foreach ($tour as $tur)
-              <div class="modal fade" id="turModal{{$tur->id}}" tabindex="-1" aria-labelledby="trModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="turModalLabel">{{ $tur->nama }}</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                    
-                      <div class="row gy-4">
-                        <div class="col-md-6">
-                          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-
-                              @php $gmbr = explode(";",$tur->foto) ; @endphp
-                              
-                              @foreach($gmbr as $value)
-                              <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                              @endforeach
-                              
-                            </ol>
-                            <div class="carousel-inner">
-                              
-                              @foreach($gmbr as $key => $slider)
-                              <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-                                <img src="assets/img/tour/{{ $slider }}" class="d-block w-100" alt="">
-                              </div>
-                              @endforeach
-                              
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Next</span>
-                            </a>
-                          </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="col-md-6">
-                          <div class="info-item d-flex align-items-left">
-                            <div>
-                              <p>{{ $tr->deskripsi }}</p>
-                            </div>
-                          </div>
-                        </div><!-- End Info Item -->
-                      </div>
-
-                      
-                    </div>
-                    <!-- <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
-                  </div>
-                </div>
-              </div>
-              @endforeach
-
+              
             </div>
           </div><!-- End Lunch Menu Content -->
 

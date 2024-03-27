@@ -113,15 +113,18 @@
 
       
         <div class="row gy-4">
-          <div class="col-md-9">
-          <div class="row">
-              <div class="col-xl-6 form-group">
+          <div class="col-md-12">
+
+          <div class="col-xl-6 form-group">
                 Your Default password is 6 digit of your full email.
                   <!-- <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" disabled> -->
+          </div>
+          <div class="row">
+              <div class="col-xl-6 form-group">
+                <span id="name_head"></span>
               </div>
               <div class="col-xl-6 form-group">
-                  <!-- <input type="text" name="nationality" class="form-control" id="nationality" disabled> -->
-                  <!-- <input type="text" name="country_name" class="form-control" id="country_name" disabled> -->
+              <span id="email_head"></span>
               </div>
           </div>
           

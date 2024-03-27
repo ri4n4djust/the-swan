@@ -274,7 +274,6 @@
                             if(guestData.name !== ""){
                                 
                                 document.getElementById('mobile').value =  guestData.phone;
-                                // document.getElementById('nationality').value = guestData.nationality;
                                 document.querySelector('#nationality').value = guestData.nationality;
                                 document.querySelector('#country_name').value = guestData.nationality;
 

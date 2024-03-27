@@ -52,8 +52,8 @@
             login.style.display = "none";
             myakun.style.display = "block";
             
-            document.getElementById('name').value = guestData.name;
-            document.getElementById('email').value = guestData.email;
+            document.getElementById('name_head').innerHTML = guestData.name;
+            document.getElementById('email_head').innerHTML = guestData.email;
             document.getElementById('mobile_head').value =  guestData.phone;
             document.getElementById('nationality_head').value = guestData.nationality;
             document.getElementById('country_name_head').value = guestData.country_name;
@@ -72,7 +72,7 @@
                     
                 },
                 success: function (result) {
-                  console.log(result)
+                  // console.log(result)
                   var trHTML = '';
                   $.each(result.data, function (i, o){
                       trHTML += '<tr><td>' + o.code_service +
@@ -121,7 +121,7 @@
                     
                 },
                 success: function (result) {
-                  console.log(result)
+                  // console.log(result)
                   let arrGuest = {
                       name: result.user.name,
                       email: result.user.email,
