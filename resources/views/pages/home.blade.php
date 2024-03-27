@@ -123,25 +123,29 @@
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-bookings">
+            <i class="fa-solid fa-hotel"></i>
               <h4>Bookings</h4>
             </a>
           </li><!-- End tab nav item -->
 
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-transport">
+            <i class="fa-solid fa-car"></i>
               <h4>Transport</h4>
             </a><!-- End tab nav item -->
 
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-tour">
+            <i class="fa-solid fa-person-walking-luggage"></i>
               <h4>Tour</h4>
             </a>
           </li><!-- End tab nav item -->
 
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-package">
+              <i class="fa-solid fa-people-roof"></i>
               <h4>Package</h4>
             </a>
           </li>
@@ -245,7 +249,7 @@
 
             <div class="row gy-4">
             @foreach ($kamar as $detail)
-              <div class="col-lg-5 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
+              <div class="col-lg-4 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
                 <!-- <div class="call-us position-absolute"> -->
                   <!-- <h4>Book a Table</h4> -->
                   <div class="member-img">
@@ -262,7 +266,7 @@
                   </div>
                 <!-- </div> -->
               </div>
-              <div class="col-lg-7 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                 <div class="content ps-0 ps-lg-5">
                 <h4>{{ $detail->title}}</h4>
                   <p class="fst-italic">
@@ -305,6 +309,19 @@
               </div>
             @endforeach
             </div>
+
+            <div class="col-lg-3 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
+                <!-- <div class="call-us position-absolute"> -->
+                  <!-- <h4>Book a Table</h4> -->
+                  
+                      <!-- <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a> -->
+                      <!-- <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a> -->
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
                         
 
             <!-- Modal -->

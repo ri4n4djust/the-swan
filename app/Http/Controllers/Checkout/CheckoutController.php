@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Xendit\Invoice\InvoiceApi;
 use App\Http\Services\Checkout\CheckoutService as Service;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
