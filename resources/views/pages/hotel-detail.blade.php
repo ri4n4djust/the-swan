@@ -261,7 +261,7 @@
                                     console.log(error);
                                 },
                                 success: function (result) {
-                                    console.log(result.conversion_rates.IDR)
+                                    // console.log(result.conversion_rates.IDR)
                                     document.getElementById('rate_dolar').value = result.conversion_rates.IDR
                                     // var rupiah = document.getElementById('total_bayar').value
 
@@ -272,7 +272,8 @@
 
                             var guestData = JSON.parse(localStorage.getItem('guest'));
                             if(guestData.name !== ""){
-                                
+                                document.getElementById('name').value =  guestData.name;
+                                document.getElementById('email').value =  guestData.email;
                                 document.getElementById('mobile').value =  guestData.phone;
                                 document.querySelector('#nationality').value = guestData.nationality;
                                 document.querySelector('#country_name').value = guestData.nationality;

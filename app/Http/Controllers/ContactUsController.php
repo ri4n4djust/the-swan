@@ -33,8 +33,8 @@ class ContactUsController extends Controller
             'subject' => $request->get('subject'),
             'user_query' => $request->get('message'),
         ), function($message) use ($request){
-            $message->from($request->email);
-            $message->to('info@the-swand.com', 'Admin')->subject($request->get('subject'));
+            // $message->from($request->email);
+            $message->to('winmaxcomp@gmail.com', 'Admin')->subject($request->get('subject'));
         });
 
         // RecaptCha V3 and other rules have passed, safe to continue

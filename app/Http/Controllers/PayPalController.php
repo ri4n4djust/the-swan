@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
+use Mail;
 use Illuminate\Support\Facades\Hash;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
@@ -166,6 +167,27 @@ class PayPalController extends Controller
                         'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                         'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                     ], 'email' );
+
+                    \Mail::send('pages.email-booking', array(
+                        'name' => $name,
+                        'email' => $email,
+                        'subject' => 'Confirm',
+                        'no_reservasi' => $nores,
+                        'code_service' => $code,
+                        'tgl_reservasi' => $tgl_reservasi,
+                        'nationality' => $nationality,
+                        'cek_in' => $cekin,
+                        'cek_out' => $cekout,
+                        'adult' => $adult,
+                        'type_bayar' => $type_bayar.'-paypal',
+                        'total_bayar' => $total_bayar,
+                        'total' => $total,
+                        'detail' => $detail
+                    ), function($message) use ($request){
+                        // $message->from($request->email);
+                        $message->to('winmaxcomp@gmail.com', 'No-replay')->subject('Booking Confirm');
+                        $message->to($request->email, $request->name)->subject('Booking Confirm');
+                    });
                     
                     return redirect()->away($links['href']);
                 }

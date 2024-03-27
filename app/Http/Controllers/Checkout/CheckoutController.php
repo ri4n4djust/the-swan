@@ -10,6 +10,7 @@ use Xendit\Invoice\InvoiceApi;
 use App\Http\Services\Checkout\CheckoutService as Service;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -213,7 +214,7 @@ class CheckoutController extends BaseController {
         $pass = Hash::make($text);
         DB::table('guests')->upsert([
             'name' => $req->name,
-            'email' => $req->email,
+            'email' => $req->payer_email,
             'password' => $pass,
             'nationality' => $req->nationality,
             'mobile' => $req->mobile,
@@ -221,7 +222,26 @@ class CheckoutController extends BaseController {
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
         ], 'email' );
 
-
+        \Mail::send('pages.email-booking', array(
+            'name' => $req->name,
+            'email' => $req->payer_email,
+            'subject' => 'Confirm',
+            'no_reservasi' => $req->external_id,
+            'code_service' => $req->kode_product,
+            'tgl_reservasi' => $req->tgl_reservasi,
+            'nationality' => $req->nationality,
+            'cek_in' => $req->cek_in,
+            'cek_out' => $req->cek_out,
+            'adult' => $req->adult,
+            'type_bayar' => $req->type_bayar.'-Xendit',
+            'total_bayar' => $req->total,
+            'total' => $req->amount,
+            'detail' => $detail
+        ), function($message) use ($req){
+            // $message->from($request->email);
+            $message->to('winmaxcomp@gmail.com', 'No-replay')->subject('Booking Confirm');
+            $message->to($req->payer_email, $req->name)->subject('Booking Confirm');
+        });
         // return $service->createInvoice1($req->all());
     }
 }

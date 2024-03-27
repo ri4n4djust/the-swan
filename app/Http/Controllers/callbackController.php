@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class callbackController extends Controller
 {
@@ -44,7 +45,7 @@ class callbackController extends Controller
         // echo "tess" ;
         
         // $_id = $arrRequestInput['id'];
-        // $_externalId = $arrRequestInput['external_id'];
+        $_externalId = $detail['external_id'];
         // $_userId = $arrRequestInput['user_id'];
         // $_status = $arrRequestInput['status'];
         // $_paidAmount = $arrRequestInput['paid_amount'];
@@ -74,6 +75,9 @@ class callbackController extends Controller
         // echo "tes yg ini" ;
         // print_r($arrRequestInput);
         // }
+        DB::table('reservations')->where('no_reservasi', $_externalId)->update([
+            'status' => 'PAID',
+        ]);
 
         // return response()->json([
         //     'success' => trprint_rue,
