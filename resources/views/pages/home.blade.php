@@ -865,11 +865,10 @@
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
           <div class="text-center">
-          {!! RecaptchaV3::field('contact-us') !!}
-
+            
           <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
               <div class="col-md-6">
-                  {!! RecaptchaV3::field('contact-us') !!}
+                  {!! RecaptchaV3::field('contact') !!}
                   @if ($errors->has('g-recaptcha-response'))
                       <span class="help-block">
                           <strong>{{ $errors->first('g-recaptcha-response') }}</strong>

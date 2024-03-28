@@ -23,7 +23,7 @@ class ContactUsController extends Controller
             'message' => ['required', 'string', 'max:500'],
             'email' => ['required', 'email:rfc'],
             // 'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')]
-            'g-recaptcha-response' => 'required|recaptchav3:contact-us,0.5'
+            'g-recaptcha-response' => 'required|recaptchav3:contact,0.5'
         ]);
 
         // $to = $request->email ;
