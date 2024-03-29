@@ -43,6 +43,11 @@ class ContactUsController extends Controller
         // Here you can add code to actually send the email message
 
         // return view('pages.contact');
-        return 'Sent Successfuly' ;
+        // return 'Sent Successfuly' ;
+        return response([
+            'success' => true,
+            'message' => 'Email Terkirim',
+            'data' => 'OK'
+        ], 200);
     }
 }

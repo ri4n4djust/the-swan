@@ -70,7 +70,7 @@ class bookingController extends Controller
                             ->get();
         $paket = Package::where('lang', $defaultLocale)->get();
         $artikel = Artikel::where('lang', $defaultLocale)->get();
-        $galeri = Gallery::where('lang', $defaultLocale)->get();
+        $galeri = Gallery::where('lang', $defaultLocale)->take(3)->get();
 
         // dd($date);
 

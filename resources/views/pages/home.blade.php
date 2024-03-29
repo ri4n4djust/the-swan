@@ -290,7 +290,7 @@
                         
 
             <!-- Modal -->
-            @foreach ($kamar as $detail)
+            <!-- @foreach ($kamar as $detail)
             <div class="modal fade" id="exampleModal{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -312,9 +312,6 @@
                             @foreach($gmbr as $value)
                             <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
                             @endforeach
-                            <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
                             
                           </ol>
                           <div class="carousel-inner">
@@ -335,21 +332,20 @@
                             <span class="sr-only">Next</span>
                           </a>
                         </div>
-                      </div><!-- End Info Item -->
+                      </div>
 
                       
                     </div>
 
                     
                   </div>
-                  <!-- <div class="modal-footer">
+                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
-            @endforeach
+            @endforeach -->
 
               
 
@@ -843,7 +839,7 @@
             </div>
         @endif
 
-        <form action="contact-us" id="contactForm" method="post" role="form" class="php-email-form p-3 p-md-4" >
+        <form action="contact-us" id="contactForm" method="post" role="form" class="php-email-form p-3 p-md-4" data-recaptcha-site-key="6LfncpwpAAAAAK3qP36whis5OLg29EomK2g9thx0" >
         @csrf
           <div class="row">
             <div class="col-xl-6 form-group">
