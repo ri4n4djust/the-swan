@@ -44,10 +44,6 @@ class ContactUsController extends Controller
 
         // return view('pages.contact');
         // return 'Sent Successfuly' ;
-        return response([
-            'success' => true,
-            'message' => 'Email Terkirim',
-            'data' => 'OK'
-        ], 200);
+        dd('OK');
     }
 }
