@@ -839,7 +839,7 @@
             </div>
         @endif
 
-        <form action="contact-us" id="contactForm" method="post" role="form" class="php-email-form p-3 p-md-4" data-recaptcha-site-key="6LfncpwpAAAAAK3qP36whis5OLg29EomK2g9thx0" >
+        <form action="contact-us" id="contactForm" method="post" role="form" class="php-email-form p-3 p-md-4"  >
         @csrf
           <div class="row">
             <div class="col-xl-6 form-group">

@@ -8,7 +8,7 @@
   <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
   <script src="{{asset('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
   <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-  <!-- <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script> -->
+  <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>

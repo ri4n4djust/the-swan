@@ -41,14 +41,9 @@ class ContactUsController extends Controller
         // RecaptCha V3 and other rules have passed, safe to continue
 
         // Here you can add code to actually send the email message
-        return redirect()->back()->with('success', 'your message,here');   
 
         // return view('pages.contact');
-        // return 'Sent Successfuly' ;
-        // return response([
-        //     'success' => true,
-        //     'message' => 'Email Terkirim',
-        //     'data' => 'OK'
-        // ], 200);
+        return 'Sent Successfuly' ;
+        
     }
 }
