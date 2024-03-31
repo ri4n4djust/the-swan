@@ -14,7 +14,7 @@ class backendController extends Controller
     //
     public function storeMedia(Request $request)
     {
-        $path = storage_path('tmp/uploads');
+        $path = public_path('assets/img/rooms/'); //storage_path('tmp/uploads');
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
@@ -66,10 +66,10 @@ class backendController extends Controller
                 }
                 // echo $gmbr ;
                 // print_r($data['document']);
-                foreach ($request->input('document', []) as $file) {
-                    \File::move(storage_path('tmp/uploads/'.$file), public_path('assets/img/rooms/'.$file));
-                    // echo $file ;
-                }
+                // foreach ($request->input('document', []) as $file) {
+                //     \File::move(storage_path('tmp/uploads/'.$file), public_path('assets/img/rooms/'.$file));
+                //     // echo $file ;
+                // }
                 DB::commit();
             });
             if(is_null($exception)) {
@@ -103,6 +103,18 @@ class backendController extends Controller
         $roomDetail = DB::table('bookings')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
         $fasilitas = DB::table('facilities')->get();
+        $foto = $roomDetail->foto ;
+        $fotor = explode(';', $foto);
+        $ft = array_slice($fotor, 0, -1);
+        // var_dump($ft);
+        // foreach ($ft as $file) {
+        //     if(file_exists(public_path('assets/img/rooms/'.$file))){
+        //         \File::move(public_path('assets/img/rooms/'.$file), storage_path('tmp/uploads/'.$file));
+        //         // echo $file ;
+        //     }
+        // }
+
+
         return view('admin.pages.room_add', compact('roomDetail', 'fasilitas'));
 
     }

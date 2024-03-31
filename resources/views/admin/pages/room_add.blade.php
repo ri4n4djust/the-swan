@@ -113,16 +113,30 @@
               files.push ({
                   'file_name': filesa[a],
               });
-              console.log(filesa[a])
+              // console.log(filesa[a])
           }
 
           // console.log(files);
           for (var i in files) {
             var file = files[i]
-            console.log(this)
+            // console.log(this)
             // this.files.push(file);
-            this.options.addedfile.call(this, file)
-            file.previewElement.classList.add('dz-complete')
+
+            // this.options.addedfile.call(this, file)
+            // file.previewElement.classList.add('dz-complete')
+
+            // var principal = '@Model.Article.Image'; 
+            let mockFile = { name: file.file_name, size: 12345, type: 'image/jpg', accepted: true };
+            this.emit("addedfile", mockFile);
+            this.emit("thumbnail", mockFile, "/assets/img/rooms/" + file.file_name)
+            {
+                $('[data-dz-thumbnail]').css('height', '120');
+                $('[data-dz-thumbnail]').css('width', '120');
+                $('[data-dz-thumbnail]').css('object-fit', 'cover');
+            };              
+            this.emit('complete', mockFile);
+            this.files.push(mockFile);
+
             $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
           }
         @endif

@@ -138,30 +138,39 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-8 form-group">
-                            Cek In   | Cek Out 
-                            <input class="form-control" name="datefilter" id="datefilter" required>
-                            <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
-                            <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
-                            <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
-                            <input type="hidden" name="room_no" id="room_no" required>
-
-                            <input type="hidden" name="rate_dolar" id="rate_dolar" required>
-                            
-                        </div>
-                        <div class="col-xl-4 form-group">
+                        
+                        <div class="col-xl-6 form-group">
                             Guest
                             <input type="number" class="form-control" name="adult" id="adult" value="1" placeholder="Adult" required>
+                        </div>
+                        <div class="col-xl-6 form-group">
+                            No Of Room
+                            <input type="number" class="form-control" name="qty" id="qty" value="1" placeholder="Adult" disabled>
                         </div>
                     </div>
                     <!-- <div class="form-group">
                         <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
                     </div> -->
-                    <div class="form-group">
-                        <select name="tipe_bayar" id="tipe_bayar" class="form-control" onchange="getOption()">
-                            <option value="deposit">Deposit</option>
-                            <option value="full">Full Payment</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-xl-8 form-group">
+
+                        Cek In   | Cek Out 
+                        <input class="form-control" name="datefilter" id="datefilter" required>
+                        <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
+                        <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
+                        <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
+                        <input type="hidden" name="room_no" id="room_no" required>
+
+                        <input type="hidden" name="rate_dolar" id="rate_dolar" required>
+
+                        </div>
+                        <div class="col-xl-4 form-group">
+                            Payment Type
+                            <select name="tipe_bayar" id="tipe_bayar" class="form-control" onchange="getOption()">
+                                <option value="deposit">Deposit</option>
+                                <option value="full">Full Payment</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
 
@@ -326,6 +335,7 @@
                             var hrg = 0;
                             var stok = 0;
                             // var obj = new Array;
+                            
 
                             for(let i=0 ; i<difference ;i++){
                                 var dt = moment(start).add(i, 'days').format('YYYY-M-DD');
@@ -348,30 +358,45 @@
                                         document.getElementById('total').value = "";
                                     },
                                     success: function (result) {
-                                        stok = result[0][0].stok ;
-                                        hrg += parseInt(result[0][0].harga); //parseInt(125) ;
-                                        document.getElementById('room_no').value = result[1][0].room_no;
-                                        // alert(detail);
-                                        console.log(result);
-                                        var obj = new Array;
-                                        obj.push({
-                                            no: i+1,
-                                            harga: result[0][0].harga,
-                                            tgl: result[0][0].tgl
-                                        
-                                        });
-                                        var trHTML = '';
-                                        $.each(obj, function (i, o){
-                                            trHTML += '<tr style="border:1px solid;"><td>' +  o.no +
-                                                        '</td><td>' + moment(o.tgl).format('Y-M-D') +
-                                                        '</td><td>' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(o.harga) +
-                                                        '</td></tr>';
-                                        });
-                                        $('#listharga').append(trHTML);
+                                        // stok = result[0][0].stok ;
+                                        // hrg += parseInt(result[0][0].harga); //parseInt(125) ;
+                                        // document.getElementById('room_no').value = result[1][0].room_no;
+                                        var qty = document.getElementById('qty').value ;
 
-                                        document.getElementById('total').value = hrg;
-                                        // document.getElementById('stok').value = stok;
-                                        getOption();
+                                        if( qty > (result[1]).length ){
+                                            alert("stok kurang");
+                                            document.getElementById('room_no').value = "";
+                                            document.getElementById('total').value = "";
+                                        }else{
+                                            stok = result[0][0].stok ;
+                                            hrg += parseInt(result[0][0].harga); //parseInt(125) ;
+
+                                            var room_n = "";
+                                            for(let r=0 ; r<qty ;r++){
+                                                room_n += result[1][r].room_no ;
+                                            }
+                                            console.log(room_n)
+                                            document.getElementById('room_no').value = room_n;
+                                            var obj = new Array;
+                                            obj.push({
+                                                no: i+1,
+                                                harga: result[0][0].harga,
+                                                tgl: result[0][0].tgl
+                                            
+                                            });
+                                            var trHTML = '';
+                                            $.each(obj, function (i, o){
+                                                trHTML += '<tr style="border:1px solid;"><td>' +  o.no +
+                                                            '</td><td>' + moment(o.tgl).format('Y-M-D') + '    x' + qty + 'Room' +
+                                                            '</td><td>' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(o.harga) +
+                                                            '</td></tr>';
+                                            });
+                                            $('#listharga').append(trHTML);
+
+                                            document.getElementById('total').value = hrg;
+                                            // document.getElementById('stok').value = stok;
+                                            getOption();
+                                        }
                                         
                                     },
                                     
@@ -380,21 +405,6 @@
                                 
                                 // document.getElementById('det_r').innerHTML = detail;
                             }
-
-                            // console.log(obj);
-                            // var table = "" ;
- 
-                            // for(var i in obj){
-                            //     table += "<tr>";
-                            //     table += "<td>" 
-                            //             + obj[i].no +"</td>" 
-                            //             + "<td>" + obj[i].harga +"</td>" 
-                            //             + "<td>" + obj[i].tgl +"</td>" ;
-                            //     table += "</tr>";
-                            // }
-
-                            // document.getElementById("listharga").innerHTML = table;
-                            
 
 
                             // var stok = document.getElementById('stok').value ;
