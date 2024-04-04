@@ -1,4 +1,9 @@
 @extends('layouts.default')
+@section('meta')
+    <title>The Swand - {{ $hotelDetail[0]->title }}</title>
+    <meta content="{!! $hotelDetail[0]->desc !!}" name="description">
+    <meta content="{{ $hotelDetail[0]->slug }}" name="keywords">
+@endsection
 @section('media')
         <link rel="stylesheet" type="text/css" href="/css/store.css" />
 @endsection
@@ -159,7 +164,7 @@
                         <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
                         <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
                         <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
-                        <input type="hidden" name="room_no" id="room_no" required>
+                        <input type="hidden" name="room_no" id="room_no" >
 
                         <input type="hidden" name="rate_dolar" id="rate_dolar" required>
 
@@ -354,7 +359,7 @@
                                     error: function (request, error) {
                                         // console.log(arguments);
                                         alert("room no availabe on this date, please change date");
-                                        document.getElementById('room_no').value = "";
+                                        // document.getElementById('room_no').value = "";
                                         document.getElementById('total').value = "";
                                     },
                                     success: function (result) {
@@ -365,7 +370,7 @@
 
                                         if( qty > (result[1]).length ){
                                             alert("stok kurang");
-                                            document.getElementById('room_no').value = "";
+                                            // document.getElementById('room_no').value = "";
                                             document.getElementById('total').value = "";
                                         }else{
                                             stok = result[0][0].stok ;

@@ -40,7 +40,7 @@ Booking ID : {{ $no_reservasi }}</p>
 	<li>Booking Detail</li>
 </ul>
 
-<table style="width:20%;border:1px solid;">
+<table style="width:70%;border:1px solid;">
 	<tbody>
         @php $deta = array_slice($detail, 0, -1) ; @endphp
         @foreach($deta as $det)

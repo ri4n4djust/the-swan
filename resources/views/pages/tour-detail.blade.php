@@ -9,8 +9,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Tour Detail</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Sample Inner Page</li>
+            <li><a href="/">Home</a></li>
+            <li>{{ $tourDetail[0]->tour_name }}</li>
           </ol>
         </div>
 
@@ -21,10 +21,10 @@
     <section id="about" class="about">
         <div class="container" data-aos="fade-up">
 
-            <div class="section-header">
+            <!-- <div class="section-header"> -->
             <!-- <h2>About Us</h2> -->
-            <p>Tour Detail </p>
-            </div>
+            <!-- <p>Tour Detail </p> -->
+            <!-- </div> -->
             
             <div class="row gy-4">
                 <div class="col-lg-6 position-relative about-img" data-aos="fade-up" data-aos-delay="150">

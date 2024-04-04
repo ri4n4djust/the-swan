@@ -87,6 +87,7 @@ class PayPalController extends Controller
                     $i=0;
                     $detail = [];
                     $status = "";
+                    $no_kamar = "";
                     foreach ($dateRange as $date) {
                         // $detail[] = [
                         //   "tgl" => $date->format('Y-m-d')
@@ -99,6 +100,19 @@ class PayPalController extends Controller
                         }else{
                             $status = "In House" ;
                         }
+
+                        $users = DB::table("room_nomors")->select('*')
+                        ->whereNOTIn('room_no', DB::table('reservation_room_detail')
+                                    ->select('no_room')
+                                    // ->from('reservation_room_detail')
+                                    ->where('tgl', $date->format('Y-m-d'))
+                                    // ->where('status', '!=', 'cekin')
+                                    ->where('status', '!=', 'cekout')
+                                    
+                        )
+                        ->where('unit_code', $req->kode_product)
+                        ->get();
+                        $no_kamar = $users['0']->room_no ;
                         
                         $getDetail = DB::table('rates')
                             ->where('tgl', $date->format('Y-m-d'))
@@ -108,7 +122,7 @@ class PayPalController extends Controller
                             'no_reservasi' => $nores,
                             "kode_unit" => $code,
                             "tgl" => $date->format('Y-m-d'),
-                            "no_room" => $room_no,
+                            "no_room" => $no_kamar,
                             "harga" => $getDetail['0']->harga,
                             "status" => $status
                         ];
@@ -138,7 +152,7 @@ class PayPalController extends Controller
                         'code_service' => $code,
                         'tgl_reservasi' => $tgl_reservasi,
                         'guest_name' => $name,
-                        'room_no' => $room_no,
+                        'room_no' =>  $no_kamar,
                         'cek_in' => $cekin,
                         'cek_out' => $cekout,
 

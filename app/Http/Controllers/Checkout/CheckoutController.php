@@ -140,6 +140,20 @@ class CheckoutController extends BaseController {
         $i=0;
         $detail = [];
         $status = "";
+        
+        $users = DB::table("room_nomors")->select('*')
+        ->whereNOTIn('room_no', DB::table('reservation_room_detail')
+                    ->select('no_room')
+                    // ->from('reservation_room_detail')
+                    ->where('tgl', $startDate)
+                    // ->where('status', '!=', 'In House')
+                    ->where('status', '!=', 'cekout')
+                    
+        )
+        ->where('unit_code', $req->kode_product)
+        ->get();
+        $no_kamar = $users['0']->room_no ;
+        
         foreach ($dateRange as $date) {
             // $detail[] = [
             //   "tgl" => $date->format('Y-m-d')
@@ -152,6 +166,8 @@ class CheckoutController extends BaseController {
             }else{
                 $status = "In House" ;
             }
+
+            
             
             $getDetail = DB::table('rates')
                 ->where('tgl', $date->format('Y-m-d'))
@@ -161,12 +177,13 @@ class CheckoutController extends BaseController {
                 'no_reservasi' => $req->external_id,
                 "kode_unit" => $req->kode_product,
                 "tgl" => $date->format('Y-m-d'),
-                "no_room" => $req->room_no,
+                "no_room" => $no_kamar,
                 "harga" => $getDetail['0']->harga,
                 "status" => $status
             ];
 
             
+                
             // if($i==($count-1)){
             //     // echo 'skip';
             // }else{
@@ -191,7 +208,7 @@ class CheckoutController extends BaseController {
             'code_service' => $req->kode_product,
             'tgl_reservasi' => $req->tgl_reservasi,
             'guest_name' => $req->name,
-            'room_no' => $req->room_no,
+            'room_no' => $no_kamar,
             'cek_in' => $req->cek_in,
             'cek_out' => $req->cek_out,
 

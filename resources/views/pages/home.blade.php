@@ -1,4 +1,9 @@
 @extends('layouts.default')
+@section('meta')
+    <title>The Swand - Room Booking, Travel and Management Hospitality</title>
+    <meta content="we are company that acomodate room booking, tour travel and also property management" name="description">
+    <meta content="bali room booking, car rental bali, bali management property" name="keywords">
+@endsection
 
 @section('content')
 
@@ -233,7 +238,7 @@
                   <div class="member-img">
                     @php $gmbr = explode(";",$detail->foto) ; @endphp
                     
-                    <img src="assets/img/rooms/{{ $gmbr[1] }}" class="img-fluid" alt="">
+                    <img src="assets/img/rooms/{{ $gmbr[1] }}" class="img-fluid" alt="{{ $gmbr[1] }}">
                     
                     <div class="social">
                       <!-- <a href=""><i class="bi bi-twitter"></i></a>
@@ -244,7 +249,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-7 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-8 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                 <div class="content ps-0 ps-lg-5">
                 <h4>{{ $detail->title}}</h4>
                   <p class="fst-italic">
@@ -368,7 +373,7 @@
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp
                     
-                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="{{$tr->slug}}">
                     <!-- {{ $gmbr[0] }} -->
                     
                     <div class="social">
@@ -422,16 +427,9 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <!-- <h3>Tour</h3> -->
+              <h6>Our best tour</h6>
             </div>
-            <div class="row">
-              <div class="col-xl-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-xl-6 form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
-            </div>
+            
 
             <div class="row gy-5">
 
@@ -442,7 +440,7 @@
                     <div class="member-img">
                       @php $gmbr = explode(";",$tur->foto) ; @endphp
                       
-                      <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="">{{ $gmbr[0] }}
+                      <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="{{ $gmbr[0] }}">
                       
                       <div class="social">
                         <!-- <a href=""><i class="bi bi-twitter"></i></a>
@@ -461,22 +459,19 @@
                     <div class="member-info"> -->
                       <!-- <i class="bi bi-wifi"></i>
                       <i class="bi bi-twitter"></i> -->
-                      @php $fs = explode(",",$tur->destination) ; @endphp
-                      @foreach ($fs as $fas)
-                        <i class="bi bi-check2-all"></i> {{$fas}}<br>
+                      <!-- @php $fs = explode(",",$tur->destination) ; @endphp -->
+                      <!-- @foreach ($fs as $fas) -->
+                        <!-- <i class="bi bi-check2-all"></i> {{$fas}}<br> -->
                         <!-- <i class="bi bi-check2-all"></i> Shower
                         <i class="bi bi-check2-all"></i> Free Wifi -->
-                      @endforeach
+                      <!-- @endforeach -->
                     </div>
                     <p class="price">
                       <!-- IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br> -->
                       <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
                         Detail
                       </button> -->
-                      <a href="/tour/{{$tur->slug}}" class="btn btn-primary">Detail</a>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
-                        Book Now
-                      </button>
+                      <a href="/tour/{{$tur->slug}}" class="btn-book-a-table">Detail</a>
                     </p>
                     
                   </div>

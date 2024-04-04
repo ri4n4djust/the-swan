@@ -3,6 +3,7 @@
 
 <head>
 @include('includes.head')
+@yield('meta')
 @yield('media')
 </head>
 

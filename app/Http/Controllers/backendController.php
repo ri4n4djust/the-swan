@@ -26,6 +26,11 @@ class backendController extends Controller
             'original_name' => $file->getClientOriginalName(),
         ]);
     }
+    public function deleteMedia(Request $request)
+    {
+        $toDelete= $request->filetodelete ;
+        unlink(public_path('assets/img/rooms/'.$toDelete));
+    }
 
     public function store(Request $request)
     {

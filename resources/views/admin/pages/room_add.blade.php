@@ -31,13 +31,22 @@
         </div>
         <div class="form-group">
             <label>Facility</label>
-            <!-- <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}"> -->
+            <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}">
 
-            @foreach($fasilitas as $fas)
+            
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="fas_id" name="facility[]" value="{{$fas->id}}" >{{$fas->fas_name}}
+                @php $fasi = explode(";",$roomDetail->facility) ; @endphp
+                @foreach($fasilitas as $fas)
+                  @if(in_array($fas->id, $fasi))
+                    <input type="checkbox" id="fas_id" name="facility[]" value="{{ $fas->id }}" checked />{{$fas->fas_name}}
+                  @else
+                    <input type="checkbox" id="fas_id" name="facility[]" value="{{ $fas->id }}" />{{$fas->fas_name}}
+                  @endif
+
+                @endforeach
+               
                 </label>
-            @endforeach
+            
 
         </div>
         <div class="form-group">
@@ -92,10 +101,25 @@
         uploadedDocumentMap[file.name] = response.name
       },
       removedfile: function (file) {
+        // $.ajax({
+        //       url: {{ route('room.deleteMedia') }},
+        //       type: "POST",
+        //       data: { 'filetodelete': file.name}
+        // });
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
+            type:'POST',
+            url:'/room/media/delete',
+            data : {"filetodelete" : file.name},
+            success : function (data) {
+            }
+        });
+        console.log(file);
         file.previewElement.remove()
         var name = ''
-        if (typeof file.file_name !== 'undefined') {
-          name = file.file_name
+        
+        if (typeof file.name !== 'undefined') {
+          name = file.name
         } else {
           name = uploadedDocumentMap[file.name]
         }
