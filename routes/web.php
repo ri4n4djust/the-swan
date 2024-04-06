@@ -68,7 +68,8 @@ Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getL
 Route::get('/sitemap', function(){
     $sitemap = Sitemap::create()
     ->add(Url::create('/about-us'))
-    ->add(Url::create('/contact_us'));
+    ->add(Url::create('/contact_us'))
+    ->add(Url::create('/gallery'));
    
     $book = Booking::all();
     foreach ($book as $book) {
@@ -105,12 +106,18 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('rooms', ['as' => 'pages.rooms', 'uses' => 'App\Http\Controllers\PageController@rooms']);
     Route::get('rates', ['as' => 'pages.rates', 'uses' => 'App\Http\Controllers\PageController@rates']);
     Route::get('tour', ['as' => 'pages.tour', 'uses' => 'App\Http\Controllers\PageController@tour']);
-    //============
+    //============room
     Route::get('room-add', ['as' => 'pages.room_add', 'uses' => 'App\Http\Controllers\PageController@roomAdd']);
     Route::post('room/media', [App\Http\Controllers\backendController::class, 'storeMedia'])->name('room.storeMedia');
     Route::post('room/media/delete', [App\Http\Controllers\backendController::class, 'deleteMedia'])->name('room.deleteMedia');
     Route::post('room-store', [App\Http\Controllers\backendController::class, 'store'])->name('room.store');
     Route::get('room-edit/{room_code}', [App\Http\Controllers\backendController::class, 'edit'])->name('room.edit');
+    //=========tour
+    Route::get('tour-add', ['as' => 'pages.tour_add', 'uses' => 'App\Http\Controllers\PageController@tourAdd']);
+    Route::post('tour/media', [App\Http\Controllers\backendController::class, 'storeMediaTour'])->name('tour.storeMedia');
+    Route::post('tour/media/delete', [App\Http\Controllers\backendController::class, 'deleteMediaTour'])->name('tour.deleteMedia');
+    Route::post('tour-store', [App\Http\Controllers\backendController::class, 'storeTour'])->name('tour.store');
+    Route::get('tour-edit/{tour_code}', [App\Http\Controllers\backendController::class, 'editTour'])->name('tour.edit');
 
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -17,7 +17,7 @@
           <h2>Hotel Detail</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Sample Inner Page</li>
+            <li>{{ $hotelDetail[0]->title }}</li>
           </ol>
         </div>
 
@@ -131,6 +131,7 @@
                     <div class="row">
                             <div class="col-xl-6 form-group">
                                 <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
+                                <p><small>Include the + symbol, country code, and area code.</small></p>  
                             </div>
                             <div class="col-xl-6 form-group">
                             <input type="hidden" name="nationality" class="form-control" id="nationality" required>

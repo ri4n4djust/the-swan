@@ -1,5 +1,9 @@
 @extends('layouts.default')
-
+@section('meta')
+    <title>The Swand - Foto Gallery</title>
+    <meta content="{!! $hotelDetail[0]->desc !!}" name="description">
+    <meta content="{{ $hotelDetail[0]->slug }}" name="keywords">
+@endsection
 @section('content')
 
     <!-- ======= Breadcrumbs ======= -->
@@ -7,11 +11,11 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <!-- <h2>Hotel Detail</h2> -->
-          <!-- <ol> -->
-            <!-- <li><a href="index.html">Home</a></li>
-            <li>Sample Inner Page</li> -->
-          <!-- </ol> -->
+          <h2>Full Gallery</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Gallery</li>
+          </ol>
         </div>
 
       </div>
@@ -36,17 +40,6 @@
               </a>
             </div>
             @endforeach
-
-            <!-- <div class="swiper-slide">
-              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg">
-                <img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt="">
-              </a>
-            </div>
-            <div class="swiper-slide">
-              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg">
-                <img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt="">
-              </a>
-            </div> -->
 
           </div>
           <div class="swiper-pagination"></div>

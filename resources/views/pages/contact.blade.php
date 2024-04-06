@@ -1,5 +1,9 @@
 @extends('layouts.default')
-
+@section('meta')
+    <title>The Swand - Contact US</title>
+    <meta content="We are company that manage property and also rent for acomodation." name="description">
+    <meta content="room booking, manage hotel, manage villa, transport, travel, tour" name="keywords">
+@endsection
 @section('content')
 
     <!-- ======= Breadcrumbs ======= -->
@@ -98,7 +102,7 @@
             </div>
         @endif
 
-        <form action="contact-us" id="contactForm" method="post" role="form" class="php-email-form p-3 p-md-4" >
+        <form action="contact-us" id="contactForm" method="post" role="form" class="php-email-form p-3 p-md-4"  >
         @csrf
           <div class="row">
             <div class="col-xl-6 form-group">
@@ -120,7 +124,19 @@
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
           <div class="text-center">
-          {!! RecaptchaV3::field('register') !!}
+            
+          <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+              <div class="col-md-6">
+                  {!! RecaptchaV3::field('contact') !!}
+                  @if ($errors->has('g-recaptcha-response'))
+                      <span class="help-block">
+                          <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                      </span>
+                  @endif
+              </div>
+          </div>
+
+          
           <button type="submit">Send Message</button>
           <!-- <button class="g-recaptcha btn btn-primary btn-lg "
                                     data-sitekey="{{ config('services.recaptcha_v3.siteKey') }}"

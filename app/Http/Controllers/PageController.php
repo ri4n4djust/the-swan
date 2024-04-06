@@ -90,7 +90,9 @@ class PageController extends Controller
 
     public function tour()
     {
-        return view('admin.pages.tour');
+        $defaultLocale = config('app.locale');
+        $tur = DB::table('tour_packages')->get();
+        return view('admin.pages.tour', ['tour' => $tur]);
     }
     /**
      * Display upgrade page

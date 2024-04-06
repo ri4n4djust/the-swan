@@ -114,7 +114,6 @@ class bookingController extends Controller
 
         $defaultLocale = config('app.locale');
         $code = Booking::where('slug', $slug)->first();
-
         $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
         $country = DB::table('countries')->get();
         $fasilitas = Facility::all();
@@ -133,11 +132,11 @@ class bookingController extends Controller
 
     public function galeri(){
         $defaultLocale = config('app.locale');
-        // $code = Gallery::where('slug', $slug)->first();
-
+        $hotel = Booking::where('bookings.lang', $defaultLocale)->get();
         $galeri = Gallery::where('lang', $defaultLocale)->get();
 
         return view('pages.galeri',[
+            'hotelDetail' => $hotel,
             'galeri' => $galeri
             ] );
 
