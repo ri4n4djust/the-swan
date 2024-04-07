@@ -156,37 +156,27 @@ class backendController extends Controller
                 foreach($foto as $ft){
                     $gmbr = $gmbr.$ft.";" ;
                 }
-                $fasi = implode(';', $data['facility']);
-                $project = DB::table('bookings')->upsert([
+                $desti = implode(';', $data['destination']);
+                $project = DB::table('tour_packages')->upsert([
                     'id' => $data['id'],
                     'code' => $data['code'],
-                    'title' => $data['title'],
+                    'type' => $data['type'],
+                    'tour_name' => $data['tour_name'],
                     'slug' => $data['slug'],
-                    'desc' => $data['desc'],
+
+                    'itinerary' => $data['itinerary'],
                     'price' => $data['price'],
-                    'facility' => ';'.$fasi,
+                    'destination' => $desti.';',
                     'foto' => $gmbr,
                     'lang' => $data['lang'],
-                    'alotment' => $data['allotment'],
+                    'payment' => $data['payment'],
+                    'note' => $data['note'],
+                    'pickup' => $data['pickup'],
+
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                 ], 'id');
-                DB::table('room_nomors')->where('unit_code', $data['code'])->delete();
-                for ($i = 0; $i < $data['allotment']; $i++) {
-                    DB::table('room_nomors')->insert([
-                        'room_code' => $i+1 ,
-                        'room_no' => $i+1 ,
-                        'unit_code' => $data['code'],
-                        'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-                        'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
-                    ]);
-                }
-                // echo $gmbr ;
-                // print_r($data['document']);
-                // foreach ($request->input('document', []) as $file) {
-                //     \File::move(storage_path('tmp/uploads/'.$file), public_path('assets/img/rooms/'.$file));
-                //     // echo $file ;
-                // }
+
                 DB::commit();
             });
             if(is_null($exception)) {
@@ -194,7 +184,7 @@ class backendController extends Controller
                 //     'success' => true,
                 //     'message' => 'Post Berhasil Diupdate!',
                 // ], 200);
-                return redirect()->route('pages.rooms');
+                return redirect()->route('pages.tour');
             } else {
                 DB::rollback();
                 return response()->json([
@@ -217,10 +207,10 @@ class backendController extends Controller
     }
 
     public function editTour($room_code){
-        $roomDetail = DB::table('bookings')->where('code', $room_code)->first();
+        $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
-        $fasilitas = DB::table('facilities')->get();
-        $foto = $roomDetail->foto ;
+        $destinasi = DB::table('destinations')->get();
+        $foto = $tourDetail->foto ;
         $fotor = explode(';', $foto);
         $ft = array_slice($fotor, 0, -1);
         // var_dump($ft);
@@ -232,7 +222,7 @@ class backendController extends Controller
         // }
 
 
-        return view('admin.pages.room_add', compact('roomDetail', 'fasilitas'));
+        return view('admin.pages.tour_add', compact('tourDetail', 'destinasi'));
 
     }
 

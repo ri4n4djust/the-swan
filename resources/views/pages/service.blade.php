@@ -341,17 +341,8 @@
 
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
-              <!-- <h3>Tour</h3> -->
+              <h6>Our best tour</h6>
             </div>
-            <div class="row">
-              <div class="col-xl-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-xl-6 form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
-            </div>
-
             <div class="row gy-5">
 
               @foreach ($tour as $tur)
@@ -361,7 +352,7 @@
                     <div class="member-img">
                       @php $gmbr = explode(";",$tur->foto) ; @endphp
                       
-                      <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="">{{ $gmbr[0] }}
+                      <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="{{ $gmbr[0] }}">
                       
                       <div class="social">
                         <!-- <a href=""><i class="bi bi-twitter"></i></a>
@@ -380,22 +371,19 @@
                     <div class="member-info"> -->
                       <!-- <i class="bi bi-wifi"></i>
                       <i class="bi bi-twitter"></i> -->
-                      @php $fs = explode(",",$tur->destination) ; @endphp
-                      @foreach ($fs as $fas)
-                        <i class="bi bi-check2-all"></i> {{$fas}}<br>
+                      <!-- @php $fs = explode(",",$tur->destination) ; @endphp -->
+                      <!-- @foreach ($fs as $fas) -->
+                        <!-- <i class="bi bi-check2-all"></i> {{$fas}}<br> -->
                         <!-- <i class="bi bi-check2-all"></i> Shower
                         <i class="bi bi-check2-all"></i> Free Wifi -->
-                      @endforeach
+                      <!-- @endforeach -->
                     </div>
                     <p class="price">
                       <!-- IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br> -->
                       <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
                         Detail
                       </button> -->
-                      <a href="/tour/{{$tur->slug}}" class="btn btn-primary">Detail</a>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
-                        Book Now
-                      </button>
+                      <a href="/tour/{{$tur->slug}}" class="btn-book-a-table">Detail</a>
                     </p>
                     
                   </div>

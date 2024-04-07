@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label>Facility</label>
-            <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}">
+            <!-- <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}"> -->
 
             
                 <label class="checkbox-inline">

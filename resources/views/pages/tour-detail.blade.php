@@ -35,10 +35,10 @@
                     
                     <div class="position-relative mt-4">
                         <h4>{{ $tourDetail[0]->tour_name }}</h4>
-                        <p>
-                        {!! $tourDetail[0]->itinerary !!}
-
-                        </p>
+                        <p>{!! $tourDetail[0]->itinerary !!}</p>
+                        <p>{!! $tourDetail[0]->price !!}</p>
+                        <p>{!! $tourDetail[0]->pickup !!}</p>
+                        <p>{!! $tourDetail[0]->payment !!}</p>
                     </div>
                 </div>
                 <div class="col-lg-6 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
@@ -81,6 +81,7 @@
                         <span class="sr-only">Next</span>
                         </a>
                     </div>
+                    <p>{!! $tourDetail[0]->note !!}</p>
                     
                 </div>
             </div>
