@@ -94,13 +94,25 @@ class PageController extends Controller
         $tur = DB::table('tour_packages')->get();
         return view('admin.pages.tour', ['tour' => $tur]);
     }
+    public function tourAdd()
+    {
+        // $defaultLocale = config('app.locale');
+        $destinasi = DB::table('destinations')->get();
+        return view('admin.pages.tour_add', compact('destinasi'));
+    }
     /**
      * Display upgrade page
      *
      * @return \Illuminate\View\View
      */
-    public function upgrade()
+    public function destinasi()
     {
-        return view('admin.pages.upgrade');
+        $destinasi = DB::table('destinations')->get();
+        return view('admin.pages.destinasi', ['destinasi' => $destinasi]);
+    }
+    public function destinasiAdd()
+    {
+        // $defaultLocale = config('app.locale');
+        return view('admin.pages.destinasi_add');
     }
 }

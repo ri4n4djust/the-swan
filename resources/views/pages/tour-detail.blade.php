@@ -52,8 +52,8 @@
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
 
-                        @php $gmbr = explode(";",$tourDetail[0]->foto) ; @endphp
-                        
+                        @php $gmbra = explode(";",$tourDetail[0]->foto) ; @endphp
+                        @php $gmbr = array_slice($gmbra, 0, -1) ; @endphp
                         @foreach($gmbr as $value)
                         <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
                         @endforeach

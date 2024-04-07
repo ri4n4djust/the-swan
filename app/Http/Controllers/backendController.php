@@ -226,6 +226,102 @@ class backendController extends Controller
 
     }
 
+    public function storeMediaDestinasi(Request $request)
+    {
+        $path = public_path('assets/img/destinasi/'); //storage_path('tmp/uploads');
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $file = $request->file('file');
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        $file->move($path, $name);
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+    }
+    public function deleteMediaDestinasi(Request $request)
+    {
+        $toDelete= $request->filetodelete ;
+        unlink(public_path('assets/img/destinasi/'.$toDelete));
+    }
+
+    public function storeDestinasi(Request $request)
+    {
+        try{
+            $exception = DB::transaction(function() use ($request){ 
+            
+                $data = $request->all();
+            
+                $gmbr = "";
+                $foto = $data['document'];
+                foreach($foto as $ft){
+                    $gmbr = $gmbr.$ft.";" ;
+                }
+                // $desti = implode(';', $data['destination']);
+                $project = DB::table('destinations')->upsert([
+                    'id' => $data['id'],
+                    'code_dst' => $data['code_dst'],
+                    'deskripsi' => $data['deskripsi'],
+                    'name' => $data['name'],
+                    'slug' => $data['slug'],
+
+                    'foto' => $gmbr,
+                    'lang' => $data['lang'],
+
+                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                ], 'id');
+
+                DB::commit();
+            });
+            if(is_null($exception)) {
+                // return response()->json([
+                //     'success' => true,
+                //     'message' => 'Post Berhasil Diupdate!',
+                // ], 200);
+                return redirect()->route('pages.destinasi');
+            } else {
+                DB::rollback();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Post Gagal Diupdate!',
+                ], 500);
+                // return redirect()->route('pages.room_add');
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            // something went wrong
+            return response()->json([
+             'success' => false,
+             'message' => 'exception'.$e,
+         ], 400);
+            // return redirect()->route('pages.room_add');
+        }
+
+        // return redirect()->route('pages.rooms');
+    }
+
+    public function editDestinasi($destinasi_code){
+        // $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
+        // return redirect()->route('pages.room_add');
+        $destinasiDetail = DB::table('destinations')->where('code_dst', $destinasi_code)->first();
+        $foto = $destinasiDetail->foto ;
+        $fotor = explode(';', $foto);
+        $ft = array_slice($fotor, 0, -1);
+        // var_dump($ft);
+        // foreach ($ft as $file) {
+        //     if(file_exists(public_path('assets/img/rooms/'.$file))){
+        //         \File::move(public_path('assets/img/rooms/'.$file), storage_path('tmp/uploads/'.$file));
+        //         // echo $file ;
+        //     }
+        // }
+
+
+        return view('admin.pages.destinasi_add', compact('destinasiDetail'));
+
+    }
+
     public function guestOrder(Request $request){
         $email = $request->email ;
         $data = DB::table('reservations')->where('guest_email', $email)->get();

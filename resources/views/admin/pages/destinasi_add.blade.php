@@ -1,74 +1,42 @@
-@extends('layouts.app', ['page' => __('Add Tour'), 'pageSlug' => 'tour_add'])
+@extends('layouts.app', ['page' => __('Add Destinations'), 'pageSlug' => 'destinasi_add'])
 
 @section('content')
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header">
-        <h4 class="card-title">Tour</h4>
+        <h4 class="card-title">Bali Destinations</h4>
         
       </div>
       <div class="card-body">
 
-      <form action="{{ route('tour.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('destinasi.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
-        <div class="form-group">
-            <label>Code</label>
-            <input type="text" name="id" class="form-control" placeholder="code" value="{{ $tourDetail->id ?? '' }}" >
-            <input type="text" name="code" class="form-control" placeholder="code" value="{{ $tourDetail->code ?? '' }}" >
-        </div>
-        <div class="form-group">
+        <div class="row">
+          <div class="form-group col-lg-6">
+              <label>Code</label>
+              <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $destinasiDetail->id ?? '' }}" >
+              <input type="text" name="code_dst" class="form-control" placeholder="code_dst" value="{{ $destinasiDetail->code_dst ?? '' }}" >
+          </div>
+          <div class="form-group col-lg-6">
             <label>Name</label>
-            <input type="text" name="tour_name" class="form-control" placeholder="Title" value="{{ $tourDetail->tour_name ?? '' }}">
+            <input type="text" name="name" class="form-control" placeholder="Title" value="{{ $destinasiDetail->name ?? '' }}">
+          </div>
         </div>
-        <div class="form-group">
-            <label>slug</label>
-            <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $tourDetail->slug ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>Type</label>
-            <input type="text" name="type" class="form-control" value="{{ $tourDetail->type ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>Lang</label>
-            <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $tourDetail->lang ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>Itinerary</label>
-            <textarea class="form-control" id="itinerary" name="itinerary" >{{ $tourDetail->itinerary ?? '' }}</textarea>
-        </div>
-        <div class="form-group">
-            <label>Price</label>
-            <textarea class="form-control" id="price" name="price" >{{ $tourDetail->price ?? '' }}</textarea>
-        </div>
-        <div class="form-group">
-            <label>Pickup</label>
-            <textarea class="form-control" id="pickup" name="pickup" >{{ $tourDetail->pickup ?? '' }}</textarea>
-        </div>
-        <div class="form-group">
-            <label>Payment</label>
-            <textarea class="form-control" id="payment" name="payment" >{{ $tourDetail->payment ?? '' }}</textarea>
-        </div>
-        <div class="form-group">
-            <label>Note</label>
-            <textarea class="form-control" id="note" name="note" >{{ $tourDetail->note ?? '' }}</textarea>
-        </div>
-        <div class="form-group">
-            <label>Destination</label>
-            
-                <label class="checkbox-inline">
-                @php $fasi = explode(";",$tourDetail->destination) ; @endphp
-                @foreach($destinasi as $desti)
-                  @if(in_array($desti->id, $fasi))
-                    <input type="checkbox" id="destination" name="destination[]" value="{{ $desti->id }}" checked />{{$desti->name}} - {{$desti->lang}}
-                  @else
-                    <input type="checkbox" id="destination" name="destination[]" value="{{ $desti->id }}" />{{$desti->name}} - {{$desti->lang}}
-                  @endif
 
-                @endforeach
-               
-                </label>
-
+        <div class="row">
+          <div class="form-group col-lg-6">
+              <label>slug</label>
+              <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $destinasiDetail->slug ?? '' }}">
+          </div>
+          <div class="form-group col-lg-6">
+              <label>Lang</label>
+              <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $destinasiDetail->lang ?? '' }}">
+          </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" >{{ $destinasiDetail->deskripsi ?? '' }}</textarea>
         </div>
         <div class="form-group">
             <div class="needsclick dropzone" id="document-dropzone"></div>
@@ -92,16 +60,16 @@
       filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
       filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
     };
-    CKEDITOR.replace('itinerary', options);
-    CKEDITOR.replace('price', options);
-    CKEDITOR.replace('pickup', options);
-    CKEDITOR.replace('payment', options);
-    CKEDITOR.replace('note', options);
+    CKEDITOR.replace('deskripsi', options);
+    // CKEDITOR.replace('price', options);
+    // CKEDITOR.replace('pickup', options);
+    // CKEDITOR.replace('payment', options);
+    // CKEDITOR.replace('note', options);
 
 
     var uploadedDocumentMap = {}
     Dropzone.options.documentDropzone = {
-      url: '{{ route('tour.storeMedia') }}',
+      url: '{{ route('destinasi.storeMedia') }}',
       maxFilesize: 10, // MB
       acceptedFiles: '.png, .jpg',
       addRemoveLinks: true,
@@ -122,7 +90,7 @@
         $.ajax({
             headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
             type:'POST',
-            url:'/tour/media/delete',
+            url:'/destinasi/media/delete',
             data : {"filetodelete" : file.name},
             success : function (data) {
             }
@@ -141,8 +109,8 @@
       init: function () {
         // console.log('onload dropzone');
 
-        @if(isset($tourDetail) && $tourDetail->foto)
-          var filess = {!! json_encode($tourDetail->foto) !!}
+        @if(isset($destinasiDetail) && $destinasiDetail->foto)
+          var filess = {!! json_encode($destinasiDetail->foto) !!}
           var filesa = filess.split(';');
 
           const files = [];
@@ -165,7 +133,7 @@
             // var principal = '@Model.Article.Image'; 
             let mockFile = { name: file.file_name, size: 12345, type: 'image/jpg', accepted: true };
             this.emit("addedfile", mockFile);
-            this.emit("thumbnail", mockFile, "/assets/img/tour/" + file.file_name)
+            this.emit("thumbnail", mockFile, "/assets/img/destinasi/" + file.file_name)
             {
                 $('[data-dz-thumbnail]').css('height', '120');
                 $('[data-dz-thumbnail]').css('width', '120');
