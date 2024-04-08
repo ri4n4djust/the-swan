@@ -29,7 +29,7 @@ use Spatie\Sitemap\Tags\Url;
 
 if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 {
-    Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
+    Route::get('/lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
     // Route::get('/', function () { return view('pages.home'); });
     Route::get('/', [App\Http\Controllers\bookingController::class , 'home']);
     Route::get('/about', function () { return view('pages.about'); });
@@ -37,13 +37,10 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/events', [App\Http\Controllers\bookingController::class , 'event']);
     Route::get('/contact', [App\Http\Controllers\ContactUsController::class , 'index']);
     
-
-    
     Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service'])->name('service');
     Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
     Route::get('/hotel/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
-
     Route::get('/destination', [App\Http\Controllers\bookingController::class , 'destination']);
 
     Route::get('/try-checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'onSubmit']);
@@ -94,6 +91,8 @@ Route::get('/sitemap', function(){
         $sitemap->add(Url::create("/destinasi/{$tur->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
+
+    
 }); 
 
 //======================guest

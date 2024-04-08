@@ -67,7 +67,7 @@
                         @foreach($gmbr as $key => $slider)
                         <!-- {{ $key }} -->
                         <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-                            <img src="{{ asset('assets/img/tour/'. $slider) }}" class="d-block w-100" alt="">
+                            <img src="{{ asset('assets/img/tour/'. $slider) }}" class="d-block w-100" alt="$slider">
                         </div>
                         @endforeach
                         
@@ -82,6 +82,28 @@
                         </a>
                     </div>
                     <p>{!! $tourDetail[0]->note !!}</p>
+
+                   
+                    
+                        @php $fasi = explode(";",$tourDetail[0]->destination) ; @endphp
+                        <div class="row">
+                        @foreach($destinasi as $desti)
+                            @if(in_array($desti->id, $fasi))
+                                @php $gmbr = explode(";",$desti->foto) ; @endphp
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="chef-member">
+                                        <div class="member-img">
+                                            <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                        </div>
+                                        <div class="member-info">
+                                            <small>{{$desti->name}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                        </div>
+             
                     
                 </div>
             </div>
@@ -114,16 +136,6 @@
                 
                 </div>
             </div>
-            <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident 
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident 
-
-            </p>
-            
             </div> -->
 
         </div>

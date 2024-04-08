@@ -210,10 +210,10 @@ class backendController extends Controller
         $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
         $destinasi = DB::table('destinations')->get();
-        $foto = $tourDetail->foto ;
-        $fotor = explode(';', $foto);
-        $ft = array_slice($fotor, 0, -1);
-        // var_dump($ft);
+        // $foto = $tourDetail->foto ;
+        // $fotor = explode(';', $foto);
+        // $ft = array_slice($fotor, 0, -1);
+        // var_dump($tourDetail->destination);
         // foreach ($ft as $file) {
         //     if(file_exists(public_path('assets/img/rooms/'.$file))){
         //         \File::move(public_path('assets/img/rooms/'.$file), storage_path('tmp/uploads/'.$file));

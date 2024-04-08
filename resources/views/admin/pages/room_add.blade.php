@@ -12,50 +12,56 @@
 
       <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
-        <div class="form-group">
-            <label>Code</label>
-            <input type="text" name="id" class="form-control" placeholder="code" value="{{ $roomDetail->id ?? '' }}" >
-            <input type="text" name="code" class="form-control" placeholder="code" value="{{ $roomDetail->code ?? '' }}" >
+        <div class="row">
+            <div class="form-group col-lg-6">
+              <label>Code</label>
+              <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $roomDetail->id ?? '' }}" >
+              <input type="text" name="code" class="form-control" placeholder="code" value="{{ $roomDetail->code ?? '' }}" >
+            </div>
+            <div class="form-group col-lg-6">
+                <label>Name</label>
+                <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $roomDetail->title ?? '' }}">
+            </div>
         </div>
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $roomDetail->title ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>slug</label>
-            <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $roomDetail->slug ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>Price</label>
-            <input type="number" name="price" class="form-control" placeholder="Price" value="{{ $roomDetail->price ?? '' }}">
+        <div class="row">
+          <div class="form-group col-lg-6">
+              <label>slug</label>
+              <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $roomDetail->slug ?? '' }}">
+          </div>
+          <div class="form-group col-lg-6">
+              <label>Price</label>
+              <input type="number" name="price" class="form-control" placeholder="Price" value="{{ $roomDetail->price ?? '' }}">
+          </div>
         </div>
         <div class="form-group">
             <label>Facility</label>
-            <!-- <input type="text" name="facility" class="form-control" placeholder="Facility" value="{{ $roomDetail->facility ?? '' }}"> -->
+              <label class="checkbox-inline">
+                @if(isset($roomDetail))
+                  @php $fasi = explode(";",$roomDetail->facility) ; @endphp
+                  @foreach($fasilitas as $fas)
+                    @if(in_array($fas->id, $fasi))
+                      <input type="checkbox" id="fas_id" name="facility[]" value="{{ $fas->id }}" checked />{{$fas->fas_name}}
+                    @else
+                      <input type="checkbox" id="fas_id" name="facility[]" value="{{ $fas->id }}" />{{$fas->fas_name}}
+                    @endif
 
-            
-                <label class="checkbox-inline">
-                @php $fasi = explode(";",$roomDetail->facility) ; @endphp
-                @foreach($fasilitas as $fas)
-                  @if(in_array($fas->id, $fasi))
-                    <input type="checkbox" id="fas_id" name="facility[]" value="{{ $fas->id }}" checked />{{$fas->fas_name}}
-                  @else
-                    <input type="checkbox" id="fas_id" name="facility[]" value="{{ $fas->id }}" />{{$fas->fas_name}}
-                  @endif
-
-                @endforeach
-               
-                </label>
-            
-
+                  @endforeach
+                @else
+                  @foreach($fasilitas as $fas)
+                      <input type="checkbox" id="fas_id" name="facility[]" value="{{ $fas->id }}" />{{$fas->fas_name}}
+                  @endforeach
+                @endif
+              </label>
         </div>
-        <div class="form-group">
+        <div class="row">
+          <div class="form-group col-lg-6">
             <label>Lang</label>
             <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $roomDetail->lang ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>alotment</label>
-            <input type="number" name="allotment" class="form-control" placeholder="alotment" value="{{ $roomDetail->alotment ?? '' }}">
+          </div>
+          <div class="form-group col-lg-6">
+              <label>alotment</label>
+              <input type="number" name="allotment" class="form-control" placeholder="alotment" value="{{ $roomDetail->alotment ?? '' }}">
+          </div>
         </div>
         <div class="form-group">
             <label>Desc</label>

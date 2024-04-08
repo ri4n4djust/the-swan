@@ -104,9 +104,10 @@ class bookingController extends Controller
 
         $defaultLocale = config('app.locale');
         $tur = TourPackage::where('tour_packages.lang', $defaultLocale)->where('slug', $slug)->get();
-
+        $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->get();
         return view('pages.tour-detail',[
-            'tourDetail' => $tur
+            'tourDetail' => $tur,
+            'destinasi' => $destinasi
             ] );
     }
 
@@ -117,11 +118,13 @@ class bookingController extends Controller
         $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
         $country = DB::table('countries')->get();
         $fasilitas = Facility::all();
+        $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->get();
 
         return view('pages.hotel-detail',[
             'hotelDetail' => $hotel,
             'country' => $country,
             'fasilitas' => $fasilitas,
+            'destinasi' => $destinasi
             ] );
     }
 

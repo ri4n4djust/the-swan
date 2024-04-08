@@ -12,26 +12,30 @@
 
       <form action="{{ route('tour.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
-        <div class="form-group">
+        <div class="row">
+          <div class="form-group col-lg-6">
             <label>Code</label>
-            <input type="text" name="id" class="form-control" placeholder="code" value="{{ $tourDetail->id ?? '' }}" >
+            <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $tourDetail->id ?? '' }}" >
             <input type="text" name="code" class="form-control" placeholder="code" value="{{ $tourDetail->code ?? '' }}" >
+          </div>
+          <div class="form-group col-lg-6">
+              <label>Name</label>
+              <input type="text" name="tour_name" class="form-control" placeholder="Title" value="{{ $tourDetail->tour_name ?? '' }}">
+          </div>
         </div>
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="tour_name" class="form-control" placeholder="Title" value="{{ $tourDetail->tour_name ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>slug</label>
-            <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $tourDetail->slug ?? '' }}">
-        </div>
-        <div class="form-group">
-            <label>Type</label>
-            <input type="text" name="type" class="form-control" value="{{ $tourDetail->type ?? '' }}">
-        </div>
-        <div class="form-group">
+        <div class="row">
+          <div class="form-group col-lg-6">
             <label>Lang</label>
             <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $tourDetail->lang ?? '' }}">
+          </div>
+          <div class="form-group col-lg-6">
+              <label>Type</label>
+              <input type="text" name="type" class="form-control" value="{{ $tourDetail->type ?? '' }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>slug</label>
+          <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $tourDetail->slug ?? '' }}">
         </div>
         <div class="form-group">
             <label>Itinerary</label>
@@ -54,18 +58,25 @@
             <textarea class="form-control" id="note" name="note" >{{ $tourDetail->note ?? '' }}</textarea>
         </div>
         <div class="form-group">
-            <label>Destination</label>
+            <label>Destination  </label>
             
                 <label class="checkbox-inline">
-                @php $fasi = explode(";",$tourDetail->destination) ; @endphp
-                @foreach($destinasi as $desti)
-                  @if(in_array($desti->id, $fasi))
-                    <input type="checkbox" id="destination" name="destination[]" value="{{ $desti->id }}" checked />{{$desti->name}} - {{$desti->lang}}
-                  @else
-                    <input type="checkbox" id="destination" name="destination[]" value="{{ $desti->id }}" />{{$desti->name}} - {{$desti->lang}}
-                  @endif
+                 
+                @if(isset($tourDetail))
+                  @php $fasi = explode(";",$tourDetail->destination) ; @endphp
+                    @foreach($destinasi as $desti)
+                      @if(in_array($desti->id, $fasi))
+                        <input type="checkbox" id="destination" name="destination[]" value="{{ $desti->id }}" checked />{{$desti->name}} - {{$desti->lang}}
+                      @else
+                        <input type="checkbox" id="destination" name="destination[]" value="{{ $desti->id }}" />{{$desti->name}} - {{$desti->lang}}
+                      @endif
 
-                @endforeach
+                    @endforeach
+                @else
+                    @foreach($destinasi as $desti)
+                        <input type="checkbox" id="destination" name="destination[]" value="{{ $desti->id }}" />{{$desti->name}} - {{$desti->lang}}
+                    @endforeach
+                @endif
                
                 </label>
 

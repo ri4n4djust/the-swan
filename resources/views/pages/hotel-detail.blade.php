@@ -108,13 +108,13 @@
             </div>
             <div class="col-lg-5 d-flex" data-aos="fade-up" data-aos-delay="300">
             
-                <div class="content ps-0 ps-lg-5">
-                <div class="section-header">
-            <h4>Booking Detail</h4>
-            <!-- <p>Learn More </p> -->
-            </div>
+                <div class="content ps-0 ps-lg-5" >
+                    <div class="section-header">
+                        <h4>Booking Detail</h4>
+                        <!-- <p>Learn More </p> -->
+                    </div>
                     
-                <form id="form-configure" cautocomplete="off">
+                <form id="form-configure" cautocomplete="off" >
                     <div class="row">
                         <div class="col-xl-6 form-group">
                             <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
@@ -125,9 +125,6 @@
                             <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
-                    </div> -->
                     <div class="row">
                             <div class="col-xl-6 form-group">
                                 <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
@@ -154,9 +151,6 @@
                             <input type="number" class="form-control" name="qty" id="qty" value="1" placeholder="Adult" disabled>
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message" ></textarea>
-                    </div> -->
                     <div class="row">
                         <div class="col-xl-8 form-group">
 
@@ -229,7 +223,27 @@
 
                         <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
                     </div>
-                
+                </div>
+                <div class="content ps-0 ps-lg-5" >
+                    <div class="row">
+                        <div class="section-header">
+                            <h4>Most interesting In Bali</h4>
+                        </div>
+                        @foreach($destinasi as $desti)
+                        @php $gmbr = explode(";",$desti->foto) ; @endphp
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                <div class="chef-member">
+                                    <div class="member-img">
+                                        <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                    </div>
+                                    <div class="member-info">
+                                        <small>{{$desti->name}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
                 
                 <div id="loading"></div>
                 @include('shared/modal')
@@ -507,66 +521,11 @@
                                 alert("Please Complete Form")
                             }
 
-                            // var str = $( "form-configure" ).serialize();
-                            // console.log(formData);
-                            // var formDataa = JSON.parse(formData);
                             
-                            // console.log(formDataa);
-                            // $.ajaxSetup({
-                            //     headers: {
-                            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                            //         'Access-Control-Allow-Origin': '*',
-                            //         'Access-Control-Allow-Methods' : 'GET,POST,PUT,DELETE,OPTIONS',
-                            //     }
-                            // });
-                            // $.ajax({
-                            //     type: "POST",
-                            //     url: "/paypal/detail",
-                            //     data: formData,
-                            //     error: function (request, error) {
-                            //         // console.log(arguments);
-                            //     },
-                            //     success: function (result) {
-                                   
-                            //         // alert(detail);
-                            //         console.log(result);
-                                    
-                            //     },
-                                
-                            //     // dataType: "json"
-                            // });
 
                         }
                         
-                        // const data = [
-                        //     { name: 'Rahul', age: 25, city: 'New Delhi' },
-                        //     { name: 'Vijay', age: 30, city: 'Muzaffarpur' },
-                        //     { name: 'Gaurav', age: 22, city: 'Noida' },
-                        // ];
-                
-                        // function createTableWithInnerHTML() {
-                        //     let tableHTML = document.getElementById('detail').value ; // '<table border="1"><tr>';
-                
-                        //     Object.keys(data[0]).forEach(key => {
-                        //         tableHTML += `<th>${key}</th>`;
-                        //     });
-                
-                        //     tableHTML += '</tr>';
-                
-                        //     data.forEach(item => {
-                        //         tableHTML += '<tr>';
-                        //         Object.values(item).forEach(value => {
-                        //             tableHTML += `<td>${value}</td>`;
-                        //         });
-                        //         tableHTML += '</tr>';
-                        //     });
-                
-                        //     tableHTML += '</table>';
-                
-                        //     document.body.innerHTML += tableHTML;
-                        // }
-                
-                        // createTableWithInnerHTML();
+                        
                     </script>
                 @endsection
                 
