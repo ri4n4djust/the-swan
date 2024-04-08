@@ -105,7 +105,7 @@ class backendController extends Controller
     }
 
     public function edit($room_code){
-        $roomDetail = DB::table('bookings')->where('code', $room_code)->first();
+        $roomDetail = DB::table('bookings')->where('id', $room_code)->first();
         // return redirect()->route('pages.room_add');
         $fasilitas = DB::table('facilities')->get();
         $foto = $roomDetail->foto ;

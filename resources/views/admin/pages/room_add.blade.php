@@ -92,44 +92,54 @@
     CKEDITOR.replace('desc', options);
 
 
-    var uploadedDocumentMap = {}
+    var uploadedDocumentMap = {
+      resizeWidth: 1000, resizeHeight: 1000,
+      resizeMethod: 'contain', resizeQuality: 1.0,
+      draggable: '.dz-preview',
+      cursor: 'move',
+    }
     Dropzone.options.documentDropzone = {
       url: '{{ route('room.storeMedia') }}',
+      
       maxFilesize: 10, // MB
-      acceptedFiles: '.png, .jpg',
+      acceptedFiles: '.png, .jpg, .jpeg',
       addRemoveLinks: true,
       headers: {
         'X-CSRF-TOKEN': "{{ csrf_token() }}"
       },
       success: function (file, response) {
-        console.log(file);
+        // console.log(file);
         $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
         uploadedDocumentMap[file.name] = response.name
       },
       removedfile: function (file) {
-        // $.ajax({
-        //       url: {{ route('room.deleteMedia') }},
-        //       type: "POST",
-        //       data: { 'filetodelete': file.name}
-        // });
+        // console.log(file.xhr);
+        if(file.xhr === undefined){
+          nama = file.name ;
+        }else{
+          var response = JSON.parse(file.xhr.response);
+          nama = response.name ;
+          console.log(response.name);
+        }
         $.ajax({
             headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
             type:'POST',
             url:'/room/media/delete',
-            data : {"filetodelete" : file.name},
+            data : { "filetodelete" : nama },
             success : function (data) {
+              // console.log(data)
+              
             }
-        });
-        console.log(file);
+        }); 
         file.previewElement.remove()
         var name = ''
-        
-        if (typeof file.name !== 'undefined') {
-          name = file.name
+        if (typeof nama !== 'undefined') {
+          name = nama
         } else {
-          name = uploadedDocumentMap[file.name]
+          name = uploadedDocumentMap[nama]
         }
-        $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+        $('form').find('input[name="document[]"][value="' + name + '"]').remove()     
+      
       },
       init: function () {
         // console.log('onload dropzone');
@@ -156,7 +166,7 @@
             // file.previewElement.classList.add('dz-complete')
 
             // var principal = '@Model.Article.Image'; 
-            let mockFile = { name: file.file_name, size: 12345, type: 'image/jpg', accepted: true };
+            let mockFile = { name: file.file_name, size: 100000, type: 'image/jpg, image/png, image/jpeg', accepted: true };
             this.emit("addedfile", mockFile);
             this.emit("thumbnail", mockFile, "/assets/img/rooms/" + file.file_name)
             {

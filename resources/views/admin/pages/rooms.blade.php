@@ -30,7 +30,7 @@
                 <td class="text-center">{{$rm->alotment}}</td>
                 <td>{{$rm->lang}}</td>
                 <td>
-                  <a href="{{ route('room.edit',['room_code' => $rm->code]) }}"><i class="tim-icons icon-pencil"></i></a>
+                  <a href="{{ route('room.edit',['room_code' => $rm->id]) }}"><i class="tim-icons icon-pencil"></i></a>
                   <i class="tim-icons icon-trash-simple"></i>
                 </td>
               </tr>
