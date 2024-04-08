@@ -224,26 +224,26 @@
                         <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
                     </div>
                 </div>
-                <div class="content ps-0 ps-lg-5" >
-                    <div class="row">
-                        <div class="section-header">
-                            <h4>Most interesting In Bali</h4>
-                        </div>
-                        @foreach($destinasi as $desti)
-                        @php $gmbr = explode(";",$desti->foto) ; @endphp
-                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                                <div class="chef-member">
-                                    <div class="member-img">
-                                        <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
-                                    </div>
-                                    <div class="member-info">
-                                        <small>{{$desti->name}}</small>
-                                    </div>
+               
+                <div class="row">
+                    <div class="section-header">
+                        <h4>Most interesting In Bali</h4>
+                    </div>
+                    @foreach($destinasi as $desti)
+                    @php $gmbr = explode(";",$desti->foto) ; @endphp
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                            <div class="chef-member">
+                                <div class="member-img">
+                                    <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                </div>
+                                <div class="member-info">
+                                    <small>{{$desti->name}}</small>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
+                
                 
                 <div id="loading"></div>
                 @include('shared/modal')
