@@ -42,6 +42,7 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
     Route::get('/hotel/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
     Route::get('/destination', [App\Http\Controllers\bookingController::class , 'destination']);
+    Route::get('/activities', [App\Http\Controllers\bookingController::class , 'activity']);
 
     Route::get('/try-checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'onSubmit']);
 }
@@ -112,6 +113,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('rates', ['as' => 'pages.rates', 'uses' => 'App\Http\Controllers\PageController@rates']);
     Route::get('tour', ['as' => 'pages.tour', 'uses' => 'App\Http\Controllers\PageController@tour']);
     Route::get('destinasi', ['as' => 'pages.destinasi', 'uses' => 'App\Http\Controllers\PageController@destinasi']);
+    Route::get('activiity', ['as' => 'pages.activity', 'uses' => 'App\Http\Controllers\PageController@activity']);
     //============room
     Route::get('room-add', ['as' => 'pages.room_add', 'uses' => 'App\Http\Controllers\PageController@roomAdd']);
     Route::post('room/media', [App\Http\Controllers\backendController::class, 'storeMedia'])->name('room.storeMedia');
@@ -130,6 +132,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('destinasi/media/delete', [App\Http\Controllers\backendController::class, 'deleteMediaDestinasi'])->name('destinasi.deleteMedia');
     Route::post('destinasi-store', [App\Http\Controllers\backendController::class, 'storeDestinasi'])->name('destinasi.store');
     Route::get('destinasi-edit/{destinasi_code}', [App\Http\Controllers\backendController::class, 'editDestinasi'])->name('destinasi.edit');
+    //=========bali aktiviti
+    Route::get('activity-add', ['as' => 'pages.activity_add', 'uses' => 'App\Http\Controllers\PageController@activityAdd']);
+    Route::post('activity/media', [App\Http\Controllers\backendController::class, 'storeMediaActivity'])->name('activity.storeMedia');
+    Route::post('activity/media/delete', [App\Http\Controllers\backendController::class, 'deleteMediaActivity'])->name('activity.deleteMedia');
+    Route::post('activity-store', [App\Http\Controllers\backendController::class, 'storeActivity'])->name('activity.store');
+    Route::get('activity-edit/{activity_code}', [App\Http\Controllers\backendController::class, 'editActivity'])->name('activity.edit');
 
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

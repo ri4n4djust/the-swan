@@ -74,10 +74,50 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                     </a>
+
+                    <!-- Thumbnails -->
+                    <div class="carousel-indicators" style="margin-bottom: -20px;">
+                        @foreach($gmbr as $key => $slider)
+                            <button type="button" data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{$loop->first ? 'active' : ''}}" aria-current="true" aria-label="Slide 1" >
+                            <img class="d-block w-100" src="{{ asset('assets/img/rooms/'. $slider) }}" class="img-fluid" />
+                            </button>
+                        @endforeach   
+                    </div>
+                    <!-- Thumbnails -->
+                    
+                </div>
+                <div style="margin-top:40px;"></div>
+                
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css" rel="stylesheet">
+                <div class="lightbox" data-mdb-lightbox-init>
+                <div class="row">
+                    <div class="col-lg-6">
+                    <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/1.webp"
+                        data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Slides/1.webp"
+                        alt="Table Full of Spices"
+                        class="w-100 mb-2 mb-md-4 shadow-1-strong rounded"
+                    />
+                    <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Square/1.webp"
+                        data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Square/1.webp"
+                        alt="Coconut with Strawberries"
+                        class="w-100 shadow-1-strong rounded"
+                    />
+                    </div>
+                    <div class="col-lg-6">
+                    <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Vertical/1.webp"
+                        data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Vertical/1.webp"
+                        alt="Dark Roast Iced Coffee"
+                        class="w-100 shadow-1-strong rounded"
+                    />
+                    </div>
+                </div>
                 </div>
 
-
-
+                <div style="margin-top:40px;"></div>
                 <div class="row">
                 <h5>Facility</h5>
                 <!-- {{ $hotelDetail[0]->title }} -->

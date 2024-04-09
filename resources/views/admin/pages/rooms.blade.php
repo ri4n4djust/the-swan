@@ -13,6 +13,7 @@
           <table class="table tablesorter " id="">
             <thead class=" text-primary">
               <tr>
+                <th>Code</th>
                 <th>Name</th>
                 <th>Desc</th>
                 <th class="text-center">Price</th>
@@ -24,6 +25,7 @@
             <tbody>
             @foreach ($room as $rm)
               <tr>
+                <td>{{$rm->code}}</td>
                 <td>{{$rm->title}}</td>
                 <td>{!! substr($rm->desc, 0, 60) !!}</td>
                 <td>{{$rm->price}}</td>

@@ -115,4 +115,14 @@ class PageController extends Controller
         // $defaultLocale = config('app.locale');
         return view('admin.pages.destinasi_add');
     }
+    public function activity()
+    {
+        $activities = DB::table('activities')->get();
+        return view('admin.pages.activity', ['activity' => $activities]);
+    }
+    public function activityAdd()
+    {
+        // $defaultLocale = config('app.locale');
+        return view('admin.pages.activity_add');
+    }
 }

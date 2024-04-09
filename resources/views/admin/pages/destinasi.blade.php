@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('Destination'), 'pageSlug' => 'destinations'])
+@extends('layouts.app', ['page' => __('Destination'), 'pageSlug' => 'destinasi'])
 
 @section('content')
 <div class="row">
@@ -28,7 +28,7 @@
                 <td>{!! substr($rm->deskripsi, 0, 60) !!}</td>
                 <td>{{$rm->lang}}</td>
                 <td>
-                  <a href="{{ route('destinasi.edit',['destinasi_code' => $rm->code_dst]) }}"><i class="tim-icons icon-pencil"></i></a>
+                  <a href="{{ route('destinasi.edit',['destinasi_code' => $rm->id]) }}"><i class="tim-icons icon-pencil"></i></a>
                   <i class="tim-icons icon-trash-simple"></i>
                 </td>
               </tr>
