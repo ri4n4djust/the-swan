@@ -88,32 +88,19 @@
                 </div>
                 <div style="margin-top:40px;"></div>
                 
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css" rel="stylesheet">
+
                 <div class="lightbox" data-mdb-lightbox-init>
                 <div class="row">
+                @foreach($gmbr as $key => $slider)
                     <div class="col-lg-6">
                     <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/1.webp"
-                        data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Slides/1.webp"
+                        src="{{ asset('assets/img/rooms/'. $slider) }}"
+                        data-mdb-img="{{ asset('assets/img/rooms/'. $slider) }}"
                         alt="Table Full of Spices"
                         class="w-100 mb-2 mb-md-4 shadow-1-strong rounded"
                     />
-                    <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Square/1.webp"
-                        data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Square/1.webp"
-                        alt="Coconut with Strawberries"
-                        class="w-100 shadow-1-strong rounded"
-                    />
                     </div>
-                    <div class="col-lg-6">
-                    <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Vertical/1.webp"
-                        data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Vertical/1.webp"
-                        alt="Dark Roast Iced Coffee"
-                        class="w-100 shadow-1-strong rounded"
-                    />
-                    </div>
+                @endforeach   
                 </div>
                 </div>
 
@@ -273,12 +260,35 @@
                     @php $gmbr = explode(";",$desti->foto) ; @endphp
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                             <div class="chef-member">
-                                <div class="member-img">
-                                    <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
-                                </div>
-                                <div class="member-info">
-                                    <small>{{$desti->name}}</small>
-                                </div>
+                                <a href="/destination/{{$desti->slug}}">
+                                    <div class="member-img">
+                                        <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                    </div>
+                                    <div class="member-info">
+                                        <small>{{$desti->name}}</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="row">
+                    <div class="section-header">
+                        <h4>Bali Activities</h4>
+                    </div>
+                    @foreach($destinasi as $desti)
+                    @php $gmbr = explode(";",$desti->foto) ; @endphp
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                            <div class="chef-member">
+                                <a href="/destination/{{$desti->slug}}">
+                                    <div class="member-img">
+                                        <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                    </div>
+                                    <div class="member-info">
+                                        <small>{{$desti->name}}</small>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     @endforeach

@@ -265,7 +265,7 @@ class backendController extends Controller
                     'deskripsi' => $data['deskripsi'],
                     'name' => $data['name'],
                     'slug' => $data['slug'],
-
+                    'type' => $data['type'],
                     'foto' => $gmbr,
                     'lang' => $data['lang'],
 
@@ -355,13 +355,13 @@ class backendController extends Controller
                     $gmbr = $gmbr.$ft.";" ;
                 }
                 // $desti = implode(';', $data['destination']);
-                $project = DB::table('activiries')->upsert([
+                $project = DB::table('activities')->upsert([
                     'id' => $data['id'],
-                    'code_dst' => $data['code_dst'],
+                    'code_act' => $data['code_act'],
                     'deskripsi' => $data['deskripsi'],
                     'name' => $data['name'],
                     'slug' => $data['slug'],
-
+                    'type' => $data['type'],
                     'foto' => $gmbr,
                     'lang' => $data['lang'],
 
@@ -402,16 +402,6 @@ class backendController extends Controller
         // $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
         $activityDetail = DB::table('activities')->where('id', $code)->first();
-        $foto = $activityDetail->foto ;
-        $fotor = explode(';', $foto);
-        $ft = array_slice($fotor, 0, -1);
-        // var_dump($ft);
-        // foreach ($ft as $file) {
-        //     if(file_exists(public_path('assets/img/rooms/'.$file))){
-        //         \File::move(public_path('assets/img/rooms/'.$file), storage_path('tmp/uploads/'.$file));
-        //         // echo $file ;
-        //     }
-        // }
 
 
         return view('admin.pages.activity_add', compact('activityDetail'));

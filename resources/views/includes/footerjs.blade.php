@@ -1,4 +1,7 @@
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="https://api.whatsapp.com/send?phone=+6282340064488&text=Halo" class="scroll-top-wa d-flex align-items-center justify-content-center">
+<img src="{{ asset('assets/img/wa.png')}}" class="img-fluid">
+</a>
 
   <div id="preloader"></div>
 

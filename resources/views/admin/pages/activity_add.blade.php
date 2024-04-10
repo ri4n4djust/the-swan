@@ -1,42 +1,46 @@
-@extends('layouts.app', ['page' => __('Add Destinations'), 'pageSlug' => 'destinasi_add'])
+@extends('layouts.app', ['page' => __('Add Activities'), 'pageSlug' => 'activity_add'])
 
 @section('content')
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header">
-        <h4 class="card-title">Bali Destinations</h4>
+        <h4 class="card-title">Bali Actvities</h4>
         
       </div>
       <div class="card-body">
 
-      <form action="{{ route('destinasi.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('activity.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
         <div class="row">
           <div class="form-group col-lg-6">
               <label>Code</label>
-              <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $destinasiDetail->id ?? '' }}" >
-              <input type="text" name="code_dst" class="form-control" placeholder="code_dst" value="{{ $destinasiDetail->code_dst ?? '' }}" >
+              <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $activityDetail->id ?? '' }}" >
+              <input type="text" name="code_act" class="form-control" placeholder="code_act" value="{{ $activityDetail->code_act ?? '' }}" >
           </div>
           <div class="form-group col-lg-6">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" placeholder="Title" value="{{ $destinasiDetail->name ?? '' }}">
+            <input type="text" name="name" class="form-control" placeholder="Title" value="{{ $activityDetail->name ?? '' }}">
           </div>
         </div>
 
         <div class="row">
-          <div class="form-group col-lg-6">
+          <div class="form-group col-lg-4">
               <label>slug</label>
-              <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $destinasiDetail->slug ?? '' }}">
+              <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $activityDetail->slug ?? '' }}">
           </div>
-          <div class="form-group col-lg-6">
+          <div class="form-group col-lg-4">
               <label>Lang</label>
-              <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $destinasiDetail->lang ?? '' }}">
+              <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $activityDetail->lang ?? '' }}">
+          </div>
+          <div class="form-group col-lg-4">
+              <label>Type</label>
+              <input type="text" name="type" class="form-control" placeholder="Type" value="{{ $activityDetail->type ?? '' }}">
           </div>
         </div>
         <div class="form-group">
             <label>Description</label>
-            <textarea class="form-control" id="deskripsi" name="deskripsi" >{{ $destinasiDetail->deskripsi ?? '' }}</textarea>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" >{{ $activityDetail->deskripsi ?? '' }}</textarea>
         </div>
         <div class="form-group">
             <div class="needsclick dropzone" id="document-dropzone"></div>
@@ -69,7 +73,7 @@
 
     var uploadedDocumentMap = {}
     Dropzone.options.documentDropzone = {
-      url: '{{ route('destinasi.storeMedia') }}',
+      url: '{{ route('activity.storeMedia') }}',
       maxFilesize: 10, // MB
       acceptedFiles: '.png, .jpg',
       addRemoveLinks: true,
@@ -90,7 +94,7 @@
         $.ajax({
             headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
             type:'POST',
-            url:'/destinasi/media/delete',
+            url:'/activity/media/delete',
             data : {"filetodelete" : file.name},
             success : function (data) {
             }
@@ -109,8 +113,8 @@
       init: function () {
         // console.log('onload dropzone');
 
-        @if(isset($destinasiDetail) && $destinasiDetail->foto)
-          var filess = {!! json_encode($destinasiDetail->foto) !!}
+        @if(isset($activityDetail) && $activityDetail->foto)
+          var filess = {!! json_encode($activityDetail->foto) !!}
           var filesa = filess.split(';');
 
           const files = [];
@@ -133,7 +137,7 @@
             // var principal = '@Model.Article.Image'; 
             let mockFile = { name: file.file_name, size: 12345, type: 'image/jpg', accepted: true };
             this.emit("addedfile", mockFile);
-            this.emit("thumbnail", mockFile, "/assets/img/destinasi/" + file.file_name)
+            this.emit("thumbnail", mockFile, "/assets/img/activity/" + file.file_name)
             {
                 $('[data-dz-thumbnail]').css('height', '120');
                 $('[data-dz-thumbnail]').css('width', '120');

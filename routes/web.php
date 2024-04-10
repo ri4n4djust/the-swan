@@ -41,8 +41,10 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service'])->name('service');
     Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
     Route::get('/hotel/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
-    Route::get('/destination', [App\Http\Controllers\bookingController::class , 'destination']);
+    Route::get('/destinations', [App\Http\Controllers\bookingController::class , 'destination']);
+    Route::get('/destination/{slug}', [App\Http\Controllers\bookingController::class , 'destinationDetail']);
     Route::get('/activities', [App\Http\Controllers\bookingController::class , 'activity']);
+    Route::get('/activity/{slug}', [App\Http\Controllers\bookingController::class , 'activityDetail']);
 
     Route::get('/try-checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'onSubmit']);
 }
@@ -88,8 +90,8 @@ Route::get('/sitemap', function(){
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
     $destinasi = DB::table('destinastions')->get(); // TourPackage::all();
-    foreach ($destinasi as $tur) {
-        $sitemap->add(Url::create("/destinasi/{$tur->slug}"));
+    foreach ($destinasi as $des) {
+        $sitemap->add(Url::create("/destination/{$des->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
@@ -113,7 +115,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('rates', ['as' => 'pages.rates', 'uses' => 'App\Http\Controllers\PageController@rates']);
     Route::get('tour', ['as' => 'pages.tour', 'uses' => 'App\Http\Controllers\PageController@tour']);
     Route::get('destinasi', ['as' => 'pages.destinasi', 'uses' => 'App\Http\Controllers\PageController@destinasi']);
-    Route::get('activiity', ['as' => 'pages.activity', 'uses' => 'App\Http\Controllers\PageController@activity']);
+    Route::get('activity', ['as' => 'pages.activity', 'uses' => 'App\Http\Controllers\PageController@activity']);
     //============room
     Route::get('room-add', ['as' => 'pages.room_add', 'uses' => 'App\Http\Controllers\PageController@roomAdd']);
     Route::post('room/media', [App\Http\Controllers\backendController::class, 'storeMedia'])->name('room.storeMedia');

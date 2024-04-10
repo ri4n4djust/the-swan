@@ -83,26 +83,31 @@
                     </div>
                     <p>{!! $tourDetail[0]->note !!}</p>
 
-                   
+                    <p>
+                    <h4>Place Can be Visit</h4>
+                    <!-- <p>Tour Detail </p> -->
+                    </p>
                     
-                        @php $fasi = explode(";",$tourDetail[0]->destination) ; @endphp
-                        <div class="row">
-                        @foreach($destinasi as $desti)
-                            @if(in_array($desti->id, $fasi))
-                                @php $gmbr = explode(";",$desti->foto) ; @endphp
-                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                                    <div class="chef-member">
+                    @php $fasi = explode(";",$tourDetail[0]->destination) ; @endphp
+                    <div class="row">
+                    @foreach($destinasi as $desti)
+                        @if(in_array($desti->id, $fasi))
+                            @php $gmbr = explode(";",$desti->foto) ; @endphp
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                <div class="chef-member">
+                                    <a href="/destination/{{$desti->slug}}">
                                         <div class="member-img">
-                                            <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                            <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $desti->name }}">
                                         </div>
                                         <div class="member-info">
                                             <small>{{$desti->name}}</small>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
-                            @endif
-                        @endforeach
-                        </div>
+                            </div>
+                        @endif
+                    @endforeach
+                    </div>
              
                     
                 </div>

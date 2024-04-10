@@ -25,13 +25,17 @@
         </div>
 
         <div class="row">
-          <div class="form-group col-lg-6">
+          <div class="form-group col-lg-4">
               <label>slug</label>
               <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $destinasiDetail->slug ?? '' }}">
           </div>
-          <div class="form-group col-lg-6">
+          <div class="form-group col-lg-4">
               <label>Lang</label>
               <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $destinasiDetail->lang ?? '' }}">
+          </div>
+          <div class="form-group col-lg-4">
+              <label>Lang</label>
+              <input type="text" name="type" class="form-control" placeholder="Type" value="{{ $destinasiDetail->type ?? '' }}">
           </div>
         </div>
         <div class="form-group">

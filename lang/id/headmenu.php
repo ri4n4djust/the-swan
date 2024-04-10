@@ -15,6 +15,8 @@ return [
      'about_us' => 'Tentang Kami',
      'about_des' => 'Penjelasan tentang kami',
      'about_book' => 'Buat Pesanan',
+     //=========== activity
+     'activity' => 'Aktivitas',
      //========= artikel
      'artikel' => 'Terjadi di bali',
      'artikel_head_title' => 'Mengenai semua tentang budaya bali',

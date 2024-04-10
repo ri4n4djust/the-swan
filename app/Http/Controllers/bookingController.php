@@ -97,7 +97,27 @@ class bookingController extends Controller
 
     public function destination()
     {
-        return view('pages.destination');
+        $defaultLocale = config('app.locale');
+        $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->get();
+        return view('pages.destinations', compact('destinasi'));
+    }
+
+    public function destinationDetail($slug){
+        $destinationDetail = DB::table('destinations')->where('slug', $slug)->get();
+        return view('pages.destination-detail', ['destinationDetail' => $destinationDetail]);
+    }
+
+    public function activity()
+    {
+        $defaultLocale = config('app.locale');
+        $activity = DB::table('activities')->where('lang', $defaultLocale)->get();
+        return view('pages.activity', compact('activity'));
+    }
+
+    public function activityDetail($slug){
+        $activityDetail = DB::table('activities')->where('slug', $slug)->get();
+        $product = DB::table('products')->get();
+        return view('pages.activity-detail', ['activityDetail' => $activityDetail, 'products' => $product]);
     }
 
     public function tourDetail($slug){

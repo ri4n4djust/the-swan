@@ -11,6 +11,7 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/about">{{ __('headmenu.about') }}</a></li>
+          <li><a href="/activities">{{ __('headmenu.activity') }}</a></li>
           <li><a href="/events">{{ __('headmenu.event') }}</a></li>
           <li><a href="/partnership">{{ __('headmenu.partnership') }}</a></li>
           <li><a href="/gallery">{{ __('headmenu.galleri') }}</a></li>
@@ -56,8 +57,7 @@
       
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      
-      <!-- <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i> -->
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
     </div>
     
