@@ -16,7 +16,7 @@
           <div class="form-group col-lg-6">
               <label>Code</label>
               <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $destinasiDetail->id ?? '' }}" >
-              <input type="text" name="code_dst" class="form-control" placeholder="code_dst" value="{{ $destinasiDetail->code_dst ?? '' }}" >
+              <input type="text" name="code" class="form-control" placeholder="code" value="{{ $destinasiDetail->code ?? '' }}" >
           </div>
           <div class="form-group col-lg-6">
             <label>Name</label>

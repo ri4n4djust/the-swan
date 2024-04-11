@@ -270,7 +270,7 @@
                     @endfor
                         <div class="col-5 form-group d-flex" data-aos="fade-up" data-aos-delay="200">
                           
-                            <a href="/hotel/{{$detail->slug}}" class="btn-book-a-table">Book Now</a>
+                            <a href="/bookings/{{$detail->slug}}" class="btn-book-a-table">Book Now</a>
                           
                         </div>
 
@@ -471,7 +471,7 @@
                       <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
                         Detail
                       </button> -->
-                      <a href="/tour/{{$tur->slug}}" class="btn-book-a-table">Detail</a>
+                      <a href="/tour_packages/{{$tur->slug}}" class="btn-book-a-table">Detail</a>
                     </p>
                     
                   </div>

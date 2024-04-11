@@ -39,6 +39,7 @@
                 <div class="position-relative mt-4">
                 <h4>{{ $hotelDetail[0]->title }}</h4>
 
+                  
 
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">

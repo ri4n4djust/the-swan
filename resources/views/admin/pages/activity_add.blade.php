@@ -16,7 +16,7 @@
           <div class="form-group col-lg-6">
               <label>Code</label>
               <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $activityDetail->id ?? '' }}" >
-              <input type="text" name="code_act" class="form-control" placeholder="code_act" value="{{ $activityDetail->code_act ?? '' }}" >
+              <input type="text" name="code" class="form-control" placeholder="code" value="{{ $activityDetail->code ?? '' }}" >
           </div>
           <div class="form-group col-lg-6">
             <label>Name</label>

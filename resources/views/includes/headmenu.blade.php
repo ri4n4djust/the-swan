@@ -8,6 +8,25 @@
       </a>
 
       <nav id="navbar" class="navbar">
+        <?php  
+            if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'){
+                $url = "https://";   
+            }else{  
+                $url = "http://";   
+            }
+            // Append the host(domain name, ip) to the URL.   
+            $url.= $_SERVER['HTTP_HOST'];   
+            // Append the requested resource location to the URL   
+            $urla = $_SERVER['REQUEST_URI'];    
+            $data = explode("/", $urla) ;
+            if(count($data) > 2 ){
+              $tabel = $data[1];
+              $slug = $data[2];
+            }else{
+              $tabel = '';
+              $slug = '';
+            };
+        ?> 
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/destinations">{{ __('headmenu.destinations') }}</a></li>
@@ -38,8 +57,8 @@
             {{ strtoupper(Lang::locale()) }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/lang/id">ID</a></li>
-                  <li><a class="dropdown-item" href="/lang/en">EN</a></li>
+                  <li><a class="dropdown-item" href="{!! route('lang', ['lang'=>'id', 'tabel'=>$tabel, 'slug' => $slug]) !!}">ID</a></li>
+                  <li><a class="dropdown-item" href="{!! route('lang', ['lang'=>'en', 'tabel'=>$tabel, 'slug' => $slug]) !!}">EN</a></li>
               </ul>
           </li>
         </ul>

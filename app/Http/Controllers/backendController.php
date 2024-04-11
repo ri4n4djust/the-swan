@@ -207,7 +207,7 @@ class backendController extends Controller
     }
 
     public function editTour($room_code){
-        $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
+        $tourDetail = DB::table('tour_packages')->where('id', $room_code)->first();
         // return redirect()->route('pages.room_add');
         $destinasi = DB::table('destinations')->get();
         // $foto = $tourDetail->foto ;
@@ -261,7 +261,7 @@ class backendController extends Controller
                 // $desti = implode(';', $data['destination']);
                 $project = DB::table('destinations')->upsert([
                     'id' => $data['id'],
-                    'code_dst' => $data['code_dst'],
+                    'code' => $data['code'],
                     'deskripsi' => $data['deskripsi'],
                     'name' => $data['name'],
                     'slug' => $data['slug'],
@@ -357,7 +357,7 @@ class backendController extends Controller
                 // $desti = implode(';', $data['destination']);
                 $project = DB::table('activities')->upsert([
                     'id' => $data['id'],
-                    'code_act' => $data['code_act'],
+                    'code' => $data['code'],
                     'deskripsi' => $data['deskripsi'],
                     'name' => $data['name'],
                     'slug' => $data['slug'],

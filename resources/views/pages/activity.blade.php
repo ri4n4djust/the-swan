@@ -88,7 +88,7 @@
                   </div>
                   <p class="price">
                     <div >
-                      <a href="/activity/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                      <a href="/activities/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
                     </div>
                   </p>
                   

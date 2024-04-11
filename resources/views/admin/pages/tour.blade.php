@@ -30,7 +30,7 @@
                 <td>{!! substr($tur->itinerary, 0, 60) !!}</td>
                 <td>{{$tur->lang}}</td>
                 <td>
-                  <a href="{{ route('tour.edit',['tour_code' => $tur->code]) }}"><i class="tim-icons icon-pencil"></i></a>
+                  <a href="{{ route('tour.edit',['tour_code' => $tur->id]) }}"><i class="tim-icons icon-pencil"></i></a>
                   <i class="tim-icons icon-trash-simple"></i>
                 </td>
               </tr>

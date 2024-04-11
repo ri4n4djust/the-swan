@@ -29,7 +29,7 @@ use Spatie\Sitemap\Tags\Url;
 
 if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 {
-    Route::get('/lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
+    Route::get('/lang', [App\Http\Controllers\LocalizationController::class , 'lang'])->name('lang');
     // Route::get('/', function () { return view('pages.home'); });
     Route::get('/', [App\Http\Controllers\bookingController::class , 'home']);
     Route::get('/about', function () { return view('pages.about'); });
@@ -37,14 +37,14 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/events', [App\Http\Controllers\bookingController::class , 'event']);
     Route::get('/contact', [App\Http\Controllers\ContactUsController::class , 'index']);
     
-    Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
+    // Route::get('/bookings', [App\Http\Controllers\bookingController::class , 'index']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service'])->name('service');
-    Route::get('/tour/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
-    Route::get('/hotel/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
+    Route::get('/tour_packages/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
+    Route::get('/bookings/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
     Route::get('/destinations', [App\Http\Controllers\bookingController::class , 'destination']);
-    Route::get('/destination/{slug}', [App\Http\Controllers\bookingController::class , 'destinationDetail']);
+    Route::get('/destinations/{slug}', [App\Http\Controllers\bookingController::class , 'destinationDetail']);
     Route::get('/activities', [App\Http\Controllers\bookingController::class , 'activity']);
-    Route::get('/activity/{slug}', [App\Http\Controllers\bookingController::class , 'activityDetail']);
+    Route::get('/activities/{slug}', [App\Http\Controllers\bookingController::class , 'activityDetail']);
 
     Route::get('/try-checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'onSubmit']);
 }
@@ -73,25 +73,25 @@ Route::get('/sitemap', function(){
    
     $book = Booking::all();
     foreach ($book as $book) {
-        $sitemap->add(Url::create("/hotel/{$book->slug}"));
+        $sitemap->add(Url::create("/bookings/{$book->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
     $transport = Transport::all();
     foreach ($transport as $trans) {
-        $sitemap->add(Url::create("/transport/{$trans->slug}"));
+        $sitemap->add(Url::create("/transports/{$trans->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
     $tour = TourPackage::all();
     foreach ($tour as $tur) {
-        $sitemap->add(Url::create("/tour/{$tur->slug}"));
+        $sitemap->add(Url::create("/tour_packages/{$tur->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
-    $destinasi = DB::table('destinastions')->get(); // TourPackage::all();
+    $destinasi = DB::table('destinations')->get(); // TourPackage::all();
     foreach ($destinasi as $des) {
-        $sitemap->add(Url::create("/destination/{$des->slug}"));
+        $sitemap->add(Url::create("/destinations/{$des->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 

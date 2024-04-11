@@ -109,7 +109,7 @@
                   </div>
                   <p class="price">
                     <div >
-                      <a href="/destination/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                      <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
                     </div>
                   </p>
                   
