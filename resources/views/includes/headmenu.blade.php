@@ -10,9 +10,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/about">{{ __('headmenu.about') }}</a></li>
+          <li><a href="/destinations">{{ __('headmenu.destinations') }}</a></li>
           <li><a href="/activities">{{ __('headmenu.activity') }}</a></li>
-          <li><a href="/events">{{ __('headmenu.event') }}</a></li>
+          <!-- <li><a href="/events">{{ __('headmenu.event') }}</a></li> -->
           <li><a href="/partnership">{{ __('headmenu.partnership') }}</a></li>
           <li><a href="/gallery">{{ __('headmenu.galleri') }}</a></li>
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>

@@ -125,9 +125,11 @@ class bookingController extends Controller
         $defaultLocale = config('app.locale');
         $tur = TourPackage::where('tour_packages.lang', $defaultLocale)->where('slug', $slug)->get();
         $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->get();
+        $activity = DB::table('activities')->where('lang', $defaultLocale)->get();
         return view('pages.tour-detail',[
             'tourDetail' => $tur,
-            'destinasi' => $destinasi
+            'destinasi' => $destinasi,
+            'activities' => $activity
             ] );
     }
 

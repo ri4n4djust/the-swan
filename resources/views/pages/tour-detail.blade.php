@@ -84,7 +84,7 @@
                     <p>{!! $tourDetail[0]->note !!}</p>
 
                     <p>
-                    <h4>Place Can be Visit</h4>
+                    <h5>Destinations Can be Visit</h5>
                     <!-- <p>Tour Detail </p> -->
                     </p>
                     
@@ -101,6 +101,34 @@
                                         </div>
                                         <div class="member-info">
                                             <small>{{$desti->name}}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                    </div>
+
+                    <p>
+                    <h5>Some Activity</h5>
+                    <!-- <p>Tour Detail </p> -->
+                    </p>
+                    
+                    @php $area = $tourDetail[0]->area_tour ; @endphp
+                    
+                    <div class="row">
+                    @foreach($activities as $actv)
+                    @php $kawasan = explode(";",$actv->area) ; @endphp
+                        @if(in_array($area, $kawasan))
+                            @php $gmbr = explode(";",$actv->foto) ; @endphp
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                <div class="chef-member">
+                                    <a href="/activity/{{$actv->slug}}">
+                                        <div class="member-img">
+                                            <img src="{{ asset('assets/img/activity/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $actv->name }}">
+                                        </div>
+                                        <div class="member-info">
+                                            <small>{{$actv->name}} </small>
                                         </div>
                                     </a>
                                 </div>

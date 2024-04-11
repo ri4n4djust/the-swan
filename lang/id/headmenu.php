@@ -16,7 +16,8 @@ return [
      'about_des' => 'Penjelasan tentang kami',
      'about_book' => 'Buat Pesanan',
      //=========== activity
-     'activity' => 'Aktivitas',
+     'activity' => 'Aktivitas Di Bali',
+     'destinations' => 'Tujuan Wisata',
      //========= artikel
      'artikel' => 'Terjadi di bali',
      'artikel_head_title' => 'Mengenai semua tentang budaya bali',

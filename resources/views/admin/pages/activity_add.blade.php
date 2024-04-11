@@ -25,18 +25,25 @@
         </div>
 
         <div class="row">
-          <div class="form-group col-lg-4">
+          <div class="form-group col-lg-6">
               <label>slug</label>
               <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $activityDetail->slug ?? '' }}">
           </div>
-          <div class="form-group col-lg-4">
+          <div class="form-group col-lg-6">
               <label>Lang</label>
               <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{ $activityDetail->lang ?? '' }}">
           </div>
-          <div class="form-group col-lg-4">
+          
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-6">
               <label>Type</label>
               <input type="text" name="type" class="form-control" placeholder="Type" value="{{ $activityDetail->type ?? '' }}">
           </div>
+          <div class="form-group col-lg-6">
+                <label>Area</label>
+                <input type="text" name="area" class="form-control" placeholder="Type" value="{{ $activityDetail->area ?? '' }}">
+            </div>
         </div>
         <div class="form-group">
             <label>Description</label>

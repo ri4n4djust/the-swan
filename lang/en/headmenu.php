@@ -16,7 +16,8 @@ return [
     'about_des' => 'About us description',
     'about_book' => 'Make a booking',
     //=========== activity
-    'activity' => 'Activities',
+    'activity' => 'Bali Activities',
+    'destinations' => 'Bali Destinations',
     //========= artikel
     'artikel' => 'Event in bali',
     'artikel_head_title' => 'All About Bali Culture',
