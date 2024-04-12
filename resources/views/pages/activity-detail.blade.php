@@ -71,12 +71,16 @@
                     
                 </div>
                 <div class="row mt-0">
+                @php $code = $activityDetail[0]->code ; @endphp
+
                 @foreach($products as $prod)
-                @if($prod->parent_type == $activityDetail[0]->code_act)
+                @php $pr = explode(";", $prod->parent_type); @endphp
+                    @if(in_array($code, $pr))
                     <div class="col-lg-6 position-relative mt-0" data-aos="fade-up" data-aos-delay="150">
                         <h4>{{ $prod->product_name }}</h4>
                     </div>
                     @endif
+                
                 @endforeach
                 </div>
                 

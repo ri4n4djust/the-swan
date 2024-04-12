@@ -77,6 +77,18 @@ Route::get('/sitemap', function(){
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
+    $activities = DB::table('activities')->get();
+    foreach ($activities as $act) {
+        $sitemap->add(Url::create("/activities/{$act->slug}"));
+    }
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+
+    $destinasi = DB::table('destinations')->get();
+    foreach ($destinasi as $des) {
+        $sitemap->add(Url::create("/destinations/{$des->slug}"));
+    }
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+
     $transport = Transport::all();
     foreach ($transport as $trans) {
         $sitemap->add(Url::create("/transports/{$trans->slug}"));
@@ -89,11 +101,7 @@ Route::get('/sitemap', function(){
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
-    $destinasi = DB::table('destinations')->get(); // TourPackage::all();
-    foreach ($destinasi as $des) {
-        $sitemap->add(Url::create("/destinations/{$des->slug}"));
-    }
-    $sitemap->writeToFile(public_path('sitemap.xml'));
+    
 
     
 }); 
@@ -116,6 +124,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('tour', ['as' => 'pages.tour', 'uses' => 'App\Http\Controllers\PageController@tour']);
     Route::get('destinasi', ['as' => 'pages.destinasi', 'uses' => 'App\Http\Controllers\PageController@destinasi']);
     Route::get('activity', ['as' => 'pages.activity', 'uses' => 'App\Http\Controllers\PageController@activity']);
+    Route::get('products', ['as' => 'pages.products', 'uses' => 'App\Http\Controllers\PageController@products']);
     //============room
     Route::get('room-add', ['as' => 'pages.room_add', 'uses' => 'App\Http\Controllers\PageController@roomAdd']);
     Route::post('room/media', [App\Http\Controllers\backendController::class, 'storeMedia'])->name('room.storeMedia');
@@ -140,6 +149,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('activity/media/delete', [App\Http\Controllers\backendController::class, 'deleteMediaActivity'])->name('activity.deleteMedia');
     Route::post('activity-store', [App\Http\Controllers\backendController::class, 'storeActivity'])->name('activity.store');
     Route::get('activity-edit/{activity_code}', [App\Http\Controllers\backendController::class, 'editActivity'])->name('activity.edit');
+
+    //=========bali products
+    Route::get('products-add', ['as' => 'pages.products_add', 'uses' => 'App\Http\Controllers\PageController@productsAdd']);
+    Route::post('products/media', [App\Http\Controllers\backendController::class, 'storeMediaProducts'])->name('products.storeMedia');
+    Route::post('products/media/delete', [App\Http\Controllers\backendController::class, 'deleteMediaProducts'])->name('products.deleteMedia');
+    Route::post('products-store', [App\Http\Controllers\backendController::class, 'storeProducts'])->name('products.store');
+    Route::get('products-edit/{product_code}', [App\Http\Controllers\backendController::class, 'editProducts'])->name('products.edit');
 
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

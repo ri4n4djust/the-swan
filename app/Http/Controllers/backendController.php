@@ -210,17 +210,6 @@ class backendController extends Controller
         $tourDetail = DB::table('tour_packages')->where('id', $room_code)->first();
         // return redirect()->route('pages.room_add');
         $destinasi = DB::table('destinations')->get();
-        // $foto = $tourDetail->foto ;
-        // $fotor = explode(';', $foto);
-        // $ft = array_slice($fotor, 0, -1);
-        // var_dump($tourDetail->destination);
-        // foreach ($ft as $file) {
-        //     if(file_exists(public_path('assets/img/rooms/'.$file))){
-        //         \File::move(public_path('assets/img/rooms/'.$file), storage_path('tmp/uploads/'.$file));
-        //         // echo $file ;
-        //     }
-        // }
-
 
         return view('admin.pages.tour_add', compact('tourDetail', 'destinasi'));
 
@@ -306,17 +295,6 @@ class backendController extends Controller
         // $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
         $destinasiDetail = DB::table('destinations')->where('id', $destinasi_code)->first();
-        $foto = $destinasiDetail->foto ;
-        $fotor = explode(';', $foto);
-        $ft = array_slice($fotor, 0, -1);
-        // var_dump($ft);
-        // foreach ($ft as $file) {
-        //     if(file_exists(public_path('assets/img/rooms/'.$file))){
-        //         \File::move(public_path('assets/img/rooms/'.$file), storage_path('tmp/uploads/'.$file));
-        //         // echo $file ;
-        //     }
-        // }
-
 
         return view('admin.pages.destinasi_add', compact('destinasiDetail'));
 
@@ -405,6 +383,92 @@ class backendController extends Controller
 
 
         return view('admin.pages.activity_add', compact('activityDetail'));
+
+    }
+
+    public function storeMediaProducts(Request $request)
+    {
+        $path = public_path('assets/img/products/'); //storage_path('tmp/uploads');
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $file = $request->file('file');
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        $file->move($path, $name);
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+    }
+    public function deleteMediaProducts(Request $request)
+    {
+        $toDelete= $request->filetodelete ;
+        unlink(public_path('assets/img/products/'.$toDelete));
+    }
+
+    public function storeProducts(Request $request)
+    {
+        try{
+            $exception = DB::transaction(function() use ($request){ 
+                
+            
+                $data = $request->all();
+            
+                $gmbr = "";
+                $foto = $data['document'];
+                foreach($foto as $ft){
+                    $gmbr = $gmbr.$ft.";" ;
+                }
+                $parent = implode(';', $data['parent_type']);
+                $project = DB::table('products')->upsert([
+                    'id' => $data['id'],
+                    'product_code' => $data['product_code'],
+                    'product_des' => $data['product_des'],
+                    'product_name' => $data['product_name'],
+                    'parent_type' => $parent.';',
+                    'product_foto' => $gmbr,
+                    'price' => $data['price'],
+                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                ], 'id');
+
+                DB::commit();
+            });
+            if(is_null($exception)) {
+                // return response()->json([
+                //     'success' => true,
+                //     'message' => 'Post Berhasil Diupdate!',
+                // ], 200);
+                return redirect()->route('pages.products');
+            } else {
+                DB::rollback();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Post Gagal Diupdate!',
+                ], 500);
+                // return redirect()->route('pages.room_add');
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            // something went wrong
+            // return response()->json([
+            //  'success' => false,
+            //  'message' => $e->getMessage(),
+            // ], 400);
+            // return redirect()->route('pages.room_add');
+            return redirect()->back()->with('success', $e->getMessage());   
+        }
+
+        // return redirect()->route('pages.rooms');
+    }
+
+    public function editProducts($code){
+        // $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
+        // return redirect()->route('pages.room_add');
+        $productsDetail = DB::table('products')->where('id', $code)->first();
+
+        $activities = DB::table('activities')->get();
+        return view('admin.pages.products_add', compact('productsDetail', 'activities'));
 
     }
 

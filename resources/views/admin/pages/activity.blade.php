@@ -24,7 +24,7 @@
             <tbody>
             @foreach ($activity as $rm)
               <tr>
-                <td>{{$rm->code_act}}</td>
+                <td>{{$rm->code}}</td>
                 <td>{{$rm->name}}</td>
                 <td>{{$rm->area}}</td>
                 <td>{!! substr($rm->deskripsi, 0, 60) !!}</td>

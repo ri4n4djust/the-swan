@@ -125,4 +125,13 @@ class PageController extends Controller
         // $defaultLocale = config('app.locale');
         return view('admin.pages.activity_add');
     }
+    public function products(){
+        $products = DB::table('products')->get();
+        return view('admin.pages.products', ['products' => $products]);
+    }
+    public function productsAdd(){
+
+        $activities = DB::table('activities')->get();
+        return view('admin.pages.products_add', ['activities' => $activities]);
+    }
 }

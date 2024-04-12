@@ -47,6 +47,12 @@
                     <p>{{ __('Activity') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'products') class="active " @endif>
+                <a href="{{ route('pages.products') }}">
+                    <i class="tim-icons icon-chart-pie-36"></i>
+                    <p>{{ __('Products') }}</p>
+                </a>
+            </li>
             <!-- <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>

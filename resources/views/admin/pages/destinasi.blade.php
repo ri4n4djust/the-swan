@@ -23,7 +23,7 @@
             <tbody>
             @foreach ($destinasi as $rm)
               <tr>
-                <td>{{$rm->code_dst}}</td>
+                <td>{{$rm->code}}</td>
                 <td>{{$rm->name}}</td>
                 <td>{!! substr($rm->deskripsi, 0, 60) !!}</td>
                 <td>{{$rm->lang}}</td>
