@@ -33,9 +33,15 @@
               <input type="text" name="type" class="form-control" value="{{ $tourDetail->type ?? '' }}">
           </div>
         </div>
-        <div class="form-group">
-          <label>slug</label>
-          <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $tourDetail->slug ?? '' }}">
+        <div class="row">
+          <div class="form-group">
+            <label>slug</label>
+            <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $tourDetail->slug ?? '' }}">
+          </div>
+          <div class="form-group">
+            <label>area</label>
+            <input type="text" name="area_tour" class="form-control" placeholder="area_tour" value="{{ $tourDetail->area_tour ?? '' }}">
+          </div>
         </div>
         <div class="form-group">
             <label>Itinerary</label>

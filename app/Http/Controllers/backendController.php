@@ -163,7 +163,7 @@ class backendController extends Controller
                     'type' => $data['type'],
                     'tour_name' => $data['tour_name'],
                     'slug' => $data['slug'],
-
+                    'area_tour' => $data['area_tour'],
                     'itinerary' => $data['itinerary'],
                     'price' => $data['price'],
                     'destination' => $desti.';',
