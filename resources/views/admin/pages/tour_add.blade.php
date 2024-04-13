@@ -34,11 +34,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="form-group">
+          <div class="form-group col-lg-6">
             <label>slug</label>
             <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $tourDetail->slug ?? '' }}">
           </div>
-          <div class="form-group">
+          <div class="form-group col-lg-6">
             <label>area</label>
             <input type="text" name="area_tour" class="form-control" placeholder="area_tour" value="{{ $tourDetail->area_tour ?? '' }}">
           </div>
