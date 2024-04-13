@@ -96,8 +96,9 @@ $desk = explode("</p>", $des) ;
                             <p>{!! cutText($desa[0], 300, 1) !!}</p>
                         </div>
                         <p class="price">{{ number_format($prod->price) ; }}</p>
-                        <a href="" class="btn-book-a-table" data-toggle="modal" data-target="#trModal-booking{{$prod->id}}">book Now</a>
-                            
+                        <div class="col-5 form-group d-flex">
+                            <a href="" class="btn-book-a-table" data-toggle="modal" data-target="#trModal-booking{{$prod->id}}">book Now</a>
+                        </div>
                         </div>
                         
                     </div><!-- End Chefs Member -->

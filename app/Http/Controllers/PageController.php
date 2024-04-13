@@ -107,7 +107,7 @@ class PageController extends Controller
      */
     public function destinasi()
     {
-        $destinasi = DB::table('destinations')->get();
+        $destinasi = DB::table('destinations')->paginate(10);
         return view('admin.pages.destinasi', ['destinasi' => $destinasi]);
     }
     public function destinasiAdd()

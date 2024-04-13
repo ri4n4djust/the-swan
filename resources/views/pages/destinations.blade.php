@@ -76,48 +76,201 @@
        
 
           <div class="tab-pane fade active show" id="menu-ubud">
-
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
               <!-- <h3>Transport</h3> -->
             </div>
-
             <div class="row gy-4">
-
             @foreach ($destinasi as $tr)
+            @if($tr->type == 'ubud')
               <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
                 <div class="chef-member">
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp
-                    
                     <img src="assets/img/destinasi/{{ $gmbr[0] }}" class="img-fluid" alt="">
-                    
                     <div class="social">
-                      <!-- <a href=""><i class="bi bi-twitter"></i></a>
-                      <a href=""><i class="bi bi-facebook"></i></a>
-                      <a href=""><i class="bi bi-instagram"></i></a> -->
-                      <!-- <a href="" data-toggle="modal" data-target="#trModal{{$tr->id}}" alt="Preview"><i class="bi bi-eye"></i></a> -->
                     </div>
                   </div>
-                  
                   <div class="member-info">
                     <h4>{{ $tr->name }}</h4>
                     <!-- <span>Cook</span> -->
                     <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
-                    
                   </div>
                   <p class="price">
                     <div >
                       <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
                     </div>
                   </p>
-                  
                 </div>
               </div><!-- End Chefs Member -->
+            @endif
             @endforeach
-
-            
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+          <div class="tab-pane fade active show" id="menu-south">
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <!-- <h3>Transport</h3> -->
+            </div>
+            <div class="row gy-4">
+            @foreach ($destinasi as $tr)
+            @if($tr->type == 'south')
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    <img src="assets/img/destinasi/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <div class="social">
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ $tr->name }}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                  </div>
+                  <p class="price">
+                    <div >
+                      <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                    </div>
+                  </p>
+                </div>
+              </div><!-- End Chefs Member -->
+            @endif
+            @endforeach
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+          <div class="tab-pane fade active show" id="menu-north">
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <!-- <h3>Transport</h3> -->
+            </div>
+            <div class="row gy-4">
+            @foreach ($destinasi as $tr)
+            @if($tr->type == 'north')
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    <img src="assets/img/destinasi/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <div class="social">
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ $tr->name }}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                  </div>
+                  <p class="price">
+                    <div >
+                      <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                    </div>
+                  </p>
+                </div>
+              </div><!-- End Chefs Member -->
+            @endif
+            @endforeach
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+          <div class="tab-pane fade active show" id="menu-east">
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <!-- <h3>Transport</h3> -->
+            </div>
+            <div class="row gy-4">
+            @foreach ($destinasi as $tr)
+            @if($tr->type == 'east')
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    <img src="assets/img/destinasi/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <div class="social">
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ $tr->name }}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                  </div>
+                  <p class="price">
+                    <div >
+                      <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                    </div>
+                  </p>
+                </div>
+              </div><!-- End Chefs Member -->
+            @endif
+            @endforeach
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+          <div class="tab-pane fade active show" id="menu-kintamani">
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <!-- <h3>Transport</h3> -->
+            </div>
+            <div class="row gy-4">
+            @foreach ($destinasi as $tr)
+            @if($tr->type == 'kintamani')
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    <img src="assets/img/destinasi/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <div class="social">
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ $tr->name }}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                  </div>
+                  <p class="price">
+                    <div >
+                      <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                    </div>
+                  </p>
+                </div>
+              </div><!-- End Chefs Member -->
+            @endif
+            @endforeach
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+          <div class="tab-pane fade active show" id="menu-west">
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <!-- <h3>Transport</h3> -->
+            </div>
+            <div class="row gy-4">
+            @foreach ($destinasi as $tr)
+            @if($tr->type == 'west')
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    <img src="assets/img/destinasi/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <div class="social">
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ $tr->name }}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                  </div>
+                  <p class="price">
+                    <div >
+                      <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                    </div>
+                  </p>
+                </div>
+              </div><!-- End Chefs Member -->
+            @endif
+            @endforeach
             </div>
           </div><!-- End Breakfast Menu Content -->
 

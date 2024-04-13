@@ -37,6 +37,7 @@
             @endforeach  
             </tbody>
           </table>
+          <a href="{{ $destinasi->previousPageUrl()}}">Prev</a> | <a href="{{ $destinasi->nextPageUrl()}}">Next</a>
         </div>
       </div>
     </div>
