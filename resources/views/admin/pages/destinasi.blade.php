@@ -16,6 +16,7 @@
                 <th>code</th>
                 <th>name</th>
                 <th class="text-center">desct</th>
+                <th class="text-center">Type</th>
                 <th class="text-center">Language</th>
                 <th class="text-center">Action</th>
               </tr>
@@ -26,6 +27,7 @@
                 <td>{{$rm->code}}</td>
                 <td>{{$rm->name}}</td>
                 <td>{!! substr($rm->deskripsi, 0, 60) !!}</td>
+                <td>{{$rm->type}}</td>
                 <td>{{$rm->lang}}</td>
                 <td>
                   <a href="{{ route('destinasi.edit',['destinasi_code' => $rm->id]) }}"><i class="tim-icons icon-pencil"></i></a>

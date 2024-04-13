@@ -13,7 +13,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Bali Destinations</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li>All Bali Activities</li>
           </ol>
         </div>
@@ -31,78 +31,126 @@
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
           <li class="nav-item ">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-ubud">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-land">
               <h4>Land</h4>
             </a>
           </li><!-- End tab nav item -->
-
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-south">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-water">
               <h4>Water</h4>
             </a><!-- End tab nav item -->
-
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-north">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-air">
               <h4>Air</h4>
             </a>
           </li><!-- End tab nav item -->
-
         </ul>
 
         <div class="tab-content chefs">
-       
 
-          <div class="tab-pane fade active show" id="menu-ubud">
-
+          <div class="tab-pane fade active show" id="menu-land">
             <div class="tab-header text-center">
               <!-- <p>Menu</p> -->
               <!-- <h3>Transport</h3> -->
             </div>
-
             <div class="row gy-4">
-
             @foreach ($activity as $tr)
+            @if($tr->type == 'land')
               <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 <div class="chef-member">
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp
-                    
                     <img src="assets/img/activity/{{ $gmbr[0] }}" class="img-fluid" alt="">
-                    
                     <div class="social">
-                      <!-- <a href=""><i class="bi bi-twitter"></i></a>
-                      <a href=""><i class="bi bi-facebook"></i></a>
-                      <a href=""><i class="bi bi-instagram"></i></a> -->
-                      <!-- <a href="" data-toggle="modal" data-target="#trModal{{$tr->id}}" alt="Preview"><i class="bi bi-eye"></i></a> -->
                     </div>
                   </div>
-                  
                   <div class="member-info">
                     <h4>{{ $tr->name }}</h4>
                     <!-- <span>Cook</span> -->
                     <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
-                    
                   </div>
                   <p class="price">
                     <div >
                       <a href="/activities/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
                     </div>
                   </p>
-                  
                 </div>
               </div><!-- End Chefs Member -->
+              @endif
             @endforeach
-
-            
             </div>
           </div><!-- End Breakfast Menu Content -->
 
-          
+          <div class="tab-pane fade" id="menu-water">
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <!-- <h3>Transport</h3> -->
+            </div>
+            <div class="row gy-4">
+            @foreach ($activity as $tr)
+            @if($tr->type == 'water')
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    <img src="assets/img/activity/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <div class="social">
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ $tr->name }}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                  </div>
+                  <p class="price">
+                    <div >
+                      <a href="/activities/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                    </div>
+                  </p>
+                </div>
+              </div><!-- End Chefs Member -->
+              @endif
+            @endforeach
+            </div>
+          </div><!-- End Breakfast Menu Content -->
 
-          
+          <div class="tab-pane fade" id="menu-air">
+            <div class="tab-header text-center">
+              <!-- <p>Menu</p> -->
+              <!-- <h3>Transport</h3> -->
+            </div>
+            <div class="row gy-4">
+            @foreach ($activity as $tr)
+            @if($tr->type == 'air')
+              <!-- Menu Item -->
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                <div class="chef-member">
+                  <div class="member-img">
+                    @php $gmbr = explode(";",$tr->foto) ; @endphp
+                    <img src="assets/img/activity/{{ $gmbr[0] }}" class="img-fluid" alt="">
+                    <div class="social">
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h4>{{ $tr->name }}</h4>
+                    <!-- <span>Cook</span> -->
+                    <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                  </div>
+                  <p class="price">
+                    <div >
+                      <a href="/activities/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
+                    </div>
+                  </p>
+                </div>
+              </div><!-- End Chefs Member -->
+            @endif
+            @endforeach
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+
 
         </div>
 

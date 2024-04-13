@@ -607,7 +607,9 @@ section {
 .about .about-img {
   min-height: 500px;
 }
-
+.img-blog {
+  min-height: 100%;
+}
 .about h3 {
   font-weight: 700;
   font-size: 36px;

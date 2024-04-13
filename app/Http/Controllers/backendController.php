@@ -342,7 +342,7 @@ class backendController extends Controller
                     'type' => $data['type'],
                     'foto' => $gmbr,
                     'lang' => $data['lang'],
-
+                    'area' => $data['area'],
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                 ], 'id');

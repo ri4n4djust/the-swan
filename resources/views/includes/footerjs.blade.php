@@ -99,9 +99,20 @@
         }
 
       }, false);
-
+      function getComboA(selectObject) {
+          var value = selectObject.value;
+          document.getElementById('nationality').value = value
+          // console.log(value);
+      };
       function logout(){
-        localStorage.setItem('guest', null)
+        let arrGuest = {
+              name: '',
+              email: '',
+              nationality: '',
+              country_name: '',
+              phone: ''
+          }
+          localStorage.setItem('guest', JSON.stringify(arrGuest));
         window.location.reload()
       }
       function login(){

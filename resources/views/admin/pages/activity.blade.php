@@ -16,6 +16,7 @@
                 <th>code</th>
                 <th>name</th>
                 <th>area</th>
+                <th>type</th>
                 <th class="text-center">desct</th>
                 <th class="text-center">Language</th>
                 <th class="text-center">Action</th>
@@ -27,6 +28,7 @@
                 <td>{{$rm->code}}</td>
                 <td>{{$rm->name}}</td>
                 <td>{{$rm->area}}</td>
+                <td>{{$rm->type}}</td>
                 <td>{!! substr($rm->deskripsi, 0, 60) !!}</td>
                 <td>{{$rm->lang}}</td>
                 <td>

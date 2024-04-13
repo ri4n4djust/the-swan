@@ -1,11 +1,15 @@
+@php 
+$des = $destinationDetail[0]->deskripsi ; 
+$desk = explode("</p>", $des) ;
+@endphp
 @extends('layouts.default')
 @section('meta')
     <title>{{ $destinationDetail[0]->name }} -The Swand</title>
-    <meta content="{!! $destinationDetail[0]->deskripsi !!}" name="description">
+    <meta content="{!! $desk[0] !!}" name="description">
     <meta content="{{ $destinationDetail[0]->slug }}" name="keywords">
 @endsection
 @section('content')
-@php $des = $destinationDetail[0]->deskripsi ; @endphp
+
     
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
@@ -35,9 +39,9 @@
                     <h4>{{ $destinationDetail[0]->name }}</h4>
                 </div>
                 <div class="col-lg-6 position-relative mt-0" data-aos="fade-up" data-aos-delay="150">
-                    <p>{!! cutText($destinationDetail[0]->deskripsi, 1000, 1) !!}</p>
+                    <p>{!! $desk[0] !!}</p>
                 </div>
-                <div class="col-lg-6 position-relative about-img mt-0" data-aos="fade-up" data-aos-delay="150">
+                <div class="col-lg-6 position-relative img-blog mt-0" data-aos="fade-up" data-aos-delay="150">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
 
@@ -71,14 +75,13 @@
                     
                 </div>
                 @php 
-                $leng = strlen($des) ;
-                $newdes = substr($des, 1000) ; 
+                $leng = count($desk) ;
                 @endphp
-                @if(strlen($des) > 1000)
+                @for($i = 1;$i < $leng ;$i++)
                 <div class="col-lg-12 position-relative mt-0" data-aos="fade-up" data-aos-delay="150">
-                    <p>{!! cutText($newdes, $leng, 1) !!}</p>
+                    <p>{!! $desk[$i] !!}</p>
                 </div>
-                @endif
+                @endfor
             </div>
             
 

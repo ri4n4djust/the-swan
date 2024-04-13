@@ -117,7 +117,8 @@ class bookingController extends Controller
     public function activityDetail($slug){
         $activityDetail = DB::table('activities')->where('slug', $slug)->get();
         $product = DB::table('products')->get();
-        return view('pages.activity-detail', ['activityDetail' => $activityDetail, 'products' => $product]);
+        $country = DB::table('countries')->get();
+        return view('pages.activity-detail', ['activityDetail' => $activityDetail, 'products' => $product, 'country' => $country,]);
     }
 
     public function tourDetail($slug){
@@ -141,12 +142,13 @@ class bookingController extends Controller
         $country = DB::table('countries')->get();
         $fasilitas = Facility::all();
         $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->get();
-
+        $activities = DB::table('activities')->where('lang', $defaultLocale)->get();
         return view('pages.hotel-detail',[
             'hotelDetail' => $hotel,
             'country' => $country,
             'fasilitas' => $fasilitas,
-            'destinasi' => $destinasi
+            'destinasi' => $destinasi,
+            'activities' => $activities
             ] );
     }
 
