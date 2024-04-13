@@ -95,7 +95,7 @@
                             @php $gmbr = explode(";",$desti->foto) ; @endphp
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                                 <div class="chef-member">
-                                    <a href="/destination/{{$desti->slug}}">
+                                    <a href="/destinations/{{$desti->slug}}">
                                         <div class="member-img">
                                             <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $desti->name }}">
                                         </div>
@@ -123,7 +123,7 @@
                             @php $gmbr = explode(";",$actv->foto) ; @endphp
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                                 <div class="chef-member">
-                                    <a href="/activity/{{$actv->slug}}">
+                                    <a href="/activities/{{$actv->slug}}">
                                         <div class="member-img">
                                             <img src="{{ asset('assets/img/activity/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $actv->name }}">
                                         </div>
