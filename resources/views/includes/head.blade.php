@@ -1,5 +1,6 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="google-site-verification" content="_3ZMDyg1zNZl3HkWEvxrPSmPcsarWz85EEyWhLQggzs" />
 
   <!-- <title>The Swand</title>
   <meta content="" name="description">
