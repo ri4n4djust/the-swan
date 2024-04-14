@@ -92,36 +92,11 @@ class callbackController extends Controller
 
         
         // $_id = $arrRequestInput['id'];
-        $_externalId = $detail['external_id'];
+        $_externalId = $detail['order_id'];
         // $_userId = $arrRequestInput['user_id'];
-        // $_status = $arrRequestInput['status'];
-        // $_paidAmount = $arrRequestInput['paid_amount'];
-        // $_paidAt = $arrRequestInput['paid_at'];
-        // $_paymentChann$_id = $arrRequestInput['id'];
-        // $_externalId = $arrRequestInput['external_id'];
-        // $_userId = $arrRequestInput['user_id'];
-        // $_status = $arrRequestInput['status'];
-        // $_paidAmount = $arrRequestInput['paid_amount'];
-        // $_paidAt = $arrRequestInput['paid_at'];
-        // $_paymentChannel = $arrRequestInput['payment_channel'];
-        // $_paymentDestinatel = $arrRequestInput['payment_channel'];
-        // $_paymentDesti$_id = $arrprint_rRequestInput['id'];
-        // $_externalId = $arrRequestInput['external_id'];
-        // $_userId = $arrRequestInput['user_id'];
-        // $_status = $arrRequestInput['status'];
-        // $_paidAmount = $arrRequestInput['paid_amount'];
-        // $_paidAt = $arrRequestInput['paid_at'];
-        // $_paymentChannel = $arrRequestInput['payment_channel'];
-        // $_paymentDestinatnation = $arrRequestInput['payment_destination'];
-
         // Kamu bisa menggunakan array objek diatas sebagai informasi callback yang dapat digunaka untuk melakukan pengecekan atau aktivas tertentu di aplikasi atau sistem kamu.
 
-        // }else{
-        // Permintaan bukan dari Xendit, tolak dan buang pesan dengan HTTP status 403
-        // http_response_code(403);
-        // echo "tes yg ini" ;
-        // print_r($arrRequestInput);
-        // }
+
         // DB::table('reservations')->where('no_reservasi', $_externalId)->update([
         //     'status' => 'PAID',
         // ]);

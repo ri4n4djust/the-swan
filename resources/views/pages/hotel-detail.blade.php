@@ -131,6 +131,7 @@
                     <div class="row">
                         <div class="col-xl-6 form-group">
                             <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
+                            <input type="hidden" name="nama_kamar" class="form-control" id="nama_kamar" value="{{ $hotelDetail[0]->title }}">
                             <input type="hidden" name="hari" class="form-control" id="hari" value="1">
                         <input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="Name" required>
                         </div>
@@ -207,7 +208,6 @@
                             <input type="hidden" class="form-control" name="total" id="total" required>
                             <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" required>
                             <input type="hidden" class="form-control" name="bayar_dolar" id="bayar_dolar" required>
-                            <input type="text" class="form-control" name="note" id="note" value="gfdgdf" required>
                         </div>
                     </div>
                     </form>
@@ -248,13 +248,25 @@
                     $.post("{{ route('donation.pay') }}", {
                         _method: 'POST',
                         _token: '{{ csrf_token() }}',
+                        kode_product: $('#code').val(),
                         name: $('#name').val(),
                         email: $('#email').val(),
+                        mobile: $('#mobile').val(),
                         amount: $('#total_bayar').val(),
-                        note: $('#note').val()
+                        cek_in: $('#cek_in').val(),
+                        cek_out: $('#cek_out').val(),
+                        type_bayar: $('#tipe_bayar').val(),
+                        nationality: $('#nationality').val(),
+                        country_name: $('#country_name').val(),
+                        adult: $('#adult').val(),
+                        tgl_reservasi: $('#tgl_reservasi').val(),
+                        total: $('#total').val(),
+                        external_id: $('#code').val() + Date.now(),
+                        nama_kamar: $('#nama_kamar').val(),
+
                     },
                     function (data, status) {
-                        console.log(data.snap_token.snap_token)
+                        // console.log(data.snap_token.snap_token)
                         snap.pay(data.snap_token.snap_token, {
                             onSuccess: function (result) {
                                 location.reload();
