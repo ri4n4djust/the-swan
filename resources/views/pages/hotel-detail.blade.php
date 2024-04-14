@@ -207,6 +207,7 @@
                             <input type="hidden" class="form-control" name="total" id="total" required>
                             <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" required>
                             <input type="hidden" class="form-control" name="bayar_dolar" id="bayar_dolar" required>
+                            <input type="text" class="form-control" name="note" id="note" value="gfdgdf" required>
                         </div>
                     </div>
                     </form>
@@ -234,7 +235,45 @@
 
                         <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
                     </div>
+                    <button class="btn btn-primary" id="pay-button">Pay</button>
+
                 </div>
+                <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>    
+                <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+                <script type="text/javascript">
+                    $('#pay-button').click(function (event) {
+                    event.preventDefault();
+                    
+                    $.post("{{ route('donation.pay') }}", {
+                        _method: 'POST',
+                        _token: '{{ csrf_token() }}',
+                        name: $('#name').val(),
+                        email: $('#email').val(),
+                        amount: $('#total_bayar').val(),
+                        note: $('#note').val()
+                    },
+                    function (data, status) {
+                        console.log(data.snap_token.snap_token)
+                        snap.pay(data.snap_token.snap_token, {
+                            onSuccess: function (result) {
+                                location.reload();
+                            },
+                    
+                            onPending: function (result) {
+                                location.reload();
+                            },
+                    
+                            onError: function (result) {
+                                location.reload();
+                            }
+                            
+                        });
+                        return false;
+                    });
+                    });
+                </script>
+
                
                 <div class="row">
                     <div class="section-header">

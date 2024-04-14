@@ -61,9 +61,13 @@ Route::get('paypal/payment/cancel', [App\Http\Controllers\PayPalController::clas
 
 //====tess
 Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getLoc']);
-// Route::resource('orders', OrderController::class)->only(['index', 'show']);
+
+Route::post('donation/pay', [App\Http\Controllers\OrderController::class, 'pay'])->name('donation.pay');
+Route::post('/midtrans-status', [App\Http\Controllers\callbackController::class, 'midtrans']);
+// Route::post('orders', OrderController::class)->only(['index', 'show']);
 //=====end route tes
-// Route::post('/success-payment', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
+Route::post('/book-status', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
+
 
 Route::get('/sitemap', function(){
     $sitemap = Sitemap::create()
