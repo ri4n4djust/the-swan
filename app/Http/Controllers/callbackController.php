@@ -91,15 +91,51 @@ class callbackController extends Controller
 
 
         
-        $_status = $detail['transaction_status'];
-        $_externalId = $detail['order_id'];
-        // $_userId = $arrRequestInput['user_id'];
+        $transaction = $detail['transaction_status'];
+        $order_id = $detail['order_id'];
+        $type = $arrRequestInput['payment_type'];
         // Kamu bisa menggunakan array objek diatas sebagai informasi callback yang dapat digunaka untuk melakukan pengecekan atau aktivas tertentu di aplikasi atau sistem kamu.
 
 
-        DB::table('reservations')->where('no_reservasi', $_externalId)->update([
-            'status' => $_status,
+        DB::table('reservations')->where('no_reservasi', $order_id)->update([
+            'status' => $transaction,
         ]);
+
+        if ($transaction == 'capture') {
+        if ($type == 'credit_card'){
+            if($fraud == 'accept'){
+            // TODO set payment status in merchant's database to 'Success'
+            // echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
+            session()->put("success","Transaction order_id: " . $order_id ." successfully captured using " . $type);
+            }
+            }
+        }
+        else if ($transaction == 'settlement'){
+        // TODO set payment status in merchant's database to 'Settlement'
+        // echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
+        session()->put("success","Transaction order_id: " . $order_id ." successfully transfered using " . $type);
+        }
+        else if($transaction == 'pending'){
+        // TODO set payment status in merchant's database to 'Pending'
+        // echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+        session()->put("warning","Waiting customer to finish transaction order_id: " . $order_id . " using " . $type);
+        }
+        else if ($transaction == 'deny') {
+        // TODO set payment status in merchant's database to 'Denied'
+        echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+        session()->put("error","Waiting customer to finish transaction order_id: " . $order_id . " using " . $type);
+        }
+        else if ($transaction == 'expire') {
+        // TODO set payment status in merchant's database to 'expire'
+        // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
+        session()->put("error","Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.");
+        }
+        else if ($transaction == 'cancel') {
+        // TODO set payment status in merchant's database to 'Denied'
+        // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
+        session()->put("error","Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.");
+        }
+
 
         // return response()->json([
         //     'success' => trprint_rue,

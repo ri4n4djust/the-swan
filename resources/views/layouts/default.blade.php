@@ -23,7 +23,7 @@
   @include('includes.headmenu')
 
   <main id="main">
-
+    @include('pages.notification')
     <!-- ======= About Section ======= -->
     @yield('content')
     @yield('scripts')
