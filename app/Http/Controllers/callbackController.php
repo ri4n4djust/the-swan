@@ -118,7 +118,8 @@ class callbackController extends Controller
         else if($transaction == 'pending'){
         // TODO set payment status in merchant's database to 'Pending'
         // echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
-        session()->put("warning","Waiting customer to finish transaction order_id: " . $order_id . " using " . $type);
+        // session()->put("warning","Waiting customer to finish transaction order_id: " . $order_id . " using " . $type);
+        return view('pages.notification')->with('message', 'pending');
         }
         else if ($transaction == 'deny') {
         // TODO set payment status in merchant's database to 'Denied'
