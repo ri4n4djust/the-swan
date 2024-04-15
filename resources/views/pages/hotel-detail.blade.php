@@ -251,15 +251,58 @@
                                 // console.log(data.snap_token.snap_token)
                                 snap.pay(data.snap_token.snap_token, {
                                     onSuccess: function (result) {
-                                        location.reload();
+                                        var name = document.getElementById('name').value;
+                                        var email = document.getElementById('email').value;
+                                        var nationality = $("#country_name option:selected").val(); //document.getElementById('nationality').value;
+                                        var country_name = $("#country_name option:selected").text();
+                                        var mobile = document.getElementById('mobile').value;
+                                        var cekin = document.getElementById('cek_in').value;
+                                        var cekout = document.getElementById('cek_out').value;
+
+                                        if(cekin !== '' && cekout !== '' && name !== '' && email !== '' && nationality !== ''){
+
+                                            let arrGuest = {
+                                                name: name,
+                                                email: email,
+                                                nationality: nationality,
+                                                country_name: country_name,
+                                                phone: mobile
+                                            }
+                                            localStorage.setItem('guest', JSON.stringify(arrGuest));
+                                            // location.reload();
+                                        };
                                     },
                             
                                     onPending: function (result) {
+                                        if(cekin !== '' && cekout !== '' && name !== '' && email !== '' && nationality !== ''){
+
+                                        let arrGuest = {
+                                            name: name,
+                                            email: email,
+                                            nationality: nationality,
+                                            country_name: country_name,
+                                            phone: mobile
+                                        }
+                                        localStorage.setItem('guest', JSON.stringify(arrGuest));
                                         location.reload();
+                                        };
+                                        // location.reload();
                                     },
                             
                                     onError: function (result) {
+                                        if(cekin !== '' && cekout !== '' && name !== '' && email !== '' && nationality !== ''){
+
+                                        let arrGuest = {
+                                            name: name,
+                                            email: email,
+                                            nationality: nationality,
+                                            country_name: country_name,
+                                            phone: mobile
+                                        }
+                                        localStorage.setItem('guest', JSON.stringify(arrGuest));
                                         location.reload();
+                                        };
+                                        // location.reload();
                                     }
                                     
                                 });

@@ -106,7 +106,7 @@ class callbackController extends Controller
             if($fraud == 'accept'){
             // TODO set payment status in merchant's database to 'Success'
             // echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
-            session()->put("success","Transaction order_id: " . $order_id ." successfully captured using " . $type);
+            session()->put('success','Transaction order_id: ' . $order_id .' successfully captured using ' . $type);
             }
             }
         }
