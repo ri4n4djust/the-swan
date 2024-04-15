@@ -141,8 +141,8 @@ class bookingController extends Controller
         $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
         $country = DB::table('countries')->get();
         $fasilitas = Facility::all();
-        $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->get();
-        $activities = DB::table('activities')->where('lang', $defaultLocale)->get();
+        $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->inRandomOrder()->limit(6)->get();
+        $activities = DB::table('activities')->where('lang', $defaultLocale)->inRandomOrder()->limit(6)->get();
         return view('pages.hotel-detail',[
             'hotelDetail' => $hotel,
             'country' => $country,

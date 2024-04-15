@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('meta')
-    <title>The Swand - {{ $hotelDetail[0]->title }}</title>
+    <title>{{ $hotelDetail[0]->slug }} - The Swand</title>
     <meta content="{!! $hotelDetail[0]->desc !!}" name="description">
     <meta content="{{ $hotelDetail[0]->slug }}" name="keywords">
 @endsection
@@ -34,310 +34,286 @@
             </div>
 
             <div class="row gy-4">
-            <div class="col-lg-7 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
-                
-                <div class="position-relative mt-4">
-                <h4>{{ $hotelDetail[0]->title }}</h4>
-
-                  
-
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-
-                    @php $gmbra = explode(";",$hotelDetail[0]->foto) ; @endphp
-                    @php $gmbr = array_slice($gmbra, 0, -1) ; @endphp
-                    @foreach($gmbr as $value)
-                   
-                    <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                    <!-- {{ count($gmbr) }} -->
-
-                    @endforeach
-                    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+                <div class="col-lg-7 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
                     
-                    </ol>
-                    <div class="carousel-inner">
-                    
-                    @foreach($gmbr as $key => $slider)
-                    <!-- {{ $key }} -->
-                    <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-                        <img src="{{ asset('assets/img/rooms/'. $slider) }}" class="d-block w-100" alt="">
-                    </div>
-                    @endforeach
-                    
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                    </a>
+                    <div class="position-relative mt-4">
+                    <h4>{{ $hotelDetail[0]->title }}</h4>
 
-                    <!-- Thumbnails -->
-                    <div class="carousel-indicators" style="margin-bottom: -20px;">
+                    
+
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+
+                        @php $gmbra = explode(";",$hotelDetail[0]->foto) ; @endphp
+                        @php $gmbr = array_slice($gmbra, 0, -1) ; @endphp
+                        @foreach($gmbr as $value)
+                    
+                        <li data-target=".carouselExampleCaptions" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                        <!-- {{ count($gmbr) }} -->
+
+                        @endforeach
+                        <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+                        
+                        </ol>
+                        <div class="carousel-inner">
+                        
                         @foreach($gmbr as $key => $slider)
-                            <button type="button" data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{$loop->first ? 'active' : ''}}" aria-current="true" aria-label="Slide 1" >
-                            <img class="d-block w-100" src="{{ asset('assets/img/rooms/'. $slider) }}" class="img-fluid" />
-                            </button>
-                        @endforeach   
-                    </div>
-                    <!-- Thumbnails -->
-                    
-                </div>
-                <div style="margin-top:40px;"></div>
-                
-
-                <div style="margin-top:40px;"></div>
-                <div class="row">
-                <h5>Facility</h5>
-                <!-- {{ $hotelDetail[0]->title }} -->
-                @php $fasi = explode(";",$hotelDetail[0]->facility) ; @endphp
-                  @for ($i = 1; $i < count($fasi); $i++)
-                    @foreach ($fasilitas as $fas)
-                      @if($fasi[$i] == $fas->id)
-
-                      <div class="col-4 form-group">
-                      <i class="bi bi-check2-all"></i> {!! $fas->icon !!} {{ $fas->fas_name }}
-                      <!-- <i class="fa-sharp fa-solid fa-person-swimming"></i> -->
-                     
-                      
-                      
+                        <!-- {{ $key }} -->
+                        <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                            <img src="{{ asset('assets/img/rooms/'. $slider) }}" class="d-block w-100" alt="">
                         </div>
-                      @endif
-                    @endforeach
-                  @endfor
-                </div>
-                
-                <p>{!! $hotelDetail[0]->desc !!}</p>
-                <p>
-                <!-- <iframe src="https://www.airbnb.co.id/calendar/ical/1008390716123586176.ics?s=cf056deabfae92dc6d2000654b37a31e" height="200" width="300" title="Iframe Example"></iframe>  -->
-                
-                </p>
-                </div>
-                <!-- <img src="assets/img/about.jpg" class="img-fluid" alt=""> -->
-            </div>
-            <div class="col-lg-5 d-flex" data-aos="fade-up" data-aos-delay="300">
-            
-                <div class="content ps-0 ps-lg-5" >
-                    <div class="section-header">
-                        <h4>Booking Detail</h4>
-                        <!-- <p>Learn More </p> -->
-                    </div>
-                    
-                <form id="form-configure" cautocomplete="off" >
-                    <div class="row">
-                        <div class="col-xl-6 form-group">
-                            <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
-                            <input type="hidden" name="nama_kamar" class="form-control" id="nama_kamar" value="{{ $hotelDetail[0]->title }}">
-                            <input type="hidden" name="hari" class="form-control" id="hari" value="1">
-                        <input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="Name" required>
-                        </div>
-                            <div class="col-xl-6 form-group">
-                            <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Email" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-xl-6 form-group">
-                                <input type="number" class="form-control form-control-sm" name="mobile" id="mobile" placeholder="mobile" required>
-                                <p><small>Include the + symbol, country code, and area code.</small></p>  
-                            </div>
-                            <div class="col-xl-6 form-group">
-                            <input type="hidden" name="nationality" class="form-control" id="nationality" required>
-                            <select id="country_name" class="form-control form-control-sm" onchange="getComboA(this)" required>
-                                <option value="">Nationality</option>
-                                @foreach($country as $count)
-                                <option value="{{ $count->country_code }}">{{ $count->country_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
+                        @endforeach
                         
-                        <div class="col-xl-6 form-group">
-                            Guest
-                            <input type="number" class="form-control form-control-sm" name="adult" id="adult" value="1" placeholder="Adult" required>
                         </div>
-                        <div class="col-xl-6 form-group">
-                            
-                            <input type="hidden" class="form-control" name="qty" id="qty" value="1" placeholder="Adult" disabled>
-                            Payment Type
-                            <select name="tipe_bayar" id="tipe_bayar" class="form-control form-control-sm" onchange="getOption()">
-                                <option value="deposit">Deposit</option>
-                                <option value="full">Full Payment</option>
-                            </select>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+
+                        <!-- Thumbnails -->
+                        <div class="carousel-indicators" style="margin-bottom: -20px;">
+                            @foreach($gmbr as $key => $slider)
+                                <button type="button" data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{$loop->first ? 'active' : ''}}" aria-current="true" aria-label="Slide 1" >
+                                <img class="d-block w-100" src="{{ asset('assets/img/rooms/'. $slider) }}" class="img-fluid" />
+                                </button>
+                            @endforeach   
                         </div>
+                        <!-- Thumbnails -->
+                        
                     </div>
+                    <div style="margin-top:40px;"></div>
+                    
+
+                    <div style="margin-top:40px;"></div>
                     <div class="row">
-                        <div class="col-sm-12 form-group">
+                    <h5>Facility</h5>
+                    <!-- {{ $hotelDetail[0]->title }} -->
+                    @php $fasi = explode(";",$hotelDetail[0]->facility) ; @endphp
+                    @for ($i = 1; $i < count($fasi); $i++)
+                        @foreach ($fasilitas as $fas)
+                        @if($fasi[$i] == $fas->id)
 
-                        Cek In   | Cek Out 
-                        <input class="form-control form-control-sm" name="datefilter" id="datefilter" required>
-                        <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
-                        <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
-                        <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
-                        <input type="hidden" name="room_no" id="room_no" >
-
-                        <input type="hidden" name="rate_dolar" id="rate_dolar" required>
-
-                        </div>
-                    </div>
-                    <div class="form-group">
-
-                        <table style="width:100%;border:1px solid;">
-                            <tbody id="listharga" >
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td><div id="totalorder"></div></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-
-                    </div>
-                    <div class="row">
                         <div class="col-4 form-group">
-                            Have to Pay : 
-                        </div>
-                        <div class="col-8 form-group">
-                            <span id="totalbayar"></span>/<span id="totalbayardolar"></span>
-                            <input type="hidden" class="form-control" name="total" id="total" required>
-                            <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" required>
-                            <input type="hidden" class="form-control" name="bayar_dolar" id="bayar_dolar" required>
-                        </div>
+                        <i class="bi bi-check2-all"></i> {!! $fas->icon !!} {{ $fas->fas_name }}
+                        <!-- <i class="fa-sharp fa-solid fa-person-swimming"></i> -->
+                        
+                        
+                        
+                            </div>
+                        @endif
+                        @endforeach
+                    @endfor
                     </div>
-                    </form>
-                    <div class="row">
-                        <div class="col-5 form-group">
-                            <button id="button-start-demo" class="btn-book-a-table" type="submit" form="form-configure">
-                                <span>Pay Now</span>
-                            </button>
+                    
+                    <p>{!! $hotelDetail[0]->desc !!}</p>
+                    <p>
+                    <!-- <iframe src="https://www.airbnb.co.id/calendar/ical/1008390716123586176.ics?s=cf056deabfae92dc6d2000654b37a31e" height="200" width="300" title="Iframe Example"></iframe>  -->
+                    
+                    </p>
+                    </div>
+                    <!-- <img src="assets/img/about.jpg" class="img-fluid" alt=""> -->
+                </div>
+                <div class="col-lg-5 d-flex" data-aos="fade-up" data-aos-delay="300">
+                
+                    <div class="content ps-0 ps-lg-5" >
+                        <div class="section-header">
+                            <h4>Booking Detail</h4>
+                            <!-- <p>Learn More </p> -->
                         </div>
                         
-                        <div class="col-7 form-group">
-                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>{{ $message }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <form id="form-configure" cautocomplete="off" >
+                        <div class="row">
+                            <div class="col-xl-6 form-group">
+                                <input type="hidden" name="code" class="form-control" id="code" value="{{ $hotelDetail[0]->code }}">
+                                <input type="hidden" name="nama_kamar" class="form-control" id="nama_kamar" value="{{ $hotelDetail[0]->title }}">
+                                <input type="hidden" name="hari" class="form-control" id="hari" value="1">
+                            <input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="Name" required>
+                            </div>
+                                <div class="col-xl-6 form-group">
+                                <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Email" required>
+                            </div>
                         </div>
-                        @endif
-
-                        @if ($message = Session::get('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{{ $message }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <div class="row">
+                                <div class="col-xl-6 form-group">
+                                    <input type="number" class="form-control form-control-sm" name="mobile" id="mobile" placeholder="mobile" required>
+                                    <p><small>Include the + symbol, country code, and area code.</small></p>  
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                <input type="hidden" name="nationality" class="form-control" id="nationality" required>
+                                <select id="country_name" class="form-control form-control-sm" onchange="getComboA(this)" required>
+                                    <option value="">Nationality</option>
+                                    @foreach($country as $count)
+                                    <option value="{{ $count->country_code }}">{{ $count->country_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                        @endif
-
-                        <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
-                    </div>
-                    <button class="btn btn-primary" id="pay-button">Pay</button>
-
-                </div>
-                <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>    
-                <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
-                <script type="text/javascript">
-                    $('#pay-button').click(function (event) {
-                    event.preventDefault();
-                    
-                    $.post("{{ route('donation.pay') }}", {
-                        _method: 'POST',
-                        _token: '{{ csrf_token() }}',
-                        kode_product: $('#code').val(),
-                        name: $('#name').val(),
-                        email: $('#email').val(),
-                        mobile: $('#mobile').val(),
-                        amount: $('#total_bayar').val(),
-                        cek_in: $('#cek_in').val(),
-                        cek_out: $('#cek_out').val(),
-                        type_bayar: $('#tipe_bayar').val(),
-                        nationality: $('#nationality').val(),
-                        country_name: $('#country_name').val(),
-                        adult: $('#adult').val(),
-                        tgl_reservasi: $('#tgl_reservasi').val(),
-                        total: $('#total').val(),
-                        external_id: $('#code').val() + Date.now(),
-                        nama_kamar: $('#nama_kamar').val(),
-
-                    },
-                    function (data, status) {
-                        // console.log(data.snap_token.snap_token)
-                        snap.pay(data.snap_token.snap_token, {
-                            onSuccess: function (result) {
-                                location.reload();
-                            },
-                    
-                            onPending: function (result) {
-                                location.reload();
-                            },
-                    
-                            onError: function (result) {
-                                location.reload();
-                            }
+                        <div class="row">
                             
-                        });
-                        return false;
-                    });
-                    });
-                </script>
-
-               
-                <div class="row">
-                    <div class="section-header">
-                        <h4>Most interesting In Bali</h4>
-                    </div>
-                    @foreach($destinasi as $desti)
-                    @php $gmbr = explode(";",$desti->foto) ; @endphp
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                            <div class="chef-member">
-                                <a href="/destinations/{{$desti->slug}}">
-                                    <div class="member-img">
-                                        <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
-                                    </div>
-                                    <div class="member-info">
-                                        <small>{{$desti->name}}</small>
-                                    </div>
-                                </a>
+                            <div class="col-xl-6 form-group">
+                                Guest
+                                <input type="number" class="form-control form-control-sm" name="adult" id="adult" value="1" placeholder="Adult" required>
+                            </div>
+                            <div class="col-xl-6 form-group">
+                                <input type="hidden" class="form-control" name="qty" id="qty" value="1" placeholder="Adult" disabled>
+                                Payment Type
+                                <select name="tipe_bayar" id="tipe_bayar" class="form-control form-control-sm" onchange="getOption()">
+                                    <option value="deposit">Deposit</option>
+                                    <option value="full">Full Payment</option>
+                                </select>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
 
-                <div class="row">
-                    <div class="section-header">
-                        <h4>Bali Activities</h4>
-                    </div>
-                    @foreach($activities as $actv)
-                    @php $gmbr = explode(";",$actv->foto) ; @endphp
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                            <div class="chef-member">
-                                <a href="/activities/{{$actv->slug}}">
-                                    <div class="member-img">
-                                        <img src="{{ asset('assets/img/activity/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
-                                    </div>
-                                    <div class="member-info">
-                                        <small>{{$actv->name}}</small>
-                                    </div>
-                                </a>
+                            Cek In   | Cek Out 
+                            <input class="form-control form-control-sm" name="datefilter" id="datefilter" required>
+                            <input type="hidden" class="form-control" name="cek_in" id="cek_in" required>
+                            <input type="hidden" class="form-control" name="cek_out" id="cek_out" required>
+                            <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
+                            <input type="hidden" name="room_no" id="room_no" >
+
+                            <input type="hidden" name="rate_dolar" id="rate_dolar" required>
+
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="form-group">
+
+                            <table style="width:100%;border:1px solid;">
+                                <tbody id="listharga" >
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td><div id="totalorder"></div></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-4 form-group">
+                                Have to Pay : 
+                            </div>
+                            <div class="col-8 form-group">
+                                <span id="totalbayar"></span>/<span id="totalbayardolar"></span>
+                                <input type="hidden" class="form-control" name="total" id="total" required>
+                                <input type="hidden" class="form-control" name="total_bayar" id="total_bayar" required>
+                                <input type="hidden" class="form-control" name="bayar_dolar" id="bayar_dolar" required>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-5 form-group">
+                                <button id="pay-button" class="btn-book-a-table">Pay Now</button>
+                            </div>
+                            <div class="col-7 form-group">
+                            <button onclick="payPal()" class="btn-book-a-table">Pay with PayPal</button>
+                            </div>
+                        
+
+                        </div>
+                        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>    
+                        <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+                        <script type="text/javascript">
+                            $('#pay-button').click(function (event) {
+                            event.preventDefault();
+                            
+                            $.post("{{ route('donation.pay') }}", {
+                                _method: 'POST',
+                                _token: '{{ csrf_token() }}',
+                                kode_product: $('#code').val(),
+                                name: $('#name').val(),
+                                email: $('#email').val(),
+                                mobile: $('#mobile').val(),
+                                amount: $('#total_bayar').val(),
+                                cek_in: $('#cek_in').val(),
+                                cek_out: $('#cek_out').val(),
+                                type_bayar: $('#tipe_bayar').val(),
+                                nationality: $('#nationality').val(),
+                                country_name: $('#country_name').val(),
+                                adult: $('#adult').val(),
+                                tgl_reservasi: $('#tgl_reservasi').val(),
+                                total: $('#total').val(),
+                                external_id: $('#code').val() + Date.now(),
+                                nama_kamar: $('#nama_kamar').val(),
+
+                            },
+                            function (data, status) {
+                                // console.log(data.snap_token.snap_token)
+                                snap.pay(data.snap_token.snap_token, {
+                                    onSuccess: function (result) {
+                                        location.reload();
+                                    },
+                            
+                                    onPending: function (result) {
+                                        location.reload();
+                                    },
+                            
+                                    onError: function (result) {
+                                        location.reload();
+                                    }
+                                    
+                                });
+                                return false;
+                            });
+                            });
+                        </script>
+
                 
-                
-                <div id="loading"></div>
-                @include('shared/modal')
-                @section('scripts')
-                    <!-- Javascripts -->
-                    <!-- <script src="/js/data-cart.js"></script> -->
+                    <div class="row">
+                        <div class="section-header">
+                            <h4>Most interesting In Bali</h4>
+                        </div>
+                        @foreach($destinasi as $desti)
+                        @php $gmbr = explode(";",$desti->foto) ; @endphp
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                <div class="chef-member">
+                                    <a href="/destinations/{{$desti->slug}}">
+                                        <div class="member-img">
+                                            <img src="{{ asset('assets/img/destinasi/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                        </div>
+                                        <div class="member-info">
+                                            <small>{{$desti->name}}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="row">
+                        <div class="section-header">
+                            <h4>Bali Activities</h4>
+                        </div>
+                        @foreach($activities as $actv)
+                        @php $gmbr = explode(";",$actv->foto) ; @endphp
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                <div class="chef-member">
+                                    <a href="/activities/{{$actv->slug}}">
+                                        <div class="member-img">
+                                            <img src="{{ asset('assets/img/activity/'.$gmbr[0] )}}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                                        </div>
+                                        <div class="member-info">
+                                            <small>{{$actv->name}}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                     
-                    <script src="/js/checkout.js"></script> 
-                    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+                    
+                    
+                    @section('scripts')
                     <script type="text/javascript">
                         document.addEventListener("DOMContentLoaded",  
                         
@@ -379,9 +355,7 @@
                                     // console.log(result.conversion_rates.IDR)
                                     document.getElementById('rate_dolar').value = result.conversion_rates.IDR
                                     // var rupiah = document.getElementById('total_bayar').value
-
                                 },
-                                
                                 // dataType: "json"
                             });
 
@@ -394,9 +368,7 @@
                                 document.querySelector('#country_name').value = guestData.nationality;
 
                                 // document.getElementById('country_name_head').value = guestData.nationality;
-                                
                             }
-                            
                             // heading.textContent = "DOM is ready!"; 
                         }); 
                         
@@ -608,13 +580,11 @@
                         
                         
                     </script>
-                @endsection
-                
-
-                
-                
+                    @endsection
+                    
+                    
+                    </div>
                 </div>
-            </div>
             </div>
 
         </div>

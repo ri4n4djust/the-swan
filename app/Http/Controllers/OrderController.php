@@ -36,9 +36,7 @@ class OrderController extends Controller
             $users = DB::table("room_nomors")->select('*')
             ->whereNOTIn('room_no', DB::table('reservation_room_detail')
                         ->select('no_room')
-                        // ->from('reservation_room_detail')
                         ->where('tgl', $startDate)
-                        // ->where('status', '!=', 'In House')
                         ->where('status', '!=', 'cekout')
             )
             ->where('unit_code', $request->kode_product)
@@ -72,16 +70,6 @@ class OrderController extends Controller
                     "harga" => $getDetail['0']->harga,
                     "status" => $status,                        
                 ];
-
-                // $isi[] = [
-                //     'id'            => $request->kode_product,
-                //     'price'         => $$getDetail['0']->harga,
-                //     'quantity'      => 1,
-                //     'name'          => $request->nama_kamar,
-                //     'brand'         => config('app.name'),
-                //     'category'      => config('app.name'),
-                //     'merchant_name' => config('app.name'),
-                // ];
 
                 if($i == ($count) ) continue ;
                 DB::table('rates')
@@ -169,11 +157,11 @@ class OrderController extends Controller
                     [
                         'id'            => $request->kode_product,
                         'price'         => $request->amount,
-                        'quantity'      => 1,
+                        'quantity'      => $count.' Night',
                         'name'          => $request->nama_kamar,
                         'brand'         => config('app.name'),
                         'category'      => config('app.name'),
-                        'merchant_name' => config('app.name'),
+                        // 'merchant_name' => config('app.name'),
                     ],
                 ],
             ];
