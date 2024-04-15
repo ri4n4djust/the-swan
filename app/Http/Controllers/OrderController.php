@@ -157,9 +157,9 @@ class OrderController extends Controller
                     [
                         'id'            => $request->kode_product,
                         'price'         => $request->amount,
-                        'quantity'      => $count.' Night',
-                        'name'          => $request->nama_kamar,
-                        'brand'         => config('app.name'),
+                        'quantity'      => $count,
+                        'name'          => 'Night '.$request->nama_kamar,
+                        'brand'         => 'Night',
                         'category'      => config('app.name'),
                         // 'merchant_name' => config('app.name'),
                     ],
