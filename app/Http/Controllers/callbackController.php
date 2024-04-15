@@ -91,15 +91,15 @@ class callbackController extends Controller
 
 
         
-        // $_id = $arrRequestInput['id'];
+        $_status = $detail['transaction_status'];
         $_externalId = $detail['order_id'];
         // $_userId = $arrRequestInput['user_id'];
         // Kamu bisa menggunakan array objek diatas sebagai informasi callback yang dapat digunaka untuk melakukan pengecekan atau aktivas tertentu di aplikasi atau sistem kamu.
 
 
-        // DB::table('reservations')->where('no_reservasi', $_externalId)->update([
-        //     'status' => 'PAID',
-        // ]);
+        DB::table('reservations')->where('no_reservasi', $_externalId)->update([
+            'status' => $_status,
+        ]);
 
         // return response()->json([
         //     'success' => trprint_rue,
