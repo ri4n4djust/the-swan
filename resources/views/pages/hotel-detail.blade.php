@@ -271,10 +271,10 @@
                                 };
                                 snap.pay(data.snap_token.snap_token, {
                                     onSuccess: function (result) {
-                                        // location.reload();
+                                        location.reload();
                                     },
                                     onPending: function (result) {
-                                        // location.reload();
+                                        location.reload();
                                     },
                                     onError: function (result) {
                                         location.reload();
