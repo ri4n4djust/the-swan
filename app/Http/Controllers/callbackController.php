@@ -93,7 +93,7 @@ class callbackController extends Controller
         
         $transaction = $detail['transaction_status'];
         $order_id = $detail['order_id'];
-        $type = $arrRequestInput['payment_type'];
+        $type = $detail['payment_type'];
         // Kamu bisa menggunakan array objek diatas sebagai informasi callback yang dapat digunaka untuk melakukan pengecekan atau aktivas tertentu di aplikasi atau sistem kamu.
 
 
