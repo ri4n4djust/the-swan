@@ -11,6 +11,6 @@ class Review extends Model
     protected $table = 'review_ratings';
 
     protected $fillable = [
-        'booking_id', 'guest_email' ,'comments', 'product_code' ,'star_rating', 'status'
+        'booking_id', 'guest_name', 'guest_email' ,'comments', 'product_code' ,'star_rating', 'status'
     ];
 }

@@ -1,8 +1,8 @@
 @extends('layouts.default')
 @section('meta')
     <title>Bali Best Place To join with us - The Swand</title>
-    <meta content="we are company that acomodate room booking, tour travel and also property management, visit bali instereted place" name="description">
-    <meta content="bali room booking, car rental bali, bali management property, ubud tour, bali tour" name="keywords">
+    <meta content="bali activities, all things to do in bali with the swand" name="description">
+    <meta content="rafting, car rental bali,waterfall, ubud tour, bali tour" name="keywords">
 @endsection
 @section('content')
     
@@ -11,7 +11,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Bali Destinations</h2>
+          <h2>Bali Activities</h2>
           <ol>
             <li><a href="/">Home</a></li>
             <li>All Bali Activities</li>
@@ -26,7 +26,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <!-- <h2>Our Menu</h2> -->
+          <h3>Things To Do in Bali</h3>
           <p>Best <span>Bali Activities place</span></p>
         </div>
 

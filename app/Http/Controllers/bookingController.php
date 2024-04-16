@@ -140,7 +140,7 @@ class bookingController extends Controller
         $defaultLocale = config('app.locale');
         $code = Booking::where('slug', $slug)->first();
         $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
-
+        $review = DB::table('review_ratings')->where('product_code', $code->code)->get(); // Review::where('product_code', $code->code)->get();
         $country = DB::table('countries')->get();
         $fasilitas = Facility::all();
         $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->inRandomOrder()->limit(6)->get();
@@ -150,7 +150,8 @@ class bookingController extends Controller
             'country' => $country,
             'fasilitas' => $fasilitas,
             'destinasi' => $destinasi,
-            'activities' => $activities
+            'activities' => $activities,
+            'review' => $review
             ] );
     }
 
@@ -261,7 +262,9 @@ class bookingController extends Controller
         $post = Review::create([
             'booking_id' => $request->booking_id,
             'product_code' => $request->product_code,
+            'comments' => $request->comment,
             'user_rating' => $request->rating,
+            'guest_name' => $request->name,
             'guest_email' => $request->email,
             'star_rating' => $request->rating,
             'status' => 'active',

@@ -114,7 +114,40 @@
                     <p>{!! $hotelDetail[0]->desc !!}</p>
                     <p>
                     <!-- <iframe src="https://www.airbnb.co.id/calendar/ical/1008390716123586176.ics?s=cf056deabfae92dc6d2000654b37a31e" height="200" width="300" title="Iframe Example"></iframe>  -->
-                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col mt-4">
+                                    <p class="font-weight-bold ">Review</p>
+                                    @foreach($review as $rev)
+                                    @if($hotelDetail[0]->code == $rev->product_code)
+                                    <div class="form-group" style="box-shadow: 0 0 10px 0 #ddd;">
+                                       
+                                        <input type="hidden" name="booking_id" value="{{$rev->booking_id}}">
+                                        
+                                        <div class="col mt-0">
+                                            <p>{{$rev->guest_name}} 
+                                            <div class="rated">
+                                            @for($i=1; $i<=$rev->star_rating; $i++)                                                      
+                                            {{-- <input type="radio" id="star{{$i}}" class="rate" name="rating" value="5"/> --}}
+                                                <label class="star-rating-complete" title="text">{{$i}} stars</label>
+                                            @endfor
+                                            </div>
+                                            </p>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-group mt-4">
+                                        <div class="col">
+                                            <p>{{ $rev->comments }}</p>
+                                            <small>{{$rev->created_at}}</small>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @endforeach
+                            </div>
+                        </div>
+                    </div>
                     </p>
                     </div>
                     <!-- <img src="assets/img/about.jpg" class="img-fluid" alt=""> -->
@@ -701,56 +734,43 @@
             @endif
 
 
+            
+            
+            
 
-            @if(!empty($value->star_rating))
-            <div class="container">
-                <div class="row">
-                    <div class="col mt-4">
-                            <p class="font-weight-bold ">Review</p>
-                            <div class="form-group row">
-                            <input type="hidden" name="booking_id" value="{{ $value->id }}">
-                            <div class="col">
-                                <div class="rated">
-                                @for($i=1; $i<=$value->star_rating; $i++)                                                      
-                                {{-- <input type="radio" id="star{{$i}}" class="rate" name="rating" value="5"/> --}}
-                                    <label class="star-rating-complete" title="text">{{$i}} stars</label>
-                                @endfor
-                                </div>
-                            </div>
-                            </div>
-                            <div class="form-group row mt-4">
-                            <div class="col">
-                                <p>{{ $value->comments }}</p>
-                            </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
-            @else
             <div class="container">
                 <div class="row">
                     <div class="col mt-4">
                         <form class="py-2 px-4" action="{{route('review.store')}}" style="box-shadow: 0 0 10px 0 #ddd;" method="POST" autocomplete="off">
                             @csrf
                             <p class="font-weight-bold ">Review</p>
-                            <div class="form-group row">
-                            <input type="hidden" name="booking_id" value="{{ $hotelDetail[0]->id }}">
-                            <input type="hidden" name="product_code" value="{{ $hotelDetail[0]->code }}">
-                            <input type="email" name="email" id="email" >
-                            <div class="col">
-                                <div class="rate">
-                                    <input type="radio" id="star5" class="rate" name="rating" value="5"/>
-                                    <label for="star5" title="text">5 stars</label>
-                                    <input type="radio" checked id="star4" class="rate" name="rating" value="4"/>
-                                    <label for="star4" title="text">4 stars</label>
-                                    <input type="radio" id="star3" class="rate" name="rating" value="3"/>
-                                    <label for="star3" title="text">3 stars</label>
-                                    <input type="radio" id="star2" class="rate" name="rating" value="2">
-                                    <label for="star2" title="text">2 stars</label>
-                                    <input type="radio" id="star1" class="rate" name="rating" value="1"/>
-                                    <label for="star1" title="text">1 star</label>
+
+                            <div class="row">
+                                <div class="col-xl-6 form-group">
+                                <input class="form-control" type="text" name="name" id="name" placeholder="Name" >
+                                </div>
+                                <div class="col-xl-6 form-group">
+                                    <input type="hidden" name="booking_id" value="{{ $hotelDetail[0]->id }}">
+                                    <input type="hidden" name="product_code" value="{{ $hotelDetail[0]->code }}">
+                                    <input class="form-control" type="email" name="email" id="email" placeholder="Email">
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <div class="col">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" class="rate" name="rating" value="5"/>
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" checked id="star4" class="rate" name="rating" value="4"/>
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" class="rate" name="rating" value="3"/>
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" class="rate" name="rating" value="2">
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" class="rate" name="rating" value="1"/>
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group row mt-4">
                             <div class="col">
@@ -765,7 +785,7 @@
                     </div>
                 </div>
                 </div>
-                @endif
+               
 
         </div>
     </section><!-- End About Section -->
