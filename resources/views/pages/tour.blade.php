@@ -46,7 +46,7 @@
                 <div class="member-img">
                       @php $gmbr = explode(";",$tur->foto) ; @endphp
                       
-                      <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                      <img src="{{asset('assets/img/tour/'.$gmbr[0] ) }}" class="img-fluid" alt="{{ $gmbr[0] }}">
                       
                       <div class="social">
                         <a href="" data-toggle="modal" data-target="#trModal{{$tur->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
