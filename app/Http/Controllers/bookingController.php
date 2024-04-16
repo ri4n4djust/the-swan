@@ -23,9 +23,19 @@ use Illuminate\Support\Facades\DB;
 class bookingController extends Controller
 {
     //
-    public function index(){
-        $kamar = Booking::all();
-        return view('pages.booking',['kamar' => $kamar] );
+    public function transport(){
+        $defaultLocale = config('app.locale');
+        $kamar = Booking::where('bookings.lang', $defaultLocale)->get();
+        $transport = Transport::where('transports.lang', $defaultLocale)->get();
+        return view('pages.transport',['transport' => $transport] );
+    }
+
+    public function tour(){
+        $defaultLocale = config('app.locale');
+        $tur = TourPackage::where('tour_packages.lang', $defaultLocale)
+                            // ->join('destinations', 'tour_packages.destination', 'like', 'destinations.code_dst' )
+                            ->get();
+        return view('pages.tour',['tour' => $tur] );
     }
 
     public function service(){

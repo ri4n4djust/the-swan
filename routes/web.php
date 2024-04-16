@@ -37,7 +37,8 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/events', [App\Http\Controllers\bookingController::class , 'event']);
     Route::get('/contact', [App\Http\Controllers\ContactUsController::class , 'index']);
     
-    // Route::get('/bookings', [App\Http\Controllers\bookingController::class , 'index']);
+    Route::get('/transport', [App\Http\Controllers\bookingController::class , 'transport']);
+    Route::get('/tour_packages', [App\Http\Controllers\bookingController::class , 'tour']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service'])->name('service');
     Route::get('/tour_packages/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
     Route::get('/bookings/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
@@ -74,7 +75,9 @@ Route::get('/sitemap', function(){
     $sitemap = Sitemap::create()
     ->add(Url::create('/about-us'))
     ->add(Url::create('/contact_us'))
-    ->add(Url::create('/gallery'));
+    ->add(Url::create('/gallery'))
+    ->add(Url::create('/transport'))
+    ->add(Url::create('/tour_packages'));
    
     $book = Booking::all();
     foreach ($book as $book) {
@@ -94,19 +97,11 @@ Route::get('/sitemap', function(){
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
 
-    $transport = Transport::all();
-    foreach ($transport as $trans) {
-        $sitemap->add(Url::create("/transports/{$trans->slug}"));
-    }
-    $sitemap->writeToFile(public_path('sitemap.xml'));
-
     $tour = TourPackage::all();
     foreach ($tour as $tur) {
         $sitemap->add(Url::create("/tour_packages/{$tur->slug}"));
     }
     $sitemap->writeToFile(public_path('sitemap.xml'));
-
-    
 
     
 }); 
@@ -163,14 +158,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('products-edit/{product_code}', [App\Http\Controllers\backendController::class, 'editProducts'])->name('products.edit');
 
 });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show', 'register']]);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+// Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+// Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+// Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show', 'register']]);
 
 // Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
-Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
-Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
-Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
+// Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
+// Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
+// Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
 // Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);

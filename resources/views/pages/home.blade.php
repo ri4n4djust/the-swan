@@ -443,34 +443,14 @@
                       <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="{{ $gmbr[0] }}">
                       
                       <div class="social">
-                        <!-- <a href=""><i class="bi bi-twitter"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a> -->
                         <a href="" data-toggle="modal" data-target="#trModal{{$tr->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
                       </div>
                     </div>
                     
                     <div class="member-info">
                       <h4>{{ $tur->tour_name}}</h4>
-                      <!-- <span>Cook</span> -->
-                      <!-- <p>{{ substr($tur->deskripsi, 0, 200)}}</p> -->
-                      
-                    <!-- </div>
-                    <div class="member-info"> -->
-                      <!-- <i class="bi bi-wifi"></i>
-                      <i class="bi bi-twitter"></i> -->
-                      <!-- @php $fs = explode(",",$tur->destination) ; @endphp -->
-                      <!-- @foreach ($fs as $fas) -->
-                        <!-- <i class="bi bi-check2-all"></i> {{$fas}}<br> -->
-                        <!-- <i class="bi bi-check2-all"></i> Shower
-                        <i class="bi bi-check2-all"></i> Free Wifi -->
-                      <!-- @endforeach -->
                     </div>
                     <p class="price">
-                      <!-- IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br> -->
-                      <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
-                        Detail
-                      </button> -->
                       <a href="/tour_packages/{{$tur->slug}}" class="btn-book-a-table">Detail</a>
                     </p>
                     
@@ -495,10 +475,11 @@
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
                 <h4>{{$paket->name}}</h4>
                 <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
+                  @php $desa = explode("</p>", $paket->deskripsi) ; @endphp
+                  {!! cutText($desa[0], 300, 1) !!}
                 </p>
                 <p class="price">
-                  $5.95
+                IDR {{ number_format($paket->price, 2) }}
                 </p>
               </div><!-- Menu Item -->
             @endforeach

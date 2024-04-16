@@ -1,8 +1,8 @@
 @extends('layouts.default')
 @section('meta')
-    <title>Hire a Car in bali - The Swand</title>
-    <meta content="car rental for full day tour and for you avtivities" name="description">
-    <meta content="bali car rental, private tour, full day tou bali, bali tour" name="keywords">
+    <title>Bali Packages Tour- The Swand</title>
+    <meta content="package tour bali withh private service, best package tour in bali" name="description">
+    <meta content="tour bali, package tour, bali driver, private driver" name="keywords">
 @endsection
 @section('content')
     
@@ -11,10 +11,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Bali Car Rental</h2>
+          <h2>Bali Tour Packages</h2>
           <ol>
             <li><a href="/">Home</a></li>
-            <li>Car Rental</li>
+            <li>Tour Packages</li>
           </ol>
         </div>
 
@@ -27,7 +27,7 @@
 
         <div class="section-header">
           <!-- <h2>Our Menu</h2> -->
-          <p>Hire  <span>Car Rental</span></p>
+          <p>Choose   <span>a Packages</span></p>
         </div>
 
           
@@ -39,47 +39,26 @@
               <!-- <h3>Transport</h3> -->
             </div>
             <div class="row gy-4">
-            @foreach ($transport as $tr)
+            @foreach ($tour as $tur)
               <!-- Menu Item -->
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
                 <div class="chef-member">
-                  <div class="member-img">
-                    @php $gmbr = explode(";",$tr->foto) ; @endphp
-                    <img src="assets/img/transport/{{ $gmbr[0] }}" class="img-fluid" alt="">
-                    <div class="social">
-                    </div>
-                  </div>
-                  <div class="member-info">
-                    <!-- {{ $gmbr[0] }} -->
-                    <h4>{{ $tr->nama}}</h4>
-                    <!-- <span>Cook</span> -->
-                    <p>{{ substr($tr->deskripsi, 0, 200)}}</p>
-                    
-                  <!-- </div>
-                  <div class="member-info"> -->
-                    <!-- <i class="bi bi-wifi"></i>
-                    <i class="bi bi-twitter"></i> -->
-                    @php $fs = explode(",",$tr->fasilitas) ; @endphp
-                    @foreach ($fs as $fas)
-                      <i class="bi bi-check2-all"></i> {{$fas}}<br>
-                      <!-- <i class="bi bi-check2-all"></i> Shower
-                      <i class="bi bi-check2-all"></i> Free Wifi -->
-                    @endforeach
-                  </div>
-                  <p class="price">
-                    IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br>
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
-                      Detail
-                    </button> -->
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
-                      Book Now
-                    </button> -->
-                    <div >
-                      <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" class="btn-book-a-table">
+                <div class="member-img">
+                      @php $gmbr = explode(";",$tur->foto) ; @endphp
                       
-                      <img src="assets/img/wa.png" >Book Now</a>
+                      <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="{{ $gmbr[0] }}">
+                      
+                      <div class="social">
+                        <a href="" data-toggle="modal" data-target="#trModal{{$tur->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
+                      </div>
                     </div>
-                  </p>
+                    
+                    <div class="member-info">
+                      <h4>{{ $tur->tour_name}}</h4>
+                    </div>
+                    <p class="price">
+                      <a href="/tour_packages/{{$tur->slug}}" class="btn-book-a-table">Detail</a>
+                    </p>
                 </div>
               </div><!-- End Chefs Member -->
             @endforeach

@@ -37,7 +37,9 @@
                 <div class="col-lg-7 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
                     
                     <div class="position-relative mt-4">
-                    <h4>{{ $hotelDetail[0]->title }}</h4>
+                        <div class="section-header">
+                            <h4>{{ $hotelDetail[0]->title }}</h4>
+                        </div>
 
                     
 
@@ -417,10 +419,15 @@
                                 document.querySelector('#nationality').value = guestData.nationality;
                                 document.querySelector('#country_name').value = guestData.nationality;
 
-                                // document.getElementById('country_name_head').value = guestData.nationality;
+                                var formreview = document.getElementById("form_review");
+                                formreview.style.display = "block";
+                            }else{
+                                var formreview = document.getElementById("form_review");
+                                formreview.style.display = "none";
                             }
                             // heading.textContent = "DOM is ready!"; 
-                        }); 
+                            
+                        }, false ); 
                         
                         function getOption() {
                             const tipe = document.getElementById('tipe_bayar').value ; 
@@ -638,107 +645,18 @@
             </div>
 
             <style>
-                .rate {
-                    float: left;
-                    height: 46px;
-                    padding: 0 10px;
-                    }
-                    .rate:not(:checked) > input {
-                    position:absolute;
-                    display: none;
-                    }
-                    .rate:not(:checked) > label {
-                    float:right;
-                    width:1em;
-                    overflow:hidden;
-                    white-space:nowrap;
-                    cursor:pointer;
-                    font-size:30px;
-                    color:#ccc;
-                    }
-                    .rated:not(:checked) > label {
-                    float:right;
-                    width:1em;
-                    overflow:hidden;
-                    white-space:nowrap;
-                    cursor:pointer;
-                    font-size:30px;
-                    color:#ccc;
-                    }
-                    .rate:not(:checked) > label:before {
-                    content: '★ ';
-                    }
-                    .rate > input:checked ~ label {
-                    color: #ffc700;
-                    }
-                    .rate:not(:checked) > label:hover,
-                    .rate:not(:checked) > label:hover ~ label {
-                    color: #deb217;
-                    }
-                    .rate > input:checked + label:hover,
-                    .rate > input:checked + label:hover ~ label,
-                    .rate > input:checked ~ label:hover,
-                    .rate > input:checked ~ label:hover ~ label,
-                    .rate > label:hover ~ input:checked ~ label {
-                    color: #c59b08;
-                    }
-                    .star-rating-complete{
-                        color: #c59b08;
-                    }
-                    .rating-container .form-control:hover, .rating-container .form-control:focus{
-                    background: #fff;
-                    border: 1px solid #ced4da;
-                    }
-                    .rating-container textarea:focus, .rating-container input:focus {
-                    color: #000;
-                    }         .rated {
-                    float: left;
-                    height: 46px;
-                    padding: 0 10px;
-                    }
-                    .rated:not(:checked) > input {
-                    position:absolute;
-                    display: none;
-                    }
-                    .rated:not(:checked) > label {
-                    float:right;
-                    width:1em;
-                    overflow:hidden;
-                    white-space:nowrap;
-                    cursor:pointer;
-                    font-size:30px;
-                    color:#ffc700;
-                    }
-                    .rated:not(:checked) > label:before {
-                    content: '★ ';
-                    }
-                    .rated > input:checked ~ label {
-                    color: #ffc700;
-                    }
-                    .rated:not(:checked) > label:hover,
-                    .rated:not(:checked) > label:hover ~ label {
-                    color: #deb217;
-                    }
-                    .rated > input:checked + label:hover,
-                    .rated > input:checked + label:hover ~ label,
-                    .rated > input:checked ~ label:hover,
-                    .rated > input:checked ~ label:hover ~ label,
-                    .rated > label:hover ~ input:checked ~ label {
-                    color: #c59b08;
-                    }
+               
             </style>
             @if(session()->has('flash_msg_success'))
                 <div class="alert alert-success">
                     {{ session()->get('flash_msg_success') }}
                 </div>
             @endif
-
-
             
             
             
-
-            <div class="container">
+            
+            <div class="container" id="form_review">
                 <div class="row">
                     <div class="col mt-4">
                         <form class="py-2 px-4" action="{{route('review.store')}}" style="box-shadow: 0 0 10px 0 #ddd;" method="POST" autocomplete="off">
@@ -747,12 +665,12 @@
 
                             <div class="row">
                                 <div class="col-xl-6 form-group">
-                                <input class="form-control" type="text" name="name" id="name" placeholder="Name" >
+                                <input class="form-control" type="text" name="name" id="name_rev" placeholder="Name" >
                                 </div>
                                 <div class="col-xl-6 form-group">
-                                    <input type="hidden" name="booking_id" value="{{ $hotelDetail[0]->id }}">
+                                    <input type="hidden" name="booking_id" id="booking_id">
                                     <input type="hidden" name="product_code" value="{{ $hotelDetail[0]->code }}">
-                                    <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+                                    <input class="form-control" type="email" name="email" id="email_rev" placeholder="Email">
                                 </div>
                             </div>
 
@@ -784,7 +702,7 @@
                         </form>
                     </div>
                 </div>
-                </div>
+            </div>
                
 
         </div>
