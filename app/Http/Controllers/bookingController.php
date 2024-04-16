@@ -12,6 +12,7 @@ use App\Models\Package;
 use App\Models\Artikel;
 use App\Models\Gallery;
 use App\Models\Rate;
+use App\Models\Review;
 use Stevebauman\Location\Facades\Location;
 use Illuminate\Support\Facades\Http;
 
@@ -139,6 +140,7 @@ class bookingController extends Controller
         $defaultLocale = config('app.locale');
         $code = Booking::where('slug', $slug)->first();
         $hotel = Booking::where('code', $code->code)->where('bookings.lang', $defaultLocale)->get();
+
         $country = DB::table('countries')->get();
         $fasilitas = Facility::all();
         $destinasi = DB::table('destinations')->where('lang', $defaultLocale)->inRandomOrder()->limit(6)->get();
@@ -246,5 +248,26 @@ class bookingController extends Controller
     //     return response()->json($stok);
         
     // }
+
+    public function reviewstore(Request $request){
+
+        // $review = new ReviewRating();
+        // $review->booking_id = $request->booking_id;
+        // $review->comments= $request->comment;
+        // $review->star_rating = $request->rating;
+        // $review->user_id = Auth::user()->id;
+        // $review->service_id = $request->service_id;
+        // $review->save();
+        $post = Review::create([
+            'booking_id' => $request->booking_id,
+            'product_code' => $request->product_code,
+            'user_rating' => $request->rating,
+            'guest_email' => $request->email,
+            'star_rating' => $request->rating,
+            'status' => 'active',
+        ]);
+
+        return redirect()->back()->with('flash_msg_success','Thank You, Your review has been submitted Successfully,');
+    }
 
 }
