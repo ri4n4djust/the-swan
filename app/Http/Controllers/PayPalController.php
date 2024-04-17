@@ -110,8 +110,9 @@ class PayPalController extends Controller
                                     ->where('status', '!=', 'cekout')
                                     
                         )
-                        ->where('unit_code', $request->kode_product)
+                        ->where('unit_code', $request->code)
                         ->get();
+                        // var_dump($users);
                         $no_kamar = $users['0']->room_no ;
                         
                         $getDetail = DB::table('rates')
