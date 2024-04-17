@@ -332,14 +332,14 @@ class backendController extends Controller
                 foreach($foto as $ft){
                     $gmbr = $gmbr.$ft.";" ;
                 }
-                // $desti = implode(';', $data['destination']);
+                $type = implode(';', $data['type']);
                 $project = DB::table('activities')->upsert([
                     'id' => $data['id'],
                     'code' => $data['code'],
                     'deskripsi' => $data['deskripsi'],
                     'name' => $data['name'],
                     'slug' => $data['slug'],
-                    'type' => $data['type'],
+                    'type' => $type,
                     'foto' => $gmbr,
                     'lang' => $data['lang'],
                     'area' => $data['area'],
