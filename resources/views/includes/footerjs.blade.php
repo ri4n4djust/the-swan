@@ -75,7 +75,7 @@
                     
                 },
                 success: function (result) {
-                  console.log(result.data)
+                  // console.log(result.data)
                   var deta = result.data ;
                   deta = deta.pop();
                   // console.log(deta.no_reservasi);

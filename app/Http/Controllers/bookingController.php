@@ -38,6 +38,15 @@ class bookingController extends Controller
         return view('pages.tour',['tour' => $tur] );
     }
 
+    public function hotel(){
+        $defaultLocale = config('app.locale');
+        $hotel = Booking::where('bookings.lang', $defaultLocale)->get();
+        $date = Carbon::now()->format('Y-m-d');
+        $rate = DB::table('rates')->where('tgl', $date)->get();
+        $fasilitas = Facility::all();
+        return view('pages.hotel',['hotels' => $hotel, 'rate' => $rate, 'fasilitas' => $fasilitas] );
+    }
+
     public function service(){
         
 

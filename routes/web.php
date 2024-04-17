@@ -41,6 +41,7 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/tour_packages', [App\Http\Controllers\bookingController::class , 'tour']);
     Route::get('/service', [App\Http\Controllers\bookingController::class , 'service'])->name('service');
     Route::get('/tour_packages/{slug}', [App\Http\Controllers\bookingController::class , 'tourDetail']);
+    Route::get('/hotels', [App\Http\Controllers\bookingController::class , 'hotel']);
     Route::get('/bookings/{slug}', [App\Http\Controllers\bookingController::class , 'hotelDetail']);
     Route::get('/destinations', [App\Http\Controllers\bookingController::class , 'destination']);
     Route::get('/destinations/{slug}', [App\Http\Controllers\bookingController::class , 'destinationDetail']);
@@ -60,7 +61,6 @@ Route::get('paypal/payment', [App\Http\Controllers\PayPalController::class, 'pay
 Route::get('paypal/payment/success', [App\Http\Controllers\PayPalController::class, 'paymentSuccess'])->name('paypal.payment.success');
 Route::get('paypal/payment/cancel', [App\Http\Controllers\PayPalController::class, 'paymentCancel'])->name('paypal.payment/cancel');
 
-
 //====tess
 Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getLoc']);
 
@@ -77,7 +77,8 @@ Route::get('/sitemap', function(){
     ->add(Url::create('/contact_us'))
     ->add(Url::create('/gallery'))
     ->add(Url::create('/transport'))
-    ->add(Url::create('/tour_packages'));
+    ->add(Url::create('/tour_packages'))
+    ->add(Url::create('/hotels'));
    
     $book = Booking::all();
     foreach ($book as $book) {
@@ -158,14 +159,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('products-edit/{product_code}', [App\Http\Controllers\backendController::class, 'editProducts'])->name('products.edit');
 
 });
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-// Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-// Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-// Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show', 'register']]);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show', 'register']]);
 
-// Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
-// Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
-// Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
-// Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
-// Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
+Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
+Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
+Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
+Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
+Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
