@@ -69,6 +69,7 @@ Route::post('/midtrans-status', [App\Http\Controllers\callbackController::class,
 // Route::post('orders', OrderController::class)->only(['index', 'show']);
 //=====end route tes
 Route::post('/book-status', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
+Route::post('/paypal-callback', [App\Http\Controllers\callbackController::class, 'paypalComplete']);
 
 
 Route::get('/sitemap', function(){

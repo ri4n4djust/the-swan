@@ -15,5 +15,6 @@ class VerifyCsrfToken extends Middleware
         //
         '/success-payment/*',
         '/midtrans-status',
+        '/paypal-callback',
     ];
 }
