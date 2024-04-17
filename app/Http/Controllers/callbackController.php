@@ -157,5 +157,15 @@ class callbackController extends Controller
 
         $detail = $request->all();
 
+        $transaction = $detail['event_type'];
+        $order_id = $detail['id'];
+        $summary = $detail['summary'];
+        // Kamu bisa menggunakan array objek diatas sebagai informasi callback yang dapat digunaka untuk melakukan pengecekan atau aktivas tertentu di aplikasi atau sistem kamu.
+
+
+        DB::table('reservations')->where('no_reservasi', $order_id)->update([
+            'status' => $transaction,
+        ]);
+
     }
 }
