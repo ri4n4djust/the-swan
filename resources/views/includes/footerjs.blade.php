@@ -76,12 +76,7 @@
                 },
                 success: function (result) {
                   // console.log(result.data)
-                  var deta = result.data ;
-                  deta = deta.pop();
-                  // console.log(deta.no_reservasi);
-                  document.getElementById('booking_id').value = deta.no_reservasi;
-                  document.getElementById('email_rev').value = deta.guest_email;
-                  document.getElementById('name_rev').value = deta.guest_name;
+                  
                   var trHTML = '';
                   $.each(result.data, function (i, o){
                       trHTML += '<tr><td>' + o.code_service +
@@ -93,6 +88,11 @@
                                 '</td></tr>';
                   });
                   $('#table1').append(trHTML);
+
+                  var deta = result.data ;
+                  deta = deta.pop();
+                  // console.log(deta.no_reservasi);
+                  document.getElementById('last_rev').value = deta.no_reservasi;
                     
                 },
                 

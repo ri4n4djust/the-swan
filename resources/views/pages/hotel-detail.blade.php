@@ -419,6 +419,13 @@
                                 document.querySelector('#nationality').value = guestData.nationality;
                                 document.querySelector('#country_name').value = guestData.nationality;
 
+                                var delast = document.getElementById('last_rev').value ;
+                                // deta = deta.pop();
+                                // console.log(deta.no_reservasi);
+                                document.getElementById('booking_id').value = delast;
+                                document.getElementById('email_rev').value = guestData.email;
+                                document.getElementById('name_rev').value = guestData.name;
+
                                 var formreview = document.getElementById("form_review");
                                 formreview.style.display = "block";
                             }else{

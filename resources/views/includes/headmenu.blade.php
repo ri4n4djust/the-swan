@@ -149,9 +149,9 @@
                 <input type="text" name="country_name_head" class="form-control" id="country_name_head" required>
               </div>
           </div>
-
+          <input type="hidden" name="last_rev" class="form-control" id="last_rev" required>
           <div class="table-responsive">
-            <table id="table1" class="table">
+            <table class="table">
               <thead>
                 <tr >
                   <th >Product Code</th>
@@ -162,7 +162,7 @@
                   <th >Status</th>
                 </tr>
               </thead>
-              <tbody  >
+              <tbody id="table1" >
                 
               </tbody>
               
