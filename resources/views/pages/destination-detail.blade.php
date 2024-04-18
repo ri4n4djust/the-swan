@@ -1,3 +1,17 @@
+<?php
+    $url = $_SERVER['REQUEST_URI'];
+    $ur = explode('/', $url);
+    $table = $ur[1];
+    $slug = $ur[2]; 
+?>
+@if(isset($destinationDetail))
+@php 
+$destinationDetail = DB::table($table)->where('slug', $slug)->get(); 
+$lang = $destinationDetail[0]->lang ;
+App::setLocale($lang);
+@endphp
+@endif
+
 @php 
 $des = $destinationDetail[0]->deskripsi ; 
 $desk = explode("</p>", $des) ;

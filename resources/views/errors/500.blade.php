@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('meta')
-    <title>Hire a Car in bali - The Swand</title>
+    <title>Not Foubd - The Swand</title>
     <meta content="car rental for full day tour and for you avtivities" name="description">
     <meta content="bali car rental, private tour, full day tou bali, bali tour" name="keywords">
 @endsection

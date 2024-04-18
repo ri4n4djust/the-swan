@@ -27,15 +27,16 @@ use Spatie\Sitemap\Tags\Url;
 // });https://d3d2-120-188-76-241.ngrok-free.app/
 // Route::get('/booking', [App\Http\Controllers\bookingController::class , 'index']);
 
+
 if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
 {
     Route::get('/lang', [App\Http\Controllers\LocalizationController::class , 'lang'])->name('lang');
     // Route::get('/', function () { return view('pages.home'); });
     Route::get('/', [App\Http\Controllers\bookingController::class , 'home']);
-    Route::get('/about', function () { return view('pages.about'); });
+    Route::get('/about-us', function () { return view('pages.about'); });
     Route::get('/gallery', [App\Http\Controllers\bookingController::class , 'galeri']);
     Route::get('/events', [App\Http\Controllers\bookingController::class , 'event']);
-    Route::get('/contact', [App\Http\Controllers\ContactUsController::class , 'index']);
+    Route::get('/contact_us', [App\Http\Controllers\ContactUsController::class , 'index']);
     
     Route::get('/transport', [App\Http\Controllers\bookingController::class , 'transport']);
     Route::get('/tour_packages', [App\Http\Controllers\bookingController::class , 'tour']);

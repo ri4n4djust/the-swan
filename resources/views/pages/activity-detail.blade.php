@@ -1,4 +1,20 @@
 @extends('layouts.default')
+<?php
+    $url = $_SERVER['REQUEST_URI'];
+    $ur = explode('/', $url);
+    $table = $ur[1];
+    $slug = $ur[2]; 
+?>
+@if(isset($activityDetail))
+@php 
+$activityDetail = DB::table($table)->where('slug', $slug)->get(); 
+$lang = $activityDetail[0]->lang ;
+App::setLocale($lang);
+@endphp
+@php $product = DB::table('products')->get(); @endphp
+@php $country = DB::table('countries')->get(); @endphp
+@endif
+
 @section('meta')
     <title>{{ $activityDetail[0]->name }} -The Swand</title>
     <meta content="{!! $activityDetail[0]->deskripsi !!}" name="description">

@@ -29,9 +29,10 @@
         ?> 
         <ul>
           <li><a href="/">Home</a></li>
-          <li class="dropdown"><a href="#"><span>Our Service</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown"><a href="#"><span>{{ __('headmenu.service') }}</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="/hotels">Rooms Booking</a></li>
+              <li><a href="/hotels">{{ __('headmenu.booking') }}</a></li>
+              <li><a href="/tour_packages">{{ __('headmenu.tour_package') }}</a></li>
               <li><a href="/destinations">{{ __('headmenu.destinations') }}</a></li>
               <li><a href="/activities">{{ __('headmenu.activity') }}</a></li>
               <!-- <li><a href="#">Drop Down 4</a></li> -->
@@ -43,7 +44,7 @@
           <li><a href="/partnership">{{ __('headmenu.partnership') }}</a></li>
           <li><a href="/gallery">{{ __('headmenu.galleri') }}</a></li>
           
-          <li><a href="/contact">{{ __('headmenu.contact') }}</a></li>
+          <li><a href="/contact_us">{{ __('headmenu.contact') }}</a></li>
           <li class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{ strtoupper(Lang::locale()) }}

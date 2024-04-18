@@ -1,4 +1,20 @@
 @extends('layouts.default')
+<?php
+    $url = $_SERVER['REQUEST_URI'];
+    $ur = explode('/', $url);
+    $table = $ur[1];
+    $slug = $ur[2]; 
+?>
+@if(isset($tourDetail))
+@php $tourDetail = DB::table($table)->where('slug', $slug)->get(); @endphp
+@php 
+$lang = $tourDetail[0]->lang ;
+App::setLocale($lang);
+@endphp
+@php $destinasi = DB::table('destinations')->where('lang', $lang)->get(); @endphp
+@php $activities = DB::table('activities')->where('lang', $lang)->get(); @endphp
+@endif
+
 @section('meta')
     <title>The Swand - {{ $tourDetail[0]->tour_name }}</title>
     <meta content="{!! $tourDetail[0]->itinerary !!}" name="description">

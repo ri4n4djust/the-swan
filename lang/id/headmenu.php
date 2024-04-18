@@ -3,11 +3,14 @@
 return [
     //====menu atas
     'about' => 'Tentang',
+    'service' => 'Kami Melayani',
     'event' => 'Kegiatan',
     'driver' => 'Sopir',
     'galleri' => 'Galeri',
     'contact' => 'Kontak Kami',
     'partnership' => 'Kemitraan',
+    'booking' => 'Sewa Kamar',
+    'tour_package' => 'Paket Tur',
     //============
     'welcome_title' => 'Perusahaan Hospitality Terbaik di Bali',
     'welcome_desc' => 'Kami me managed property dan perjalan anda di Bali, Kami Me manage Semua Jenis Property, seperti luxury villas, unique vacation homes, guesthouses, ocean-view resorts, modern apartments, ',
