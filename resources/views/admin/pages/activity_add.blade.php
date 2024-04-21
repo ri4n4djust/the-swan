@@ -93,29 +93,33 @@
         uploadedDocumentMap[file.name] = response.name
       },
       removedfile: function (file) {
-        // $.ajax({
-        //       url: {{ route('room.deleteMedia') }},
-        //       type: "POST",
-        //       data: { 'filetodelete': file.name}
-        // });
+        // console.log(file.xhr);
+        if(file.xhr === undefined){
+          nama = file.name ;
+        }else{
+          var response = JSON.parse(file.xhr.response);
+          nama = response.name ;
+          console.log(response.name);
+        }
         $.ajax({
             headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
             type:'POST',
             url:'/activity/media/delete',
-            data : {"filetodelete" : file.name},
+            data : { "filetodelete" : nama },
             success : function (data) {
+              // console.log(data)
+              
             }
-        });
-        console.log(file);
+        }); 
         file.previewElement.remove()
         var name = ''
-        
-        if (typeof file.name !== 'undefined') {
-          name = file.name
+        if (typeof nama !== 'undefined') {
+          name = nama
         } else {
-          name = uploadedDocumentMap[file.name]
+          name = uploadedDocumentMap[nama]
         }
-        $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+        $('form').find('input[name="document[]"][value="' + name + '"]').remove()     
+      
       },
       init: function () {
         // console.log('onload dropzone');

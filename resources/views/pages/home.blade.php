@@ -231,19 +231,21 @@
               </script>
 
             <div class="row gy-4">
+              
             @foreach ($kamar as $detail)
               <div class="col-lg-4 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
                 <div class="chef-member">
                   <!-- <h4>Book a Table</h4> -->
+                  
                   <div class="member-img">
                     @php $gmbr = explode(";",$detail->foto) ; @endphp
                     
-                    <img src="assets/img/rooms/{{ $gmbr[1] }}" class="img-fluid" alt="{{ $gmbr[1] }}">
+                    <img src="assets/img/rooms/{{ $gmbr[0] }}" class="img-fluid" alt="{{ $gmbr[0] }}">
                     
                     <div class="social">
-                      <!-- <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-twitter"></i></a>
                       <a href=""><i class="bi bi-facebook"></i></a>
-                      <a href=""><i class="bi bi-instagram"></i></a> -->
+                      <a href=""><i class="bi bi-instagram"></i></a>
                       <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
                     </div>
                   </div>
@@ -439,9 +441,7 @@
                   <div class="chef-member">
                     <div class="member-img">
                       @php $gmbr = explode(";",$tur->foto) ; @endphp
-                      
                       <img src="assets/img/tour/{{ $gmbr[0] }}" class="img-fluid" alt="{{ $gmbr[0] }}">
-                      
                       <div class="social">
                         <a href="" data-toggle="modal" data-target="#trModal{{$tr->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
                       </div>
@@ -472,7 +472,7 @@
             <div class="row gy-5">
             @foreach ($paket as $paket)
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
+                <a href="" class="glightbox"><img src="" class="menu-img img-fluid" alt=""></a>
                 <h4>{{$paket->name}}</h4>
                 <p class="ingredients">
                   @php $desa = explode("</p>", $paket->deskripsi) ; @endphp

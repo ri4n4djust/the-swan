@@ -127,10 +127,16 @@
       
         <div class="row gy-4">
           <div class="col-md-12">
-
-          <div class="col-xl-6 form-group">
-                Your Default password is 6 digit of your full email.
-                  <!-- <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" disabled> -->
+          <div class="row">
+            <div class="col-xl-6 form-group">
+                  Your Default password is 6 digit of your full email.
+                    <!-- <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" disabled> -->
+            </div>
+            <div class="col-xl-6 form-group">
+              <button id="button-start-demo" class="btn-book-a-table" onclick="logout()">
+                  <span>Log Out</span>
+              </button>
+          </div>
           </div>
           <div class="row">
               <div class="col-xl-6 form-group">
@@ -152,15 +158,14 @@
           </div>
           <input type="hidden" name="last_rev" class="form-control" id="last_rev" required>
           <div class="table-responsive">
-            <table class="table">
+            <table class="table" width="70%">
               <thead>
                 <tr >
-                  <th >Product Code</th>
+                  <th >No.</th>
                   <th >Cek In</th>
                   <th >Cek Out</th>
-                  <th >Total</th>
-                  <th >Payment</th>
                   <th >Status</th>
+                  <th >Action</th>
                 </tr>
               </thead>
               <tbody id="table1" >
@@ -179,9 +184,7 @@
             </div>
           </div><!-- End Info Item -->
         </div>
-        <button id="button-start-demo" class="btn-book-a-table" onclick="logout()">
-              <span>Log Out</span>
-          </button>
+        
         
       </div>
       <!-- <div class="modal-footer">

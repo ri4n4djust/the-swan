@@ -15,13 +15,23 @@
         <div class="row">
             <div class="form-group col-lg-6">
               <label>Code</label>
-              <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $roomDetail->id ?? '' }}" >
+              <input type="text" name="id" class="form-control" placeholder="code" value="{{ $roomDetail->id ?? '' }}" >
               <input type="text" name="code" class="form-control" placeholder="code" value="{{ $roomDetail->code ?? '' }}" >
             </div>
             <div class="form-group col-lg-6">
                 <label>Name</label>
                 <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $roomDetail->title ?? '' }}">
             </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-12">
+              <label>Real Name</label>
+              <input type="text" name="real_name" class="form-control" placeholder="Real Name" value="{{ $roomDetail->real_name ?? '' }}">
+          </div>
+        </div>
+        <div class="form-group col-lg-12">
+              <label>Real Address</label>
+              <textarea name="real_address" class="form-control" placeholder="Real Address">{{ $roomDetail->real_address ?? '' }}</textarea>
         </div>
         <div class="row">
           <div class="form-group col-lg-6">
@@ -119,7 +129,7 @@
         }else{
           var response = JSON.parse(file.xhr.response);
           nama = response.name ;
-          console.log(response.name);
+          // console.log(response.name);
         }
         $.ajax({
             headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },

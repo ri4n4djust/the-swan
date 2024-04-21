@@ -49,6 +49,8 @@ if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
     Route::get('/activities', [App\Http\Controllers\bookingController::class , 'activity']);
     Route::get('/activities/{slug}', [App\Http\Controllers\bookingController::class , 'activityDetail']);
 
+    Route::get('/detail-reservasi/{id}', [App\Http\Controllers\bookingController::class , 'bookDetail']);
+
     Route::get('/try-checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'onSubmit']);
 }
 
@@ -64,11 +66,10 @@ Route::get('paypal/payment/cancel', [App\Http\Controllers\PayPalController::clas
 
 //====tess
 Route::get('display-user', [App\Http\Controllers\bookingController::class, 'getLoc']);
-
+Route::post('get-product', [App\Http\Controllers\bookingController::class, 'getProduct'])->name('get.product');
 Route::post('donation/pay', [App\Http\Controllers\OrderController::class, 'pay'])->name('donation.pay');
+//=====callback
 Route::post('/midtrans-status', [App\Http\Controllers\callbackController::class, 'midtrans']);
-// Route::post('orders', OrderController::class)->only(['index', 'show']);
-//=====end route tes
 Route::post('/book-status', [App\Http\Controllers\callbackController::class, 'suksesPayment']);
 Route::post('/paypal-callback', [App\Http\Controllers\callbackController::class, 'paypalComplete']);
 

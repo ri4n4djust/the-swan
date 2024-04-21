@@ -103,11 +103,6 @@
         uploadedDocumentMap[file.name] = response.name
       },
       removedfile: function (file) {
-        // $.ajax({
-        //       url: {{ route('room.deleteMedia') }},
-        //       type: "POST",
-        //       data: { 'filetodelete': file.name}
-        // });
         $.ajax({
             headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
             type:'POST',

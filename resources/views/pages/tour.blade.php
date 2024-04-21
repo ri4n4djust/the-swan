@@ -38,10 +38,10 @@
               <!-- <p>Menu</p> -->
               <!-- <h3>Transport</h3> -->
             </div>
-            <div class="row gy-4">
+            <div class="row gy-3">
             @foreach ($tour as $tur)
               <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+              <div class="col-lg-3 col-md-4 d-flex align-items-stretch" >
                 <div class="chef-member">
                 <div class="member-img">
                       @php $gmbr = explode(";",$tur->foto) ; @endphp

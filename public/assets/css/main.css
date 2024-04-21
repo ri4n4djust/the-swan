@@ -89,10 +89,12 @@ body {
   }
   .rating-container textarea:focus, .rating-container input:focus {
   color: #000;
-  }         .rated {
+  }         
+  
+  .rated {
   float: left;
-  height: 46px;
-  padding: 0 10px;
+  /* height: 46px; */
+  /* padding: 0 10px; */
   }
   .rated:not(:checked) > input {
   position:absolute;
@@ -1239,12 +1241,12 @@ section {
   opacity: 0;
   border-radius: 4px;
   transition: 0.5s;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(255, 255, 255);
   z-index: 2;
 }
 
 .chefs .chef-member .social a {
-  transition: color 0.3s;
+  /* transition: color 0.3s; */
   color: rgba(55, 55, 63, 0.4);
   margin: 15px 12px;
   display: block;

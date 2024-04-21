@@ -6,13 +6,24 @@
     $slug = $ur[2]; 
 ?>
 @if(isset($tourDetail))
-@php $tourDetail = DB::table($table)->where('slug', $slug)->get(); @endphp
 @php 
-$lang = $tourDetail[0]->lang ;
-App::setLocale($lang);
+    $tourDetail = DB::table($table)->where('slug', $slug)
+            ->join('tour_fotos', 'tour_fotos.code', 'tour_packages.code')
+            ->select('tour_packages.*', 'tour_fotos.foto')
+            ->get(); 
+    $lang = $tourDetail[0]->lang ;
+    App::setLocale($lang);
 @endphp
-@php $destinasi = DB::table('destinations')->where('lang', $lang)->get(); @endphp
-@php $activities = DB::table('activities')->where('lang', $lang)->get(); @endphp
+@php 
+    $destinasi = DB::table('destinations')->where('lang', $lang)
+                ->join('destination_fotos', 'destination_fotos.code', 'destinations.code')
+                ->select('destinations.*', 'destination_fotos.foto')
+                ->get(); 
+    $activities = DB::table('activities')->where('lang', $lang)
+                ->join('activity_fotos', 'activity_fotos.code', 'activities.code')
+                ->select('activities.*', 'activity_fotos.foto')
+                ->get(); 
+@endphp
 @endif
 
 @section('meta')

@@ -37,10 +37,28 @@
                 <div class="col-lg-7 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
                     
                     <div class="position-relative mt-4">
-                        <div class="section-header">
-                            <h4>{{ $hotelDetail[0]->title }}</h4>
-                        </div>
-
+                        
+                        <h4>{{ $hotelDetail[0]->title }}</h4>
+                            @php 
+                                $rata2 = 0 ; 
+                                $count = 0;
+                            @endphp
+                            @foreach($review as $rev)
+                            @if($hotelDetail[0]->code == $rev->product_code)
+                            @php 
+                            $count += 1 ;
+                            $rata2 += $rev->star_rating ;
+                            @endphp
+                            @endif
+                            @endforeach
+                            <div class="rated">
+                            @php $jml = $rata2 / $count ; @endphp
+                            @for($i=1; $i<=$jml; $i++)                                                      
+                                <label class="star-rating-complete" title="text">{{$i}} stars</label>
+                            @endfor
+                            </div>
+                            ({{$count}} Reviews)
+                        
                     
 
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -79,7 +97,7 @@
                         </a>
 
                         <!-- Thumbnails -->
-                        <div class="carousel-indicators" style="margin-bottom: -20px;">
+                        <div class="carousel-indicators" style="margin-bottom: -20px;width:100px">
                             @foreach($gmbr as $key => $slider)
                                 <button type="button" data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{$loop->first ? 'active' : ''}}" aria-current="true" aria-label="Slide 1" >
                                 <img class="d-block w-100" src="{{ asset('assets/img/rooms/'. $slider) }}" class="img-fluid" />
@@ -88,8 +106,9 @@
                         </div>
                         <!-- Thumbnails -->
                         
+                        
                     </div>
-                    <div style="margin-top:40px;"></div>
+                    
                     
 
                     <div style="margin-top:40px;"></div>
@@ -120,8 +139,16 @@
                         <div class="row">
                             <div class="col mt-4">
                                     <p class="font-weight-bold ">Review</p>
+                                    @php 
+                                        $rata2 = 0 ; 
+                                        $count = 0;
+                                    @endphp
                                     @foreach($review as $rev)
                                     @if($hotelDetail[0]->code == $rev->product_code)
+                                    @php 
+                                    $count += 1 ;
+                                    $rata2 += $rev->star_rating ;
+                                    @endphp
                                     <div class="form-group" style="box-shadow: 0 0 10px 0 #ddd;">
                                        
                                         <input type="hidden" name="booking_id" value="{{$rev->booking_id}}">
@@ -147,6 +174,13 @@
                                     </div>
                                     @endif
                                     @endforeach
+                                    <div class="rated">
+                                    @php $jml = $rata2 / $count ; @endphp
+                                    @for($i=1; $i<=$jml; $i++)                                                      
+                                    {{-- <input type="radio" id="star{{$i}}" class="rate" name="rating" value="5"/> --}}
+                                        <label class="star-rating-complete" title="text">{{$i}} stars</label>
+                                    @endfor
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -256,8 +290,7 @@
 
                         </div>
                         <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>    
-                        <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+                        
                         <script type="text/javascript">
                             $('#pay-button').click(function (event) {
                             event.preventDefault();

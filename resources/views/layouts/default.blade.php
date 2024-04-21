@@ -4,6 +4,7 @@
 <head>
 @include('includes.head')
 @yield('meta')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @yield('media')
 </head>
 
@@ -13,7 +14,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-YGQ91MNY00');
 </script>
 

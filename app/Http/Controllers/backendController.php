@@ -48,17 +48,26 @@ class backendController extends Controller
                 $project = DB::table('bookings')->upsert([
                     'id' => $data['id'],
                     'code' => $data['code'],
+                    'real_name' => $data['real_name'],
+                    'real_address' => $data['real_address'],
                     'title' => $data['title'],
                     'slug' => $data['slug'],
                     'desc' => $data['desc'],
                     'price' => $data['price'],
                     'facility' => ';'.$fasi,
-                    'foto' => $gmbr,
                     'lang' => $data['lang'],
                     'alotment' => $data['allotment'],
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                 ], 'id');
+
+                DB::table('room_fotos')->upsert([
+                    'code' => $data['code'],
+                    'foto' => $gmbr,
+                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                ], 'code');
+                
                 DB::table('room_nomors')->where('unit_code', $data['code'])->delete();
                 for ($i = 0; $i < $data['allotment']; $i++) {
                     DB::table('room_nomors')->insert([
@@ -105,23 +114,13 @@ class backendController extends Controller
     }
 
     public function edit($room_code){
-        $roomDetail = DB::table('bookings')->where('id', $room_code)->first();
-        // return redirect()->route('pages.room_add');
+        $roomDetail = DB::table('bookings')->where('bookings.id', $room_code)
+                    ->join('room_fotos', 'room_fotos.code', 'bookings.code')
+                    ->select('bookings.*', 'room_fotos.foto')
+                    ->first();
         $fasilitas = DB::table('facilities')->get();
-        $foto = $roomDetail->foto ;
-        $fotor = explode(';', $foto);
-        $ft = array_slice($fotor, 0, -1);
-        // var_dump($ft);
-        // foreach ($ft as $file) {
-        //     if(file_exists(public_path('assets/img/rooms/'.$file))){
-        //         \File::move(public_path('assets/img/rooms/'.$file), storage_path('tmp/uploads/'.$file));
-        //         // echo $file ;
-        //     }
-        // }
-
 
         return view('admin.pages.room_add', compact('roomDetail', 'fasilitas'));
-
     }
 
     public function storeMediaTour(Request $request)
@@ -167,15 +166,19 @@ class backendController extends Controller
                     'itinerary' => $data['itinerary'],
                     'price' => $data['price'],
                     'destination' => $desti.';',
-                    'foto' => $gmbr,
                     'lang' => $data['lang'],
                     'payment' => $data['payment'],
                     'note' => $data['note'],
                     'pickup' => $data['pickup'],
-
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                 ], 'id');
+                DB::table('tour_fotos')->upsert([
+                    'code' => $data['code'],
+                    'foto' => $gmbr,
+                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                ], 'code');
 
                 DB::commit();
             });
@@ -207,7 +210,10 @@ class backendController extends Controller
     }
 
     public function editTour($room_code){
-        $tourDetail = DB::table('tour_packages')->where('id', $room_code)->first();
+        $tourDetail = DB::table('tour_packages')->where('tour_packages.id', $room_code)
+                    ->join('tour_fotos', 'tour_fotos.code', 'tour_packages.code')
+                    ->select('tour_packages.*', 'tour_fotos.foto')
+                    ->first();
         // return redirect()->route('pages.room_add');
         $destinasi = DB::table('destinations')->get();
 
@@ -255,12 +261,16 @@ class backendController extends Controller
                     'name' => $data['name'],
                     'slug' => $data['slug'],
                     'type' => $data['type'],
-                    'foto' => $gmbr,
                     'lang' => $data['lang'],
-
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                 ], 'id');
+                DB::table('destination_fotos')->upsert([
+                    'code' => $data['code'],
+                    'foto' => $gmbr,
+                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                ], 'code');
 
                 DB::commit();
             });
@@ -294,7 +304,10 @@ class backendController extends Controller
     public function editDestinasi($destinasi_code){
         // $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
-        $destinasiDetail = DB::table('destinations')->where('id', $destinasi_code)->first();
+        $destinasiDetail = DB::table('destinations')->where('destinations.id', $destinasi_code)
+                    ->join('destination_fotos', 'destination_fotos.code', 'destinations.code')
+                    ->select('destinations.*', 'destination_fotos.foto')
+                    ->first();
 
         return view('admin.pages.destinasi_add', compact('destinasiDetail'));
 
@@ -332,20 +345,25 @@ class backendController extends Controller
                 foreach($foto as $ft){
                     $gmbr = $gmbr.$ft.";" ;
                 }
-                $type = implode(';', $data['type']);
+                // $type = implode(';', $data['type']);
                 $project = DB::table('activities')->upsert([
                     'id' => $data['id'],
                     'code' => $data['code'],
                     'deskripsi' => $data['deskripsi'],
                     'name' => $data['name'],
                     'slug' => $data['slug'],
-                    'type' => $type,
-                    'foto' => $gmbr,
+                    'type' => $data['type'],
                     'lang' => $data['lang'],
                     'area' => $data['area'],
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                 ], 'id');
+                DB::table('activity_fotos')->upsert([
+                    'code' => $data['code'],
+                    'foto' => $gmbr,
+                    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                    'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+                ], 'code');
 
                 DB::commit();
             });
@@ -379,7 +397,10 @@ class backendController extends Controller
     public function editActivity($code){
         // $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
         // return redirect()->route('pages.room_add');
-        $activityDetail = DB::table('activities')->where('id', $code)->first();
+        $activityDetail = DB::table('activities')->where('activities.id', $code)
+                    ->join('activity_fotos', 'activity_fotos.code', 'activities.code')
+                    ->select('activities.*', 'activity_fotos.foto')
+                    ->first();
 
 
         return view('admin.pages.activity_add', compact('activityDetail'));
@@ -474,7 +495,7 @@ class backendController extends Controller
 
     public function guestOrder(Request $request){
         $email = $request->email ;
-        $data = DB::table('reservations')->where('guest_email', $email)->get();
+        $data = DB::table('reservations')->where('guest_email', $email)->orderby('id', 'DESC')->get();
          return response()->json([
             'success' => true,
             'message' => 'your list reservasi!',

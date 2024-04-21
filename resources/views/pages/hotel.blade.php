@@ -40,23 +40,38 @@
               <!-- <p>Menu</p> -->
               <!-- <h3>Transport</h3> -->
             </div>
-            <div class="row gy-4">
+            <div class="row gy-3">
             @foreach ($hotels as $ht)
               <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+              <div class="col-lg-3 col-md-4 d-flex align-items-stretch" >
                 <div class="chef-member">
-                <div class="member-img">
+                  <div class="member-img">
                       @php $gmbr = explode(";",$ht->foto) ; @endphp
                       
                       <img src="{{asset('assets/img/rooms/'.$gmbr[0] ) }}" class="img-fluid" alt="{{ $gmbr[0] }}">
                       
                       <div class="social">
-                        <a href="" data-toggle="modal" data-target="#trModal{{$ht->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
+                        <a href="">Disc -50%</a>
+                        <a href="">Feature</i></a>
+                        <a href="" data-toggle="modal" data-target="#trModal{{$ht->id}}" alt="Preview">View</a>
                       </div>
                     </div>
-                    
-                    <div >
+                    <div class="member-info">
                       <h4>{{ $ht->title}}</h4>
+                          @php 
+                              $jml = 0;
+                              $review = DB::table('review_ratings')->where('product_code', $ht->code)->sum('star_rating');
+                              $count = DB::table('review_ratings')->where('product_code', $ht->code)->count('star_rating');
+                          @endphp
+                          <div class="rated">
+                          @php 
+                            $jml == 0 ? 0 : ($review / $count);
+                          @endphp
+                            @for($i=1; $i<=$jml; $i++)                                                      
+                                <label class="star-rating-complete" title="text">{{$i}} stars</label>
+                            @endfor
+                          </div>
+                          ({{$review}} Reviews)<p>
                       <h5>Top Facilities</h5>
                       <div class="row gy-4">
                         @php $fasi = explode(";",$ht->facility) ; @endphp
@@ -71,7 +86,6 @@
                           @endforeach
                         @endfor
                       </div>
-                    </div>
 
                     @foreach ($rate as $rat)
                       @if($ht->code == $rat->kode_kamar)
@@ -83,6 +97,7 @@
                     <p class="price">
                       <a href="/bookings/{{$ht->slug}}" class="btn-book-a-table">Book Now</a>
                     </p>
+                  </div>
                 </div>
               </div><!-- End Chefs Member -->
             @endforeach

@@ -54,11 +54,11 @@
               <!-- <p>Menu</p> -->
               <!-- <h3>Transport</h3> -->
             </div>
-            <div class="row gy-4">
+            <div class="row gy-3">
             @foreach ($activity as $tr)
             @if($tr->type == 'land')
               <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+              <div class="col-lg-3 col-md-4 d-flex align-items-stretch">
                 <div class="chef-member">
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp
@@ -70,12 +70,8 @@
                     <h4>{{ $tr->name }}</h4>
                     <!-- <span>Cook</span> -->
                     <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                    <a href="/activities/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
                   </div>
-                  <p class="price">
-                    <div >
-                      <a href="/activities/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
-                    </div>
-                  </p>
                 </div>
               </div><!-- End Chefs Member -->
               @endif
@@ -88,11 +84,11 @@
               <!-- <p>Menu</p> -->
               <!-- <h3>Transport</h3> -->
             </div>
-            <div class="row gy-4">
+            <div class="row gy-3">
             @foreach ($activity as $tr)
             @if($tr->type == 'water')
               <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+              <div class="col-lg-3 col-md-4 d-flex align-items-stretch" >
                 <div class="chef-member">
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp
@@ -122,11 +118,11 @@
               <!-- <p>Menu</p> -->
               <!-- <h3>Transport</h3> -->
             </div>
-            <div class="row gy-4">
+            <div class="row gy-3">
             @foreach ($activity as $tr)
             @if($tr->type == 'air')
               <!-- Menu Item -->
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+              <div class="col-lg-3 col-md-4 d-flex align-items-stretch" >
                 <div class="chef-member">
                   <div class="member-img">
                     @php $gmbr = explode(";",$tr->foto) ; @endphp

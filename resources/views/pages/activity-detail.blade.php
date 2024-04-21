@@ -6,13 +6,18 @@
     $slug = $ur[2]; 
 ?>
 @if(isset($activityDetail))
-@php 
-$activityDetail = DB::table($table)->where('slug', $slug)->get(); 
-$lang = $activityDetail[0]->lang ;
-App::setLocale($lang);
-@endphp
-@php $product = DB::table('products')->get(); @endphp
-@php $country = DB::table('countries')->get(); @endphp
+    @php 
+        $activityDetail = DB::table($table)->where('slug', $slug)
+                    ->join('activity_fotos', 'activity_fotos.code', 'activities.code')
+                    ->select('activities.*', 'activity_fotos.foto')
+                    ->get(); 
+        $lang = $activityDetail[0]->lang ;
+        App::setLocale($lang);
+    @endphp
+    @php 
+        $product = DB::table('products')->get();
+        $country = DB::table('countries')->get(); 
+    @endphp
 @endif
 
 @section('meta')
@@ -113,14 +118,11 @@ $desk = explode("</p>", $des) ;
                         </div>
                         <p class="price">{{ number_format($prod->price) ; }}</p>
                         <div class="col-5 form-group d-flex">
-                            <a href="" class="btn-book-a-table" data-toggle="modal" data-target="#trModal-booking{{$prod->id}}">book Now</a>
+                            <a href="#" class="btn-book-a-table" id="{{ $prod->product_code }}" onclick="bookNow(this)">book Now</a>
                         </div>
                         </div>
                         
-                    </div><!-- End Chefs Member -->
-                    
-
-                    
+                    </div><!-- End Chefs Member -->                    
                     @endif
                 
                 @endforeach
@@ -139,66 +141,67 @@ $desk = explode("</p>", $des) ;
 
         </div>
     </section><!-- End About Section -->
-    @foreach($products as $prod)
-        <div class="modal fade" id="trModal-booking{{$prod->id}}" tabindex="-1000" aria-labelledby="trModalLabel" aria-hidden="true">
+   
+        <div class="modal fade" id="trModal-booking" tabindex="-1000" aria-labelledby="trModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="trModalLabel">Form Booking</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h4>{{ $prod->product_name }}</h4>
-            
-                <div class="row">
-                    <div class="col-xl-6 form-group">
-                        <input type="hidden" name="code" class="form-control" id="code" value="{{ $prod->product_code }}">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
-                    </div>
+                <h4><span id="judul_product"></span></h4>
+                <form cautocomplete="off" >
+                    <div class="row">
                         <div class="col-xl-6 form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                            <input type="hidden" name="code" class="form-control" id="code" value="{{ $prod->product_code }}">
+                        <input type="text" name="name_act" class="form-control" id="name_act" placeholder="Name" required>
+                        </div>
+                            <div class="col-xl-6 form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-6 form-group">
-                        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
-                        <p><small>Include the + symbol, country code, and area code.</small></p>  
-                    </div>
-                    <div class="col-xl-6 form-group">
-                    <input type="hidden" name="nationality" class="form-control" id="nationality" required>
-                    <select id="country_name" class="form-control" onchange="getComboA(this)" required>
-                        <option value="">Nationality</option>
-                        @foreach($country as $count)
-                        <option value="{{ $count->country_code }}">{{ $count->country_name }}</option>
-                        @endforeach
-                    </select>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    
-                    <div class="col-xl-2 form-group">
-                        Adult
-                        <input type="number" name="adult" class="form-control" id="adult" placeholder="Adult" required>
-                    </div>
-
-                    <div class="col-xl-4 form-group">
-                        Cek In 
-                        <input class="form-control" name="datefilter" id="datefilter" required>
-                        <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
-                        <input type="hidden" name="room_no" id="room_no" >
-                        <input type="hidden" name="rate_dolar" id="rate_dolar" required>
-                    </div>
-                    <div class="col-xl-6 form-group">
-                        Payment Type
-                        <select name="tipe_bayar" id="tipe_bayar" class="form-control" onchange="getOption()">
-                            <option value="deposit">Deposit</option>
-                            <option value="full">Full Payment</option>
+                    <div class="row">
+                        <div class="col-xl-6 form-group">
+                            <input type="number" class="form-control" name="mobile" id="mobile" placeholder="mobile" required>
+                            <p><small>Include the + symbol, country code, and area code.</small></p>  
+                        </div>
+                        <div class="col-xl-6 form-group">
+                        <input type="hidden" name="nationality" class="form-control" id="nationality" required>
+                        <select id="country_name" class="form-control" onchange="getComboA(this)" required>
+                            <option value="">Nationality</option>
+                            @foreach($country as $count)
+                            <option value="{{ $count->country_code }}">{{ $count->country_name }}</option>
+                            @endforeach
                         </select>
+                        </div>
                     </div>
-                </div>
+                    
+                    <div class="row">
+                        
+                        <div class="col-xl-2 form-group">
+                            Adult
+                            <input type="number" name="adult" class="form-control" id="adult" placeholder="Adult" required>
+                        </div>
+
+                        <div class="col-xl-4 form-group">
+                            Cek In 
+                            <input class="form-control" name="datefilter" id="datefilter" required>
+                            <input type="hidden" class="form-control" name="tgl_reservasi" id="tgl_reservasi" required>
+                            <input type="hidden" name="room_no" id="room_no" >
+                            <input type="hidden" name="rate_dolar" id="rate_dolar" required>
+                        </div>
+                        <div class="col-xl-6 form-group">
+                            Payment Type
+                            <select name="tipe_bayar" id="tipe_bayar" class="form-control" onchange="getOption()">
+                                <option value="deposit">Deposit</option>
+                                <option value="full">Full Payment</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
 
                 
             </div>
@@ -209,32 +212,55 @@ $desk = explode("</p>", $des) ;
             </div>
         </div>
         </div>
-    @endforeach 
+    
 
+    @section('scripts')
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded",  
         
         function () { 
-            $("#loading").hide();
+            console.log('page loaded');
             // Code to be executed when the DOM is ready
-            document.getElementById('adult').max = 2;
+            // document.getElementById('adult').max = 2;
             document.getElementById('tgl_reservasi').value = moment().format('YYYY-MM-DD h:mm:ss'); // new Date(); 
             const tipe = document.getElementById('tipe_bayar').value ;
-            var rate = document.getElementById('rate_dolar').value ;
-            
 
             var guestData = JSON.parse(localStorage.getItem('guest'));
             if(guestData.name !== ""){
-                document.getElementById('name').value =  guestData.name;
+                document.getElementById('name_act').value =  guestData.name;
                 document.getElementById('email').value =  guestData.email;
                 document.getElementById('mobile').value =  guestData.phone;
                 document.querySelector('#nationality').value = guestData.nationality;
                 document.querySelector('#country_name').value = guestData.nationality;
             }
             
-            // heading.textContent = "DOM is ready!"; 
+            // console.log(guestData.name);
         }, false);
-      
+        let id;
+        function bookNow(selectObject){
+            // id = $(this).data("id");
+            // console.log(selectObject.id);
+            $.ajax({
+                type: "POST",
+                url: "/get-product",
+                data: { "code": selectObject.id },
+                error: function (request, error) {
+                    // console.log(arguments);
+                },
+                success: function (result) {
+                    // console.log(result.data)
+                    $("#judul_product").text(result.data.product_name);
+                    $('#trModal-booking').modal('show');
+
+                },
+                // dataType: "json"
+            });
+            
+        }
+        function closeModal(){
+            $('#trModal-booking').modal('hide');
+        }
     
     </script>
+    @endsection
 @stop

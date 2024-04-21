@@ -6,15 +6,17 @@
 ?>
 @if(isset($destinationDetail))
 @php 
-$destinationDetail = DB::table($table)->where('slug', $slug)->get(); 
-$lang = $destinationDetail[0]->lang ;
-App::setLocale($lang);
+    $destinationDetail = DB::table($table)->where('slug', $slug)
+                    ->join('destination_fotos', 'destination_fotos.code', 'destinations.code')
+                    ->select('destinations.*', 'destination_fotos.foto')
+                    ->get(); 
+    $lang = $destinationDetail[0]->lang ;
+    App::setLocale($lang);
 @endphp
 @endif
-
 @php 
-$des = $destinationDetail[0]->deskripsi ; 
-$desk = explode("</p>", $des) ;
+    $des = $destinationDetail[0]->deskripsi ; 
+    $desk = explode("</p>", $des) ;
 @endphp
 @extends('layouts.default')
 @section('meta')

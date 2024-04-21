@@ -18,6 +18,8 @@
   <script src="https://www.google.com/recaptcha/api.js?render=6LfncpwpAAAAAK3qP36whis5OLg29EomK2g9thx0"></script>
   <script src="https://kit.fontawesome.com/e396f0476d.js" crossorigin="anonymous"></script>
 
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+
   
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -31,6 +33,11 @@
       document.addEventListener("DOMContentLoaded",
       
       function () {
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
         // console.log('page load')
         var guest = JSON.parse(localStorage.getItem('guest'));
         var login = document.getElementById("masuk");
@@ -61,11 +68,7 @@
             document.getElementById('nationality_head').value = guestData.nationality;
             document.getElementById('country_name_head').value = guestData.country_name;
             //==============Guest Detail
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
-            });
+            
             $.ajax({
                 type: "POST",
                 url: "/guest-order",
@@ -79,12 +82,11 @@
                   
                   var trHTML = '';
                   $.each(result.data, function (i, o){
-                      trHTML += '<tr><td>' + o.code_service +
+                      trHTML += '<tr><td>' + o.id +
                                 '</td><td>' + moment(o.cek_in).format('Y-M-D') +
                                 '</td><td>' + moment(o.cek_out).format('Y-M-D') +
-                                '</td><td>' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(o.total) +
-                                '</td><td>' + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'IDR' }).format(o.guest_paid) +
                                 '</td><td>' + o.status +
+                                '</td><td>' + '<a href=/detail-reservasi/'+o.id+'><i class="fa-solid fa-eye"></i></a>' +
                                 '</td></tr>';
                   });
                   $('#table1').append(trHTML);
@@ -125,37 +127,29 @@
         var email_login =  document.getElementById('email-login').value
         var password =  document.getElementById('password').value
         $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),}
             });
-            $.ajax({
-                type: "POST",
-                url: "/guest-login",
-                data: { 
-                  "email": email_login,
-                  "password": password
-                },
-                error: function (request, error) {
-                    // console.log(arguments);
-                    
-                },
-                success: function (result) {
-                  // console.log(result)
-                  let arrGuest = {
-                      name: result.user.name,
-                      email: result.user.email,
-                      nationality: result.user.nationality,
-                      country_name: result.user.country_name,
-                      phone: result.user.mobile
-                  }
-                  localStorage.setItem('guest', JSON.stringify(arrGuest));
-                  window.location.reload();
-                    
-                },
-                
-                // dataType: "json"
-            });
+        $.ajax({
+            type: "POST",
+            url: "/guest-login",
+            data: { "email": email_login, "password": password },
+            error: function (request, error) {
+                // console.log(arguments);
+            },
+            success: function (result) {
+              // console.log(result)
+              let arrGuest = {
+                  name: result.user.name,
+                  email: result.user.email,
+                  nationality: result.user.nationality,
+                  country_name: result.user.country_name,
+                  phone: result.user.mobile
+              }
+              localStorage.setItem('guest', JSON.stringify(arrGuest));
+              window.location.reload();
+            },
+            // dataType: "json"
+        });
       }
     
   </script>
