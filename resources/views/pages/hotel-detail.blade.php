@@ -174,13 +174,7 @@
                                     </div>
                                     @endif
                                     @endforeach
-                                    <div class="rated">
-                                    @php $jml = $rata2 / $count ; @endphp
-                                    @for($i=1; $i<=$jml; $i++)                                                      
-                                    {{-- <input type="radio" id="star{{$i}}" class="rate" name="rating" value="5"/> --}}
-                                        <label class="star-rating-complete" title="text">{{$i}} stars</label>
-                                    @endfor
-                                    </div>
+
                             </div>
                         </div>
                     </div>
