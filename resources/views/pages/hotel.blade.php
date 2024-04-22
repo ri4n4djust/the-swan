@@ -51,7 +51,7 @@
                       <img src="{{asset('assets/img/rooms/'.$gmbr[0] ) }}" class="img-fluid" alt="{{ $gmbr[0] }}">
                       
                       <div class="social">
-                        <a href="">Disc -50%</a>
+                        <!-- <a href="">Disc -50%</a> -->
                         <a href="">Feature</i></a>
                         <a href="" data-toggle="modal" data-target="#trModal{{$ht->id}}" alt="Preview">View</a>
                       </div>
