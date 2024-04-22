@@ -71,7 +71,7 @@
                                 <label class="star-rating-complete" title="text">{{$i}} stars</label>
                             @endfor
                           </div>
-                          ({{$review}} Reviews)<p>
+                          ({{$count}} Reviews)<p>
                       <h5>Top Facilities</h5>
                       <div class="row gy-4">
                         @php $fasi = explode(";",$ht->facility) ; @endphp
