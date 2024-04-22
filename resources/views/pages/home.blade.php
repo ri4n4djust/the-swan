@@ -233,7 +233,7 @@
             <div class="row gy-4">
               
             @foreach ($kamar as $detail)
-              <div class="col-lg-4 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
+              <div class="col-lg-3 position-relative about-img" data-aos="fade-up" data-aos-delay="150">
                 <div class="chef-member">
                   <!-- <h4>Book a Table</h4> -->
                   
@@ -249,15 +249,7 @@
                       <a href="" data-toggle="modal" data-target="#exampleModal{{$detail->id}}" alt="Preview"><i class="bi bi-eye"></i></a>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-lg-8 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
-                <div class="content ps-0 ps-lg-5">
-                <h4>{{ $detail->title}}</h4>
-                  <p class="fst-italic">
-                  {!! substr($detail->desc, 0, 150) !!}
-                  </p>
-
+                  <h6>Top Facilities</h6>
                   <div class="row">
                   @php $fasi = explode(";",$detail->facility) ; @endphp
                     @for ($i = 1; $i < 4; $i++)
@@ -270,13 +262,34 @@
                         @endif
                       @endforeach
                     @endfor
-                        <div class="col-5 form-group d-flex" data-aos="fade-up" data-aos-delay="200">
-                          
-                            <a href="/bookings/{{$detail->slug}}" class="btn-book-a-table">Book Now</a>
-                          
-                        </div>
-
                   </div>
+                </div>
+              </div>
+              <div class="col-lg-3 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+                <div class="content ps-0 ps-lg-3">
+                <a href="/bookings/{{$detail->slug}}" >
+                    <h5>{{ $detail->title}}</h5>
+                </a>
+                  @php 
+                      $jml = 0;
+                      $review = DB::table('review_ratings')->where('product_code', $detail->code)->sum('star_rating');
+                      $count = DB::table('review_ratings')->where('product_code', $detail->code)->count('star_rating');
+                  @endphp
+                  <div class="rated">
+                  @php 
+                    $jml = $review / ($count ? $count : 1);
+                  @endphp
+                    @for($i=1; $i<=$jml; $i++)                                                      
+                        <label class="star-rating-uncomplete" title="text">{{$i}} stars</label>
+                    @endfor
+                    ({{$count}} Reviews)
+                  </div>
+                  <br>
+                  <p class="fst-italic">
+                  {!! substr($detail->desc, 0, 150) !!}
+                  </p>
+
+                  
                   
                   @foreach ($rate as $rat)
                   <p>

@@ -65,7 +65,7 @@
                           @endphp
                           <div class="rated">
                           @php 
-                            $jml == 0 ? 0 : ($review / $count);
+                            $jml = $review / ($count ? $count : 1);
                           @endphp
                             @for($i=1; $i<=$jml; $i++)                                                      
                                 <label class="star-rating-complete" title="text">{{$i}} stars</label>

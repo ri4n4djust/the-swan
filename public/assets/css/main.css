@@ -83,6 +83,9 @@ body {
   .star-rating-complete{
       color: #c59b08;
   }
+  .star-rating-uncomplete{
+    color: #b8b5ac;
+}
   .rating-container .form-control:hover, .rating-container .form-control:focus{
   background: #fff;
   border: 1px solid #ced4da;
