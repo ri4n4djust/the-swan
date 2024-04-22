@@ -52,7 +52,7 @@
                             @endif
                             @endforeach
                             <div class="rated">
-                            @php $jml = $rata2 / $count ; @endphp
+                            @php $jml = $rata2 / ($count ? $count : 1) ; @endphp
                             @for($i=1; $i<=$jml; $i++)                                                      
                                 <label class="star-rating-complete" title="text">{{$i}} stars</label>
                             @endfor
