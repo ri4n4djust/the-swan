@@ -26,23 +26,24 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h3>Things To Do in Bali</h3>
-          <p>Best <span>Bali Activities place</span></p>
+          <h3>{{ __('activity.title') }}</h3>
+          <p><span>{{ __('activity.sub_title') }}</span></p>
         </div>
+        <p>{{ __('activity.desc') }}</p>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
           <li class="nav-item ">
             <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-land">
-              <h4>Land</h4>
+              <h4>{{ __('activity.land_activity') }}</h4>
             </a>
           </li><!-- End tab nav item -->
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-water">
-              <h4>Water</h4>
+              <h4>{{ __('activity.water_activity') }}</h4>
             </a><!-- End tab nav item -->
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-air">
-              <h4>Air</h4>
+              <h4>{{ __('activity.air_activity') }}</h4>
             </a>
           </li><!-- End tab nav item -->
         </ul>

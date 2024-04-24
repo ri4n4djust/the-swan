@@ -146,7 +146,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('destinasi/media', [App\Http\Controllers\backendController::class, 'storeMediaDestinasi'])->name('destinasi.storeMedia');
     Route::post('destinasi/media/delete', [App\Http\Controllers\backendController::class, 'deleteMediaDestinasi'])->name('destinasi.deleteMedia');
     Route::post('destinasi-store', [App\Http\Controllers\backendController::class, 'storeDestinasi'])->name('destinasi.store');
-    Route::get('destinasi-edit/{destinasi_code}', [App\Http\Controllers\backendController::class, 'editDestinasi'])->name('destinasi.edit');
+    Route::get('destinasi-edit', [App\Http\Controllers\backendController::class, 'editDestinasi'])->name('destinasi.edit');
     //=========bali aktiviti
     Route::get('activity-add', ['as' => 'pages.activity_add', 'uses' => 'App\Http\Controllers\PageController@activityAdd']);
     Route::post('activity/media', [App\Http\Controllers\backendController::class, 'storeMediaActivity'])->name('activity.storeMedia');

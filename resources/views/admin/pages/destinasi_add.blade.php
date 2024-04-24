@@ -1,5 +1,11 @@
 @extends('layouts.app', ['page' => __('Add Destinations'), 'pageSlug' => 'destinasi_add'])
-
+@if(isset($type))
+  @if($type == 'copy')
+    @php $id = ''; @endphp
+  @else
+    @php $id = $destinasiDetail->id ; @endphp
+  @endif
+@endif
 @section('content')
 <div class="row">
   <div class="col-md-12">
@@ -15,7 +21,7 @@
         <div class="row">
           <div class="form-group col-lg-6">
               <label>Code</label>
-              <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $destinasiDetail->id ?? '' }}" >
+              <input type="hidden" name="id" class="form-control" placeholder="code" value="{{ $id ?? '' }}" >
               <input type="text" name="code" class="form-control" placeholder="code" value="{{ $destinasiDetail->code ?? '' }}" >
           </div>
           <div class="form-group col-lg-6">

@@ -301,15 +301,20 @@ class backendController extends Controller
         // return redirect()->route('pages.rooms');
     }
 
-    public function editDestinasi($destinasi_code){
-        // $tourDetail = DB::table('tour_packages')->where('code', $room_code)->first();
-        // return redirect()->route('pages.room_add');
+    public function editDestinasi(Request $request){
+        $destinasi_code = $request->id ;
+        $type = $request->type ;
+
         $destinasiDetail = DB::table('destinations')->where('destinations.id', $destinasi_code)
                     ->join('destination_fotos', 'destination_fotos.code', 'destinations.code')
                     ->select('destinations.*', 'destination_fotos.foto')
                     ->first();
-
-        return view('admin.pages.destinasi_add', compact('destinasiDetail'));
+        if($type == 'copy'){
+            $data = 'copy';
+        }else{
+            $data = 'edit';
+        }
+        return view('admin.pages.destinasi_add', ['destinasiDetail' => $destinasiDetail, 'type' => $data]);
 
     }
 

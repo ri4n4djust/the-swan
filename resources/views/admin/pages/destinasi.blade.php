@@ -30,13 +30,15 @@
                 <td>{{$rm->type}}</td>
                 <td>{{$rm->lang}}</td>
                 <td>
-                  <a href="{{ route('destinasi.edit',['destinasi_code' => $rm->id]) }}"><i class="tim-icons icon-pencil"></i></a>
+                  <a href="{!! route('destinasi.edit', ['type'=>'copy', 'id' => $rm->id]) !!}">Copy</a>
+                  <a href="{!! route('destinasi.edit', ['type'=>'edit', 'id' => $rm->id]) !!}"><i class="tim-icons icon-pencil"></i></a>
                   <i class="tim-icons icon-trash-simple"></i>
                 </td>
               </tr>
             @endforeach  
             </tbody>
           </table>
+          
           <a href="{{ $destinasi->previousPageUrl()}}">Prev</a> | <a href="{{ $destinasi->nextPageUrl()}}">Next</a>
         </div>
       </div>
