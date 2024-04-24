@@ -11,4 +11,11 @@ return [
     'land_activity' => 'Land Activities',
     'water_activity' => 'Water Activities',
     'air_activity' => 'Air Activities', 
+
+    //==============Transport
+
+    'title_car' => 'Hire A Car',
+    'desc_car' => 'already have a travel plan, we provide a car with a driver as your travel guide, 
+    discuss your travel plans with our team, so that we can provide a comfortable vehicle with a driver as a professional guide, 
+    we provide several types of cars according to your needs in traveling around Bali',
 ];

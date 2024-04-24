@@ -258,12 +258,8 @@
                     <h4>{{ $tr->name }}</h4>
                     <!-- <span>Cook</span> -->
                     <p>{!! cutText($tr->deskripsi, 300, 3) !!}</p>
+                    <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
                   </div>
-                  <p class="price">
-                    <div >
-                      <a href="/destinations/{{$tr->slug}}" class="btn-book-a-table">Detail</a>
-                    </div>
-                  </p>
                 </div>
               </div><!-- End Chefs Member -->
             @endif

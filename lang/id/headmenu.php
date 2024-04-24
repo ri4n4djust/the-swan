@@ -21,6 +21,7 @@ return [
      //=========== activity
      'activity' => 'Aktivitas Di Bali',
      'destinations' => 'Tujuan Wisata',
+     'hire_car' => 'Sewa Mobil Dengan Driver',
      //========= artikel
      'artikel' => 'Terjadi di bali',
      'artikel_head_title' => 'Mengenai semua tentang budaya bali',

@@ -27,9 +27,9 @@
 
         <div class="section-header">
           <!-- <h2>Our Menu</h2> -->
-          <p>Hire  <span>Car Rental</span></p>
+          <h3>{{ __('activity.title_car') }}</h3>
         </div>
-
+        <p>{{ __('activity.desc_car') }}</p>
           
 
         <div class="tab-content chefs">
@@ -65,21 +65,10 @@
                       <!-- <i class="bi bi-check2-all"></i> Shower
                       <i class="bi bi-check2-all"></i> Free Wifi -->
                     @endforeach
-                  </div>
-                  <p class="price">
-                    IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours <br>
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
-                      Detail
-                    </button> -->
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#trModal{{$tr->id}}">
-                      Book Now
-                    </button> -->
-                    <div >
-                      <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" class="btn-book-a-table">
-                      
+                    IDR {{ number_format($tr->harga, 2) }} for {{ $tr->waktu }} Hours
+                    <a href="https://api.whatsapp.com/send?phone=+62818688114&text=Halo" target="_blank" class="btn-book-a-table">
                       <img src="assets/img/wa.png" >Book Now</a>
-                    </div>
-                  </p>
+                  </div>
                 </div>
               </div><!-- End Chefs Member -->
             @endforeach

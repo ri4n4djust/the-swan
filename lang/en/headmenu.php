@@ -21,6 +21,7 @@ return [
     //=========== activity
     'activity' => 'Bali Activities',
     'destinations' => 'Bali Destinations',
+    'hire_car' => 'Hire A Car',
     //========= artikel
     'artikel' => 'Event in bali',
     'artikel_head_title' => 'All About Bali Culture',

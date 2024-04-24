@@ -12,4 +12,11 @@ return [
     'water_activity' => 'Aktivitas Air',
     'air_activity' => 'Aktivitas Udara', 
 
+    //==============Transport
+
+    'title_car' => 'Menyewakan Mobil Dengan Supir',
+    'desc_car' => 'sudah punya rencana perjalanan, kami menyediakan mobil dengan supir sebagai pemandu perjalanan anda, 
+    diskusikan rencana perjalana anda dengan tim kami, sehingga kami dapat menyediakan kendaraan yang nyaman dengan supir sebagai pemandu yang profeional, 
+    kami menyediakan beberapa jenis mobil sesuai dengan kebutuhan anda dalam melakukan perjalan mengelilingi bali'
+
 ];

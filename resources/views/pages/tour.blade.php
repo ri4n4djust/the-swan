@@ -55,10 +55,8 @@
                     
                     <div class="member-info">
                       <h4>{{ $tur->tour_name}}</h4>
-                    </div>
-                    <p class="price">
                       <a href="/tour_packages/{{$tur->slug}}" class="btn-book-a-table">Detail</a>
-                    </p>
+                    </div>
                 </div>
               </div><!-- End Chefs Member -->
             @endforeach
