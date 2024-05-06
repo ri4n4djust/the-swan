@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('meta')
-    <title>Bali Packages Tour- The Swand</title>
+    <title>Bali Accommodation Rental- The Swand</title>
     <meta content="bali vacation, bali accommodation, bali hotels, hotels bali, trip to bali, luxury vacation homes, tour bali, bali tour package, luxury rental homes, bali holiday packages 
 " name="description">
     <meta content="bali vacation, bali accommodation, bali hotels, hotels bali, trip to bali, luxury vacation homes, tour bali, bali tour package, luxury rental homes, bali holiday packages 
