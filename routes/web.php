@@ -118,8 +118,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-// Auth::routes();
-Auth::routes(['register' => false]);
+Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     // your routes
     Route::get('properti', ['as' => 'pages.properti', 'uses' => 'App\Http\Controllers\PageController@properti']);
